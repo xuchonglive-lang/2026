@@ -1,0 +1,243 @@
+/* 这里是你自己写的全局css样式 */
+
+/* 禁用双击缩放，直接触发点击，解决Web端点击响应延迟的问题 */
+a,
+button,
+view,
+text,
+body {
+  touch-action: manipulation;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 基础字号对齐 */
+body,
+.el-button,
+.el-input,
+.el-select,
+.el-cascader {
+  font-size: 14px;
+}
+
+/* 滚动条美化方案开始 去掉下方css的注释即可 */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(135, 135, 135, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(135, 135, 135, 0.4);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(135, 135, 135, 0.8);
+}
+
+/* 滚动条美化方案结束 */
+
+/* 富文本编辑器样式开始 */
+.ql-indent-1 {
+  padding-left: 3em;
+}
+
+.ql-indent-2 {
+  padding-left: 6em;
+}
+
+.ql-indent-3 {
+  padding-left: 9em;
+}
+
+.ql-indent-4 {
+  padding-left: 12em;
+}
+
+.ql-indent-5 {
+  padding-left: 15em;
+}
+
+.ql-indent-6 {
+  padding-left: 18em;
+}
+
+.ql-indent-7 {
+  padding-left: 21em;
+}
+
+.ql-indent-8 {
+  padding-left: 24em;
+}
+
+/* 富文本编辑器样式结束 */
+
+/* ====================================================
+   需求3：工具栏按钮全局样式 — 若依风格（mini + plain）
+   ==================================================== */
+.vk-table-button-box .el-button {
+  /* mini 尺寸 */
+  padding: 7px 15px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+/* primary plain */
+.vk-table-button-box .el-button--primary {
+  color: #409eff;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+}
+
+.vk-table-button-box .el-button--primary:hover,
+.vk-table-button-box .el-button--primary:focus {
+  background: #409eff;
+  border-color: #409eff;
+  color: #fff;
+}
+
+/* success plain */
+.vk-table-button-box .el-button--success {
+  color: #67c23a;
+  background: #f0f9eb;
+  border-color: #c2e7b0;
+}
+
+.vk-table-button-box .el-button--success:hover,
+.vk-table-button-box .el-button--success:focus {
+  background: #67c23a;
+  border-color: #67c23a;
+  color: #fff;
+}
+
+/* danger plain */
+.vk-table-button-box .el-button--danger {
+  color: #f56c6c;
+  background: #fef0f0;
+  border-color: #fbc4c4;
+}
+
+.vk-table-button-box .el-button--danger:hover,
+.vk-table-button-box .el-button--danger:focus {
+  background: #f56c6c;
+  border-color: #f56c6c;
+  color: #fff;
+}
+
+/* warning plain */
+.vk-table-button-box .el-button--warning {
+  color: #e6a23c;
+  background: #fdf6ec;
+  border-color: #f5dab1;
+}
+
+.vk-table-button-box .el-button--warning:hover,
+.vk-table-button-box .el-button--warning:focus {
+  background: #e6a23c;
+  border-color: #e6a23c;
+  color: #fff;
+}
+
+/* info plain */
+.vk-table-button-box .el-button--info {
+  color: #909399;
+  background: #f4f4f5;
+  border-color: #d3d4d6;
+}
+
+.vk-table-button-box .el-button--info:hover,
+.vk-table-button-box .el-button--info:focus {
+  background: #909399;
+  border-color: #909399;
+  color: #fff;
+}
+
+/* ====================================================
+   需求4：表格操作按钮全局样式 — 若依风格（文字链接 + mini）
+   ==================================================== */
+/* 强制覆盖表格行内的所有按钮为文字链接样式 */
+.el-table__row .el-button {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 5px !important;
+  margin: 0 2px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  height: auto !important;
+  line-height: inherit !important;
+  border-radius: 0 !important;
+
+  /* 默认文字颜色 (若依蓝) */
+  color: #1890ff !important;
+
+  &:hover,
+  &:focus {
+    background: transparent !important;
+    color: #40a9ff !important;
+    text-decoration: none;
+  }
+
+  /* 针对不同类型的按钮颜色微调 */
+  &.el-button--primary,
+  &.el-button--success,
+  &.el-button--info {
+    color: #1890ff !important;
+
+    &:hover {
+      color: #40a9ff !important;
+    }
+  }
+
+  &.el-button--danger {
+    color: #ff4949 !important;
+
+    &:hover {
+      color: #ff7875 !important;
+    }
+  }
+}
+
+/* 兼容 vk-data-table 的特定类名 */
+.vk-data-table .el-table .cell .el-button--text {
+  color: #1890ff !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 5px !important;
+
+  &:hover {
+    color: #40a9ff !important;
+  }
+}
+
+/* 搜索区域的按钮也调整为mini尺寸 */
+.vk-data-table-query .el-button {
+  padding: 7px 15px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+/* ====================================================
+   若依风格：表格头样式
+   ==================================================== */
+.el-table th {
+  background-color: #f8f8f9 !important;
+  color: #515a6e !important;
+  font-size: 13px !important;
+  height: 40px !important;
+}
+
+/* ====================================================
+   若依风格：按钮激活状态微调
+   ==================================================== */
+.el-button--primary.is-plain:focus,
+.el-button--primary.is-plain:hover {
+  background: #1890ff;
+  border-color: #1890ff;
+  color: #fff;
+}
