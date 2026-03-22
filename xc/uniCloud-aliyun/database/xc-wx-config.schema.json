@@ -1,0 +1,47 @@
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "app_id": {
+      "bsonType": "string",
+      "title": "微信AppID"
+    },
+    "app_secret": {
+      "bsonType": "string",
+      "title": "微信AppSecret"
+    },
+    "token": {
+      "bsonType": "string",
+      "title": "微信Token"
+    },
+    "encoding_aes_key": {
+      "bsonType": "string",
+      "title": "消息加解密密钥"
+    },
+    "access_token": {
+      "bsonType": "string",
+      "title": "缓存的access_token"
+    },
+    "access_token_expires": {
+      "bsonType": "timestamp",
+      "title": "access_token过期时间"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "创建时间"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "title": "更新时间"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "bsonType": "object",
+  "required": ["tenant_id", "article_id", "user_id"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "tenant_id": {
+      "bsonType": "string",
+      "title": "租户ID"
+    },
+    "article_id": {
+      "bsonType": "string",
+      "title": "文章ID",
+      "description": "关联 xc-info-articles._id"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "title": "用户ID",
+      "description": "阅读用户"
+    },
+    "read_time": {
+      "bsonType": "timestamp",
+      "title": "最近阅读时间",
+      "description": "重复访问时更新"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "首次阅读时间"
+    }
+  }
+}

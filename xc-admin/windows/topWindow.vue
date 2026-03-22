@@ -72,6 +72,8 @@
           ></vk-data-icon>
           <!-- 面包屑 -->
           <breadcrumb></breadcrumb>
+          <!-- 部门切换（仅集团级可见） -->
+          <DeptSelector></DeptSelector>
 
           <view class="navbar-left pointer">
             <vk-data-icon
@@ -163,11 +165,13 @@ import config from "@/app.config.js";
 import breadcrumb from "./components/breadcrumb";
 import errorLog from "./components/errorLog";
 import updatePassword from "./components/updatePassword";
+import DeptSelector from "@/components/dept-selector/DeptSelector.vue";
 export default {
   components: {
     breadcrumb,
     errorLog,
     updatePassword,
+    DeptSelector,
   },
   props: {
     navigationBarTitleText: {

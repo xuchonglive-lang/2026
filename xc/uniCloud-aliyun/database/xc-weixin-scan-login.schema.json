@@ -1,0 +1,48 @@
+{
+  "bsonType": "object",
+  "required": ["scene_id"],
+  "permission": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "scene_id": {
+      "bsonType": "string",
+      "title": "场景值",
+      "description": "唯一标识一次扫码会话，用于前端轮询匹配"
+    },
+    "status": {
+      "bsonType": "int",
+      "title": "状态",
+      "description": "0=等待扫码 1=已扫码待确认 2=已确认(登录成功) 3=已过期",
+      "defaultValue": 0,
+      "enum": [0, 1, 2, 3]
+    },
+    "openid": {
+      "bsonType": "string",
+      "title": "扫码用户openid"
+    },
+    "token": {
+      "bsonType": "string",
+      "title": "登录成功后的token"
+    },
+    "userInfo": {
+      "bsonType": "object",
+      "title": "登录成功后的用户信息"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "创建时间"
+    },
+    "expire_at": {
+      "bsonType": "timestamp",
+      "title": "过期时间",
+      "description": "配合 TTL 索引自动清除过期记录"
+    }
+  }
+}

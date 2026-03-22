@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoKey": {
+        "tenant_id": 1
+      }
+    },
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoKey": {
+        "parent_id": 1
+      }
+    }
+  ]
+}

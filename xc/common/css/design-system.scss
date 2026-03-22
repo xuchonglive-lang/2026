@@ -1,0 +1,153 @@
+/* ============================================
+   XC 设计系统 - UI/UX Pro Max 全局规范
+   基于项目宪法第五章定义
+   ============================================ */
+
+/* === 色彩体系 (Minimal Professional SaaS) === */
+:root {
+  --color-primary: #0F172A; /* Slate 900 - 深邃专业黑 */
+  --color-secondary: #64748B; /* Slate 500 */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #3B82F6;
+  --color-bg-page: #F8FAFC; /* 极浅冷灰底 */
+  --color-bg-card: #FFFFFF;
+  --color-bg-glass: rgba(255, 255, 255, 0.85);
+  --color-border: #E2E8F0;
+  --color-border-glass: rgba(226, 232, 240, 0.6);
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-placeholder: #94A3B8;
+  --color-primary-light: #F1F5F9;
+  --color-primary-hover: #1E293B;
+  --color-primary-active: #020617;
+  --color-code-bg: #0F172A;
+  --color-code-text: #E2E8F0;
+}
+
+/* SCSS 变量（用于 SCSS 文件内引用） */
+$color-primary: #165DFF;
+$color-secondary: #FF7D00;
+$color-success: #00B42A;
+$color-warning: #FF7D00;
+$color-danger: #F53F3F;
+$color-info: #86909C;
+$color-bg-page: #F5F7FA;
+$color-bg-card: #FFFFFF;
+$color-border: #E5E6EB;
+$color-text-primary: #1D2129;
+$color-text-secondary: #86909C;
+$color-text-placeholder: #C9CDD4;
+
+/* === 字体规范 === */
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-h3: 18px;
+  --font-size-h4: 14px;
+  --font-size-body: 14px;
+  --font-size-helper: 12px;
+  --font-size-caption: 11px;
+  --font-weight-bold: 600;
+  --font-weight-semibold: 500;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --line-height-title: 1.2;
+  --line-height-body: 1.6;
+  --letter-spacing-tight: -0.02em;
+}
+
+$font-size-h1: 24px;
+$font-size-h2: 20px;
+$font-size-h3: 18px;
+$font-size-h4: 16px;
+$font-size-body: 14px;
+$font-size-helper: 12px;
+$font-size-caption: 10px;
+
+/* === 间距规范（8px 栅格） === */
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 64px;
+}
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+$spacing-xxxl: 64px;
+
+/* === 圆角 (Crisp) === */
+:root {
+  --radius-sm: 4px;
+  --radius-base: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+}
+
+/* === 阴影 (Subtle & Sharp) === */
+:root {
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-base: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+  --shadow-primary: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+/* === 特效 === */
+:root {
+  --glass-blur: blur(16px);
+  --transition-all: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-transform: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* === 动效 === */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+}
+
+/* === 布局尺寸 === */
+:root {
+  --topnav-height-pc: 65px;
+  --topnav-height-h5: 44px;
+  --tabbar-height: 50px;
+  --footer-height: 48px;
+  --content-max-width: 1200px;
+  --content-padding-pc: 24px;
+  --content-padding-h5: 12px 16px;
+  --drawer-width: 75vw;
+  --drawer-max-width: 300px;
+}
+
+/* === 响应式断点 === */
+$breakpoint-xs: 0px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1440px;
+
+/* === 全局基础样式 === */
+page {
+  background-color: var(--color-bg-page);
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

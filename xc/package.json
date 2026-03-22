@@ -1,31 +1,30 @@
 {
-  "id": "vk-unicloud-admin",
-  "name": "vk-unicloud-admin",
-  "version": "1.22.2",
-  "displayName": "【开箱即用】vk-unicloud-admin-快速开发框架-打造unicloud最好用的admin",
-  "description": "vk-unicloud-admin是基于uniapp+unicloud+uni-id+vk-router+element的一套快速PC admin企业级开发框架。小白几分钟即完成一个页面CRUD。",
+  "id": "vk-cloud-router",
+  "displayName": "【开箱即用】vk-unicloud-router - 云函数路由模式开发框架 - 已集成uni-id 框架内置了众多API、工具包，为你的业务扫平障碍。",
+  "version": "2.22.2",
+  "description": "这是一个unicloud快速开发框架+项目模板（已包含核心库）支持URL化，众多现成API供你使用（登录、注册、短信、微信百度服务端API等等）为你的业务扫平障碍。内置小白也能轻松上手的数据库API。",
   "keywords": [
-    "vk-unicloud-admin",
-    "支持表单可视化拖拽生成代码",
+    "vk-unicloud-router",
+    "云函数路由、云对象路由",
     "vk云开发",
-    "vk-admin、element-ui",
-    "内置众多API、工具包"
-],
+    "内置uni-id、数据库baseDao",
+    "企业级云开发框架"
+  ],
   "main": "main.js",
+  "dependencies": {
+    "markdown-it": "^14.1.1",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-toc-done-right": "^4.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://gitee.com/vk-uni/vk-unicloud-admin",
   "author": "VK",
   "license": "MIT",
-  "homepage": "https://vkdoc.fsq.pub/admin/",
-  "dependencies": {
-    "element-ui": "2.15.14",
-    "umy-ui": "1.1.6",
-    "vk-unicloud-admin-ui": "^1.21.8"
-  },
+  "repository": "https://gitee.com/vk-uni/vk-uni-cloud-router",
+  "name": "vk-unicloud-router",
   "engines": {
-    "HBuilderX": "^3.1.10",
+    "HBuilderX": "^3.1.2",
     "uni-app": "^4.36",
     "uni-app-x": ""
   },
@@ -50,7 +49,7 @@
     "type": "unicloud-template-project",
     "darkmode": "x",
     "i18n": "√",
-    "widescreen": "√"
+    "widescreen": "x"
   },
   "uni_modules": {
     "platforms": {
@@ -63,7 +62,7 @@
         "uni-app": {
           "vue": {
             "vue2": "√",
-            "vue3": "x"
+            "vue3": "√"
           },
           "web": {
             "safari": "√",
@@ -71,25 +70,25 @@
           },
           "app": {
             "vue": "√",
-            "nvue": "x",
-            "android": "x",
-            "ios": "x",
-            "harmony": "x"
+            "nvue": "√",
+            "android": "√",
+            "ios": "√",
+            "harmony": "√"
           },
           "mp": {
-            "weixin": "x",
-            "alipay": "x",
-            "toutiao": "x",
-            "baidu": "x",
-            "kuaishou": "x",
-            "jd": "x",
-            "harmony": "x",
-            "qq": "x",
-            "lark": "x"
+            "weixin": "√",
+            "alipay": "√",
+            "toutiao": "√",
+            "baidu": "√",
+            "kuaishou": "√",
+            "jd": "√",
+            "harmony": "√",
+            "qq": "√",
+            "lark": "√"
           },
           "quickapp": {
-            "huawei": "x",
-            "union": "x"
+            "huawei": "√",
+            "union": "√"
           }
         },
         "uni-app-x": {

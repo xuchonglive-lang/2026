@@ -1,59 +1,185 @@
 {
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^app-layout$": "@/components/layout/AppLayout.vue",
+      "^top-nav-bar$": "@/components/layout/TopNavBar.vue",
+      "^drawer-menu$": "@/components/layout/DrawerMenu.vue",
+      "^bottom-tab-bar$": "@/components/layout/BottomTabBar.vue",
+      "^page-footer$": "@/components/layout/PageFooter.vue",
+      "^side-menu$": "@/components/layout/SideMenu.vue"
+    }
+  },
   "pages": [
-    { "path": "pages/index/index" },
+    {
+      "path": "pages/index/index",
+      "style": { "navigationBarTitleText": "首页" }
+    },
+    {
+      "path": "pages/workbench/index",
+      "style": { "navigationBarTitleText": "工作台" }
+    },
+    {
+      "path": "pages/message/list",
+      "style": { "navigationBarTitleText": "消息" }
+    },
+    {
+      "path": "pages/message/detail",
+      "style": { "navigationBarTitleText": "消息详情" }
+    },
     {
       "path": "pages/login/index",
-      "style": {
-        "topWindow": false,
-        "leftWindow": false,
-        "navigationBarTitleText": "登录"
-      }
+      "style": { "navigationBarTitleText": "登录" }
+    },
+    {
+      "path": "pages/403/index",
+      "style": { "navigationBarTitleText": "无权限" }
+    },
+    {
+      "path": "pages/error/dept-disabled",
+      "style": { "navigationBarTitleText": "部门已停用" }
+    },
+    {
+      "path": "pages/training/list",
+      "style": { "navigationBarTitleText": "培训学习" }
+    },
+    {
+      "path": "pages/training/video-detail",
+      "style": { "navigationBarTitleText": "视频课程" }
+    },
+    {
+      "path": "pages/training/article-detail",
+      "style": { "navigationBarTitleText": "文章课程" }
+    },
+    {
+      "path": "pages/info-publish/list",
+      "style": { "navigationBarTitleText": "信息传达" }
+    },
+    {
+      "path": "pages/info-publish/detail",
+      "style": { "navigationBarTitleText": "信息详情" }
+    },
+    {
+      "path": "pages/key-work/list",
+      "style": { "navigationBarTitleText": "重点工作" }
+    },
+    {
+      "path": "pages/key-work/focus-list",
+      "style": { "navigationBarTitleText": "重点关注" }
+    },
+    {
+      "path": "pages/key-work/task-detail",
+      "style": { "navigationBarTitleText": "任务详情" }
+    },
+    {
+      "path": "pages/key-work/focus-detail",
+      "style": { "navigationBarTitleText": "关注详情" }
+    },
+    {
+      "path": "pages/pro-mgmt/index",
+      "style": { "navigationBarTitleText": "专业管理" }
+    },
+    {
+      "path": "pages/pro-mgmt/regulations",
+      "style": { "navigationBarTitleText": "制度规范" }
+    },
+    {
+      "path": "pages/pro-mgmt/network",
+      "style": { "navigationBarTitleText": "管理网络" }
+    },
+    {
+      "path": "pages/pro-mgmt/calendar",
+      "style": { "navigationBarTitleText": "例行工作" }
+    },
+    {
+      "path": "pages/pro-mgmt/my-docs",
+      "style": { "navigationBarTitleText": "我的文档" }
+    },
+    {
+      "path": "pages/test/test",
+      "style": { "navigationBarTitleText": "演示页面" }
     }
   ],
-  "subPackages": [{
+  "subPackages": [
+    {
       "root": "pages_plugs",
       "pages": [
-        { "path": "error/404", "style": { "navigationBarTitleText": "页面不存在" } },
-        { "path": "error/403", "style": { "navigationBarTitleText": "无权访问" } },
-        { "path": "error/500", "style": { "navigationBarTitleText": "服务器出错了" } },
-        { "path": "system/user/list" },
-        { "path": "system/role/list" },
-        { "path": "system/permission/list" },
-        { "path": "system/menu/list" },
-        { "path": "system/app/list" },
-        { "path": "system/app-upgrade-center/list" },
-        { "path": "system_uni/vk-global-data" },
-        { "path": "system_uni/uni-id-log" },
-        { "path": "system_uni/opendb-admin-log" },
-        { "path": "system_uni/vk-components-dynamic" },
-        { "path": "system_uni/uni-id-files/list" },
-        { "path": "system_uni/vk-pay-orders" },
-        { "path": "system_uni/vk-ws-connection" },
-        { "path": "system_uni/vk-error-log" },
-        { "path": "system_uni/lucky-draw/list", "style": { "navigationBarTitleText": "抽奖活动" } }
+        {
+          "path": "user-center/index",
+          "style": { "navigationBarTitleText": "个人中心" }
+        },
+        {
+          "path": "user-center/profile",
+          "style": { "navigationBarTitleText": "个人信息" }
+        },
+        {
+          "path": "user-center/my-tasks",
+          "style": { "navigationBarTitleText": "我的任务" }
+        },
+        {
+          "path": "user-center/my-feedback",
+          "style": { "navigationBarTitleText": "我的反馈" }
+        },
+        {
+          "path": "user-center/my-reading",
+          "style": { "navigationBarTitleText": "我的阅读" }
+        },
+        {
+          "path": "user-center/my-training",
+          "style": { "navigationBarTitleText": "我的培训" }
+        },
+        {
+          "path": "user-center/my-work",
+          "style": { "navigationBarTitleText": "我的工作" }
+        },
+        {
+          "path": "user-center/settings",
+          "style": { "navigationBarTitleText": "个人设置" }
+        },
+        {
+          "path": "system/dept/info",
+          "style": { "navigationBarTitleText": "部门信息" }
+        }
+      ]
+    },
+    {
+      "root": "pages_template",
+      "pages": [
+        {
+          "path": "db-test/db-test",
+          "style": { "navigationBarTitleText": "数据库API演示" }
+        },
+        {
+          "path": "db-test/list/list",
+          "style": { "navigationBarTitleText": "列表加载演示" }
+        },
+        {
+          "path": "uni-id/index/index",
+          "style": { "navigationBarTitleText": "vk-uniCloud-router 演示" }
+        },
+        {
+          "path": "uni-id/login/index/index",
+          "style": { "navigationBarTitleText": "登录" }
+        },
+        {
+          "path": "uni-id/login/register/register",
+          "style": { "navigationBarTitleText": "注册" }
+        },
+        {
+          "path": "uni-id/login/forget/forget",
+          "style": { "navigationBarTitleText": "找回密码" }
+        }
       ]
     }
   ],
   "globalStyle": {
-    "navigationStyle": "custom",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "管理后台",
+    "navigationBarTitleText": "",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#F8F8F8",
+    "rpxCalcMaxDeviceWidth": 450,
+    "rpxCalcBaseDeviceWidth": 375,
+    "rpxCalcIncludeWidth": 750,
     "backgroundColor": "#F8F8F8"
-  },
-  "topWindow": {
-    "path": "windows/topWindow",
-    "style": {
-      "height": "100px"
-    },
-    "matchMedia": {
-      "minWidth": 0
-    }
-  },
-  "leftWindow": {
-    "path": "windows/leftWindow",
-    "style": {
-      "width": "240px"
-    }
   }
 }

@@ -40,9 +40,40 @@
             "navigationBarTitleText": "服务器出错了"
           }
         },
-        {
-          "path": "system/user/list"
-        },
+		{
+		  "path": "message/list"
+		},
+		{
+		  "path": "message/wx-menu"
+		},
+		{
+		  "path": "message/wx-config"
+		},
+		{
+		  "path": "message/template"
+		},
+		{
+		  "path": "tenant/member/list"
+		},
+		{
+		  "path": "tenant/group/list"
+		},
+		{
+		  "path": "tenant/applications"
+		},
+		{
+		  "path": "tenant/settings"
+		},
+		{
+		  "path": "system/user/list"
+		},
+		{
+		  "path": "system/dept/applications"
+		},
+		{
+		  "path": "system/user/listforsystem"
+		},
+
         {
           "path": "system/role/list"
         },
@@ -52,6 +83,9 @@
         {
           "path": "system/menu/list"
         },
+		{
+		  "path": "system/dept/list"
+		},
         {
           "path": "system/app/list"
         },
@@ -87,7 +121,13 @@
           "style": {
             "navigationBarTitleText": "抽奖活动"
           }
-        }
+        },
+		{
+		  "path": "info-publish/category"
+		},
+		{
+		  "path": "info-publish/list"
+		}
       ]
     }
   ],

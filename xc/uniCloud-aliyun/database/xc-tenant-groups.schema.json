@@ -1,0 +1,71 @@
+{
+  "bsonType": "object",
+  "required": ["tenant_id", "name"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "tenant_id": {
+      "bsonType": "string",
+      "title": "所属租户ID",
+      "description": "关联 xc-tenants._id，标识该小组归属哪个大盘部室/车间"
+    },
+    "parent_id": {
+      "bsonType": "string",
+      "title": "上级小组ID",
+      "description": "根小组为空字符串或null"
+    },
+    "name": {
+      "bsonType": "string",
+      "title": "小组名称",
+      "trim": "both"
+    },
+    "group_path": {
+      "bsonType": "string",
+      "title": "层级路径",
+      "description": "格式: /parent_id_1/parent_id_2，用于快速查询子树"
+    },
+    "leader_id": {
+      "bsonType": "string",
+      "title": "组长用户ID"
+    },
+    "sort_num": {
+      "bsonType": "int",
+      "title": "排序号",
+      "defaultValue": 0
+    },
+    "status": {
+      "bsonType": "int",
+      "title": "状态",
+      "description": "0=停用 1=启用",
+      "defaultValue": 1,
+      "enum": [0, 1]
+    },
+    "description": {
+      "bsonType": "string",
+      "title": "简介"
+    },
+    "created_by": {
+      "bsonType": "string",
+      "title": "创建人"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "创建时间"
+    },
+    "updated_by": {
+      "bsonType": "string",
+      "title": "更新人"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "title": "更新时间"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "bsonType": "object",
+  "required": ["tenant_id", "title", "content", "category_id"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "tenant_id": {
+      "bsonType": "string",
+      "title": "租户ID",
+      "description": "关联 xc-tenants._id"
+    },
+    "title": {
+      "bsonType": "string",
+      "title": "文章标题",
+      "trim": "both"
+    },
+    "summary": {
+      "bsonType": "string",
+      "title": "文章摘要",
+      "description": "不填则自动提取正文前100字（正则清洗Markdown标记）"
+    },
+    "content": {
+      "bsonType": "string",
+      "title": "Markdown正文"
+    },
+    "cover_image": {
+      "bsonType": "string",
+      "title": "封面图URL",
+      "description": "可选，有图时列表显示左图右文卡片"
+    },
+    "category_id": {
+      "bsonType": "string",
+      "title": "分类ID",
+      "description": "关联 xc-info-categories._id（子分类）"
+    },
+    "attachments": {
+      "bsonType": "array",
+      "title": "附件列表",
+      "description": "[{ name, url, size, type, upload_time }]"
+    },
+    "visibility": {
+      "bsonType": "string",
+      "title": "可见性",
+      "description": "public=所有部门 / private=仅本部门 / targeted=指定部门",
+      "defaultValue": "private"
+    },
+    "target_dept_ids": {
+      "bsonType": "array",
+      "title": "目标部门ID数组",
+      "description": "visibility=targeted 时必填"
+    },
+    "target_user_ids": {
+      "bsonType": "array",
+      "title": "目标用户ID数组",
+      "description": "可选精确控制"
+    },
+    "allow_comment": {
+      "bsonType": "bool",
+      "title": "是否允许评论",
+      "defaultValue": true
+    },
+    "view_count": {
+      "bsonType": "int",
+      "title": "阅读数",
+      "description": "原子递增+去重",
+      "defaultValue": 0
+    },
+    "comment_count": {
+      "bsonType": "int",
+      "title": "评论数",
+      "description": "原子递增",
+      "defaultValue": 0
+    },
+    "status": {
+      "bsonType": "int",
+      "title": "状态",
+      "description": "0=草稿 1=已发布 2=已下架",
+      "defaultValue": 0
+    },
+    "is_deleted": {
+      "bsonType": "bool",
+      "title": "软删除标记",
+      "defaultValue": false
+    },
+    "publish_time": {
+      "bsonType": "timestamp",
+      "title": "发布时间",
+      "description": "发布时写入"
+    },
+    "created_by": {
+      "bsonType": "string",
+      "title": "创建人"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "创建时间"
+    },
+    "updated_by": {
+      "bsonType": "string",
+      "title": "更新人"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "title": "更新时间"
+    }
+  }
+}

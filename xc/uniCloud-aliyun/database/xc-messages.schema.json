@@ -1,0 +1,92 @@
+{
+  "bsonType": "object",
+  "required": ["title", "receiver_id"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "title": {
+      "bsonType": "string",
+      "title": "消息标题",
+      "trim": "both"
+    },
+    "summary": {
+      "bsonType": "string",
+      "title": "消息摘要",
+      "description": "截断到50字"
+    },
+    "content": {
+      "bsonType": "string",
+      "title": "消息内容",
+      "description": "纯文本内容"
+    },
+    "msg_type": {
+      "bsonType": "string",
+      "title": "消息类型",
+      "description": "动态聚合自模板biz_type，如system/training/work/info"
+    },
+    "target_type": {
+      "bsonType": "string",
+      "title": "关联业务类型",
+      "description": "如training/info/work等"
+    },
+    "target_id": {
+      "bsonType": "string",
+      "title": "关联业务ID"
+    },
+    "sender_id": {
+      "bsonType": "string",
+      "title": "发送人ID"
+    },
+    "receiver_id": {
+      "bsonType": "string",
+      "title": "接收人ID"
+    },
+    "is_read": {
+      "bsonType": "bool",
+      "title": "是否已读",
+      "defaultValue": false
+    },
+    "is_deleted": {
+      "bsonType": "bool",
+      "title": "用户软删标记",
+      "defaultValue": false
+    },
+    "read_time": {
+      "bsonType": "timestamp",
+      "title": "阅读时间"
+    },
+    "push_status": {
+      "bsonType": "string",
+      "title": "推送状态",
+      "description": "pending/success/failed",
+      "defaultValue": "pending"
+    },
+    "push_error": {
+      "bsonType": "string",
+      "title": "推送错误信息"
+    },
+    "tenant_id": {
+      "bsonType": "string",
+      "title": "租户ID"
+    },
+    "created_by": {
+      "bsonType": "string",
+      "title": "创建人"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "创建时间"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "title": "更新时间"
+    }
+  }
+}

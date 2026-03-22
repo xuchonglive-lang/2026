@@ -189,5 +189,38 @@
     "icon": "vk-icon-present",
     "name": "抽奖活动",
     "parent_id": "system-uni"
+  },
+  {
+    "_id": "info-publish",
+    "_add_time": 1710403200000,
+    "menu_id": "info-publish",
+    "name": "信息共享",
+    "icon": "el-icon-document",
+    "url": "",
+    "comment": "信息共享模块",
+    "sort": 30,
+    "enable": true
+  },
+  {
+    "_id": "info-publish-category",
+    "_add_time": 1710403200000,
+    "menu_id": "info-publish-category",
+    "name": "分类管理",
+    "icon": "el-icon-folder",
+    "url": "/pages_plugs/info-publish/category",
+    "sort": 1,
+    "parent_id": "info-publish",
+    "enable": true
+  },
+  {
+    "_id": "info-publish-list",
+    "_add_time": 1710403200000,
+    "menu_id": "info-publish-list",
+    "name": "文章管理",
+    "icon": "el-icon-document-copy",
+    "url": "/pages_plugs/info-publish/list",
+    "sort": 2,
+    "parent_id": "info-publish",
+    "enable": true
   }
 ]

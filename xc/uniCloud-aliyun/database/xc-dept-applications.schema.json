@@ -1,0 +1,62 @@
+{
+  "bsonType": "object",
+  "required": ["user_id", "target_dept_id", "real_name"],
+  "permission": {
+    "read": "doc.user_id == auth.uid",
+    "create": "auth.uid != null",
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "title": "申请人用户ID",
+      "forceDefaultValue": {
+        "$env": "uid"
+      }
+    },
+    "target_dept_id": {
+      "bsonType": "string",
+      "title": "目标部门ID",
+      "description": "关联 xc-tenants._id"
+    },
+    "real_name": {
+      "bsonType": "string",
+      "title": "申请人真实姓名",
+      "trim": "both"
+    },
+    "phone": {
+      "bsonType": "string",
+      "title": "联系电话"
+    },
+    "status": {
+      "bsonType": "int",
+      "title": "审批状态",
+      "description": "0=待审 1=通过 2=拒绝",
+      "defaultValue": 0,
+      "enum": [0, 1, 2]
+    },
+    "reject_reason": {
+      "bsonType": "string",
+      "title": "拒绝原因"
+    },
+    "approved_by": {
+      "bsonType": "string",
+      "title": "审批人用户ID"
+    },
+    "approved_at": {
+      "bsonType": "timestamp",
+      "title": "审批时间"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "申请时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

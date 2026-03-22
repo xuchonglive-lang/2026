@@ -1,0 +1,36 @@
+{
+  "indexes": [
+    {
+      "IndexName": "receiver_read",
+      "MgoKeySchema": {
+        "MgoIndexKeys": [
+          { "Name": "receiver_id", "Direction": "1" },
+          { "Name": "is_read", "Direction": "1" },
+          { "Name": "is_deleted", "Direction": "1" }
+        ],
+        "MgoIsUnique": false
+      }
+    },
+    {
+      "IndexName": "receiver_type",
+      "MgoKeySchema": {
+        "MgoIndexKeys": [
+          { "Name": "receiver_id", "Direction": "1" },
+          { "Name": "msg_type", "Direction": "1" },
+          { "Name": "created_at", "Direction": "-1" }
+        ],
+        "MgoIsUnique": false
+      }
+    },
+    {
+      "IndexName": "tenant_created",
+      "MgoKeySchema": {
+        "MgoIndexKeys": [
+          { "Name": "tenant_id", "Direction": "1" },
+          { "Name": "created_at", "Direction": "-1" }
+        ],
+        "MgoIsUnique": false
+      }
+    }
+  ]
+}

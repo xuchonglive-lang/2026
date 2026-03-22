@@ -1,0 +1,62 @@
+{
+  "bsonType": "object",
+  "required": ["tenant_id", "name"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID"
+    },
+    "tenant_id": {
+      "bsonType": "string",
+      "title": "租户ID"
+    },
+    "name": {
+      "bsonType": "string",
+      "title": "分类名称",
+      "trim": "both"
+    },
+    "parent_id": {
+      "bsonType": "string",
+      "title": "父分类ID",
+      "description": "空字符串或null表示一级分类"
+    },
+    "sort": {
+      "bsonType": "int",
+      "title": "排序号",
+      "description": "越小越靠前",
+      "defaultValue": 0
+    },
+    "status": {
+      "bsonType": "int",
+      "title": "状态",
+      "description": "0=禁用 1=启用",
+      "defaultValue": 1
+    },
+    "is_deleted": {
+      "bsonType": "bool",
+      "title": "软删除标记",
+      "defaultValue": false
+    },
+    "created_by": {
+      "bsonType": "string",
+      "title": "创建人"
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "title": "创建时间"
+    },
+    "updated_by": {
+      "bsonType": "string",
+      "title": "更新人"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "title": "更新时间"
+    }
+  }
+}

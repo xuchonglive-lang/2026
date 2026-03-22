@@ -312,5 +312,139 @@
     "enable": true,
     "match_mode": 1,
     "parent_id": "system-uni"
+  },
+  {
+    "_id": "info-publish-mgmt",
+    "_add_time": 1710600000000,
+    "permission_id": "info-publish-mgmt",
+    "permission_name": "信息共享管理",
+    "comment": "信息共享模块全部权限",
+    "sort": 201,
+    "enable": true
+  },
+  {
+    "_id": "info-publish-article",
+    "_add_time": 1710600000000,
+    "permission_id": "info-publish-article",
+    "permission_name": "信息共享 - 文章管理",
+    "comment": "文章的增删改查、发布下架",
+    "url": [
+      "admin/info-publish/sys/add",
+      "admin/info-publish/sys/update",
+      "admin/info-publish/sys/del",
+      "admin/info-publish/sys/getList",
+      "admin/info-publish/sys/publish",
+      "admin/info-publish/sys/unpublish",
+      "admin/info-publish/sys/getViewRecords"
+    ],
+    "sort": 1,
+    "enable": true,
+    "match_mode": 0,
+    "parent_id": "info-publish-mgmt"
+  },
+  {
+    "_id": "info-publish-category",
+    "_add_time": 1710600000000,
+    "permission_id": "info-publish-category",
+    "permission_name": "信息共享 - 分类管理",
+    "comment": "分类的增删改查",
+    "url": [
+      "admin/info-publish/sys/categoryAdd",
+      "admin/info-publish/sys/categoryUpdate",
+      "admin/info-publish/sys/categoryDel",
+      "admin/info-publish/sys/categoryGetTree"
+    ],
+    "sort": 2,
+    "enable": true,
+    "match_mode": 0,
+    "parent_id": "info-publish-mgmt"
+  },
+  {
+    "_id": "message-mgmt",
+    "_add_time": 1710600000000,
+    "permission_id": "message-mgmt",
+    "permission_name": "消息管理",
+    "comment": "消息推送与微信管理模块全部权限",
+    "sort": 202,
+    "enable": true
+  },
+  {
+    "_id": "message-manage",
+    "_add_time": 1710600000000,
+    "permission_id": "message-manage",
+    "permission_name": "消息管理 - 消息操作",
+    "comment": "消息发送、查询、统计",
+    "url": [
+      "admin/message/sys/*"
+    ],
+    "sort": 1,
+    "enable": true,
+    "match_mode": 1,
+    "parent_id": "message-mgmt"
+  },
+  {
+    "_id": "message-wx-push",
+    "_add_time": 1710600000000,
+    "permission_id": "message-wx-push",
+    "permission_name": "消息管理 - 微信推送",
+    "comment": "微信服务号配置与菜单管理",
+    "url": [
+      "admin/wx-push/sys/*"
+    ],
+    "sort": 2,
+    "enable": true,
+    "match_mode": 1,
+    "parent_id": "message-mgmt"
+  },
+  {
+    "_id": "tenant-mgmt",
+    "_add_time": 1710600000000,
+    "permission_id": "tenant-mgmt",
+    "permission_name": "租户管理",
+    "comment": "租户级小组与成员管理权限",
+    "sort": 203,
+    "enable": true
+  },
+  {
+    "_id": "tenant-group-manage",
+    "_add_time": 1710600000000,
+    "permission_id": "tenant-group-manage",
+    "permission_name": "租户管理 - 小组管理",
+    "comment": "租户内部小组增删改查",
+    "url": [
+      "admin/tenant/group/sys/*"
+    ],
+    "sort": 1,
+    "enable": true,
+    "match_mode": 1,
+    "parent_id": "tenant-mgmt"
+  },
+  {
+    "_id": "tenant-member-manage",
+    "_add_time": 1710600000000,
+    "permission_id": "tenant-member-manage",
+    "permission_name": "租户管理 - 成员分配",
+    "comment": "租户成员列表与分配",
+    "url": [
+      "admin/tenant/member/sys/*"
+    ],
+    "sort": 2,
+    "enable": true,
+    "match_mode": 1,
+    "parent_id": "tenant-mgmt"
+  },
+  {
+    "_id": "sys-dept-manage",
+    "_add_time": 1710600000000,
+    "permission_id": "sys-dept-manage",
+    "permission_name": "系统 - 部门管理",
+    "comment": "部门增删改查、成员管理",
+    "url": [
+      "admin/system/dept/sys/*"
+    ],
+    "sort": 7,
+    "enable": true,
+    "match_mode": 1,
+    "parent_id": "sys-manage"
   }
 ]

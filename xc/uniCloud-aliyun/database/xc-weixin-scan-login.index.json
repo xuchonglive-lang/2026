@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoIsUnique": true,
+      "MgoKey": {
+        "scene_id": 1
+      }
+    },
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoExpireAfterSeconds": 0,
+      "MgoKey": {
+        "expire_at": 1
+      }
+    }
+  ]
+}

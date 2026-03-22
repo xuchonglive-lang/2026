@@ -1,0 +1,103 @@
+{
+  "data": [
+    {
+      "_id": "cat_policy",
+      "tenant_id": "",
+      "name": "政策法规",
+      "parent_id": "",
+      "sort": 1,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_policy_national",
+      "tenant_id": "",
+      "name": "国家法规",
+      "parent_id": "cat_policy",
+      "sort": 1,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_policy_local",
+      "tenant_id": "",
+      "name": "地方政策",
+      "parent_id": "cat_policy",
+      "sort": 2,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_tech",
+      "tenant_id": "",
+      "name": "技术标准",
+      "parent_id": "",
+      "sort": 2,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_tech_industry",
+      "tenant_id": "",
+      "name": "行业标准",
+      "parent_id": "cat_tech",
+      "sort": 1,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_tech_enterprise",
+      "tenant_id": "",
+      "name": "企业标准",
+      "parent_id": "cat_tech",
+      "sort": 2,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_notice",
+      "tenant_id": "",
+      "name": "通知公告",
+      "parent_id": "",
+      "sort": 3,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_notice_important",
+      "tenant_id": "",
+      "name": "重要通知",
+      "parent_id": "cat_notice",
+      "sort": 1,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    },
+    {
+      "_id": "cat_notice_daily",
+      "tenant_id": "",
+      "name": "日常公告",
+      "parent_id": "cat_notice",
+      "sort": 2,
+      "status": 1,
+      "is_deleted": false,
+      "created_at": 1710403200000,
+      "updated_at": 1710403200000
+    }
+  ]
+}

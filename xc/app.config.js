@@ -1,25 +1,13 @@
 // 引入自定义公共函数
 import myPubFunction from '@/common/function/myPubFunction.js'
-// 引入静态菜单
-import staticMenu from '@/app.config.menu.js'
-// 引入主题配置文件
-import themeConfig from '@/common/theme/index.js'
 export default {
-  // 开发模式启用调式模式(请求时会打印日志)
-  debug: process.env.NODE_ENV !== "production",
+  // 如果设置为false，则开发模式下也不会打印云函数请求日志
+  debug: process.env.NODE_ENV !== 'production',
   // 主云函数名称
   functionName: "router",
   // 登录页面路径
   login: {
-    url: "/pages/login/index",
-    testUser: {
-      show: false, // 是否显示
-      list: [
-        { username: "test11", password: "123456", nickname: "高级管理员" },
-        { username: "test12", password: "123456", nickname: "初级管理员" },
-        { username: "test13", password: "123456", nickname: "无权限用户" }
-      ]
-    }
+    url: '/pages/login/index'
   },
   // 首页页面路径
   index: {
@@ -27,7 +15,11 @@ export default {
   },
   // 404 Not Found 错误页面路径
   error: {
-    url: "/pages_plugs/error/404"
+    url: '/pages/error/404/404'
+  },
+  // 账户注销页面
+  closeAccount: {
+    url: '/pages_template/uni-id/closeAccount/closeAccount'
   },
   // 前端默认时区（中国为8）
   targetTimezone: 8,
@@ -39,23 +31,56 @@ export default {
       "#67C23A"
     ]
   },
-  globalError: true, // 是否开启全局错误提示
+  /**
+   * app主题颜色
+   * vk.getVuex('$app.color.main')
+   * vk.getVuex('$app.color.secondary')
+   */
+  color: {
+    main: "#165DFF",
+    secondary: "#FF7D00"
+  },
   // 需要检查是否登录的页面列表
-  // let { mode, list } = config.checkTokenPages
   checkTokenPages: {
     /**
      * 如果 mode = 0 则代表自动检测
      * 如果 mode = 1 则代表list内的页面需要登录，不在list内的页面不需要登录
      * 如果 mode = 2 则代表list内的页面不需要登录，不在list内的页面需要登录
      * 注意1: list内是通配符表达式，非正则表达式
+     * 注意2: 需要使用 vk.navigateTo 代替 uni.navigateTo 进行页面跳转才会生效
+     * 注意3: 想要让 tabbar 页面必须登录才能访问，则需要手动在页面的onLoad里加 vk.pubfn.checkLogin();
      * 在无需登录的页面上执行kh或sys函数，也会自动判断是否登录，未登录会自动跳登录页面，登录成功后会自动返回本来要跳转的页面。
      */
     mode: 2,
     list: [
+      "/pages_template/*",
       "/pages/login/*",
-      "/pages_template/element/*",
-      "/pages_template/components/form/*",
-      "/pages_template/components/icons/*",
+      "/pages/index/*",
+      "/pages/error/*",
+      "/pages/403/*",
+      "/pages/workbench/*",
+      "/pages/message/*",
+      "/pages/training/*",
+      "/pages/info-publish/*",
+      "/pages/key-work/*",
+      "/pages/pro-mgmt/*",
+      "/pages_plugs/*"
+    ]
+  },
+  // 需要检查是否可以分享的页面列表(仅小程序有效)
+  checkSharePages: {
+    /**
+     * 如果 mode = 0 则不做处理
+     * 如果 mode = 1 则代表list内的页面可以被分享，不在list内的页面不可以被分享
+     * 如果 mode = 2 则代表list内的页面不可以被分享，不在list内的页面可以被分享
+     * 注意: list内是通配符表达式，非正则表达式
+     */
+    mode: 0,
+    menus: ['shareAppMessage'], // ['shareAppMessage', 'shareTimeline'], // menus内的数组可多选，shareAppMessage 转发给朋友，shareTimeline 分享到朋友圈，需要mode为1或2才会生效
+    list: [
+      "/pages/index/*",
+      "/pages/goods/*",
+      "/pages_template/*",
     ]
   },
   // 需要检查是否哪些请求需要加密通信
@@ -74,15 +99,8 @@ export default {
   },
   // 静态文件的资源URL地址
   staticUrl: {
-    // 顶部导航
-    navBar: {
-      // 正方形 Logo 160*160
-      logo: "/static/logo.png",
-      // 长方形 Logo 224*160
-      logo1: "/static/logo1.png",
-      // 横幅 Logo 480*100
-      logo2: "/static/logo2.png"
-    },
+    // Logo
+    logo: '/static/logo.png',
   },
   // 自定义公共函数，myPubFunction内的函数可通过vk.myfn.xxx() 调用
   myfn: myPubFunction,
@@ -147,52 +165,34 @@ export default {
     // APP未授权网络访问时的异常提示
     "cloudfunction-network-unauthorized": "需要进行网络请求许可，若您已授权，请点击确定"
   },
-  // 页面风格
-  pageStyle: {
-    // 表单组件和表格组件的size
-    size: "auto", // medium / small / mini / auto
-  },
-  // 左侧菜单
-  sideBar: {
-    // 配置静态菜单列表
-    staticMenu: staticMenu,
-    defaultOpeneds: ["components-admin"], // 默认展开的菜单项的menu_id
-  },
-  // 顶部菜单
-  topBar: {
-    // 是否启用 menuTabs
-    showMenuTabs: true,
-    // logo显示模式，1 纯图片模式 2 图片+文字模式
-    logoMode: 1,
-    // logo标题
-    logoTitle: "vk-admin后台管理",
-  },
-  // 主题配置
-  theme: {
-    // 当前使用哪个主题
-    use: "blackWhite", // white blackWhite black custom
-    ...themeConfig,
-    // 自定义主题
-    custom: {
-      // 左侧菜单样式
-      leftMenu: {
-        backgroundColor: "",
-        subBackgroundColor: "",
-        textColor: "",
-        activeTextColor: "",
-        activeBackgroundColor: "",
-        collapseActiveTextColor: "",
-        collapseActiveBackgroundColor: "",
-        hoverTextColor: "",
-        hoverBackgroundColor: "",
-        boxShadow: "",
-        borderTop: ""
-      },
-      // 顶部菜单样式
-      topMenu: {
-        backgroundColor: "",
-        textColor: "",
-      }
-    }
+  // 自定义拦截器
+  interceptor: {
+
+    // login(obj) {
+    // 	let { vk, params, res } = obj;
+    // 	//console.log("params:",params);
+    // 	//console.log("res:",res);
+    // 	if (!params.noAlert) {
+    // 		vk.alert(res.msg);
+    // 	}
+    // 	console.log("跳自己的登录页面");
+    // 	// 上方代码可自己修改，写成你自己的逻辑处理。
+    // },
+
+    // fail(obj) {
+    // 	let { vk, params, res } = obj;
+    // 	//console.log("params:",params);
+    // 	//console.log("res:",res);
+    // 	return false; // 返回false则取消框架内置fail的逻辑，返回true则会继续执行框架内置fail的逻辑
+    // 	// 上方代码可自己修改，写成你自己的逻辑处理。
+    // }
+
+    // navigateTo(obj) {
+    // 	let { pagePath } = obj;
+    // 	console.log("pagePath:", pagePath);
+    // 	return false; // 返回false则取消跳转，返回true则继续跳转
+    // 	// 上方代码可自己修改，写成你自己的逻辑处理。
+    // },
+
   }
 }

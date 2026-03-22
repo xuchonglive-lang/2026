@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoKey": {
+        "user_id": 1
+      }
+    },
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoKey": {
+        "target_dept_id": 1
+      }
+    },
+    {
+      "MgoIsHide": false,
+      "MgoKeyType": "1",
+      "MgoKey": {
+        "status": 1
+      }
+    }
+  ]
+}

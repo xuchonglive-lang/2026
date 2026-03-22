@@ -475,6 +475,51 @@
         { "value": 0, "text": "未锁定" },
         { "value": 1, "text": "已锁定" }
       ]
+    },
+    "real_name": {
+      "bsonType": "string",
+      "title": "真实姓名",
+      "trim": "both"
+    },
+    "tenant_id": {
+      "bsonType": "string",
+      "title": "所属大盘租户ID",
+      "description": "关联 xc-tenants._id"
+    },
+    "tenant_name": {
+      "bsonType": "string",
+      "title": "所属大盘租户名称",
+      "description": "冗余字段，减少查询"
+    },
+    "dept_path": {
+      "bsonType": "string",
+      "title": "租户层级路径",
+      "description": "冗余自 xc-tenants.dept_path"
+    },
+    "group_id": {
+      "bsonType": "string",
+      "title": "所属租户内小组ID",
+      "description": "关联 xc-tenant-groups._id"
+    },
+    "group_path": {
+      "bsonType": "string",
+      "title": "小组层级路径",
+      "description": "冗余自 xc-tenant-groups.group_path"
+    },
+    "group_name": {
+      "bsonType": "string",
+      "title": "小组名称",
+      "description": "冗余字段"
+    },
+    "wx_nickname": {
+      "bsonType": "string",
+      "title": "微信昵称",
+      "description": "每次微信授权登录时同步更新"
+    },
+    "wx_avatar": {
+      "bsonType": "string",
+      "title": "微信头像URL",
+      "description": "每次微信授权登录时同步更新"
     }
   },
   "version": "1.1.0"
