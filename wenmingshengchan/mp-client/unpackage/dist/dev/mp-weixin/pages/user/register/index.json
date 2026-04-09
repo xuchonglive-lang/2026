@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "u-select": "/uni_modules/vk-uview-ui/components/u-select/u-select"
+  }
+}

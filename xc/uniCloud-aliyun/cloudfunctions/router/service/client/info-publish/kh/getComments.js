@@ -41,7 +41,7 @@ module.exports = {
 		// Q7: 查询每条一级评论的回复（两层扁平展示）
 		if (vk.pubfn.isNotNull(topRes.rows) && topRes.rows.length > 0) {
 			let topIds = topRes.rows.map(r => r._id);
-			let replies = await vk.baseDao.select({
+			let repliesRes = await vk.baseDao.select({
 				dbName: 'xc-info-comments',
 				whereJson: {
 					parent_id: _.in(topIds),
@@ -49,15 +49,17 @@ module.exports = {
 				},
 				sortArr: [{ name: 'created_at', type: 'asc' }],
 			});
+			let replies = repliesRes.rows || [];
 
 			// 获取回复者信息
 			if (replies.length > 0) {
 				let replyUserIds = [...new Set(replies.map(r => r.created_by))];
-				let replyUsers = await vk.baseDao.select({
+				let replyUsersRes = await vk.baseDao.select({
 					dbName: 'uni-id-users',
 					whereJson: { _id: _.in(replyUserIds) },
 					fieldJson: { _id: true, nickname: true, avatar: true, dept_name: true },
 				});
+				let replyUsers = replyUsersRes.rows || [];
 				let userMap = {};
 				replyUsers.forEach(u => { userMap[u._id] = u; });
 				replies.forEach(r => { r.user_info = userMap[r.created_by] || {}; });

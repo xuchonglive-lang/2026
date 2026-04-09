@@ -1,0 +1,1 @@
+<view class="stack-view data-v-12271e73"><block wx:if="{{form.data}}"><text style="font-size:13px;" space="ensp" class="data-v-12271e73">{{form.data}}</text></block></view>

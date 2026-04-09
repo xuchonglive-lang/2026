@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>生产专业管理平台 - The Infrastructure for Modern Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#003c86",
+              "error-dim": "#4e0309",
+              "surface-container-high": "#e1e9ee",
+              "surface-dim": "#cfdce3",
+              "surface-container": "#e8eff3",
+              "primary-dim": "#4a5268",
+              "outline-variant": "#a9b4b9",
+              "error": "#9f403d",
+              "secondary": "#005bc4",
+              "background": "#f7f9fb",
+              "surface-bright": "#f7f9fb",
+              "on-primary-fixed-variant": "#535b71",
+              "on-primary-container": "#4a5167",
+              "on-background": "#2a3439",
+              "on-secondary-container": "#004eaa",
+              "on-error-container": "#752121",
+              "tertiary": "#526074",
+              "on-tertiary-fixed": "#344255",
+              "inverse-surface": "#0b0f10",
+              "secondary-container": "#d8e2ff",
+              "error-container": "#fe8983",
+              "on-tertiary-fixed-variant": "#505e73",
+              "on-surface": "#2a3439",
+              "on-secondary-fixed-variant": "#0057bd",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#f9f8ff",
+              "surface-tint": "#565e74",
+              "tertiary-fixed": "#d8e6ff",
+              "surface-variant": "#d9e4ea",
+              "primary-fixed-dim": "#ccd4ee",
+              "tertiary-fixed-dim": "#cad8f0",
+              "primary": "#565e74",
+              "tertiary-dim": "#465468",
+              "secondary-fixed-dim": "#c3d4ff",
+              "on-error": "#fff7f6",
+              "on-surface-variant": "#566166",
+              "surface-container-low": "#f0f4f7",
+              "on-primary-fixed": "#373f54",
+              "secondary-fixed": "#d8e2ff",
+              "inverse-primary": "#dae2fd",
+              "outline": "#717c82",
+              "tertiary-container": "#d8e6ff",
+              "inverse-on-surface": "#9a9d9f",
+              "secondary-dim": "#004fad",
+              "primary-fixed": "#dae2fd",
+              "on-tertiary": "#f8f8ff",
+              "primary-container": "#dae2fd",
+              "on-tertiary-container": "#465468",
+              "on-primary": "#f7f7ff",
+              "surface": "#f7f9fb",
+              "surface-container-highest": "#d9e4ea"
+            },
+            fontFamily: {
+              "headline": ["Inter", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-secondary-container">
+<!-- TopNavBar: Fixed with Glassmorphism -->
+<nav class="fixed top-0 w-full h-16 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 shadow-sm flex items-center justify-between px-6 lg:px-12 w-full mx-auto">
+<div class="text-xl font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span>生产专业管理平台</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-blue-600 font-semibold border-b-2 border-blue-600 font-sans text-sm tracking-tight py-5" href="#">平台首页</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-sans text-sm tracking-tight" href="#">工作推进</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-sans text-sm tracking-tight" href="#">专业管理</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-sans text-sm tracking-tight" href="#">专业信息</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-sans text-sm tracking-tight" href="#">培训管理</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-sans text-sm tracking-tight" href="#">个人中心</a>
+</div>
+<button class="bg-secondary text-on-secondary px-5 py-2 rounded-[4px] font-medium text-sm hover:opacity-90 transition-all active:scale-95">
+            进入平台
+        </button>
+</nav>
+<main class="max-w-[1350px] mx-auto pt-32 px-6">
+<!-- HERO SECTION -->
+<section class="flex flex-col items-center text-center mb-24">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-[#F1F5F9] text-slate-600 text-xs font-semibold tracking-wide mb-6">
+                v2.0 Professional Platform
+            </div>
+<h1 class="text-[56px] leading-[1.1] font-extrabold text-on-background tracking-tighter mb-6 max-w-4xl">
+                The Infrastructure for <span class="text-secondary">Modern Enterprises.</span>
+</h1>
+<p class="text-[18px] text-on-surface-variant max-w-2xl mb-10 leading-relaxed">
+                Build, scale, and secure your workflows with our next-generation office platform. Optimized for high-concurrency production environments and professional management excellence.
+            </p>
+<div class="flex items-center gap-4">
+<button class="bg-[#0F172A] text-white px-8 py-3 rounded-[4px] font-semibold text-base hover:shadow-lg transition-all active:scale-95">
+                    Start Building
+                </button>
+<button class="border border-outline-variant text-on-background px-8 py-3 rounded-[4px] font-semibold text-base hover:bg-surface-container-low transition-all">
+                    Read Documentation
+                </button>
+</div>
+</section>
+<!-- ASYMMETRIC GRID -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+<!-- Code Block Card (Span 2) -->
+<div class="lg:col-span-2 bg-slate-950 rounded-[6px] shadow-xl overflow-hidden group">
+<div class="bg-slate-900 px-4 py-2 flex items-center justify-between border-b border-slate-800">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+</div>
+<div class="text-xs text-slate-400 font-mono">enterprise-integration.ts</div>
+<div class="w-10"></div>
+</div>
+<div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto">
+<pre><span class="text-purple-400">import</span> { EnterpriseSystem, Workflow } <span class="text-purple-400">from</span> <span class="text-green-400">'@core/platform'</span>;
+
+<span class="text-purple-400">async function</span> <span class="text-blue-400">initializeInfrastructure</span>() {
+  <span class="text-purple-400">const</span> platform = <span class="text-purple-400">new</span> <span class="text-yellow-400">EnterpriseSystem</span>({
+    secure: <span class="text-orange-400">true</span>,
+    scaling: <span class="text-green-400">'auto'</span>,
+    region: <span class="text-green-400">'global-01'</span>
+  });
+
+  <span class="text-slate-500">// Initialize management modules</span>
+  <span class="text-purple-400">await</span> platform.<span class="text-blue-400">deploy</span>(<span class="text-purple-400">new</span> <span class="text-yellow-400">Workflow</span>({
+    name: <span class="text-green-400">"Production Professional Management"</span>,
+    compliance: [<span class="text-green-400">"SOC2"</span>, <span class="text-green-400">"GDPR"</span>],
+    autoAudit: <span class="text-orange-400">true</span>
+  }));
+
+  <span class="text-purple-400">return</span> platform.<span class="text-blue-400">status</span>();
+}</pre>
+</div>
+</div>
+<!-- Pricing Tier List Card -->
+<div class="bg-surface-container-lowest rounded-[6px] p-8 border border-transparent shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-bold mb-6 text-on-background">Enterprise Tiers</h3>
+<ul class="space-y-4">
+<li class="flex items-center justify-between py-3 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="font-medium">Standard Cloud</span>
+</div>
+<span class="text-on-surface-variant font-mono">¥2,999/mo</span>
+</li>
+<li class="flex items-center justify-between py-3 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="font-medium">Professional Hybrid</span>
+</div>
+<span class="text-on-surface-variant font-mono">¥8,500/mo</span>
+</li>
+<li class="flex items-center justify-between py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">stars</span>
+<span class="font-medium">Global Enterprise</span>
+</div>
+<span class="text-secondary font-bold">Contact Sales</span>
+</li>
+</ul>
+</div>
+<button class="w-full mt-8 py-3 rounded-[4px] bg-secondary-container text-on-secondary-container font-semibold hover:opacity-90 transition-all">
+                    View All Plans
+                </button>
+</div>
+<!-- Security Certifications Card -->
+<div class="bg-surface-container-lowest rounded-[6px] p-8 border border-transparent shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
+<h3 class="text-xl font-bold mb-2 text-on-background">Security &amp; Compliance</h3>
+<p class="text-on-surface-variant text-sm mb-8">We maintain rigorous standards to ensure your data remains your own.</p>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center p-4 bg-surface-container rounded-[4px] border border-outline-variant/15 text-center group hover:bg-white hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-slate-700 text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-[10px] font-bold text-slate-800 tracking-widest">SOC 2</span>
+<span class="text-[8px] text-slate-500 mt-1 uppercase">Certified</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container rounded-[4px] border border-outline-variant/15 text-center group hover:bg-white hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-slate-700 text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-[10px] font-bold text-slate-800 tracking-widest">ISO 27001</span>
+<span class="text-[8px] text-slate-500 mt-1 uppercase">Compliant</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container rounded-[4px] border border-outline-variant/15 text-center group hover:bg-white hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-slate-700 text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<span class="text-[10px] font-bold text-slate-800 tracking-widest">GDPR</span>
+<span class="text-[8px] text-slate-500 mt-1 uppercase">Ready</span>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>End-to-end encryption by default</span>
+</div>
+</div>
+</div>
+</section>
+<!-- FEATURES SECTION -->
+<section class="mb-32">
+<div class="flex items-end justify-between mb-12">
+<div>
+<h2 class="text-3xl font-bold text-on-background tracking-tight mb-2">核心功能模块</h2>
+<p class="text-on-surface-variant">针对大型企业生产环节量身打造的专业化管理引擎</p>
+</div>
+<div class="h-[1px] flex-grow mx-8 bg-outline-variant/20 hidden md:block"></div>
+<button class="text-secondary font-semibold text-sm flex items-center gap-1 group">
+                    了解更多 <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-[6px] border border-transparent hover:shadow-lg transition-all duration-300">
+<div class="w-12 h-12 bg-primary-container rounded-[4px] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<h4 class="text-lg font-bold mb-3">工作推进</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        智能化的任务分配与进度追踪，通过实时看板可视化生产环节中的每一个关键节点。
+                    </p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-[6px] border border-transparent hover:shadow-lg transition-all duration-300">
+<div class="w-12 h-12 bg-secondary-container rounded-[4px] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">settings_suggest</span>
+</div>
+<h4 class="text-lg font-bold mb-3">专业管理</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        深度的行业垂直管理工具，整合生产标准、质量控制与合规审计的一站式专业平台。
+                    </p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-[6px] border border-transparent hover:shadow-lg transition-all duration-300">
+<div class="w-12 h-12 bg-tertiary-container rounded-[4px] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<h4 class="text-lg font-bold mb-3">信息共享</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        打破部门间的信息孤岛，基于高并发架构的数据中台，确保信息流转的实时性与准确性。
+                    </p>
+</div>
+<!-- Feature 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-[6px] border border-transparent hover:shadow-lg transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container-highest rounded-[4px] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-slate-700" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<h4 class="text-lg font-bold mb-3">培训管理</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        全周期的员工技能提升体系，涵盖线上课程、实操考核与资质证书的全程数字化管理。
+                    </p>
+</div>
+</div>
+</section>
+<!-- TRUST SECTION: Subtle Logo Bar -->
+<section class="py-16 border-t border-outline-variant/10 text-center">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-10">Trusted by Global Infrastructure Leaders</p>
+<div class="flex flex-wrap justify-center items-center gap-12 grayscale opacity-40">
+<span class="font-headline font-extrabold text-2xl tracking-tighter">NEXUS.CORP</span>
+<span class="font-headline font-extrabold text-2xl tracking-tighter">STRATUM</span>
+<span class="font-headline font-extrabold text-2xl tracking-tighter">FORGE_SYS</span>
+<span class="font-headline font-extrabold text-2xl tracking-tighter">AVANT.BIO</span>
+<span class="font-headline font-extrabold text-2xl tracking-tighter">HELIOS</span>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="w-full py-12 border-t border-slate-200 bg-slate-50">
+<div class="max-w-[1350px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1">
+<div class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">architecture</span>
+                    生产专业管理平台
+                </div>
+<p class="text-sm text-slate-500 font-normal leading-relaxed mb-6">
+                    致力于为现代企业提供最坚实的数字化生产管理基础设施。
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors">language</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors">public</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors">shield</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-sm font-bold text-on-background mb-2">解决方案</h5>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">产品功能</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">安全保障</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">价格方案</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-sm font-bold text-on-background mb-2">关于我们</h5>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">关于我们</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">技术支持</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">联系我们</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-sm font-bold text-on-background mb-2">合规与法律</h5>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">隐私协议</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors text-sm" href="#">使用条款</a>
+<div class="mt-4 pt-4 border-t border-slate-200">
+<p class="text-[10px] text-slate-400">冀ICP备2024077622号-1</p>
+<p class="text-[10px] text-slate-400">© 2024 xuchong</p>
+</div>
+</div>
+</div>
+</footer>
+<!-- Image for decorative background effect - described but not rendered as image to avoid missing files -->
+<div class="fixed top-0 left-0 w-full h-screen -z-10 pointer-events-none overflow-hidden opacity-30">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-blue-100/50 rounded-full blur-[120px]" data-alt="smooth gradient flowing from soft blue to transparent white with subtle grain texture"></div>
+<div class="absolute top-[40%] -right-[10%] w-[50%] h-[50%] bg-slate-200/50 rounded-full blur-[100px]" data-alt="minimalist ambient lighting effect with soft grey and blue tones"></div>
+</div>
+</body></html>

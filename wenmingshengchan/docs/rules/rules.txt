@@ -1,0 +1,4 @@
+1、所有的云函数、页面书写，都要有详细的中文注释。每个功能、段落都要有中文注释。
+2、所有的云函数要严格按照vk-fun技能书写。所有的client页面要严格按照`./mp-client/pages_template/kong/kong.vue`模板书写。所有的admin页面都要严格按照`./mp-admin/pages/template/list.vue`模板书写。
+3、client页面在实现功能上可以使用系统中的uview ui组件库。
+4、所有的 UniCloud 云函数，都要放在`./mp-client/uniCloud-aliyun/cloudfunctions/router/service`中。

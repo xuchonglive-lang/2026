@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "u-mask": "/uni_modules/vk-uview-ui/components/u-mask/u-mask",
+    "u-icon": "/uni_modules/vk-uview-ui/components/u-icon/u-icon"
+  },
+  "component": true
+}

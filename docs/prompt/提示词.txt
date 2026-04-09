@@ -1,0 +1,12 @@
+约束：
+1、所有的unicloud云函数及调用全部都要求使用vk-fun技能实现。
+2、所有的admin页面都要使用'./mp-admin/pages/template/list.vue'作为模板。
+3、所有的client页面都要使用'./mp-client/pages_template/db/list.vue'作为模板,但是云函数要使用"async getFirstCategory(){
+			let data = await vk.callFunction({
+				url: 'client/menu/pub/getTodayGoodsForMenu',
+				title: '',
+				data: {}
+			});
+			this.currentCateId = data.goods[0]._id;
+		},"结构。
+4、所有数据库设计，以及代码实现后，都要再次按照提案进行审核验证是否满足需求。

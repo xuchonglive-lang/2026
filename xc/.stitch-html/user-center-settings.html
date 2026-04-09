@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Personal Settings Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#006d4a",
+              "inverse-surface": "#0b0f10",
+              "outline-variant": "#a9b4b9",
+              "tertiary-fixed": "#69f6b8",
+              "on-secondary": "#f7f9ff",
+              "error-container": "#fe8983",
+              "on-tertiary-fixed-variant": "#006544",
+              "surface-tint": "#565e74",
+              "on-surface-variant": "#566166",
+              "tertiary-fixed-dim": "#58e7ab",
+              "outline": "#717c82",
+              "on-error-container": "#752121",
+              "primary": "#565e74",
+              "secondary-fixed": "#d3e4fe",
+              "on-tertiary": "#e6ffee",
+              "on-secondary-fixed": "#314055",
+              "tertiary-container": "#69f6b8",
+              "surface-bright": "#f7f9fb",
+              "surface-container": "#e8eff3",
+              "tertiary-dim": "#005f40",
+              "surface-container-highest": "#d9e4ea",
+              "error-dim": "#4e0309",
+              "on-primary-fixed-variant": "#535b71",
+              "surface-variant": "#d9e4ea",
+              "primary-fixed-dim": "#ccd4ee",
+              "surface-container-high": "#e1e9ee",
+              "background": "#f7f9fb",
+              "on-error": "#fff7f6",
+              "on-primary-container": "#4a5167",
+              "surface-dim": "#cfdce3",
+              "inverse-primary": "#dae2fd",
+              "surface-container-lowest": "#ffffff",
+              "on-background": "#2a3439",
+              "primary-dim": "#4a5268",
+              "secondary-container": "#d3e4fe",
+              "secondary-fixed-dim": "#c5d6f0",
+              "on-surface": "#2a3439",
+              "primary-fixed": "#dae2fd",
+              "on-tertiary-container": "#005a3c",
+              "on-primary-fixed": "#373f54",
+              "on-tertiary-fixed": "#00452d",
+              "secondary-dim": "#44546a",
+              "secondary": "#506076",
+              "on-secondary-fixed-variant": "#4d5d73",
+              "surface-container-low": "#f0f4f7",
+              "error": "#9f403d",
+              "inverse-on-surface": "#9a9d9f",
+              "on-primary": "#f7f7ff",
+              "on-secondary-container": "#435368",
+              "surface": "#f7f9fb",
+              "primary-container": "#dae2fd"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem", "md": "0.375rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .precision-toggle:checked + .toggle-bg {
+            background-color: #006d4a; /* tertiary */
+        }
+        .precision-toggle:checked + .toggle-bg .toggle-dot {
+            transform: translateX(1.25rem);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 w-full z-50 h-[64px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/15 dark:border-slate-800/15 shadow-[0_20px_40px_rgba(15,23,42,0.06)] flex items-center justify-between px-8">
+<div class="flex items-center gap-12">
+<span class="text-xl font-bold text-slate-900 dark:text-slate-50 tracking-tight">个人中心</span>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-['Inter'] font-bold text-[1rem] -tracking-[0.02em]" href="#">平台首页</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-['Inter'] font-bold text-[1rem] -tracking-[0.02em]" href="#">工作推进</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-['Inter'] font-bold text-[1rem] -tracking-[0.02em]" href="#">专业管理</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-['Inter'] font-bold text-[1rem] -tracking-[0.02em]" href="#">专业信息</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-['Inter'] font-bold text-[1rem] -tracking-[0.02em]" href="#">培训管理</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden ml-2 bg-surface-container border border-outline-variant/15">
+<img alt="User Avatar" class="h-full w-full object-cover" data-alt="professional headshot of a business executive in a clean studio setting with soft lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKoWu54KGx8UpO8baRIn-iIx9CsEV_Ymilt0sSjczhauFUrosaFErVLA_7hgb7VrFZvCij2YJBChCM4_sOa3QC7PQZ0JkRoA2lB3NwJjH0wEFov4lJkjUSmYgYDI5Khzgz1V4Y-G4M1xispPIrAU0M_otln8SGib95Rg31dgYnxrtkVmvzU_hvmEzpBGNrFX13w6hEZOaRVwwqWdb-KXlq1r1eELkf0juWtUJbe3mn6Tm84eUa5t4IwxyszrTYg4LB9r8c8SXcLuE"/>
+</div>
+</div>
+</header>
+<main class="pt-[100px] pb-24 px-4 sm:px-8">
+<div class="max-w-[800px] mx-auto">
+<!-- Page Title -->
+<h1 class="text-[24px] font-bold text-on-surface mb-8 tracking-tight">个人设置</h1>
+<!-- Section 1: Notification Settings -->
+<section class="bg-surface-container-lowest rounded-md border border-outline-variant/15 shadow-sm overflow-hidden mb-6">
+<div class="p-6">
+<h2 class="text-[18px] font-bold text-on-surface mb-6">消息通知</h2>
+<!-- Master Toggle -->
+<div class="flex items-center justify-between h-[48px]">
+<label class="text-[1rem] font-medium text-on-surface" for="master-toggle">总开关 — 接收所有通知</label>
+<div class="relative inline-block w-11 h-6 transition duration-200 ease-in-out">
+<input checked="" class="precision-toggle opacity-0 w-0 h-0 absolute peer" id="master-toggle" type="checkbox"/>
+<span class="toggle-bg absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-container-highest transition-all duration-200 rounded-full peer-checked:bg-tertiary">
+<span class="toggle-dot absolute left-1 bottom-1 bg-white w-4 h-4 rounded-full transition-all duration-200"></span>
+</span>
+</div>
+</div>
+<div class="my-4 border-t border-outline-variant/10"></div>
+<!-- Sub-toggles Cluster -->
+<div class="space-y-4 pl-6">
+<!-- System Notification -->
+<div class="flex items-center justify-between py-2">
+<span class="text-[0.875rem] text-on-surface-variant font-medium">系统通知</span>
+<div class="relative inline-block w-11 h-6">
+<input checked="" class="precision-toggle opacity-0 w-0 h-0 absolute peer" id="sys-toggle" type="checkbox"/>
+<span class="toggle-bg absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-container-highest transition-all duration-200 rounded-full peer-checked:bg-tertiary">
+<span class="toggle-dot absolute left-1 bottom-1 bg-white w-4 h-4 rounded-full transition-all duration-200"></span>
+</span>
+</div>
+</div>
+<!-- Training Notification -->
+<div class="flex items-center justify-between py-2">
+<span class="text-[0.875rem] text-on-surface-variant font-medium">培训通知</span>
+<div class="relative inline-block w-11 h-6">
+<input checked="" class="precision-toggle opacity-0 w-0 h-0 absolute peer" id="train-toggle" type="checkbox"/>
+<span class="toggle-bg absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-container-highest transition-all duration-200 rounded-full peer-checked:bg-tertiary">
+<span class="toggle-dot absolute left-1 bottom-1 bg-white w-4 h-4 rounded-full transition-all duration-200"></span>
+</span>
+</div>
+</div>
+<!-- Work Notification -->
+<div class="flex items-center justify-between py-2">
+<span class="text-[0.875rem] text-on-surface-variant font-medium">工作通知</span>
+<div class="relative inline-block w-11 h-6">
+<input checked="" class="precision-toggle opacity-0 w-0 h-0 absolute peer" id="work-toggle" type="checkbox"/>
+<span class="toggle-bg absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-container-highest transition-all duration-200 rounded-full peer-checked:bg-tertiary">
+<span class="toggle-dot absolute left-1 bottom-1 bg-white w-4 h-4 rounded-full transition-all duration-200"></span>
+</span>
+</div>
+</div>
+<!-- Info Convey Notification -->
+<div class="flex items-center justify-between py-2">
+<span class="text-[0.875rem] text-on-surface-variant font-medium">信息传达通知</span>
+<div class="relative inline-block w-11 h-6">
+<input class="precision-toggle opacity-0 w-0 h-0 absolute peer" id="info-toggle" type="checkbox"/>
+<span class="toggle-bg absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-container-highest transition-all duration-200 rounded-full peer-checked:bg-tertiary">
+<span class="toggle-dot absolute left-1 bottom-1 bg-white w-4 h-4 rounded-full transition-all duration-200"></span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Interface Preferences -->
+<section class="bg-surface-container-lowest rounded-md border border-outline-variant/15 shadow-sm overflow-hidden mt-6">
+<div class="p-6">
+<h2 class="text-[18px] font-bold text-on-surface mb-6">界面偏好</h2>
+<div class="py-12 flex items-center justify-center border-2 border-dashed border-outline-variant/20 rounded-md">
+<span class="text-[0.875rem] font-medium text-slate-400">此功能即将推出</span>
+</div>
+</div>
+</section>
+<!-- Action Button -->
+<div class="mt-8">
+<button class="w-full bg-[#0F172A] text-white py-3 rounded-md text-[0.875rem] font-medium hover:bg-slate-800 transition-all active:scale-[0.98] shadow-lg shadow-slate-900/10">
+                    保存设置
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 mt-auto">
+<div class="flex flex-col items-center justify-center space-y-4 w-full">
+<p class="text-[0.75rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-['Inter']">
+                © 2024 Enterprise Management Platform. All rights reserved.
+            </p>
+<div class="flex space-x-6">
+<a class="text-[0.75rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-['Inter']" href="#">Privacy Policy</a>
+<a class="text-[0.75rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-['Inter']" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

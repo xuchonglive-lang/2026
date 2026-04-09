@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>生产专业管理平台 - 登录</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#ccd4ee",
+              "surface-container-low": "#f0f4f7",
+              "surface-dim": "#cfdce3",
+              "tertiary-dim": "#54506b",
+              "on-tertiary": "#fcf7ff",
+              "on-secondary-container": "#505157",
+              "primary-container": "#dae2fd",
+              "on-background": "#2a3439",
+              "secondary-fixed": "#e2e2e9",
+              "surface-container": "#e8eff3",
+              "surface-container-highest": "#d9e4ea",
+              "on-error": "#fff7f6",
+              "on-tertiary-container": "#514d68",
+              "on-tertiary-fixed-variant": "#5b5672",
+              "tertiary-fixed-dim": "#d4cdee",
+              "inverse-primary": "#dae2fd",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#752121",
+              "error": "#9f403d",
+              "on-secondary-fixed": "#3e3f45",
+              "primary-fixed": "#dae2fd",
+              "outline-variant": "#a9b4b9",
+              "secondary-container": "#e2e2e9",
+              "on-surface-variant": "#566166",
+              "error-container": "#fe8983",
+              "secondary-fixed-dim": "#d4d4db",
+              "on-primary-container": "#4a5167",
+              "on-primary": "#f7f7ff",
+              "tertiary-fixed": "#e3dbfd",
+              "secondary": "#5e5f65",
+              "surface-bright": "#f7f9fb",
+              "primary-dim": "#4a5268",
+              "surface-variant": "#d9e4ea",
+              "inverse-surface": "#0b0f10",
+              "surface": "#f7f9fb",
+              "outline": "#717c82",
+              "inverse-on-surface": "#9a9d9f",
+              "tertiary": "#605c78",
+              "on-primary-fixed-variant": "#535b71",
+              "on-secondary": "#f9f8ff",
+              "tertiary-container": "#e3dbfd",
+              "surface-tint": "#565e74",
+              "on-tertiary-fixed": "#3e3a54",
+              "background": "#f7f9fb",
+              "on-secondary-fixed-variant": "#5a5b61",
+              "surface-container-high": "#e1e9ee",
+              "error-dim": "#4e0309",
+              "secondary-dim": "#525359",
+              "on-primary-fixed": "#373f54",
+              "on-surface": "#2a3439",
+              "primary": "#565e74"
+            },
+            fontFamily: {
+              "headline": ["Inter", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .grid-pattern {
+            background-image: radial-gradient(#ffffff 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .active-tab-indicator {
+            position: absolute;
+            bottom: -1px;
+            height: 2px;
+            background-color: #565e74;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<main class="flex min-h-screen w-full">
+<!-- Left Panel: Atmospheric Void -->
+<section class="hidden lg:flex lg:w-[55%] relative flex-col items-center justify-center p-12 overflow-hidden bg-gradient-to-br from-[#0F172A] to-[#1E293B]">
+<!-- Subtle Geometric Pattern Overlay -->
+<div class="absolute inset-0 grid-pattern opacity-5 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center text-center space-y-8 max-w-lg">
+<div class="w-16 h-16 bg-primary-container/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/10">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div class="space-y-4">
+<h1 class="text-white text-[32px] font-bold tracking-tight leading-tight">
+                        生产专业管理平台
+                    </h1>
+<p class="text-[#94A3B8] text-lg font-medium tracking-wide">
+                        专业化办公管理，智能化工作推进
+                    </p>
+</div>
+<div class="pt-12 w-full">
+<div class="aspect-video rounded-xl bg-white/5 border border-white/10 overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover opacity-60 mix-blend-overlay" data-alt="Modern high-tech industrial manufacturing facility with clean lines and soft blue atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmERXwTHLTKNuEtbOBfq-24db8iBLma00_lhq_vYhPKMkG3RDDuWoh6Czemlt8pRahRnbhG4QG_FDiINUUS-kr_mMYfFeOFCw0TkgB_p08VxNhs_vZ2Se_KXWrCI7L1SPuTlXktmTkjjIvtqyFZzMOCxEJ-TFY1VzEvj2kbGxrzht7RCL1v7zRu9Hl7y-RAe8dzhq2yOYzFL1oZFR7sJnbRZNVxykaEJ7bC62OsQ3QxJtHld-Loqx3GHXrmsN52cCxGaFBNPq__z0"/>
+</div>
+</div>
+</div>
+<!-- Absolute decorative elements -->
+<div class="absolute bottom-12 left-12 flex items-center space-x-4 opacity-40">
+<div class="w-2 h-2 rounded-full bg-primary-fixed-dim"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+</section>
+<!-- Right Panel: The Canvas -->
+<section class="w-full lg:w-[45%] bg-surface-container-lowest flex flex-col justify-center items-center relative p-8 md:p-16">
+<div class="w-full max-w-[400px] flex flex-col">
+<!-- Header Section -->
+<div class="mb-10 text-left">
+<h2 class="text-[#0F172A] text-2xl font-bold tracking-tight mb-2">欢迎登录</h2>
+<p class="text-[#475569] text-sm">请选择登录方式</p>
+</div>
+<!-- Tabs Container -->
+<div class="relative flex border-b border-surface-container-highest mb-8">
+<button class="flex-1 py-3 text-sm font-medium text-primary transition-colors focus:outline-none" id="wechat-tab">
+                        微信扫码登录
+                    </button>
+<button class="flex-1 py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors focus:outline-none" id="account-tab">
+                        账号密码登录
+                    </button>
+<!-- Animated Underline Indicator -->
+<div class="active-tab-indicator w-1/2 left-0"></div>
+</div>
+<!-- Tab Content: WeChat (Default) -->
+<div class="flex flex-col items-center" id="wechat-content">
+<div class="p-4 bg-white border border-surface-container-highest rounded-lg shadow-sm mb-6 transition-all duration-300 hover:shadow-md">
+<div class="w-[200px] h-[200px] bg-surface-container-low flex items-center justify-center relative group">
+<img class="w-full h-full p-2" data-alt="A clean, professional QR code in minimalist black and white for secure login authentication" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM_CEFP5aQNBCzAg-i_qlpFGU3ybZDJlgIHtbLRvwFhnpmQRATJl8jXD31YiP3DIevxA8hNVTOWzP4GWWsOzDodl2qIQRJhu3oEL2qpWVU2Srv_a1eIjq26M4fcGDaSpMjoVfr14Md5I-Qdqj1KiTjOlSPPLLHy5hO0QHi_TbQBsNSyuDgougIUzBtEa-qw0aDc1m6HbHQN5Jq8GPShTpyNzJSZLS8mOfVytcCKi-2ISOOjbE_2DHh4J4S_2n80U-p-7RF3lBi68k"/>
+<div class="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="refresh">refresh</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-2 text-[#94A3B8]">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code_scanner">qr_code_scanner</span>
+<p class="text-xs">请使用微信扫描二维码登录</p>
+</div>
+</div>
+<!-- Tab Content: Account (Hidden by default, structure provided) -->
+<form class="hidden space-y-6" id="account-content">
+<div class="space-y-1.5">
+<label class="block text-[0.75rem] font-bold text-on-surface-variant uppercase tracking-wider">用户名/手机号</label>
+<div class="relative">
+<input class="w-full h-11 px-4 bg-surface-container-highest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-fixed-dim focus:bg-white transition-all outline-none" placeholder="请输入您的账号" type="text"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-[0.75rem] font-bold text-on-surface-variant uppercase tracking-wider">密码</label>
+<div class="relative">
+<input class="w-full h-11 px-4 bg-surface-container-highest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-fixed-dim focus:bg-white transition-all outline-none" placeholder="请输入登录密码" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between py-1">
+<label class="flex items-center cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary-container" type="checkbox"/>
+</div>
+<span class="ml-2 text-sm text-[#475569] group-hover:text-primary transition-colors">记住我</span>
+</label>
+<a class="text-sm text-primary hover:underline font-medium" href="#">忘记密码?</a>
+</div>
+<button class="w-full h-11 bg-[#0F172A] hover:bg-[#1E293B] text-white font-semibold rounded-lg shadow-lg shadow-slate-900/10 transition-all active:scale-[0.98] flex items-center justify-center" type="submit">
+                        登 录
+                    </button>
+</form>
+<!-- Social Sign-in Placeholder -->
+<div class="mt-12 pt-8 border-t border-surface-container-high">
+<div class="flex items-center justify-center space-x-6">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="fingerprint">fingerprint</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="face">face</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer: Bottom of Right Panel -->
+<footer class="absolute bottom-8 left-0 w-full flex flex-col items-center space-y-1">
+<p class="text-[11px] text-[#94A3B8] font-medium tracking-wide">
+                    © 2024 xuchong | 冀ICP备2024077622号-1
+                </p>
+<div class="flex space-x-4 opacity-50">
+<a class="text-[10px] text-[#94A3B8] uppercase hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-[10px] text-[#94A3B8] uppercase hover:text-primary" href="#">Terms of Service</a>
+</div>
+</footer>
+</section>
+</main>
+<!-- Custom Interaction Logic for Tabs (CSS-only trigger mechanism would be complex, adding simple data state toggle visually) -->
+<style>
+        /* This CSS simulates the tab switching for preview purposes without JS */
+        #account-tab:focus ~ #wechat-content { display: none; }
+        #account-tab:focus ~ #account-content { display: block; }
+        #account-tab:focus ~ .active-tab-indicator { left: 50%; }
+        
+        /* Account content toggle mock implementation */
+        #account-tab:active ~ #wechat-content,
+        #account-tab:focus ~ #wechat-content {
+            display: none !important;
+        }
+        #account-tab:active ~ #account-content,
+        #account-tab:focus ~ #account-content {
+            display: flex !important;
+        }
+    </style>
+<script>
+        // Optional: Minimal interaction script to make the static HTML feel functional for demonstration
+        document.getElementById('wechat-tab').addEventListener('click', function() {
+            document.getElementById('wechat-content').classList.remove('hidden');
+            document.getElementById('account-content').classList.add('hidden');
+            document.querySelector('.active-tab-indicator').style.left = '0';
+            this.classList.add('text-primary');
+            this.classList.remove('text-on-surface-variant');
+            document.getElementById('account-tab').classList.remove('text-primary');
+            document.getElementById('account-tab').classList.add('text-on-surface-variant');
+        });
+
+        document.getElementById('account-tab').addEventListener('click', function() {
+            document.getElementById('wechat-content').classList.add('hidden');
+            document.getElementById('account-content').classList.remove('hidden');
+            document.getElementById('account-content').classList.add('flex');
+            document.querySelector('.active-tab-indicator').style.left = '50%';
+            this.classList.add('text-primary');
+            this.classList.remove('text-on-surface-variant');
+            document.getElementById('wechat-tab').classList.remove('text-primary');
+            document.getElementById('wechat-tab').classList.add('text-on-surface-variant');
+        });
+    </script>
+</body></html>

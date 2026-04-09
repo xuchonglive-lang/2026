@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>生产专业管理平台 - 管理网络</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed-variant": "#0057bd",
+                        "surface-container-high": "#e1e9ee",
+                        "on-secondary-container": "#004eaa",
+                        "secondary": "#005bc4",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#003c86",
+                        "primary": "#565e74",
+                        "surface-variant": "#d9e4ea",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#e3dbfd",
+                        "on-primary-container": "#4a5167",
+                        "primary-fixed": "#dae2fd",
+                        "surface-container-low": "#f0f4f7",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface-variant": "#566166",
+                        "primary-container": "#dae2fd",
+                        "error": "#9f403d",
+                        "on-background": "#2a3439",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-container-highest": "#d9e4ea",
+                        "surface-tint": "#565e74",
+                        "on-tertiary-fixed": "#3e3a54",
+                        "background": "#f7f9fb",
+                        "secondary-dim": "#004fad",
+                        "on-error": "#fff7f6",
+                        "on-primary-fixed": "#373f54",
+                        "error-container": "#fe8983",
+                        "tertiary-fixed-dim": "#d4cdee",
+                        "inverse-surface": "#0b0f10",
+                        "outline-variant": "#a9b4b9",
+                        "on-tertiary-fixed-variant": "#5b5672",
+                        "on-tertiary": "#fcf7ff",
+                        "tertiary": "#605c78",
+                        "on-surface": "#2a3439",
+                        "error-dim": "#4e0309",
+                        "on-primary-fixed-variant": "#535b71",
+                        "on-tertiary-container": "#514d68",
+                        "on-primary": "#f7f7ff",
+                        "tertiary-dim": "#54506b",
+                        "secondary-fixed-dim": "#c3d4ff",
+                        "surface-dim": "#cfdce3",
+                        "on-error-container": "#752121",
+                        "secondary-container": "#d8e2ff",
+                        "inverse-primary": "#dae2fd",
+                        "tertiary-fixed": "#e3dbfd",
+                        "on-secondary": "#f9f8ff",
+                        "outline": "#717c82",
+                        "surface-container": "#e8eff3",
+                        "primary-fixed-dim": "#ccd4ee",
+                        "primary-dim": "#4a5268"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .org-line-vertical {
+            width: 1px;
+            background-color: #E2E8F0;
+            height: 40px;
+            margin: 0 auto;
+        }
+        .org-line-horizontal {
+            height: 1px;
+            background-color: #E2E8F0;
+            position: absolute;
+            top: 0;
+            left: 16.66%;
+            right: 16.66%;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] font-body text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full h-[64px] z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm flex justify-between items-center px-8 max-w-full mx-auto">
+<div class="text-xl font-bold text-slate-900 dark:text-slate-50 tracking-tighter">生产专业管理平台</div>
+<div class="hidden md:flex gap-8 items-center h-full">
+<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-colors font-['Inter'] text-[14px] font-medium leading-relaxed tracking-tight" href="#">平台首页</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-colors font-['Inter'] text-[14px] font-medium leading-relaxed tracking-tight" href="#">工作推进</a>
+<a class="text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500 pb-1 font-['Inter'] text-[14px] leading-relaxed tracking-tight" href="#">专业管理</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-colors font-['Inter'] text-[14px] font-medium leading-relaxed tracking-tight" href="#">专业信息</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-colors font-['Inter'] text-[14px] font-medium leading-relaxed tracking-tight" href="#">培训管理</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-colors font-['Inter'] text-[14px] font-medium leading-relaxed tracking-tight" href="#">个人中心</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100/50 rounded-md transition-all text-slate-600">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Professional male avatar with corporate attire against a clean neutral background for enterprise profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtb15cuSdl27Vu4PL2A6cxyIlNI8jVIMneOBMkkOcelgGYjRx7mn5LIqnOLH5yZTkicw4msPoeWfUavN7N8gHXONaRpYwSoFjtrj40q_A-PbK6FK0dpJs35jyJ4kPo88fjHoBjpRE71vWPT5eOyIXg_1HXcqpUfPdgmTfh7O1rEqoVJoyIYIkOa3b2HvbUKWHHo0S7E7i2yXcAWJY_TLdg4rwKYLS_kvvhMtm0URvKkw01m7PFCSn1JzuRSd02mSPo27nSlzOVtKc"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[84px] pb-12 px-8 max-w-[1350px] mx-auto w-full">
+<!-- Professional Selector Section -->
+<section class="mb-8 flex items-center gap-4 py-4 px-6 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10">
+<label class="text-on-surface-variant font-medium text-sm">当前专业:</label>
+<div class="relative w-[200px]">
+<button class="w-full flex items-center justify-between px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded-lg text-sm font-medium">
+<span>安全管理</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Navigation Tabs -->
+<section class="mb-10 border-b border-outline-variant/20">
+<div class="flex gap-10">
+<button class="pb-3 text-sm text-on-surface-variant font-medium hover:text-primary transition-colors">制度规范</button>
+<button class="pb-3 text-sm text-blue-600 font-bold border-b-2 border-blue-600">管理网络</button>
+<button class="pb-3 text-sm text-on-surface-variant font-medium hover:text-primary transition-colors">例行工作</button>
+<button class="pb-3 text-sm text-on-surface-variant font-medium hover:text-primary transition-colors">我的文档</button>
+</div>
+</section>
+<!-- Organizational Chart Canvas -->
+<div class="relative py-12 bg-surface-container-low/30 rounded-2xl overflow-hidden border border-white/50">
+<!-- Top Level - Management Head -->
+<div class="flex justify-center mb-0">
+<div class="relative group bg-surface-container-lowest p-5 rounded-xl border-2 border-[#3B82F6] shadow-lg w-[280px] flex items-center gap-4 transition-transform duration-300 hover:-translate-y-1">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm" data-alt="Senior executive headshot portrait in professional office environment with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCod2BXm7axIbehjhEtP43frTIWQOqZ9uyqkwojkbkpBtyRamlLEz1N-XW_DdlE2v79h5pzlKkuPeFUYEbtGj2vwGkMHnSfxdLoVA6iHoqAKIdUx8e3Dg-mEc0C5ifMzE03OVR65-AGOpHWbwO4uNnnJyqFjpv8YvrDD4FLo0-fXZV2sZjoZ40cK38x-WJwS9DeE-9oUyfd41OhbHp4imTxZHK0phSFQvzrNpJNy2EQo7iPvOPIGvICSC4y09P9kMJbTzDNwWRa0b4"/>
+<div class="flex flex-col">
+<span class="text-lg font-bold text-on-surface">张三</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-on-surface-variant">总部</span>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded-full uppercase tracking-wider">安全管理负责人</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Connector Lines (Top to Main Branch) -->
+<div class="org-line-vertical"></div>
+<div class="relative h-[20px] w-full">
+<div class="org-line-horizontal"></div>
+</div>
+<!-- Lower Level - Sub-units -->
+<div class="grid grid-cols-3 gap-8 px-12 relative">
+<!-- Branch Connectors (Top Down) -->
+<div class="absolute top-[-20px] left-1/6 h-[20px] w-[1px] bg-[#E2E8F0] transform -translate-x-1/2" style="left: 16.66%;"></div>
+<div class="absolute top-[-20px] left-1/2 h-[20px] w-[1px] bg-[#E2E8F0] transform -translate-x-1/2"></div>
+<div class="absolute top-[-20px] left-5/6 h-[20px] w-[1px] bg-[#E2E8F0] transform -translate-x-1/2" style="left: 83.33%;"></div>
+<!-- Card 1: 分公司A -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm hover:shadow-md transition-all duration-200 group flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Middle-aged male professional portrait for corporate profile directory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM-_Ki_O-RHaPWbi7I-uENe__u70CV9kuRlhiwkMhOplOjlW87DLxyw44A6gbcIbiAEHtmTuzmbwabBQBDpCnvRAhtlTsYrfDaUZZxP7_9K5dnc9YEsepyC0WdL6WLSwXNgaApfdy_hdReTpGrEI5SYznvOrNUDD2FKcL8XaXtO5TU6UEnb851r2k2YNkNDaJwIdZGfLb-pghB0myte1Q-SJ0MoHgNQHInnKDIX9Cp62t0XCm2ElBhLqcd82U-U0IZYcWYisVbml4"/>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-on-surface">李四</span>
+<div class="flex flex-col mt-0.5">
+<span class="text-xs text-on-surface-variant">分公司A</span>
+<span class="text-xs text-primary font-medium">安全管理员</span>
+</div>
+</div>
+</div>
+<!-- Card 2: 分公司B -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm hover:shadow-md transition-all duration-200 group flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Professional female corporate staff member portrait with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-gunHb_eAywIGw9mx4U6sWBoFIhllGfbXkM_ObocmG0sNPtprFNX31ZczPLDqUvtOPsSVP5--Mq_i74CHo8QNCL2EHgE4o9bBVMRR6aipM-oVYcLK9YSgDLnnZPca95JZiXScELOOsdWY4MLwxfHS4tsMS91PCK9EZ0Aas73PF7N1ckpekNVrmJAbsKf-XDR1-WrJUlsftp8rboQjBMFYazkW0n6VW98n3flMAGIT42lIx0WSm3ZrrMR8Nu6y2c1ECwaEHbV_p8M"/>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-on-surface">王五</span>
+<div class="flex flex-col mt-0.5">
+<span class="text-xs text-on-surface-variant">分公司B</span>
+<span class="text-xs text-primary font-medium">安全管理员</span>
+</div>
+</div>
+</div>
+<!-- Card 3: 分公司C -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm hover:shadow-md transition-all duration-200 group flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Confident young male professional portrait in business casual clothing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkP4zkW37DrcfaMUPaSiBkmYQ5biysUi3hSP9hpbUmE2x3ZIx_KJaiF6EBuh_84VoS5iY6WM6fQsFoALABL8v1diKFYcLnkz5bXRql3iY2hIqON_G5tQc4oa1dT9BRvY6Z1SMIiYG_bU8cR-Hg2QmQrzEhYJ23wuRI2F9FsT3HzciIb69n8BaoiwaW0QpzkHSjQgF9PBGRjcudEHlofB3ZQdBpCVBvcZ6l9ST5cP7I2De9KImgBuF4gX7NH6LhNmWgj81-gAxET0Q"/>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-on-surface">赵六</span>
+<div class="flex flex-col mt-0.5">
+<span class="text-xs text-on-surface-variant">分公司C</span>
+<span class="text-xs text-primary font-medium">安全管理员</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Function Description Accordion Trigger -->
+<div class="mt-20 flex justify-center">
+<button class="flex flex-col items-center gap-2 group cursor-pointer">
+<span class="text-sm font-semibold text-on-surface-variant group-hover:text-blue-600 transition-colors">职能说明</span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-blue-600" data-icon="expand_more">expand_more</span>
+</div>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-6 mt-auto bg-slate-50 dark:bg-slate-950 border-t border-slate-200/20 dark:border-slate-800/20">
+<div class="flex flex-col md:flex-row justify-center items-center gap-4 w-full px-8">
+<span class="text-slate-500 dark:text-slate-400 font-['Inter'] text-xs tracking-wide">© 2024 xuchong</span>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-blue-500 transition-colors font-['Inter'] text-xs tracking-wide" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors font-['Inter'] text-xs tracking-wide" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

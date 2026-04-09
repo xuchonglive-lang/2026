@@ -1,0 +1,576 @@
+{
+  "htmlCode": {
+    "name": "projects/4873100534031933104/files/d7d91105603d4f5a91c5166c0a3cb8a8",
+    "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzgyMjJiNGFkODhmNDQyNzZhZWNhZWZjMTMxNWY3N2I2EgsSBxDu1tfsyhQYAZIBIwoKcHJvamVjdF9pZBIVQhM0ODczMTAwNTM0MDMxOTMzMTA0&filename=&opi=89354086",
+    "mimeType": "text/html"
+  },
+  "id": "4c2302aa8f264377bddcf8984ccd2ec9",
+  "generatedBy": "prototype_v2_agent",
+  "width": "390",
+  "height": "884",
+  "title": "Civilized Production Management",
+  "name": "projects/4873100534031933104/screens/4c2302aa8f264377bddcf8984ccd2ec9",
+  "theme": {},
+  "deviceType": "MOBILE",
+  "screenType": "PROTOTYPE_V2",
+  "screenMetadata": {
+    "agentType": "PRO_AGENT",
+    "status": "COMPLETE",
+    "prototypeSpec": {
+      "initScreenId": "280ab53557f24afaa2a4551df4505597",
+      "screenIds": [
+        "22788205ecb248cfbd8343b19d2cac7c",
+        "9486f4d53a9b41f7984ecdeee7a21325",
+        "38f9f6dd3e9e4e2f92afe8a53a51353d",
+        "7b91d1ec32304a1fac566dd6987e0bbe",
+        "8b5de77fea5f4570ae4b7161e8cc8662",
+        "9fc0222220b94539b64fce9567418fbe",
+        "c679154b53174f1dbd956a918a350586",
+        "da0306457e194ff9a19883cc7d966881",
+        "2889227f364a41b187c7160f6b7960a6",
+        "62890074ea874946839fbfb51050dbca",
+        "88d12b5b41d3426783edcc01813e4f35",
+        "b428b9b565574adc842c68bbed4b1f47",
+        "bf91026c23524e249c576cfb0959221e",
+        "935fcb28f1a148cc84e37cba7e1359cd",
+        "4b3d44cb5c2744d49aaaaea2da9718f2",
+        "68a14667ee32498bb556da8c74c9eef4",
+        "3095e44995f748c08d7f73c7be1d48cf",
+        "f0eb23a5b78c4ece85032db1cfce1e38",
+        "280ab53557f24afaa2a4551df4505597",
+        "9dfabf179d09415e839008fe32b829de"
+      ],
+      "links": {
+        "935fcb28f1a148cc84e37cba7e1359cd": {
+          "links": [
+            {
+              "xpath": "//button[contains(., 'add')]",
+              "targetScreenId": "c679154b53174f1dbd956a918a350586",
+              "transition": "SLIDE_UP",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "3095e44995f748c08d7f73c7be1d48cf": {
+          "links": [
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '重点项目反馈')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '计划执行反馈')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '专业信息告知')]",
+              "targetScreenId": "4b3d44cb5c2744d49aaaaea2da9718f2",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '现场问题公示')]",
+              "targetScreenId": "9486f4d53a9b41f7984ecdeee7a21325",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '现场反馈')]",
+              "targetScreenId": "bf91026c23524e249c576cfb0959221e",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "4b3d44cb5c2744d49aaaaea2da9718f2": {
+          "links": [
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '阅读全文')]",
+              "targetScreenId": "88d12b5b41d3426783edcc01813e4f35",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '现场反馈')]",
+              "targetScreenId": "bf91026c23524e249c576cfb0959221e",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "68a14667ee32498bb556da8c74c9eef4": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '开始执行')]",
+              "targetScreenId": "9fc0222220b94539b64fce9567418fbe",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '现场反馈')]",
+              "targetScreenId": "bf91026c23524e249c576cfb0959221e",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "f0eb23a5b78c4ece85032db1cfce1e38": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '立即提交注册')]",
+              "targetScreenId": "9dfabf179d09415e839008fe32b829de",
+              "transition": "PUSH",
+              "state": "default"
+            }
+          ]
+        },
+        "b428b9b565574adc842c68bbed4b1f47": {
+          "links": [
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '现场反馈信息')]",
+              "targetScreenId": "7b91d1ec32304a1fac566dd6987e0bbe",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '重点工作记录')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '计划执行历史')]",
+              "targetScreenId": "22788205ecb248cfbd8343b19d2cac7c",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(@class, 'glass-card') and contains(., '问题报备记录')]",
+              "targetScreenId": "9486f4d53a9b41f7984ecdeee7a21325",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//button[contains(., '退出登录')]",
+              "targetScreenId": "280ab53557f24afaa2a4551df4505597",
+              "transition": "PUSH_BACK",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '现场反馈')]",
+              "targetScreenId": "bf91026c23524e249c576cfb0959221e",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "280ab53557f24afaa2a4551df4505597": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '微信授权登录')]",
+              "targetScreenId": "f0eb23a5b78c4ece85032db1cfce1e38",
+              "transition": "PUSH",
+              "state": "default"
+            }
+          ]
+        },
+        "da0306457e194ff9a19883cc7d966881": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '提交反馈')]",
+              "targetScreenId": "22788205ecb248cfbd8343b19d2cac7c",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//header//span[contains(text(), 'arrow_back_ios')]",
+              "targetScreenId": "9fc0222220b94539b64fce9567418fbe",
+              "transition": "PUSH_BACK",
+              "state": "default"
+            }
+          ]
+        },
+        "bf91026c23524e249c576cfb0959221e": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '开始反馈')]",
+              "targetScreenId": "2889227f364a41b187c7160f6b7960a6",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "22788205ecb248cfbd8343b19d2cac7c": {
+          "links": [
+            {
+              "xpath": "//nav//div[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '现场反馈')]",
+              "targetScreenId": "bf91026c23524e249c576cfb0959221e",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "9486f4d53a9b41f7984ecdeee7a21325": {
+          "links": [
+            {
+              "xpath": "//button[contains(., 'add')]",
+              "targetScreenId": "c679154b53174f1dbd956a918a350586",
+              "transition": "SLIDE_UP",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "88d12b5b41d3426783edcc01813e4f35": {
+          "links": [
+            {
+              "xpath": "//button[contains(., 'arrow_back_ios')]",
+              "targetScreenId": "4b3d44cb5c2744d49aaaaea2da9718f2",
+              "transition": "PUSH_BACK",
+              "state": "default"
+            }
+          ]
+        },
+        "7b91d1ec32304a1fac566dd6987e0bbe": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '查看详情')]",
+              "targetScreenId": "9486f4d53a9b41f7984ecdeee7a21325",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "62890074ea874946839fbfb51050dbca": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '查看详情')]",
+              "targetScreenId": "38f9f6dd3e9e4e2f92afe8a53a51353d",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//div[contains(., '发起新项目')]",
+              "targetScreenId": "38f9f6dd3e9e4e2f92afe8a53a51353d",
+              "transition": "SLIDE_UP",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '现场反馈')]",
+              "targetScreenId": "bf91026c23524e249c576cfb0959221e",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//a[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        },
+        "38f9f6dd3e9e4e2f92afe8a53a51353d": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '提交验收申请')]",
+              "targetScreenId": "8b5de77fea5f4570ae4b7161e8cc8662",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//header//span[contains(text(), 'arrow_back_ios')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "PUSH_BACK",
+              "state": "default"
+            }
+          ]
+        },
+        "8b5de77fea5f4570ae4b7161e8cc8662": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '确认并返回首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "PUSH_BACK",
+              "state": "default"
+            }
+          ]
+        },
+        "2889227f364a41b187c7160f6b7960a6": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '提交反馈报告')]",
+              "targetScreenId": "7b91d1ec32304a1fac566dd6987e0bbe",
+              "transition": "PUSH",
+              "state": "default"
+            }
+          ]
+        },
+        "9dfabf179d09415e839008fe32b829de": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '返回首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "PUSH",
+              "state": "default"
+            }
+          ]
+        },
+        "9fc0222220b94539b64fce9567418fbe": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '提交反馈记录')]",
+              "targetScreenId": "da0306457e194ff9a19883cc7d966881",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//header//span[contains(text(), 'arrow_back')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "PUSH_BACK",
+              "state": "default"
+            }
+          ]
+        },
+        "c679154b53174f1dbd956a918a350586": {
+          "links": [
+            {
+              "xpath": "//button[contains(., '立即提交报备')]",
+              "targetScreenId": "9486f4d53a9b41f7984ecdeee7a21325",
+              "transition": "PUSH",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '首页')]",
+              "targetScreenId": "3095e44995f748c08d7f73c7be1d48cf",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '重点项目')]",
+              "targetScreenId": "62890074ea874946839fbfb51050dbca",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '计划执行')]",
+              "targetScreenId": "68a14667ee32498bb556da8c74c9eef4",
+              "transition": "NONE",
+              "state": "default"
+            },
+            {
+              "xpath": "//nav//div[contains(., '我的')]",
+              "targetScreenId": "b428b9b565574adc842c68bbed4b1f47",
+              "transition": "NONE",
+              "state": "default"
+            }
+          ]
+        }
+      },
+      "states": [
+        {
+          "name": "default"
+        }
+      ]
+    }
+  }
+}

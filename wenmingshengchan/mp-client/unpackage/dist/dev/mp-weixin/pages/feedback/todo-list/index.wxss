@@ -1,0 +1,352 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.material-symbols-outlined.data-v-7e17f412 {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.feedback-todo-page.data-v-7e17f412 {
+  font-family: "Inter", sans-serif;
+  background-color: #f7f9fb;
+  background-image: radial-gradient(at 0% 0%, rgba(0, 80, 203, 0.05) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(0, 80, 203, 0.03) 0px, transparent 50%), linear-gradient(to bottom, #f7f9fb, #dae1ff);
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+  /* Let my-tab-bar float over the extra padding */
+}
+.industrial-grid.data-v-7e17f412 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-size: 64rpx 64rpx;
+  /* 32px */
+  background-image: linear-gradient(to right, rgba(0, 80, 203, 0.03) 2rpx, transparent 2rpx), linear-gradient(to bottom, rgba(0, 80, 203, 0.03) 2rpx, transparent 2rpx);
+}
+.main-content.data-v-7e17f412 {
+  position: relative;
+  z-index: 1;
+  /* pt-8 pb-24 px-4 */
+  padding: 64rpx 32rpx 192rpx 32rpx;
+  max-width: 896rpx;
+  /* max-w-md */
+  margin: 0 auto;
+}
+.page-title-wrap.data-v-7e17f412 {
+  margin-bottom: 48rpx;
+  /* mb-6 */
+}
+.page-title.data-v-7e17f412 {
+  /* text-3xl */
+  font-family: "Manrope", sans-serif;
+  font-size: 60rpx;
+  font-weight: 800;
+  color: #191c1e;
+  letter-spacing: -0.025em;
+}
+.summary-header.data-v-7e17f412 {
+  padding: 32rpx 0;
+  /* py-4 */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.status-label.data-v-7e17f412 {
+  display: block;
+  font-size: 24rpx;
+  /* text-xs */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #1d4ed8;
+  margin-bottom: 8rpx;
+  /* mb-1 */
+  font-family: "Inter", sans-serif;
+}
+.status-value-wrap.data-v-7e17f412 {
+  display: flex;
+  align-items: baseline;
+}
+.status-count.data-v-7e17f412 {
+  font-family: "Manrope", sans-serif;
+  font-size: 60rpx;
+  /* text-3xl */
+  font-weight: 800;
+  color: #191c1e;
+  letter-spacing: -0.025em;
+  margin-right: 12rpx;
+}
+.status-suffix.data-v-7e17f412 {
+  font-size: 36rpx;
+  /* text-lg */
+  font-weight: 500;
+  color: #424656;
+}
+.preview-btn.data-v-7e17f412 {
+  /* px-4 py-2.5 */
+  padding: 20rpx 32rpx;
+  background-color: #0050cb;
+  border-radius: 24rpx;
+  /* rounded-xl */
+  box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 80, 203, 0.2);
+  /* shadow-lg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+.preview-btn.data-v-7e17f412:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+.preview-btn-text.data-v-7e17f412 {
+  color: #ffffff;
+  font-size: 24rpx;
+  /* text-xs */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.cards-container.data-v-7e17f412 {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+  /* space-y-4 */
+}
+.glass-card.data-v-7e17f412 {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(40rpx);
+  -webkit-backdrop-filter: blur(40rpx);
+  border: 2rpx solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+  /* 0 8px 32px 0 */
+  border-radius: 24rpx;
+  /* rounded-xl */
+  padding: 40rpx;
+  /* p-5 */
+  transition: -webkit-transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), -webkit-transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.glass-card.data-v-7e17f412:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+}
+.card-top.data-v-7e17f412 {
+  display: flex;
+  gap: 32rpx;
+  /* gap-4 */
+  margin-bottom: 32rpx;
+  /* mb-4 */
+}
+.icon-box.data-v-7e17f412 {
+  width: 96rpx;
+  /* w-12 */
+  height: 96rpx;
+  /* h-12 */
+  flex-shrink: 0;
+  border-radius: 24rpx;
+  /* rounded-xl */
+  background-color: rgba(0, 80, 203, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-location.data-v-7e17f412 {
+  color: #0050cb;
+  font-size: 48rpx;
+  /* text-2xl */
+}
+.card-info.data-v-7e17f412 {
+  flex: 1;
+  min-width: 0;
+}
+.card-title-row.data-v-7e17f412 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.card-title.data-v-7e17f412 {
+  font-family: "Manrope", sans-serif;
+  font-size: 32rpx;
+  /* text-base */
+  font-weight: 700;
+  color: #191c1e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.status-badge.data-v-7e17f412 {
+  flex-shrink: 0;
+  padding: 4rpx 16rpx;
+  /* py-0.5 px-2 */
+  background-color: #e0e3e5;
+  border-radius: 16rpx;
+  /* rounded-lg */
+  margin-left: 16rpx;
+}
+.badge-text.data-v-7e17f412 {
+  color: #424656;
+  font-size: 20rpx;
+  /* text-[10px] */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.card-subtitle-row.data-v-7e17f412 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  /* gap-1 */
+  margin-top: 4rpx;
+  /* mt-0.5 */
+}
+.icon-domain.data-v-7e17f412 {
+  font-size: 28rpx;
+  /* text-[14px] */
+  color: #424656;
+}
+.card-subtitle.data-v-7e17f412 {
+  font-size: 24rpx;
+  /* text-xs */
+  font-weight: 500;
+  color: #424656;
+}
+.card-bottom.data-v-7e17f412 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 32rpx;
+  /* pt-4 */
+  border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+  /* border-white/10 */
+}
+.time-info-wrap.data-v-7e17f412 {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  /* gap-2 */
+}
+.user-avatars.data-v-7e17f412 {
+  display: flex;
+  align-items: center;
+}
+.avatar-img.data-v-7e17f412 {
+  width: 48rpx;
+  /* w-6 */
+  height: 48rpx;
+  /* h-6 */
+  border-radius: 50%;
+  border: 4rpx solid #ffffff;
+  /* border-2 */
+  background-color: #e2e8f0;
+}
+.avatar-count.data-v-7e17f412 {
+  width: 48rpx;
+  /* w-6 */
+  height: 48rpx;
+  /* h-6 */
+  border-radius: 50%;
+  border: 4rpx solid #ffffff;
+  /* border-2 */
+  background-color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -16rpx;
+  /* -space-x-2 */
+}
+.count-text.data-v-7e17f412 {
+  font-size: 16rpx;
+  /* text-[8px] */
+  font-weight: 700;
+  color: #191c1e;
+}
+.time-range.data-v-7e17f412 {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  /* gap-1.5 */
+}
+.icon-schedule.data-v-7e17f412 {
+  font-size: 28rpx;
+  /* text-[14px] */
+  color: #424656;
+}
+.time-text.data-v-7e17f412 {
+  font-size: 20rpx;
+  /* text-[10px] */
+  font-weight: 500;
+  color: #424656;
+}
+.text-tertiary.data-v-7e17f412 {
+  color: #a33200 !important;
+  font-weight: 700 !important;
+}
+.action-btn.data-v-7e17f412 {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  /* gap-2 */
+  padding: 16rpx 32rpx;
+  /* px-4 py-2 */
+  background-color: rgba(0, 80, 203, 0.05);
+  /* bg-primary/5 */
+  border-radius: 24rpx;
+  /* rounded-xl */
+  transition: background-color 0.3s;
+}
+.action-btn.data-v-7e17f412:active {
+  background-color: rgba(0, 80, 203, 0.1);
+}
+.action-btn-text.data-v-7e17f412 {
+  color: #0050cb;
+  font-weight: 700;
+  font-size: 24rpx;
+  /* text-xs */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.icon-arrow.data-v-7e17f412 {
+  color: #0050cb;
+  font-size: 28rpx;
+  /* text-sm */
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>文明生产专业管理系统 - 登录</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#cc4204",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#f8f7ff",
+                        "on-surface-variant": "#424656",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary-fixed": "#dae1ff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-secondary-fixed-variant": "#284386",
+                        "surface-dim": "#d8dadc",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary-fixed": "#390c00",
+                        "outline": "#727687",
+                        "tertiary": "#a33200",
+                        "secondary-container": "#9bb4fe",
+                        "primary-container": "#0066ff",
+                        "surface-container": "#eceef0",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001849",
+                        "on-secondary-fixed": "#001849",
+                        "surface-variant": "#e0e3e5",
+                        "primary": "#0050cb",
+                        "outline-variant": "#c2c6d8",
+                        "on-secondary-container": "#294487",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed": "#dae1ff",
+                        "surface-tint": "#0054d6",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#fff6f4",
+                        "surface-bright": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "secondary": "#425ca0",
+                        "on-surface": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base typography defaults */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+        }
+        
+        /* Industrial Grid Pattern */
+        .industrial-grid {
+            background-size: 8px 8px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 80, 203, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 80, 203, 0.03) 1px, transparent 1px);
+        }
+
+        /* Ambient Glow Shadow */
+        .ambient-glow {
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+
+        /* Button Inner Glow */
+        .btn-inner-glow {
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Industrial Damping Transition */
+        .transition-industrial {
+            transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition-duration: 300ms;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen bg-gradient-to-br from-surface to-primary-fixed relative overflow-hidden flex items-center justify-center p-6">
+<!-- Level 0 (Floor): Grid Texture Background -->
+<div class="absolute inset-0 z-0 industrial-grid pointer-events-none"></div>
+<!-- Level 2 (Active Glass): The Login Card -->
+<main class="relative z-10 w-full max-w-[360px] flex flex-col items-center bg-surface-container-lowest/25 backdrop-blur-[20px] border border-surface-container-lowest/40 rounded-xl ambient-glow p-10 pt-12 pb-8">
+<!-- Brand Logo -->
+<div class="w-24 h-24 rounded-xl bg-surface-container-highest/50 flex items-center justify-center border border-surface-container-lowest/50 mb-6 shadow-inner overflow-hidden">
+<img alt="System Logo Placeholder" class="w-full h-full object-cover mix-blend-multiply opacity-80" data-alt="abstract close-up of polished steel industrial machinery gear bathed in cool blue studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8yZdQ-lY9Ywo2TdLbb2wC9SAQ_jsV-attL0qxZupHW-ff9fzhMItJ5NbzX92x405KqgeSBQKN50rlrbUcRQLLZniCroF-8zf0WCm0Fh7TQDjV73oaqTDzhoZ918iScXjh3d84MFHprWu0y9XaeJeYXBy-5nhhDengnjXJ167FeLt2ULvSvDH-igOPg_Ttq_Z-LD7yuQD5DeMCGcopGlfswq49kDE-FU-WerygSOBOwT0To7au-0xZljvD5qM0Wzi8dqbmPBvy0do"/>
+</div>
+<!-- System Title -->
+<h1 class="font-headline text-[22px] font-bold leading-tight tracking-[0.05em] text-on-surface text-center mb-10">
+            文明生产专业管理系统
+        </h1>
+<!-- Primary Action: WeChat Login Button -->
+<button class="w-full flex items-center justify-center gap-3 h-12 px-6 rounded-xl bg-primary-container text-on-primary btn-inner-glow transition-industrial hover:scale-[0.98] hover:shadow-[0_4px_20px_0_rgba(0,80,203,0.2)] mb-8">
+<div class="text-on-primary flex-shrink-0">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M231.79,187.33A80,80,0,0,0,169.58,72.59,80,80,0,1,0,24.21,139.33l-7.66,26.82A14,14,0,0,0,30,184a13.65,13.65,0,0,0,3.84-.54l26.82-7.66a78.86,78.86,0,0,0,25.77,7.63,80,80,0,0,0,108.89,40.37l26.82,7.66a14,14,0,0,0,17.3-17.3ZM65.36,160.21a8,8,0,0,0-6-.68l-26.41,7.55,7.55-26.41a8,8,0,0,0-.68-6A64,64,0,0,1,151.68,72.43,80.12,80.12,0,0,0,80,152a79.31,79.31,0,0,0,1.31,14.3A63.34,63.34,0,0,1,65.36,160.21Zm150.17,28.46,7.55,26.41-26.41-7.55a8,8,0,0,0-6,.68,63.95,63.95,0,1,1,25.57-25.57A8,8,0,0,0,215.53,188.67ZM144,140a12,12,0,1,1-12-12A12,12,0,0,1,144,140Zm56,0a12,12,0,1,1-12-12A12,12,0,0,1,200,140Z"></path>
+</svg>
+</div>
+<span class="font-label text-base font-semibold tracking-wide truncate">微信授权登录</span>
+</button>
+<!-- Privacy Policy Disclaimer -->
+<p class="font-body text-xs font-medium text-on-surface-variant text-center underline decoration-outline-variant underline-offset-4 tracking-wide opacity-80 mt-auto">
+            登录即代表您同意我们的服务协议和隐私政策
+        </p>
+</main>
+</body></html>

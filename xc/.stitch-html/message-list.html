@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#191c1e",
+              "tertiary-fixed": "#fcdeb5",
+              "primary-container": "#131b2e",
+              "secondary-fixed-dim": "#adc6ff",
+              "on-secondary-fixed": "#001a42",
+              "on-tertiary-container": "#98805d",
+              "on-secondary-fixed-variant": "#004395",
+              "surface-tint": "#565e74",
+              "tertiary": "#000000",
+              "inverse-on-surface": "#eff1f3",
+              "inverse-primary": "#bec6e0",
+              "on-tertiary-fixed": "#271901",
+              "inverse-surface": "#2d3133",
+              "tertiary-container": "#271901",
+              "outline-variant": "#c6c6cd",
+              "surface-container": "#eceef0",
+              "primary": "#000000",
+              "surface-container-high": "#e6e8ea",
+              "primary-fixed": "#dae2fd",
+              "surface-variant": "#e0e3e5",
+              "surface-container-lowest": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "tertiary-fixed-dim": "#dec29a",
+              "on-surface": "#191c1e",
+              "error": "#ba1a1a",
+              "error-container": "#ffdad6",
+              "outline": "#76777d",
+              "on-primary-fixed": "#131b2e",
+              "background": "#f7f9fb",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#d8dadc",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed": "#d8e2ff",
+              "on-primary-fixed-variant": "#3f465c",
+              "secondary": "#0058be",
+              "on-secondary-container": "#fefcff",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed-variant": "#574425",
+              "surface": "#f7f9fb",
+              "on-surface-variant": "#45464d",
+              "primary-fixed-dim": "#bec6e0",
+              "surface-container-highest": "#e0e3e5"
+            },
+            fontFamily: {
+              "headline": ["Inter", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .tonal-layering { background-color: rgba(242, 244, 246, 0.5); }
+        .glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-[64px] z-50 bg-white/80 glass-header flex items-center justify-between px-8 w-full max-w-[1920px] mx-auto shadow-sm shadow-slate-200/50">
+<div class="flex items-center gap-8">
+<span class="text-xl font-semibold tracking-tighter text-slate-950">The Editorial Archive</span>
+<nav class="hidden md:flex items-center gap-6 font-['Inter'] antialiased text-sm font-medium tracking-tight">
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">平台首页</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">工作推进</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">专业管理</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">专业信息</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">培训管理</a>
+<a class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1" href="#">个人中心</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative p-2 hover:bg-slate-50/50 rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined text-slate-900" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-[10px] font-bold text-white ring-2 ring-white">12</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Portrait of a professional man in a clean studio setting with soft lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2_8yrYgL6UGSike840fDMKD4WjsP51vjt3ilGF6ORi7Gq55SRL3QRFIhurhCNG0Ft_-3fbAM89tVfPiVZP-qJIu-PZQ3QTpypI13OJgkpHw0Aa-NEH1kgoPN2d4JHcPLooMURrXhY02I8ztJ4O8G7DAZ38T7yLnDJyQ_n7s_1_dkgAcxikv-qGl-HyGbL4PL7ZIpVlpa8p2Am2XXf51W1V-y6ydBfs86FQmgk4zkBvjmXdutP4oE9b496t4Y9EMNGg-6YBXPsqQk"/>
+</div>
+</div>
+</header>
+<main class="mt-24 mb-16 w-full max-w-[1350px] mx-auto px-6 flex-grow">
+<!-- Title Section -->
+<div class="flex items-center justify-between mb-8">
+<h1 class="text-[24px] font-bold text-slate-900 tracking-tight">消息中心</h1>
+<button class="flex items-center gap-2 text-sm font-medium text-secondary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle">check_circle</span>
+                全部已读
+            </button>
+</div>
+<!-- Category Tabs -->
+<div class="flex items-center gap-10 border-b border-outline-variant/15 mb-6">
+<button class="pb-4 text-sm font-semibold text-secondary border-b-2 border-secondary relative">全部</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">系统通知</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">培训通知</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">工作通知</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">信息传达</button>
+</div>
+<!-- Message List -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<!-- Row 1 (Unread) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 last:border-0 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-bold text-on-surface truncate">新功能发布：数字化编校系统正式上线</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-blue-50 text-blue-600">System</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">尊敬的用户，我们的全新数字化编校系统已于今日凌晨完成部署，请前往工作台体验最新功能...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">2小时前</span>
+</div>
+</div>
+<!-- Row 2 (Unread) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-bold text-on-surface truncate">关于2024年度专业技术资格评审的通知</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-amber-50 text-amber-600">Training</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">请符合条件的编辑人员于本周五前提交初审材料，逾期将视为自动放弃本次评审机会...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">3小时前</span>
+</div>
+</div>
+<!-- Row 3 (Read) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative opacity-80">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-medium text-on-surface truncate">季度选题会会议纪要已上传</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">Work</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">上周五举行的春季选题策划会会议记录已整理完毕，相关附件已同步至云端共享文件夹...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">5小时前</span>
+</div>
+</div>
+<!-- Row 4 (Unread) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-bold text-on-surface truncate">紧急：数据库维护公告</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-blue-50 text-blue-600">System</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">核心数据库将于今日22:00进行例行安全加固维护，预计耗时30分钟，届时检索功能可能受阻...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">7小时前</span>
+</div>
+</div>
+<!-- Row 5 (Read) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative opacity-80">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-medium text-on-surface truncate">全员网络安全培训课程学习提醒</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-amber-50 text-amber-600">Training</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">请尚未完成本季度网络安全课程的同事务必在本月底前登录培训系统完成学习并考取证书...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">1天前</span>
+</div>
+</div>
+<!-- Row 6 (Unread) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-bold text-on-surface truncate">下周周报提交提醒</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">Work</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">请各位组长在周一上午10点前将部门周报发送至内刊编辑室公共邮箱，请注明日期...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">1天前</span>
+</div>
+</div>
+<!-- Row 7 (Read) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative opacity-80">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-medium text-on-surface truncate">版权管理系统升级完毕</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-600">Info</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">版权管理系统已完成2.4版本更新，新增了海外授权追踪及版税自动结算模块...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">2天前</span>
+</div>
+</div>
+<!-- Row 8 (Read) -->
+<div class="group flex items-center px-6 py-5 hover:bg-surface-container-low transition-all border-b border-slate-100 relative opacity-80">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="mr-4 flex-shrink-0">
+<div class="w-1.5 h-1.5"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-medium text-on-surface truncate">社内优秀编辑评选投票开始</h3>
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-600">Info</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate">年度优秀编辑评选活动现已进入公众投票阶段，请通过内网门户进入投票页面支持您的同事...</p>
+</div>
+<div class="ml-6 flex-shrink-0 text-right">
+<span class="text-xs text-outline tracking-wider uppercase">3天前</span>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<p class="text-[12px] text-outline font-medium tracking-wide">没有更多消息了</p>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 bg-slate-50 flex flex-col md:flex-row justify-between items-center px-12 border-t border-slate-200/10">
+<div class="text-xs tracking-wider uppercase text-slate-400 font-['Inter'] mb-4 md:mb-0">
+            © 2024 THE EDITORIAL ARCHIVE. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-8">
+<a class="text-xs tracking-wider uppercase text-slate-400 hover:text-blue-600 transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs tracking-wider uppercase text-slate-400 hover:text-blue-600 transition-colors" href="#">Terms of Service</a>
+<a class="text-xs tracking-wider uppercase text-slate-400 hover:text-blue-600 transition-colors" href="#">Help Center</a>
+</div>
+</footer>
+</body></html>

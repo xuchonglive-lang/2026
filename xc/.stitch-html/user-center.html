@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#0050d4",
+              "surface-bright": "#f7f9fb",
+              "tertiary-fixed-dim": "#ccd4ee",
+              "secondary-dim": "#44546a",
+              "on-tertiary-fixed-variant": "#535b71",
+              "tertiary-container": "#dae2fd",
+              "tertiary": "#575f75",
+              "on-secondary-container": "#435368",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#752121",
+              "tertiary-dim": "#4b5369",
+              "on-secondary-fixed": "#314055",
+              "on-primary": "#f8f7ff",
+              "primary-dim": "#0048c1",
+              "error": "#9f403d",
+              "surface-tint": "#0053db",
+              "outline": "#717c82",
+              "surface-container": "#e8eff3",
+              "error-container": "#fe8983",
+              "primary-container": "#dbe1ff",
+              "primary-fixed-dim": "#c7d3ff",
+              "inverse-surface": "#0b0f10",
+              "surface-container-low": "#f0f4f7",
+              "on-primary-container": "#0048bf",
+              "outline-variant": "#a9b4b9",
+              "secondary": "#506076",
+              "primary-fixed": "#dbe1ff",
+              "on-tertiary-container": "#4a5167",
+              "on-tertiary": "#f9f8ff",
+              "inverse-primary": "#618bff",
+              "surface-variant": "#d9e4ea",
+              "on-surface-variant": "#566166",
+              "on-secondary-fixed-variant": "#4d5d73",
+              "inverse-on-surface": "#9a9d9f",
+              "on-surface": "#2a3439",
+              "error-dim": "#4e0309",
+              "on-primary-fixed": "#003798",
+              "on-error": "#fff7f6",
+              "background": "#f7f9fb",
+              "surface-dim": "#cfdce3",
+              "surface": "#f7f9fb",
+              "surface-container-high": "#e1e9ee",
+              "secondary-container": "#d3e4fe",
+              "on-tertiary-fixed": "#373f54",
+              "on-secondary": "#f7f9ff",
+              "on-background": "#2a3439",
+              "secondary-fixed": "#d3e4fe",
+              "tertiary-fixed": "#dae2fd",
+              "surface-container-highest": "#d9e4ea",
+              "primary": "#0053db",
+              "secondary-fixed-dim": "#c5d6f0"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-[64px] z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-sm dark:shadow-none flex justify-between items-center px-8">
+<div class="flex items-center gap-8">
+<span class="text-lg font-semibold text-slate-900 dark:text-slate-50">生产专业管理平台</span>
+<div class="hidden md:flex gap-6 items-center h-full">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-['Inter'] text-[14px]" href="#">平台首页</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-['Inter'] text-[14px]" href="#">工作推进</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-['Inter'] text-[14px]" href="#">专业管理</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-['Inter'] text-[14px]" href="#">专业信息</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-['Inter'] text-[14px]" href="#">培训管理</a>
+<a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 pb-1 font-['Inter'] text-[14px]" href="#">个人中心</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 cursor-pointer hover:bg-slate-100/50 dark:hover:bg-slate-800/50 p-1.5 rounded-lg transition-colors">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant/20" data-alt="professional portrait of a middle-aged asian businessman in a crisp white shirt, clean studio background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo-DAW-lwrreDpuVR_sQO-Dz0g0wMRrT25fvpufpDtWSwnVjAZrRoIArkWk6j64jY9q7nXFxkOSRLAJDPa118Qv2bN0TlglytdM8lyUIgrlrQyk-UD8vnpYhqfX_TUlAVpmnLHmHyJvWe51rznp0C_G4NzgR-2nYVq-IkPAB4hO6sz8JTW6n_PmLc0yrv1ZqbkQW7FNGQS6s8kBHDHDEP_9wb0SUlCk1hQjEgHsJ7wbCkmy5Tgw1yRU3P7KrUPuuLBBtCt3CPLJuM"/>
+<span class="material-symbols-outlined text-slate-500" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-16 px-4 md:px-8 max-w-[1350px] mx-auto min-h-screen">
+<!-- User Profile Card -->
+<section class="max-w-[600px] mx-auto bg-surface-container-lowest rounded-[6px] p-8 shadow-[0_12px_40px_rgba(42,52,57,0.06)] flex flex-col items-center">
+<div class="relative mb-4">
+<img alt="张三" class="w-16 h-16 rounded-full object-cover border-2 border-primary-container" data-alt="close-up portrait of a friendly asian male professional, short black hair, smiling warmly, soft daylight office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB87-1AvQjyALp5lt-Pi8iZ3P_llCzU1CPwADznEfobnsjpx9nxDxaZReQxOuirBWMuZIHaM2EK-9yU32DiqSg1diLQ6FQv-Bk2ljKY92mlfAzenlqe3d9h68j70tU19WlgU-gOAVZcOen00AooU2-RqYi8Q96KtFgyMw_pnGyQhzQ65z8J-xezDKiCQQux8qan3yAjy7E7x88qyTel1KWg9C0Bjl5jOm8BWKZfIz8536ntvoYrlO5vvW7v0jVFE4apAcbAiaaxC4s"/>
+</div>
+<h1 class="text-[20px] font-bold text-on-surface mb-2">张三</h1>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-[12px] font-medium rounded-full mb-4">技术部</span>
+<div class="flex gap-2 mb-6">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container text-[11px] font-medium rounded-[4px] border border-primary/10">培训管理员</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[11px] font-medium rounded-[4px] border border-secondary/10">安全管理</span>
+</div>
+<a class="text-[14px] text-primary hover:underline font-medium transition-all" href="#">编辑资料</a>
+</section>
+<!-- Function Grid Menu -->
+<section class="max-w-[800px] mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1: 我的消息 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="relative w-10 h-10 flex items-center justify-center bg-blue-50 text-blue-600 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-error text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white">5</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">我的消息</span>
+</button>
+<!-- Card 2: 我的任务 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="relative w-10 h-10 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full group-hover:bg-orange-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-error text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white">2</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">我的任务</span>
+</button>
+<!-- Card 3: 我的反馈 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="w-10 h-10 flex items-center justify-center bg-teal-50 text-teal-600 rounded-full group-hover:bg-teal-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">我的反馈</span>
+</button>
+<!-- Card 4: 我的阅读 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="w-10 h-10 flex items-center justify-center bg-purple-50 text-purple-600 rounded-full group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">我的阅读</span>
+</button>
+<!-- Card 5: 我的培训 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="w-10 h-10 flex items-center justify-center bg-indigo-50 text-indigo-600 rounded-full group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">我的培训</span>
+</button>
+<!-- Card 6: 我的工作 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-600 rounded-full group-hover:bg-slate-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">我的工作</span>
+</button>
+<!-- Card 7: 个人设置 -->
+<button class="bg-surface-container-lowest border border-outline-variant/30 rounded-[6px] p-6 flex flex-col items-center justify-center gap-3 hover:shadow-[0_8px_24px_rgba(42,52,57,0.08)] transition-all group">
+<div class="w-10 h-10 flex items-center justify-center bg-rose-50 text-rose-600 rounded-full group-hover:bg-rose-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">个人设置</span>
+</button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mt-auto">
+<div class="max-w-[1350px] mx-auto py-6 px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-slate-400 dark:text-slate-500 font-['Inter'] text-[12px]">© 2024 xuchong</span>
+<div class="flex gap-6">
+<a class="text-slate-400 dark:text-slate-500 font-['Inter'] text-[12px] hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">关于我们</a>
+<a class="text-slate-400 dark:text-slate-500 font-['Inter'] text-[12px] hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">联系方式</a>
+<a class="text-slate-400 dark:text-slate-500 font-['Inter'] text-[12px] hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">隐私政策</a>
+<a class="text-slate-400 dark:text-slate-500 font-['Inter'] text-[12px] hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">服务条款</a>
+</div>
+</div>
+</footer>
+</body></html>

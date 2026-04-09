@@ -1,0 +1,57 @@
+{
+  "bsonType": "object",
+  "required": [
+    "category_id",
+    "title",
+    "content",
+    "status",
+    "publish_time"
+  ],
+  "permission": {
+    "read": "doc.status == 1 || 'admin' in auth.role",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "文档自身生成的极长串ID符"
+    },
+    "category_id": {
+      "bsonType": "string",
+      "description": "外键指针：指向 info-category 集合的 _id，说明本文属于哪个分发口"
+    },
+    "title": {
+      "bsonType": "string",
+      "description": "显示在外部列表页和详情页顶部的核心引领文字"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "底层为 HTML 格式的极其长篇幅的富文本字符串，内含多媒体标签、样式组合。供解析器还原界面"
+    },
+    "view_count": {
+      "bsonType": "long",
+      "description": "阅读数反写缓存机制：记录多少人点进去看过，原子化 _.inc 自增使用",
+      "defaultValue": 0
+    },
+    "is_top": {
+      "bsonType": "bool",
+      "description": "全局暴力置顶阀门：若为 true 则在信息流中越过时间排序优先级稳居顶部",
+      "defaultValue": false
+    },
+    "status": {
+      "bsonType": "int",
+      "description": "0 代表写了一半（暂存未发出）或是被强制下架，1 代表正在被大家传阅",
+      "defaultValue": 1
+    },
+    "publish_time": {
+      "bsonType": "timestamp",
+      "description": "系统用以在同等优先级下对新闻列表执行最近倒排序依据的光阴时间戳"
+    },
+    "is_del": {
+      "bsonType": "int",
+      "description": "底层保护屏障：0表示该新闻实体存在，1表示它已被扔入垃圾桶，全站隔离",
+      "defaultValue": 0
+    }
+  }
+}

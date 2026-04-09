@@ -126,7 +126,7 @@ $spacing-xxxl: 64px;
   --topnav-height-h5: 44px;
   --tabbar-height: 50px;
   --footer-height: 48px;
-  --content-max-width: 1200px;
+  --content-max-width: 1350px;
   --content-padding-pc: 24px;
   --content-padding-h5: 12px 16px;
   --drawer-width: 75vw;
@@ -142,10 +142,11 @@ $breakpoint-xl: 1200px;
 $breakpoint-xxl: 1440px;
 
 /* === 全局基础样式 === */
-page {
+html, body, page {
   background-color: var(--color-bg-page);
   font-family: var(--font-family);
-  font-size: var(--font-size-body);
+  /* 强制锁定 16px 基础根字号以符合 Tailwind Rem 规范与 UI 比例 */
+  font-size: 16px !important;
   color: var(--color-text-primary);
   line-height: var(--line-height-body);
   -webkit-font-smoothing: antialiased;

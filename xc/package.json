@@ -12,12 +12,15 @@
   ],
   "main": "main.js",
   "dependencies": {
+    "github-markdown-css": "^5.9.0",
+    "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.1",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-toc-done-right": "^4.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "npx @tailwindcss/cli -i ./common/css/tailwind-input.css -o ./common/css/tailwind.css --watch"
   },
   "author": "VK",
   "license": "MIT",
@@ -107,5 +110,13 @@
         }
       }
     }
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^9.8.8",
+    "daisyui": "^5.5.19",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2"
   }
 }

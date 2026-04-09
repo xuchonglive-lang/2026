@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-container": "#fefcff",
+                        "surface-tint": "#565e74",
+                        "surface-dim": "#d8dadc",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#98805d",
+                        "tertiary": "#000000",
+                        "on-primary-fixed": "#131b2e",
+                        "error-container": "#ffdad6",
+                        "outline": "#76777d",
+                        "secondary": "#3B82F6",
+                        "on-background": "#191c1e",
+                        "primary-container": "#131b2e",
+                        "secondary-container": "#2170e4",
+                        "on-tertiary-fixed": "#271901",
+                        "on-error-container": "#93000a",
+                        "background": "#f7f9fb",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#fcdeb5",
+                        "on-surface": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#0F172A",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "surface": "#f7f9fb",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "inverse-primary": "#bec6e0",
+                        "on-secondary-fixed": "#001a42",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container": "#eceef0",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-container": "#271901",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-container": "#7c839b",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eff1f3"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(248, 250, 252, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-primary antialiased">
+<!-- Header / TopNavBar -->
+<header class="fixed top-0 w-full z-50 h-16 glass-nav border-b border-slate-900/10 shadow-[0px_10px_40px_rgba(15,23,42,0.06)]">
+<div class="max-w-[1440px] mx-auto px-8 h-full flex items-center justify-between">
+<div class="flex items-center gap-10">
+<span class="text-xl font-bold tracking-tighter text-primary">生产专业管理平台</span>
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="text-slate-600 hover:text-primary transition-colors text-sm font-medium" href="#">平台首页</a>
+<a class="text-slate-600 hover:text-primary transition-colors text-sm font-medium" href="#">工作推进</a>
+<a class="text-secondary font-semibold border-b-2 border-secondary h-16 flex items-center translate-y-[1px] text-sm" href="#">专业管理</a>
+<a class="text-slate-600 hover:text-primary transition-colors text-sm font-medium" href="#">专业信息</a>
+<a class="text-slate-600 hover:text-primary transition-colors text-sm font-medium" href="#">培训管理</a>
+<a class="text-slate-600 hover:text-primary transition-colors text-sm font-medium" href="#">个人中心</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-900/5 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 cursor-pointer">
+<img alt="User avatar" data-alt="professional portrait of a corporate male user with glasses and business casual attire, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3UI_eT2KipX4LeCu7r7LpPpXkUc9saX5IKzPnfvO1uloa-6t4hlKXMIukb1MEQkzQOa2kWLoxbX6m9jvqOMAfeKpTD_k8EXNlopXONumWn2BpCpkgBSCPU6Z_xt4frx7PZXMQtLpnr6h1Z2LvAVCGsp8NXD39kfs6GZqGIkiWzwYuRQ3QocB1FCotqkqJ1iTSG4Zuq_b1-mzI0dRhkVsHRCefCL_zkvOSNBzQqZTIq_ti-ky5kKnwQFkyz5cgwV0FQmBcOGUNUtQ"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-16 px-8 max-w-[1440px] mx-auto min-h-screen">
+<!-- Row 1: Professional Selector -->
+<div class="flex items-center gap-3 mb-8">
+<span class="text-sm font-medium text-slate-500">当前专业:</span>
+<div class="relative w-[200px]">
+<button class="w-full flex items-center justify-between px-3 py-2 bg-white border border-slate-200 rounded-[4px] text-sm focus:ring-2 focus:ring-secondary/20 outline-none">
+<span>安全管理</span>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Row 2: Tabs -->
+<div class="border-b border-slate-200 mb-6">
+<div class="flex gap-10">
+<button class="pb-3 text-sm font-medium text-slate-500 hover:text-primary transition-colors">制度规范</button>
+<button class="pb-3 text-sm font-medium text-slate-500 hover:text-primary transition-colors">管理网络</button>
+<button class="pb-3 text-sm font-medium text-slate-500 hover:text-primary transition-colors">例行工作</button>
+<button class="pb-3 text-sm font-bold text-secondary border-b-2 border-secondary">我的文档</button>
+</div>
+</div>
+<!-- Row 3: Content Area -->
+<div class="flex gap-6 mt-6">
+<!-- Left Panel: Folder Tree -->
+<aside class="w-[220px] shrink-0">
+<h2 class="text-sm font-bold text-primary mb-4">文件夹</h2>
+<div class="space-y-1">
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-50 text-secondary font-semibold cursor-pointer">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="text-sm">我的文档</span>
+</div>
+<div class="pl-8 space-y-1">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">
+<span class="material-symbols-outlined scale-75" data-icon="folder">folder</span>
+<span class="text-sm">安全检查记录</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">
+<span class="material-symbols-outlined scale-75" data-icon="folder">folder</span>
+<span class="text-sm">月度报告</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">
+<span class="material-symbols-outlined scale-75" data-icon="folder">folder</span>
+<span class="text-sm">培训材料</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer mt-2">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span class="text-sm">共享给我的</span>
+</div>
+</div>
+</aside>
+<!-- Right Panel: Main Content -->
+<section class="flex-1 min-w-0">
+<div class="bg-surface_container_lowest rounded-xl shadow-[0px_10px_40px_rgba(15,23,42,0.06)] overflow-hidden">
+<!-- Toolbar -->
+<div class="p-4 flex items-center justify-between border-b border-slate-900/5">
+<div class="flex gap-3">
+<button class="bg-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-slate-800 transition-all text-sm font-medium">
+<span class="material-symbols-outlined" data-icon="upload">upload</span>
+                                上传文件
+                            </button>
+<button class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-slate-50 transition-all text-sm font-medium">
+<span class="material-symbols-outlined" data-icon="create_new_folder">create_new_folder</span>
+                                新建文件夹
+                            </button>
+</div>
+<div class="relative">
+<input class="w-[240px] h-10 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all" placeholder="搜索文件..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400">search</span>
+</div>
+</div>
+<!-- File Table -->
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-slate-50/50 text-left">
+<th class="px-6 py-4 w-12"><input class="rounded border-slate-300 text-secondary focus:ring-secondary" type="checkbox"/></th>
+<th class="px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">文件名</th>
+<th class="px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">大小</th>
+<th class="px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">类型</th>
+<th class="px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">上传时间</th>
+<th class="px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="bg-white hover:bg-slate-50 transition-colors group h-12">
+<td class="px-6 py-3"><input class="rounded border-slate-300 text-secondary focus:ring-secondary" type="checkbox"/></td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="text-sm font-medium text-slate-900 truncate">2024年第一季度安全评估报告.pdf</span>
+</div>
+</td>
+<td class="px-4 py-3 text-sm text-slate-500">2.4 MB</td>
+<td class="px-4 py-3 text-sm text-slate-500">PDF 文档</td>
+<td class="px-4 py-3 text-sm text-slate-500">2024-03-15 14:20</td>
+<td class="px-4 py-3 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="share">share</span></button>
+<button class="p-1.5 hover:text-error"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-[#FAFBFC] hover:bg-slate-50 transition-colors group h-12">
+<td class="px-6 py-3"><input class="rounded border-slate-300 text-secondary focus:ring-secondary" type="checkbox"/></td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500" data-icon="description">description</span>
+<span class="text-sm font-medium text-slate-900 truncate">设备维护标准作业程序(SOP).docx</span>
+</div>
+</td>
+<td class="px-4 py-3 text-sm text-slate-500">856 KB</td>
+<td class="px-4 py-3 text-sm text-slate-500">Word 文档</td>
+<td class="px-4 py-3 text-sm text-slate-500">2024-03-12 09:45</td>
+<td class="px-4 py-3 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="share">share</span></button>
+<button class="p-1.5 hover:text-error"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-white hover:bg-slate-50 transition-colors group h-12">
+<td class="px-6 py-3"><input class="rounded border-slate-300 text-secondary focus:ring-secondary" type="checkbox"/></td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600" data-icon="table_chart">table_chart</span>
+<span class="text-sm font-medium text-slate-900 truncate">安全隐患排查整改清单_v2.xlsx</span>
+</div>
+</td>
+<td class="px-4 py-3 text-sm text-slate-500">1.2 MB</td>
+<td class="px-4 py-3 text-sm text-slate-500">Excel 表格</td>
+<td class="px-4 py-3 text-sm text-slate-500">2024-03-10 16:30</td>
+<td class="px-4 py-3 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="share">share</span></button>
+<button class="p-1.5 hover:text-error"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-[#FAFBFC] hover:bg-slate-50 transition-colors group h-12">
+<td class="px-6 py-3"><input class="rounded border-slate-300 text-secondary focus:ring-secondary" type="checkbox"/></td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-500" data-icon="present_to_all">present_to_all</span>
+<span class="text-sm font-medium text-slate-900 truncate">新员工入职安全培训.pptx</span>
+</div>
+</td>
+<td class="px-4 py-3 text-sm text-slate-500">15.8 MB</td>
+<td class="px-4 py-3 text-sm text-slate-500">PPT 演示文稿</td>
+<td class="px-4 py-3 text-sm text-slate-500">2024-03-05 11:15</td>
+<td class="px-4 py-3 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="share">share</span></button>
+<button class="p-1.5 hover:text-error"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-white hover:bg-slate-50 transition-colors group h-12">
+<td class="px-6 py-3"><input class="rounded border-slate-300 text-secondary focus:ring-secondary" type="checkbox"/></td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400" data-icon="image">image</span>
+<span class="text-sm font-medium text-slate-900 truncate">生产车间安全出口示意图.jpg</span>
+</div>
+</td>
+<td class="px-4 py-3 text-sm text-slate-500">4.1 MB</td>
+<td class="px-4 py-3 text-sm text-slate-500">JPG 图片</td>
+<td class="px-4 py-3 text-sm text-slate-500">2024-03-01 10:00</td>
+<td class="px-4 py-3 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+<button class="p-1.5 hover:text-secondary"><span class="material-symbols-outlined" data-icon="share">share</span></button>
+<button class="p-1.5 hover:text-error"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Status Footer -->
+<div class="px-6 py-4 border-t border-slate-900/5 bg-slate-50/30 flex items-center justify-between">
+<span class="text-xs text-slate-500">显示 5 / 5 个项目</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 bg-white text-slate-400 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-secondary bg-secondary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 bg-white text-slate-400 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 border-t border-slate-900/10">
+<div class="max-w-[1440px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-[0.75rem] font-medium tracking-wider text-slate-400">
+                © 2024 xuchong | 冀ICP备2024077622号-1
+            </div>
+<div class="flex gap-6 text-[0.75rem] font-medium uppercase tracking-wider text-slate-500">
+<a class="hover:text-secondary transition-colors" href="#">隐私政策</a>
+<a class="hover:text-secondary transition-colors" href="#">服务条款</a>
+<a class="hover:text-secondary transition-colors" href="#">联系我们</a>
+</div>
+</div>
+</footer>
+</body></html>

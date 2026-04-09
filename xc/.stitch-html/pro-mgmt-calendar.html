@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-primary": "#bec6e0",
+                        "on-tertiary-container": "#77859a",
+                        "outline": "#76777d",
+                        "inverse-on-surface": "#eff1f3",
+                        "outline-variant": "#c6c6cd",
+                        "tertiary": "#000000",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "primary-fixed": "#dae2fd",
+                        "on-primary-container": "#7c839b",
+                        "surface-bright": "#f7f9fb",
+                        "surface-tint": "#565e74",
+                        "tertiary-container": "#0d1c2e",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "secondary-fixed": "#d8e2ff",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary": "#0058be",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#131b2e",
+                        "inverse-surface": "#2d3133",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "background": "#F8FAFC",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#fefcff",
+                        "on-background": "#191c1e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "secondary-container": "#2170e4",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container": "#eceef0"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-on-surface">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 w-full h-16 z-50 bg-white/70 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center h-16 px-8 w-full max-w-[1350px] mx-auto">
+<!-- Brand Logo -->
+<div class="text-xl font-bold text-slate-900">
+            生产专业管理平台
+        </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="font-inter text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors" href="#">平台首页</a>
+<a class="font-inter text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors" href="#">工作推进</a>
+<a class="font-inter text-sm font-medium text-blue-600 border-b-2 border-blue-600 pb-1 h-full flex items-center translate-y-[1px]" href="#">专业管理</a>
+<a class="font-inter text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors" href="#">专业信息</a>
+<a class="font-inter text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors" href="#">培训管理</a>
+<a class="font-inter text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors" href="#">个人中心</a>
+</nav>
+<!-- Trailing Icons / Profile -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-600 hover:bg-slate-100 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="relative group">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-slate-200 cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq8yssnUs4HuIPM8uZU2OC_V7iHX7MM1gB_J6ZpottpTUqAMQw9JCrb7aS380ct8JLpzjT_wWbAfcpJ6el3IeHpgeyt3hTU87sC3SLHkQA8ZaxY6m4jINkFLNQUhLAqHX3YxmC7vaA3z4uQtW7W5oUCSqQEpLYGT2YIqFUjIuDzXz2KuZ5TIsEuwhMScvTqoTFqWnYXbr6vaj72FiD5g0GiDKMqIpIPdE1M9YlLC7cTZLVI_WB7uUSj_u1ZwYucdbPCK3GV_3BBSQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-16 px-8 max-w-[1350px] mx-auto min-h-screen">
+<!-- ROW 1: Professional Selector -->
+<div class="flex items-center gap-4 mb-6">
+<span class="text-sm font-medium text-on-surface-variant">当前专业:</span>
+<div class="relative w-[200px]">
+<div class="flex items-center justify-between w-full px-3 py-2 bg-white border border-slate-200 rounded-lg cursor-pointer">
+<span class="text-sm text-on-surface">安全管理</span>
+<span class="material-symbols-outlined text-outline text-sm" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</div>
+</div>
+<!-- ROW 2: Tabs -->
+<div class="border-b border-slate-200">
+<div class="flex gap-8 items-end">
+<button class="pb-3 text-[15px] font-medium text-slate-500 hover:text-slate-900 transition-colors">制度规范</button>
+<button class="pb-3 text-[15px] font-medium text-slate-500 hover:text-slate-900 transition-colors">管理网络</button>
+<button class="pb-3 text-[15px] font-bold text-blue-600 border-b-2 border-blue-600 relative z-10">例行工作</button>
+<button class="pb-3 text-[15px] font-medium text-slate-500 hover:text-slate-900 transition-colors">我的文档</button>
+</div>
+</div>
+<!-- ROW 3: Two-Column Grid (50/50 Split) -->
+<div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- LEFT COLUMN: Calendar -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 overflow-hidden">
+<!-- Calendar Header / Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-2">
+<button class="p-1 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-600" data-icon="chevron_left">chevron_left</span>
+</button>
+<h2 class="text-lg font-bold text-slate-900">2025年12月</h2>
+<button class="p-1 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-600" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="flex bg-slate-100 rounded-lg p-1">
+<button class="px-3 py-1 text-xs font-medium bg-white rounded-md shadow-sm">月</button>
+<button class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors">周</button>
+<button class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors">日</button>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex flex-wrap items-center gap-4 mb-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+<span class="text-[11px] font-medium text-slate-500">自己添加</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+<span class="text-[11px] font-medium text-slate-500">领导分配</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+<span class="text-[11px] font-medium text-slate-500">上级专业分配</span>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="grid grid-cols-7 border-t border-l border-slate-200">
+<!-- Day Names -->
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-slate-500">一</div>
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-slate-500">二</div>
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-slate-500">三</div>
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-slate-500">四</div>
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-slate-500">五</div>
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-blue-600/70">六</div>
+<div class="border-b border-r border-slate-200 bg-slate-50 py-2 text-center text-[11px] font-semibold text-blue-600/70">日</div>
+<!-- Week 1 (Mock) -->
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">24</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">25</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">26</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">27</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">28</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">29</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px] text-slate-300">30</div>
+<!-- Week 2 -->
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">1</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">
+                    2 <div class="mt-0.5 bg-blue-500 text-white rounded px-0.5 scale-90 origin-left truncate">安全巡检</div>
+</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">3</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">4</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">
+                    5 <div class="mt-0.5 bg-orange-500 text-white rounded px-0.5 scale-90 origin-left truncate">月度报告</div>
+</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">6</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">7</div>
+<!-- Week 3 (Multi-day span simplified) -->
+<div class="relative h-16 border-b border-r border-slate-200 p-1 text-[10px]">
+                    8 <div class="absolute left-0 top-5 w-[calc(300%+1px)] h-3.5 bg-blue-500/90 text-white text-[9px] rounded-sm flex items-center px-1 z-10">设备检查</div>
+</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">9</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">10</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">11</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">12</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">13</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">14</div>
+<!-- Week 4 (Highlight Today 15) -->
+<div class="h-16 border-b border-r border-slate-200 p-1 bg-blue-50/50">
+<span class="text-[10px] text-blue-600 font-bold">15</span>
+<div class="mt-0.5 bg-red-500 text-white rounded px-0.5 scale-90 origin-left truncate">上级安全审查</div>
+</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">16</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">17</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">18</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">19</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">
+                    20 <div class="mt-0.5 bg-blue-500 text-white rounded px-0.5 scale-90 origin-left truncate">培训准备</div>
+</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">21</div>
+<!-- Week 5 -->
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">22</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">23</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">24</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">
+                    25 <div class="mt-0.5 bg-orange-500 text-white rounded px-0.5 scale-90 origin-left truncate">年终总结</div>
+</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">26</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">27</div>
+<div class="h-16 border-b border-r border-slate-200 p-1 text-[10px]">28</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Today's Work List -->
+<div class="flex flex-col gap-4">
+<h2 class="text-[18px] font-bold text-[#0F172A]">今日工作列表</h2>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-white border border-[#E2E8F0] rounded-[8px] p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-base font-bold text-slate-900">安全巡检</h3>
+<p class="text-sm text-[#64748B] mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+                                10:00 - 11:30
+                            </p>
+</div>
+<span class="bg-slate-100 text-slate-600 px-2.5 py-1 rounded text-xs font-medium">地点: 生产车间</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-[#E2E8F0] rounded-[8px] p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-red-500"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-base font-bold text-slate-900">上级安全审查</h3>
+<p class="text-sm text-[#64748B] mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+                                14:00 - 16:00
+                            </p>
+</div>
+<span class="bg-slate-100 text-slate-600 px-2.5 py-1 rounded text-xs font-medium">地点: 会议室 302</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-[#E2E8F0] rounded-[8px] p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-base font-bold text-slate-900">月度报告提交</h3>
+<p class="text-sm text-[#64748B] mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="timer">timer</span>
+                                截止: 18:00
+                            </p>
+</div>
+<span class="bg-orange-50 text-orange-600 px-2.5 py-1 rounded text-xs font-medium border border-orange-100">待办</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<!-- Footer Component -->
+<footer class="w-full border-t border-slate-200 bg-white">
+<div class="flex justify-center items-center py-6 w-full max-w-[1350px] mx-auto text-center">
+<p class="text-[12px] font-normal font-inter text-slate-400">
+            © 2024 xuchong | 冀ICP备2024077622号-1
+        </p>
+</div>
+</footer>
+</body></html>

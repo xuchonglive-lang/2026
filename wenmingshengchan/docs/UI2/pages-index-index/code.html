@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Civilized Production Management System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b3c5ff",
+                        "surface-tint": "#0054d6",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-primary": "#b3c5ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-surface-variant": "#424656",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-secondary-container": "#294487",
+                        "on-primary-container": "#f8f7ff",
+                        "on-secondary-fixed-variant": "#284386",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-container": "#9bb4fe",
+                        "on-tertiary-container": "#fff6f4",
+                        "tertiary": "#a33200",
+                        "primary-container": "#0066ff",
+                        "tertiary-container": "#cc4204",
+                        "background": "#f7f9fb",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed": "#dae1ff",
+                        "secondary": "#425ca0",
+                        "primary": "#0050cb",
+                        "outline": "#727687",
+                        "on-surface": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d8",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "on-primary-fixed": "#001849",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary-fixed": "#001849",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+            min-height: 100vh;
+        }
+        .grid-texture {
+            background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        .headline-font { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="pb-24 grid-texture">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-blue-600/25 backdrop-blur-xl border-b border-white/20 shadow-[0_8px_32px_0_rgba(0,80,203,0.08)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-400" data-icon="precision_manufacturing" style="">precision_manufacturing</span>
+<h1 class="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-wider headline-font" style="">文明生产专业管理系统</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-600" data-icon="notifications" style="">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white text-xs font-bold headline-font" style="">CP</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-20 px-4 space-y-4">
+<!-- Hero Glass Card -->
+<section class="glass-card rounded-xl p-6 relative overflow-hidden active:scale-95 transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
+<div class="flex flex-col gap-1 relative z-10">
+<span class="text-xs font-semibold uppercase tracking-widest text-primary/70" style="">Critical Control Points</span>
+<h2 class="text-on-surface headline-font font-bold text-lg" style="">本班待反馈重控点位</h2>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="text-6xl font-extrabold headline-font text-primary tracking-tighter" style="">12</span>
+<span class="text-lg font-medium text-on-surface-variant" style="">个</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="pending_actions" style="">pending_actions</span>
+</div>
+<div class="mt-6 flex justify-between items-center border-t border-white/20 pt-4">
+<span class="text-sm font-medium text-primary" style="">立即处理反馈</span>
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios" style="">arrow_forward_ios</span>
+</div>
+</section>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Inspection Card -->
+<div class="glass-card rounded-xl p-4 flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check" style="">fact_check</span>
+</div>
+<div class="flex flex-col items-start">
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant" style="">Inspection</p>
+<p class="text-sm font-bold text-on-surface" style="">重点项目反馈</p>
+<span class="mt-1 inline-block px-1.5 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-full">5项待反馈</span></div>
+</div>
+<!-- Analysis Card -->
+<div class="glass-card rounded-xl p-4 flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="analytics" style="">analytics</span>
+</div>
+<div class="flex flex-col items-start">
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant" style="">Analysis</p>
+<p class="text-sm font-bold text-on-surface" style="">计划执行反馈</p>
+<span class="mt-1 inline-block px-1.5 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-full">8项待反馈</span></div>
+</div>
+<!-- Task List Card -->
+<div class="col-span-2 glass-card rounded-xl p-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="headline-font font-bold text-on-surface" style="">专业信息告知</h3>
+<a class="text-xs font-semibold text-primary/80 flex items-center gap-0.5 hover:text-primary transition-colors" href="#">更多<span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+<div class="space-y-3"><div class="flex items-center gap-4 p-3 bg-white/40 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="description">description</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface line-clamp-1">2024年度文明生产标准化评估指南发布</p>
+<p class="text-[10px] text-on-surface-variant">2小时前 · 管理部 <span class="ml-2 px-1.5 py-0.5 bg-blue-100/50 dark:bg-blue-900/30 text-primary rounded text-[9px] font-bold">政策发布</span></p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-white/40 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="campaign">campaign</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface line-clamp-1">关于开展夏季高温作业安全检查的通知</p>
+<p class="text-[10px] text-on-surface-variant">昨天 · 安全办 <span class="ml-2 px-1.5 py-0.5 bg-orange-100/50 dark:bg-orange-900/30 text-orange-600 rounded text-[9px] font-bold">安全通知</span></p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div></div>
+</div>
+<!-- 现场问题公示模块 -->
+<div class="col-span-2 glass-card rounded-xl p-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="headline-font font-bold text-on-surface" style="">现场问题公示</h3>
+<a class="text-xs font-semibold text-primary/80 flex items-center gap-0.5 hover:text-primary transition-colors" href="#">更多<span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-3 bg-white/40 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="report_problem">report_problem</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface line-clamp-1">A区照明灯具老化，亮度不足</p>
+<p class="text-[10px] text-on-surface-variant">4小时前 · 匿名 <span class="ml-2 px-1.5 py-0.5 bg-amber-100/50 text-amber-700 rounded text-[9px] font-bold">进行中</span></p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-white/40 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="cleaning_services">cleaning_services</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface line-clamp-1">B2通道地面湿滑，已设置警示牌</p>
+<p class="text-[10px] text-on-surface-variant">6小时前 · 匿名 <span class="ml-2 px-1.5 py-0.5 bg-green-100/50 text-green-700 rounded text-[9px] font-bold">已解决</span></p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Section Image -->
+<section class="mt-2 overflow-hidden rounded-xl h-40 relative group">
+<img alt="High-tech factory interior" class="w-full h-full object-cover" data-alt="Modern clean industrial factory floor with blue lighting high-tech machinery and bright glass reflections professional atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnIPzTjOGboSZXQIlc9JIttv3jspQIx95fexT45emZ3wSID4jHfidLtKyrwc89I8vrvraW2bo8tLJhihpO8ZHqRV3bQhFTtc-vuENeYRoy1t4ixHYD5bSPSi2rp1yAwaTrNcj8oc5K9M81m6XSUi5JuM5tNIMOnrOmZWfBnuULFx_rSlhuK11JQErj2oJ77n6VGp8l2pM_ovYT-MDx8YgIaAwmk9B7fAHTFOzqNlCwc1boVvIzdC1yK4QBHmnruHvl2WQ75NvwFWg" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent flex flex-col justify-end p-4">
+<p class="text-white text-xs font-medium opacity-80 headline-font" style="">Factory Environment Monitor</p>
+<h3 class="text-white headline-font font-bold" style="">数字化文明生产车间</h3>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe h-20 bg-white/25 backdrop-blur-xl border-t border-white/20 shadow-[0_-8px_32px_0_rgba(0,80,203,0.08)] rounded-t-xl">
+<!-- Active Tab: Home -->
+<div class="flex flex-col items-center justify-center bg-blue-600/10 text-blue-700 dark:text-blue-300 rounded-xl px-2 py-1 transition-all duration-300 scale-90">
+<span class="material-symbols-outlined" data-icon="home_work" style="">home_work</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1" style="">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-white/20 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="rate_review" style="">rate_review</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1" style="">现场反馈</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-white/20 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="account_tree" style="">account_tree</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1" style="">重点项目</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-white/20 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="event_note" style="">event_note</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1" style="">计划执行</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-white/20 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="person" style="">person</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1" style="">我的</span>
+</div>
+</nav>
+</body></html>

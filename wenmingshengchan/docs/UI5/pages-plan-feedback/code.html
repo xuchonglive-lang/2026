@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>日计划详情</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#390c00",
+                        "on-surface": "#191c1e",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f8f7ff",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-fixed": "#001849",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#001849",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "outline": "#727687",
+                        "on-secondary-fixed-variant": "#284386",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "tertiary": "#a33200",
+                        "outline-variant": "#c2c6d8",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "on-surface-variant": "#424656",
+                        "tertiary-fixed": "#ffdbd0",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container": "#eceef0",
+                        "primary-container": "#0066ff",
+                        "surface-tint": "#0054d6",
+                        "surface-container-high": "#e6e8ea",
+                        "surface": "#f7f9fb",
+                        "on-secondary-container": "#294487",
+                        "primary": "#0066FF",
+                        "secondary-fixed": "#dae1ff",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "secondary": "#425ca0",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-container": "#9bb4fe",
+                        "on-tertiary-container": "#fff6f4",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-container": "#cc4204",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 102, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 102, 255, 0.05) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 102, 255, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .section-title-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 4px;
+            background-color: #0066FF;
+            border-radius: 2px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface antialiased min-h-screen pb-32">
+<main class="pt-12 px-6 space-y-10 max-w-2xl mx-auto">
+<!-- 日计划内容 Section -->
+<section class="space-y-6">
+<div class="px-2">
+<h2 class="section-title-underline text-2xl font-extrabold tracking-tight text-on-surface">日计划内容</h2>
+</div>
+<div class="glass-panel rounded-2xl p-6 space-y-6">
+<div>
+<div class="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">计划标题</div>
+<h3 class="text-xl font-bold text-on-surface leading-tight">高压配电房周例行巡检与除湿维护</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">执行区域</span>
+<div class="flex items-center gap-2 text-sm font-semibold">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="location_on">location_on</span>
+                            B区三号站房
+                        </div>
+</div>
+<div class="space-y-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">计划下达人</span>
+<div class="flex items-center gap-2 text-sm font-semibold">
+<div class="w-6 h-6 rounded-full overflow-hidden bg-primary-fixed flex-shrink-0">
+<img alt="张利民" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR3LUvFlfHeLZfdg9hdcXvgTkUB51BA2__toEOg6bq1nxQZtjr1SfaN5nB9r5Kfm6pr7StuJRDsIsvFsBzi7Z3BKkA5spLvxDegmhRjO3gE8T903CDv96wzQD8pyTz2LkKEPhCupAgKcy4KeAc8H1O2VpNviismaRYSvm6UsV-mKm0_OvCoexZ6Ao5UW2dPFlALwGKY6_lrfSXaAUzL40A336jsRAdgN4onfzNou7UWT1wbRwv8Iu7g7dhVV3UwiPQAYq8dEdCGqI"/>
+</div>
+                            张利民 (主管)
+                        </div>
+</div>
+</div>
+<div class="pt-6 border-t border-white/40">
+<span class="text-[10px] text-on-surface-variant font-medium block mb-3 uppercase tracking-wider">详细要求</span>
+<p class="text-sm text-on-surface leading-relaxed">
+                        1. 检查变压器运行噪音及温度是否正常；<br/>
+                        2. 清理配电柜底部灰尘，确保绝缘性能；<br/>
+                        3. 检查工业除湿机运行参数，排空冷凝水箱。
+                    </p>
+</div>
+<div class="bg-white/40 rounded-xl p-4 flex items-center justify-between border border-white/60">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-primary-fixed z-20">
+<img alt="李志强" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR3LUvFlfHeLZfdg9hdcXvgTkUB51BA2__toEOg6bq1nxQZtjr1SfaN5nB9r5Kfm6pr7StuJRDsIsvFsBzi7Z3BKkA5spLvxDegmhRjO3gE8T903CDv96wzQD8pyTz2LkKEPhCupAgKcy4KeAc8H1O2VpNviismaRYSvm6UsV-mKm0_OvCoexZ6Ao5UW2dPFlALwGKY6_lrfSXaAUzL40A336jsRAdgN4onfzNou7UWT1wbRwv8Iu7g7dhVV3UwiPQAYq8dEdCGqI"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-secondary-fixed z-10 flex items-center justify-center text-[10px] font-bold text-primary">
+                                +2
+                            </div>
+</div>
+<div>
+<div class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">执行人</div>
+<div class="text-sm font-bold">李志强 等3人</div>
+</div>
+</div>
+<span class="bg-primary text-white text-[10px] px-3 py-1 rounded-full font-bold shadow-sm">执行中</span>
+</div>
+</div>
+</section>
+<!-- 完成反馈 Section -->
+<section class="space-y-6">
+<div class="px-2">
+<h2 class="section-title-underline text-2xl font-extrabold tracking-tight text-on-surface">完成反馈</h2>
+</div>
+<div class="glass-panel rounded-2xl p-6 space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="反馈人" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR3LUvFlfHeLZfdg9hdcXvgTkUB51BA2__toEOg6bq1nxQZtjr1SfaN5nB9r5Kfm6pr7StuJRDsIsvFsBzi7Z3BKkA5spLvxDegmhRjO3gE8T903CDv96wzQD8pyTz2LkKEPhCupAgKcy4KeAc8H1O2VpNviismaRYSvm6UsV-mKm0_OvCoexZ6Ao5UW2dPFlALwGKY6_lrfSXaAUzL40A336jsRAdgN4onfzNou7UWT1wbRwv8Iu7g7dhVV3UwiPQAYq8dEdCGqI"/>
+</div>
+<span class="text-sm font-bold">反馈人: 李志强</span>
+<span class="text-[10px] text-on-surface-variant font-mono ml-auto">今日 10:45</span>
+</div>
+<div class="rich-text-area space-y-4 bg-white/30 rounded-xl p-4 border border-white/50 min-h-[150px]">
+<p class="text-sm leading-relaxed text-on-surface">
+                        已完成对B区三号站房的例行巡检。变压器B相温度实测为52°C，虽略高于其他两相，但仍在正常运行区间。配电柜底部积尘已清理完毕。
+                    </p>
+<div class="grid grid-cols-2 gap-3">
+<div class="aspect-video rounded-lg overflow-hidden relative group">
+<img alt="巡检实拍1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh9LwnJcZ--O3U7DQTnb7EFmvO6VVGvysvIbXG9Reez8Jz6tKooUp_sEFjwpSZFDN0SLNyH35H1TfpYXXk8NyRHx4bsqW8XgMJFkYA065SoXKdi2yK_bdtPerL2chor_iTI65qkOk9YpWeNy6GqAZpZoHzjg9EnNG4GgdW-eenx0_d7hzuYkQwfqf8ZXq18lJL9rb5nnODVGe7aR5NCz-WLSjfQ76LnDYlhZlabsucBiftH2TkBeIt3DM44Ks7SqRWlX0DkeYcMQE"/>
+<div class="absolute bottom-2 left-2 bg-black/50 text-[10px] text-white px-2 py-0.5 rounded backdrop-blur-sm">设备面板状态</div>
+</div>
+<div class="aspect-video rounded-lg overflow-hidden relative group">
+<img alt="巡检实拍2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXvsYQA5zZir9WfQzCd4S8MUVvR2a0frIl7-5rBYEydprK7Sk91BuMEvT0O1a8ETTIhXq4kMyDSHhpkHOK0aLsoQe5YT9N7RDCmZYqc9N4KkLCQcHF8oC3MbgO5M1_Ccju4s0OYdWsO8bif4UE-jCnV4m0OjYbqoEBn5FhA_Xz2-7QXU56YB9heGh6uplyvkE2wXSZseN-ZjpbrFSRy63laic5zdXysn63rBmq_9j-3LXPeUSO5vTFR8CWDvKnPD-sHtW9d49TWPM"/>
+<div class="absolute bottom-2 left-2 bg-black/50 text-[10px] text-white px-2 py-0.5 rounded backdrop-blur-sm">除湿机运行参数</div>
+</div>
+</div>
+<p class="text-sm leading-relaxed text-on-surface">
+                        除湿机滤网已现场清洗，并疏通冷凝水排放口，运行电流保持在0.8A左右，设备运行稳定。
+                    </p>
+</div>
+</div>
+</section>
+<!-- 日计划确认意见 Section -->
+<section class="space-y-6">
+<div class="px-2">
+<h2 class="section-title-underline text-2xl font-extrabold tracking-tight text-on-surface">日计划确认意见</h2>
+</div>
+<div class="glass-panel rounded-2xl p-6">
+<div class="space-y-6">
+<!-- 验收评价 -->
+<!-- 确认评语 (静态展示) -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-on-surface-variant block px-1">确认评语</label>
+<div class="bg-white/60 rounded-2xl p-5 border border-white/80 shadow-inner">
+<div class="space-y-3">
+<p class="text-sm leading-relaxed text-on-surface font-medium">
+                                巡检工作执行到位，现场清理彻底，反馈信息准确且及时。
+                            </p>
+<ul class="list-disc list-inside text-sm text-on-surface-variant space-y-1 pl-1">
+<li>变压器温升数据已记入台账，后续请持续关注。</li>
+<li>除湿机维护记录完整。</li>
+</ul>
+<p class="text-sm leading-relaxed text-on-surface pt-1 border-t border-white/40">
+                                同意通过此次日计划验收，请执行团队保持良好的作业标准。
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 p-6 glass-panel rounded-t-[32px] z-50">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-2xl flex items-center justify-center gap-3 shadow-[0_8px_24px_rgba(0,102,255,0.3)] group">
+<span class="material-symbols-outlined text-white transition-transform group-hover:scale-110" data-icon="task_alt">task_alt</span>
+<span class="text-white font-headline font-bold tracking-wider text-lg">计划执行确认</span>
+</button>
+</footer>
+</body></html>

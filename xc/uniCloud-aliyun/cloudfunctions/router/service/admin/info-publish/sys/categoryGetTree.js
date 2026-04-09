@@ -11,11 +11,29 @@ module.exports = {
 		let { uid } = data;
 		let res = { code: 0, msg: '' };
 		// 业务逻辑开始-----------------------------------------------------------
+		let customWhereJson = { is_deleted: _.neq(true) };
+		let deptLevel = userInfo.dept_level;
+		let tenantId = userInfo.tenant_id || '';
+		let cmd = db.command;
+
+		if (deptLevel === 0) {
+			let selectedView = userInfo.selected_view_tenant_id;
+			if (selectedView) {
+				customWhereJson.$or = [
+					{ tenant_id: cmd.in(['', null]) },
+					{ tenant_id: selectedView }
+				];
+			}
+		} else {
+			customWhereJson.$or = [
+				{ tenant_id: cmd.in(['', null]) },
+				{ tenant_id: tenantId }
+			];
+		}
+
 		let selectResult = await vk.baseDao.select({
 			dbName: 'xc-info-categories',
-			whereJson: {
-				is_deleted: _.neq(true),
-			},
+			whereJson: customWhereJson,
 			pageSize: 500,
 			sortArr: [{ name: 'sort', type: 'asc' }, { name: 'created_at', type: 'asc' }],
 		});

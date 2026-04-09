@@ -1,0 +1,550 @@
+{
+  "name": "projects/4873100534031933104",
+  "title": "文明生产小程序",
+  "visibility": "PUBLIC",
+  "createTime": "2026-04-04T02:12:43.814348Z",
+  "updateTime": "2026-04-04T12:58:50.989643Z",
+  "projectType": "TEXT_TO_UI_PRO",
+  "thumbnailScreenshot": {
+    "name": "projects/4873100534031933104/files/4af0506f9a2f4f2781df51de11d93487",
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/ADBb0uglml9JMVltEgAIsv54QNRyONYf3kq-BdXdBae7FFqqWBqI91bf7fFtFdQEkbWrjtduOFyyqpdfg79I6L_4qnB88Jsf-WO3A2i9scBN53x6ofqM_EiFlqmc6uVWbl_Wqaccbfc3Y11m-VnoTUGcZ_nvEfuZnM1wMyw2hyTgRglYEBv-ZZnJ8GaYV9US1Inxjkwop7QYHBiAJM5MhYIfI_urxu4No53uSO4vXfVRn_E2XbAAKpo7tU-x5aw"
+  },
+  "origin": "STITCH",
+  "deviceType": "MOBILE",
+  "designTheme": {
+    "colorMode": "LIGHT",
+    "font": "MANROPE",
+    "roundness": "ROUND_FOUR",
+    "customColor": "#0066FF",
+    "headlineFont": "MANROPE",
+    "bodyFont": "INTER",
+    "labelFont": "INTER",
+    "namedColors": {
+      "on_error_container": "#93000a",
+      "on_primary": "#ffffff",
+      "outline": "#727687",
+      "on_primary_fixed_variant": "#003fa4",
+      "outline_variant": "#c2c6d8",
+      "primary": "#0050cb",
+      "secondary_container": "#9bb4fe",
+      "surface": "#f7f9fb",
+      "inverse_on_surface": "#eff1f3",
+      "inverse_primary": "#b3c5ff",
+      "on_tertiary_container": "#fff6f4",
+      "surface_bright": "#f7f9fb",
+      "surface_container_highest": "#e0e3e5",
+      "background": "#f7f9fb",
+      "surface_container_low": "#f2f4f6",
+      "on_secondary_container": "#294487",
+      "tertiary_fixed_dim": "#ffb59d",
+      "primary_fixed": "#dae1ff",
+      "error": "#ba1a1a",
+      "inverse_surface": "#2d3133",
+      "surface_variant": "#e0e3e5",
+      "surface_container_high": "#e6e8ea",
+      "on_tertiary": "#ffffff",
+      "primary_fixed_dim": "#b3c5ff",
+      "surface_container_lowest": "#ffffff",
+      "on_background": "#191c1e",
+      "on_primary_fixed": "#001849",
+      "secondary": "#425ca0",
+      "tertiary_fixed": "#ffdbd0",
+      "surface_container": "#eceef0",
+      "error_container": "#ffdad6",
+      "on_surface_variant": "#424656",
+      "on_primary_container": "#f8f7ff",
+      "tertiary_container": "#cc4204",
+      "primary_container": "#0066ff",
+      "secondary_fixed": "#dae1ff",
+      "secondary_fixed_dim": "#b3c5ff",
+      "tertiary": "#a33200",
+      "on_secondary_fixed_variant": "#284386",
+      "on_tertiary_fixed": "#390c00",
+      "on_secondary": "#ffffff",
+      "on_secondary_fixed": "#001849",
+      "on_error": "#ffffff",
+      "on_tertiary_fixed_variant": "#832600",
+      "surface_tint": "#0054d6",
+      "on_surface": "#191c1e",
+      "surface_dim": "#d8dadc"
+    },
+    "designMd": "# Design System Specification: Industrial Clarity\n\n## 1. Overview & Creative North Star: \"The Precision Lens\"\n\nThis design system moves away from the cluttered, \"dashboard-heavy\" aesthetics of traditional industrial software. Our Creative North Star is **The Precision Lens**. We treat the WeChat Mini Program interface not as a flat screen, but as a high-tech optical instrument—a sheet of polished glass overlaid on the factory floor.\n\nBy utilizing glassmorphism, we achieve a sense of \"Airy Authority.\" We break the standard template look through **Intentional Depth Layering**: using light, transparency, and blurred textures to create a workspace that feels organized yet infinite. The interface should feel like a premium piece of industrial equipment: precise, durable, and sophisticated.\n\n---\n\n## 2. Colors & Surface Philosophy\n\n### The Industrial Palette\nThe palette is rooted in `primary` (#0050cb) for authority and a range of translucent neutrals to simulate depth.\n\n*   **Primary (Industrial Blue):** Use `primary` (#0050cb) for critical actions and `primary_container` (#0066ff) for interactive states.\n*   **Surface Hierarchy:** \n    *   **Base:** `surface` (#f7f9fb) with a subtle linear gradient to `primary_fixed` (#dae1ff).\n    *   **Nesting:** Place `surface_container_lowest` (#ffffff) cards on `surface_container` (#eceef0) backgrounds to create natural separation.\n\n### The \"No-Line\" Rule\nProhibit the use of 1px solid, opaque borders for sectioning. Structural boundaries are defined by:\n1.  **Background Shifts:** Moving from `surface` to `surface_container_low`.\n2.  **Translucency:** Using `rgba(255, 255, 255, 0.2)` glass surfaces against the textured background.\n\n### Glass & Gradient Implementation\nTo achieve the \"signature\" look, floating cards must use:\n*   **Background:** `rgba(255, 255, 255, 0.25)` (interpolated from `on_primary_container`).\n*   **Blur:** `backdrop-filter: blur(20px)`.\n*   **Texture:** A subtle 8px industrial grid pattern applied to the `background` layer, visible only through the glass components.\n\n---\n\n## 3. Typography: Editorial Precision\n\nWe use a high-contrast scale to ensure industrial data feels like an editorial report rather than a spreadsheet.\n\n*   **Display & Headlines:** Use **Manrope** for numbers and English headers (`display-md`, `headline-sm`). This adds a modern, technical feel.\n*   **Body & Labels:** Use **Inter** (or a clean system Sans-Serif for Chinese) for all functional text.\n*   **The Professional Scale:** We favor `body-sm` (0.75rem) and `label-md` (0.75rem) for data density. Small text, when perfectly aligned and given generous tracking, communicates professional \"precision.\"\n*   **Hierarchy:** `on_surface` (#191c1e) for primary data; `on_surface_variant` (#424656) for secondary metadata.\n\n---\n\n## 4. Elevation & Depth\n\n### The Layering Principle\nDepth is achieved through \"Tonal Stacking.\" An industrial sensor card should not just sit on a background; it should float within it.\n*   **Level 0 (Floor):** Gradient `surface` with grid texture.\n*   **Level 1 (Plinth):** `surface_container_low` for grouping large content areas.\n*   **Level 2 (Active Glass):** Glassmorphic cards with `surface_container_lowest` at 20% opacity.\n\n### Ambient Shadows\nForget heavy \"Drop Shadows.\" Use **Ambient Glows**:\n*   **Shadow Color:** A tinted version of `primary` at 5% opacity.\n*   **Shadow Specs:** `box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08)`.\n\n### The Ghost Border\nFor accessibility on glass elements, use a \"Ghost Border\":\n*   `1px solid rgba(255, 255, 255, 0.2)` (derived from `outline_variant`). This catches the \"light\" at the edge of the glass without creating a hard cage around the data.\n\n---\n\n## 5. Components\n\n### Cards & Lists\n*   **Rule:** Forbid divider lines. \n*   **Style:** Use `xl` (0.75rem) roundedness for cards. Separate list items using 8px of vertical whitespace or a subtle toggle between `surface_container_lowest` and `surface_container_low`.\n*   **Glass Cards:** Use for real-time monitoring stats. Ensure `backdrop-filter` is active to maintain readability over the grid background.\n\n### Buttons (Industrial Grade)\n*   **Primary:** `primary_container` background with `on_primary` text. Apply a subtle 2px inner-glow on top to simulate a physical button.\n*   **Secondary:** Glassmorphic background (`rgba(255,255,255,0.2)`) with `primary` text.\n*   **States:** On `hover` or `tap`, scale the button to `0.98` and increase shadow spread to simulate \"pressing\" into the glass.\n\n### Input Fields\n*   **Style:** Minimalist. No bottom line. Use a `surface_container_highest` background with `sm` (0.125rem) rounding.\n*   **Focus:** Transition background to `primary_fixed` and add the \"Ghost Border.\"\n\n### Data Chips\n*   **Status:** Use `tertiary_container` for warnings and `secondary_container` for neutral states. \n*   **Shape:** `full` (pill-shaped) for high scannability.\n\n---\n\n## 6. Do's and Don'ts\n\n### Do:\n*   **Do** use strict alignment. Everything should snap to a 16px grid.\n*   **Do** use `letter-spacing: 0.05em` for labels to increase the \"high-end\" feel.\n*   **Do** leverage `surface_container_highest` for \"inset\" elements like search bars to create a 3D carved effect.\n\n### Don't:\n*   **Don't** use pure black (#000000). Always use `on_surface` for text to maintain the industrial blue-grey tint.\n*   **Don't** stack glass on glass. One layer of glass is premium; two layers is a blur. Use a solid surface for the inner layer.\n*   **Don't** use aggressive animations. Use \"Industrial Damping\": `cubic-bezier(0.2, 0.8, 0.2, 1)` for all transitions.\n\n---\n\n## 7. Signature WeChat Mini Program Components\n\n*   **The Status Bar Blot:** Use a semi-transparent `surface_bright` blur at the top of the screen to allow the grid texture to fade out as the user scrolls, maintaining legibility of the system clock and icons.\n*   **The Bottom Action Sheet:** A large, `xl` roundedness glass panel that slides up, utilizing `surface_container_lowest` at 80% opacity to ensure high contrast for navigation links.",
+    "colorVariant": "FIDELITY",
+    "overridePrimaryColor": "#0066FF",
+    "overrideNeutralColor": "#F8FAFC",
+    "spacingScale": 1
+  },
+  "screenInstances": [
+    {
+      "id": "07b3037ccb8441e7a5d0ae7fc6e4bb83",
+      "sourceScreen": "projects/4873100534031933104/screens/3d048e0dfabf4d24961e9944d78c658f",
+      "x": -7132,
+      "y": -1710,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "092f2d9735964b98b578194f987412da",
+      "sourceScreen": "projects/4873100534031933104/screens/092f2d9735964b98b578194f987412da",
+      "x": 6926,
+      "y": 2578,
+      "width": 1280,
+      "height": 1259,
+      "hidden": true
+    },
+    {
+      "id": "1e8d5527090644d2af236431bffc375b",
+      "sourceScreen": "projects/4873100534031933104/screens/1e8d5527090644d2af236431bffc375b",
+      "x": -6809,
+      "y": -2974,
+      "width": 390,
+      "height": 1242,
+      "label": "待反馈列表页 (导航修正)",
+      "hidden": true
+    },
+    {
+      "id": "22788205ecb248cfbd8343b19d2cac7c",
+      "sourceScreen": "projects/4873100534031933104/screens/22788205ecb248cfbd8343b19d2cac7c",
+      "x": -5672,
+      "y": 397,
+      "width": 390,
+      "height": 1124
+    },
+    {
+      "id": "234ce08bfdf043daa059015521ae0769",
+      "sourceScreen": "projects/4873100534031933104/screens/234ce08bfdf043daa059015521ae0769",
+      "x": 3294,
+      "y": -1413,
+      "width": 390,
+      "height": 1053,
+      "hidden": true
+    },
+    {
+      "id": "2889227f364a41b187c7160f6b7960a6",
+      "sourceScreen": "projects/4873100534031933104/screens/2889227f364a41b187c7160f6b7960a6",
+      "x": -8812,
+      "y": -2174,
+      "width": 390,
+      "height": 1157
+    },
+    {
+      "id": "3095e44995f748c08d7f73c7be1d48cf",
+      "sourceScreen": "projects/4873100534031933104/screens/3095e44995f748c08d7f73c7be1d48cf",
+      "x": -9970,
+      "y": -3412,
+      "width": 390,
+      "height": 1180
+    },
+    {
+      "id": "31918ef3b80c499f85df298059e939ca",
+      "sourceScreen": "projects/4873100534031933104/screens/31918ef3b80c499f85df298059e939ca",
+      "x": -6338,
+      "y": -1596,
+      "width": 390,
+      "height": 1193,
+      "hidden": true
+    },
+    {
+      "id": "38f9f6dd3e9e4e2f92afe8a53a51353d",
+      "sourceScreen": "projects/4873100534031933104/screens/38f9f6dd3e9e4e2f92afe8a53a51353d",
+      "x": -7365,
+      "y": -2215,
+      "width": 390,
+      "height": 1027
+    },
+    {
+      "id": "39dc405aa6014cdeb056cda90869115d",
+      "sourceScreen": "projects/4873100534031933104/screens/39dc405aa6014cdeb056cda90869115d",
+      "x": 14118,
+      "y": -403,
+      "width": 390,
+      "height": 969,
+      "hidden": true
+    },
+    {
+      "id": "415ca28e74814954baacecaf880d37b0",
+      "sourceScreen": "projects/4873100534031933104/screens/415ca28e74814954baacecaf880d37b0",
+      "x": 9614,
+      "y": 1262,
+      "width": 1280,
+      "height": 1024,
+      "hidden": true
+    },
+    {
+      "id": "4293ff72de154502a46ba4592de91bbf",
+      "sourceScreen": "projects/4873100534031933104/screens/4293ff72de154502a46ba4592de91bbf",
+      "x": 3748,
+      "y": -289,
+      "width": 390,
+      "height": 961,
+      "hidden": true
+    },
+    {
+      "id": "44c5d5d770ac4f678e4a1b7cd62e4a19",
+      "sourceScreen": "projects/4873100534031933104/screens/44c5d5d770ac4f678e4a1b7cd62e4a19",
+      "x": 4202,
+      "y": -3226,
+      "width": 390,
+      "height": 1166,
+      "hidden": true
+    },
+    {
+      "id": "4b3d44cb5c2744d49aaaaea2da9718f2",
+      "sourceScreen": "projects/4873100534031933104/screens/4b3d44cb5c2744d49aaaaea2da9718f2",
+      "x": -2365,
+      "y": -1782,
+      "width": 390,
+      "height": 1217
+    },
+    {
+      "id": "4c2302aa8f264377bddcf8984ccd2ec9",
+      "sourceScreen": "projects/4873100534031933104/screens/4c2302aa8f264377bddcf8984ccd2ec9",
+      "x": -4245,
+      "y": -2324,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "4c8d06fff9b3442f843d06c1bdd89cf6",
+      "sourceScreen": "projects/4873100534031933104/screens/4c8d06fff9b3442f843d06c1bdd89cf6",
+      "x": 3294,
+      "y": -2974,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "62890074ea874946839fbfb51050dbca",
+      "sourceScreen": "projects/4873100534031933104/screens/62890074ea874946839fbfb51050dbca",
+      "x": -2799,
+      "y": -3059,
+      "width": 390,
+      "height": 1053
+    },
+    {
+      "id": "68a14667ee32498bb556da8c74c9eef4",
+      "sourceScreen": "projects/4873100534031933104/screens/68a14667ee32498bb556da8c74c9eef4",
+      "x": -6195,
+      "y": -3378,
+      "width": 390,
+      "height": 1124
+    },
+    {
+      "id": "7b91d1ec32304a1fac566dd6987e0bbe",
+      "sourceScreen": "projects/4873100534031933104/screens/7b91d1ec32304a1fac566dd6987e0bbe",
+      "x": -5231,
+      "y": -2284,
+      "width": 390,
+      "height": 1252
+    },
+    {
+      "id": "88d12b5b41d3426783edcc01813e4f35",
+      "sourceScreen": "projects/4873100534031933104/screens/88d12b5b41d3426783edcc01813e4f35",
+      "x": -9975,
+      "y": -726,
+      "width": 390,
+      "height": 1760
+    },
+    {
+      "id": "8b5de77fea5f4570ae4b7161e8cc8662",
+      "sourceScreen": "projects/4873100534031933104/screens/8b5de77fea5f4570ae4b7161e8cc8662",
+      "x": -7510,
+      "y": -347,
+      "width": 390,
+      "height": 1287
+    },
+    {
+      "id": "8c68ce52c32e4cb7859eb2b969418657",
+      "sourceScreen": "projects/4873100534031933104/screens/3714615437d24543a690936bcb49c618",
+      "x": -9665,
+      "y": -3416,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "90ad14ccf9184d1e916f593ba4784a59",
+      "sourceScreen": "projects/4873100534031933104/screens/90ad14ccf9184d1e916f593ba4784a59",
+      "x": -5141,
+      "y": 1547,
+      "width": 390,
+      "height": 1066,
+      "hidden": true
+    },
+    {
+      "id": "935fcb28f1a148cc84e37cba7e1359cd",
+      "sourceScreen": "projects/4873100534031933104/screens/935fcb28f1a148cc84e37cba7e1359cd",
+      "x": 1024,
+      "y": 10514,
+      "width": 390,
+      "height": 1195
+    },
+    {
+      "id": "9486f4d53a9b41f7984ecdeee7a21325",
+      "sourceScreen": "projects/4873100534031933104/screens/9486f4d53a9b41f7984ecdeee7a21325",
+      "x": -5685,
+      "y": -892,
+      "width": 390,
+      "height": 1195
+    },
+    {
+      "id": "9dfabf179d09415e839008fe32b829de",
+      "sourceScreen": "projects/4873100534031933104/screens/9dfabf179d09415e839008fe32b829de",
+      "x": -9970,
+      "y": -4387,
+      "width": 390,
+      "height": 884
+    },
+    {
+      "id": "9fc0222220b94539b64fce9567418fbe",
+      "sourceScreen": "projects/4873100534031933104/screens/9fc0222220b94539b64fce9567418fbe",
+      "x": -7964,
+      "y": -2223,
+      "width": 390,
+      "height": 1041
+    },
+    {
+      "id": "a3723a8ab9e147b1b1188249b9273f55",
+      "sourceScreen": "projects/4873100534031933104/screens/a3723a8ab9e147b1b1188249b9273f55",
+      "x": 10958,
+      "y": 1262,
+      "width": 1280,
+      "height": 1024,
+      "hidden": true
+    },
+    {
+      "id": "a3b2ebb872364bbfb964a6ea64d79223",
+      "sourceScreen": "projects/4873100534031933104/screens/a3b2ebb872364bbfb964a6ea64d79223",
+      "x": 4656,
+      "y": 2046,
+      "width": 390,
+      "height": 1147,
+      "hidden": true
+    },
+    {
+      "id": "a55516feb68c4ed599425a8cae64c2f8",
+      "sourceScreen": "projects/4873100534031933104/screens/280ab53557f24afaa2a4551df4505597",
+      "x": -11096,
+      "y": -3503,
+      "width": 390,
+      "height": 884
+    },
+    {
+      "id": "a916549de1d04e7f90aff85c3abdf17d",
+      "sourceScreen": "projects/4873100534031933104/screens/a916549de1d04e7f90aff85c3abdf17d",
+      "x": -7586,
+      "y": 2338,
+      "width": 390,
+      "height": 974,
+      "hidden": true
+    },
+    {
+      "id": "ac8bc99a16e74ce594afefca831c9bc6",
+      "sourceScreen": "projects/4873100534031933104/screens/ac8bc99a16e74ce594afefca831c9bc6",
+      "x": 4202,
+      "y": -1878,
+      "width": 390,
+      "height": 1232,
+      "hidden": true
+    },
+    {
+      "id": "ad2836f4f51b43bbb9b6ce6c35a2da64",
+      "sourceScreen": "projects/4873100534031933104/screens/ad2836f4f51b43bbb9b6ce6c35a2da64",
+      "x": 12302,
+      "y": 1262,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "assets-4ced472ba4314e65b7d1b5fbc770d4a8-1775268795296",
+      "x": -7586,
+      "y": 2834,
+      "width": 960,
+      "height": 540,
+      "hidden": true,
+      "sourceAsset": "assets/4ced472ba4314e65b7d1b5fbc770d4a8",
+      "type": "DESIGN_SYSTEM_INSTANCE"
+    },
+    {
+      "id": "b0bb27937ee24147bc169218d6c70b17",
+      "sourceScreen": "projects/4873100534031933104/screens/b0bb27937ee24147bc169218d6c70b17",
+      "x": -6014,
+      "y": -1413,
+      "width": 390,
+      "height": 1195,
+      "hidden": true
+    },
+    {
+      "id": "b428b9b565574adc842c68bbed4b1f47",
+      "sourceScreen": "projects/4873100534031933104/screens/b428b9b565574adc842c68bbed4b1f47",
+      "x": -1891,
+      "y": -3017,
+      "width": 390,
+      "height": 961
+    },
+    {
+      "id": "b6b200f2f4d54a82b376ae262de7357b",
+      "sourceScreen": "projects/4873100534031933104/screens/b6b200f2f4d54a82b376ae262de7357b",
+      "x": 2840,
+      "y": 4453,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "b8b30ebeb8404d188fd841223c5663e1",
+      "sourceScreen": "projects/4873100534031933104/screens/b8b30ebeb8404d188fd841223c5663e1",
+      "x": 2840,
+      "y": 2964,
+      "width": 390,
+      "height": 1147,
+      "hidden": true
+    },
+    {
+      "id": "ba541cfbdfa940309197c574dbba2204",
+      "sourceScreen": "projects/4873100534031933104/screens/ba541cfbdfa940309197c574dbba2204",
+      "x": 13664,
+      "y": 3256,
+      "width": 390,
+      "height": 945,
+      "hidden": true
+    },
+    {
+      "id": "bcd9477df5d249569e5d0ddd028768a5",
+      "sourceScreen": "projects/4873100534031933104/screens/bcd9477df5d249569e5d0ddd028768a5",
+      "x": 6018,
+      "y": -2324,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "bf91026c23524e249c576cfb0959221e",
+      "sourceScreen": "projects/4873100534031933104/screens/bf91026c23524e249c576cfb0959221e",
+      "x": -8349,
+      "y": -3474,
+      "width": 390,
+      "height": 1242
+    },
+    {
+      "id": "c679154b53174f1dbd956a918a350586",
+      "sourceScreen": "projects/4873100534031933104/screens/c679154b53174f1dbd956a918a350586",
+      "x": -4279,
+      "y": -2021,
+      "width": 390,
+      "height": 1184
+    },
+    {
+      "id": "caaf5495c6724a5a9c5455c643e97e5a",
+      "sourceScreen": "projects/4873100534031933104/screens/caaf5495c6724a5a9c5455c643e97e5a",
+      "x": 8270,
+      "y": 1262,
+      "width": 1280,
+      "height": 977,
+      "hidden": true
+    },
+    {
+      "id": "d680ad42fa4242158bb54da932ac8994",
+      "sourceScreen": "projects/4873100534031933104/screens/d680ad42fa4242158bb54da932ac8994",
+      "x": 13210,
+      "y": 3675,
+      "width": 768,
+      "height": 1024,
+      "hidden": true
+    },
+    {
+      "id": "d7920bef3c204c95b480ee8a3b788168",
+      "sourceScreen": "projects/4873100534031933104/screens/d7920bef3c204c95b480ee8a3b788168",
+      "x": -9970,
+      "y": -3191,
+      "width": 390,
+      "height": 968,
+      "hidden": true
+    },
+    {
+      "id": "da0306457e194ff9a19883cc7d966881",
+      "sourceScreen": "projects/4873100534031933104/screens/da0306457e194ff9a19883cc7d966881",
+      "x": -3560,
+      "y": -2073,
+      "width": 390,
+      "height": 884
+    },
+    {
+      "id": "dbc823f999ee4124accfd678e6e6ca37",
+      "sourceScreen": "projects/4873100534031933104/screens/dbc823f999ee4124accfd678e6e6ca37",
+      "x": 3294,
+      "y": 4425,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "e1e25606aac84892b21d07564da19ab2",
+      "sourceScreen": "projects/4873100534031933104/screens/e1e25606aac84892b21d07564da19ab2",
+      "x": 2386,
+      "y": 3873,
+      "width": 390,
+      "height": 945,
+      "hidden": true
+    },
+    {
+      "id": "e8620f2c9d2d4c8cab51334696c1c83c",
+      "sourceScreen": "projects/4873100534031933104/screens/e8620f2c9d2d4c8cab51334696c1c83c",
+      "x": -6187,
+      "y": -1589,
+      "width": 390,
+      "height": 1106,
+      "hidden": true
+    },
+    {
+      "id": "e9e492506cf44e778c23ab68b362d65b",
+      "sourceScreen": "projects/4873100534031933104/screens/e9e492506cf44e778c23ab68b362d65b",
+      "x": 12756,
+      "y": 1262,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "e9fff74139b14ae792a924c6dd3a3003",
+      "sourceScreen": "projects/4873100534031933104/screens/e9fff74139b14ae792a924c6dd3a3003",
+      "x": 6472,
+      "y": 1262,
+      "width": 390,
+      "height": 884,
+      "hidden": true
+    },
+    {
+      "id": "ef519dc5c5b547b681de87162038fc1a",
+      "sourceScreen": "projects/4873100534031933104/screens/ef519dc5c5b547b681de87162038fc1a",
+      "x": -5316,
+      "y": -2682,
+      "width": 390,
+      "height": 1242,
+      "hidden": true
+    },
+    {
+      "id": "f0eb23a5b78c4ece85032db1cfce1e38",
+      "sourceScreen": "projects/4873100534031933104/screens/f0eb23a5b78c4ece85032db1cfce1e38",
+      "x": -10570,
+      "y": -3508,
+      "width": 390,
+      "height": 884
+    },
+    {
+      "id": "fd0a5695c58a4381ada2e3772ada5a75",
+      "sourceScreen": "projects/4873100534031933104/screens/fd0a5695c58a4381ada2e3772ada5a75",
+      "x": -5770,
+      "y": -2295,
+      "width": 390,
+      "height": 1242,
+      "hidden": true
+    }
+  ],
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

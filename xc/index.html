@@ -10,6 +10,238 @@
         (coverSupport ? ', viewport-fit=cover' : '') + '" />')
     </script>
     <title></title>
+    <!-- Tailwind CSS CDN + shadcn/ui Design System -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              /* ── Stitch MD3 Color System (Synced with Stitch exports) ── */
+              "primary":              "#000000",
+              "on-primary":           "#ffffff",
+              "primary-dim":          "#1E293B",
+              "primary-container":    "#131b2e",
+              "on-primary-container": "#7c839b",
+              "primary-fixed":        "#dae2fd",
+              "primary-fixed-dim":    "#bec6e0",
+              "on-primary-fixed":     "#131b2e",
+              "on-primary-fixed-variant": "#3f465c",
+
+              "secondary":              "#3B82F6",
+              "on-secondary":           "#ffffff",
+              "secondary-dim":          "#2563EB",
+              "secondary-container":    "#2170e4",
+              "on-secondary-container": "#fefcff",
+              "secondary-fixed":        "#d8e2ff",
+              "secondary-fixed-dim":    "#adc6ff",
+              "on-secondary-fixed":     "#001a42",
+              "on-secondary-fixed-variant": "#004395",
+
+              "tertiary":              "#000000",
+              "on-tertiary":           "#ffffff",
+              "tertiary-dim":          "#465468",
+              "tertiary-container":    "#271901",
+              "on-tertiary-container": "#98805d",
+              "tertiary-fixed":        "#fcdeb5",
+              "tertiary-fixed-dim":    "#dec29a",
+              "on-tertiary-fixed":     "#271901",
+              "on-tertiary-fixed-variant": "#574425",
+
+              "error":              "#ba1a1a",
+              "on-error":           "#ffffff",
+              "error-dim":          "#93000a",
+              "error-container":    "#ffdad6",
+              "on-error-container": "#93000a",
+
+              "background":              "#f7f9fb",
+              "on-background":           "#191c1e",
+              "surface":                 "#f7f9fb",
+              "on-surface":              "#191c1e",
+              "on-surface-variant":      "#45464d",
+              "surface-bright":          "#f7f9fb",
+              "surface-dim":             "#d8dadc",
+              "surface-variant":         "#e0e3e5",
+              "surface-tint":            "#565e74",
+              "surface-container-lowest":  "#ffffff",
+              "surface-container-low":     "#f2f4f6",
+              "surface-container":         "#eceef0",
+              "surface-container-high":    "#e6e8ea",
+              "surface-container-highest": "#e0e3e5",
+
+              "outline":          "#76777d",
+              "outline-variant":  "#c6c6cd",
+
+              "inverse-surface":    "#2d3133",
+              "inverse-on-surface": "#eff1f3",
+              "inverse-primary":    "#bec6e0",
+
+              /* ── Convenience aliases ── */
+              "success":  "#10B981",
+              "warning":  "#F59E0B",
+              "info":     "#3B82F6",
+            },
+            fontFamily: {
+              "sans":     ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+              "headline": ["Inter", "sans-serif"],
+              "body":     ["Inter", "sans-serif"],
+              "label":    ["Inter", "sans-serif"],
+              "mono":     ["JetBrains Mono", "monospace"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "sm":  "0.125rem",
+              "md":  "0.375rem",
+              "lg":  "0.5rem",
+              "xl":  "0.75rem",
+              "2xl": "1rem",
+              "3xl": "1.5rem",
+            },
+            boxShadow: {
+              "card": "0px 4px 20px rgba(0,0,0,0.03)",
+              "card-hover": "0px 10px 40px rgba(42,52,57,0.06)",
+              "sm": "0 1px 2px rgba(0,0,0,0.05)",
+              "md": "0px 12px 32px rgba(42,52,57,0.06)",
+              "lg": "0px 10px 40px rgba(15,23,42,0.06)",
+            },
+            maxWidth: {
+              "content": "1350px",
+            },
+            spacing: {
+              "18": "4.5rem",
+              "88": "22rem",
+            },
+            fontSize: {
+              "h1": ["2rem", { lineHeight: "1.2", fontWeight: "700", letterSpacing: "-0.02em" }],
+              "h2": ["1.5rem", { lineHeight: "1.3", fontWeight: "700", letterSpacing: "-0.02em" }],
+              "h3": ["1.125rem", { lineHeight: "1.4", fontWeight: "600" }],
+              "body": ["0.875rem", { lineHeight: "1.6", fontWeight: "400" }],
+              "helper": ["0.75rem", { lineHeight: "1.5", fontWeight: "400" }],
+            },
+          },
+        },
+      }
+    </script>
+    <!-- Google Fonts: Inter + JetBrains Mono + Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+      }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background-color: #f7f9fb;
+        color: #191c1e;
+        font-size: 14px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* === Fix Uniapp Native Button Conflicts (Critical) === */
+      /* 策略：普通属性不用!important，让Tailwind工具类可正常覆盖；
+         只对::after伪元素和.button-hover用!important，这两个是UniApp特有注入物 */
+      button, uni-button {
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        line-height: inherit;
+        height: auto;
+        width: auto;
+        min-height: 0;
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        overflow: visible;
+        position: relative;
+        text-align: inherit;
+        -webkit-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+      button::after, uni-button::after {
+        display: none !important;
+        border: none !important;
+        content: none !important;
+      }
+      uni-button.button-hover,
+      button.button-hover {
+        background-color: transparent !important;
+        color: inherit !important;
+        opacity: 1 !important;
+      }
+
+      /* ── Global Button Classes (Synced with Stitch) ── */
+      .btn-primary {
+        background: #000000; color: #fff; font-weight: 600; font-size: 14px;
+        padding: 8px 20px; border-radius: 4px; transition: all 150ms;
+        cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px;
+      }
+      .btn-primary:hover { background: #1E293B; }
+      .btn-primary:active { transform: scale(0.98); }
+
+      .btn-secondary {
+        background: #fff; color: #191c1e; font-weight: 500; font-size: 14px;
+        padding: 8px 20px; border-radius: 4px; border: 1px solid #c6c6cd;
+        transition: all 150ms; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+      }
+      .btn-secondary:hover { background: #f2f4f6; }
+      .btn-secondary:active { transform: scale(0.98); }
+
+      .btn-blue {
+        background: #3B82F6; color: #fff; font-weight: 500; font-size: 14px;
+        padding: 8px 20px; border-radius: 4px; transition: all 150ms;
+        cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px;
+      }
+      .btn-blue:hover { background: #2563EB; }
+      .btn-blue:active { transform: scale(0.98); }
+
+      .btn-outline {
+        background: transparent; color: #3B82F6; font-weight: 500; font-size: 14px;
+        padding: 8px 20px; border-radius: 4px; border: 1px solid #3B82F6;
+        transition: all 150ms; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+      }
+      .btn-outline:hover { background: rgba(59, 130, 246, 0.05); }
+
+      /* ── Input base ── */
+      .input-base {
+        width: 100%; height: 40px; padding: 0 12px;
+        border: 1px solid #c6c6cd; border-radius: 4px; font-size: 14px;
+        color: #191c1e; background: #fff; transition: all 150ms; outline: none;
+      }
+      .input-base:focus { border-color: #3B82F6; box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+      .input-base::placeholder { color: #76777d; }
+
+      /* ── Card ── */
+      .card { background: #fff; border: 1px solid transparent; border-radius: 6px; box-shadow: 0px 4px 20px rgba(0,0,0,0.03); }
+      .card:hover { box-shadow: 0px 10px 40px rgba(42,52,57,0.06); }
+
+      /* ── Badge ── */
+      .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 9999px; font-size: 12px; font-weight: 500; line-height: 1.5; }
+      .badge-blue { background: #EFF6FF; color: #1D4ED8; }
+      .badge-green { background: #F0FDF4; color: #15803D; }
+      .badge-red { background: #FEF2F2; color: #DC2626; }
+      .badge-orange { background: #FFFBEB; color: #D97706; }
+      .badge-gray { background: #e6e8ea; color: #45464d; }
+
+      /* ── Tab Pattern ── */
+      .tab-active { color: #3B82F6; font-weight: 600; border-bottom: 2px solid #3B82F6; }
+      .tab-inactive { color: #45464d; font-weight: 500; border-bottom: 2px solid transparent; }
+      .tab-inactive:hover { color: #191c1e; }
+
+      /* ── Glass ── */
+      .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+    </style>
     <!--preload-links-->
     <!--app-context-->
     <!-- 配置H5的 web图标static/logo.png -->

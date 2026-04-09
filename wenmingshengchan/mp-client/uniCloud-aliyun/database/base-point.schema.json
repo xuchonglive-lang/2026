@@ -1,0 +1,14 @@
+{
+  "bsonType": "object",
+  "required": ["area_id", "name", "manager_dept_id", "status"],
+  "permission": { "read": "true", "create": "false", "update": "false", "delete": "false" },
+  "properties": {
+    "_id": { "description": "ID，系统自动生成" },
+    "area_id": { "bsonType": "string", "description": "所属作业区域ID" },
+    "name": { "bsonType": "string", "description": "点位名称" },
+    "is_heavy_control": { "bsonType": "bool", "description": "是否重控点", "defaultValue": false },
+    "manager_dept_id": { "bsonType": "string", "description": "实名责任网格小组ID" },
+    "sort": { "bsonType": "int", "description": "排序", "defaultValue": 0 },
+    "status": { "bsonType": "int", "description": "状态 (1正常-可见/0失效-下线)", "defaultValue": 1 }
+  }
+}

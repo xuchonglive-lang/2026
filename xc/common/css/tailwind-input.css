@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* 指定让 Tailwind 扫描整个项目的所有 vue 结构 */
+@source "../../**/*.vue";
+
+
+/* Custom Theme Override if any */
+@theme {
+  --font-sans: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
+}
+
+/* Custom Utilities specific to Uniapp */
+@utility page-container {
+  @apply min-h-screen bg-base-200 text-base-content;
+}

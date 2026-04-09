@@ -1,0 +1,1 @@
+<label class="dept-tree-node _span data-v-49b28eea"><label class="_span data-v-49b28eea"><block wx:if="{{data._id===''}}"><view class="el-icon-menu _i data-v-49b28eea"></view></block><block wx:else><view class="el-icon-folder-opened _i data-v-49b28eea"></view></block>{{''+data.name}}</label></label>

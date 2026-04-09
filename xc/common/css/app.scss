@@ -1,5 +1,44 @@
-/* 这里是你自己写的全局css样式 */
-/* #ifdef WEB */
+/* ===================================================
+   全局样式重置 - 修复 UniApp 框架与 Tailwind 的冲突
+   =================================================== */
+
+/* ── Shadcn Zinc Theme Variables Override for DaisyUI ── */
+:root {
+  --b1: 100% 0 0; /* bg-white */
+  --b2: 96% 0 0;  /* zinc-100 */
+  --b3: 89% 0 0;  /* zinc-200 */
+  --bc: 3.5% 0 0; /* zinc-950 */
+  
+  --p: 9% 0 0;    /* zinc-900 */
+  --pc: 98% 0 0;  /* zinc-50 */
+  
+  --n: 9% 0 0;    /* zinc-900 */
+  --nc: 98% 0 0;  /* zinc-50 */
+  
+  --rounded-box: 0.5rem;
+  --rounded-btn: 0.375rem;
+  --rounded-badge: 0.375rem;
+  --animation-btn: 0.15s;
+  
+  --border-btn: 1px;
+}
+
+/* ── 极致的 UniApp 标签重置 (The Core Reset) ── */
+page, view, scroll-view, swiper, swiper-item,
+cover-view, cover-image, icon, text, rich-text,
+progress, button, checkbox, form, input, label,
+picker, picker-view, radio, slider, switch,
+textarea, navigator, audio, camera, image, video {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid #e4e4e7; /* zinc-200 border default */
+  background-color: transparent;
+}
+
+/* #ifdef H5 */
+
+/* ── 弹窗/遮罩层级修复 ── */
 .uni-mask,
 .uni-modal,
 uni-toast,
@@ -7,8 +46,127 @@ uni-modal,
 .uni-actionsheet {
   z-index: 999999 !important;
 }
-/* 禁用双击缩放，直接触发点击，解决Web端点击响应延迟的问题 */
+
+/* ── 禁用双击缩放，修复Web端响应延迟 ── */
 a, button, view, text {
   touch-action: manipulation;
 }
+
+/* ============================================
+   核心修复：UniApp 原生组件样式重置
+   ============================================ */
+uni-button {
+  background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  line-height: inherit;
+  height: auto;
+  width: auto;
+  min-height: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  overflow: visible;
+  position: relative;
+  text-align: inherit;
+  text-decoration: none;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+uni-button::after {
+  display: none !important;
+  border: none !important;
+  content: none !important;
+}
+
+uni-button.button-hover {
+  background-color: transparent !important;
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+button {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  line-height: inherit;
+  height: auto;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+button::after {
+  display: none !important;
+  border: none !important;
+  content: none !important;
+}
+
+uni-input {
+  background: transparent;
+  .uni-input-input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+uni-textarea {
+  background: transparent;
+  .uni-textarea-textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── 解决 DaisyUI 组件与 Uni-App 容器布局折叠的兼容问题 ── */
+.tabs {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  overflow-x: auto;
+}
+.tab {
+  padding: 0.5rem 1rem !important;
+  flex: 1 1 auto !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+.navbar-end {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
 /* #endif */

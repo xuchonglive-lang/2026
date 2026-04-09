@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>重点项目推进详情</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#294487",
+                        "surface-dim": "#d8dadc",
+                        "primary-container": "#0066ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#0050cb",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#425ca0",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "secondary-fixed": "#dae1ff",
+                        "on-secondary-fixed": "#001849",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "on-tertiary-fixed": "#390c00",
+                        "on-error": "#ffffff",
+                        "outline": "#727687",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#cc4204",
+                        "on-primary-fixed": "#001849",
+                        "surface": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#a33200",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "background": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbd0",
+                        "primary-fixed": "#dae1ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#fff6f4",
+                        "on-surface": "#191c1e",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f8f7ff",
+                        "secondary-container": "#9bb4fe",
+                        "on-secondary-fixed-variant": "#284386",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c2c6d8",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "surface-tint": "#0054d6",
+                        "on-surface-variant": "#424656"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        .industrial-grid {
+            background-image: radial-gradient(#0050cb 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+            background-color: #f7f9fb;
+        }
+        .heavy-underline {
+            position: relative;
+        }
+        .heavy-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background-color: #0050cb;
+            border-radius: 2px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="industrial-grid font-body text-on-surface min-h-screen pb-32">
+<main class="pt-10 px-4 space-y-8 max-w-2xl mx-auto">
+<!-- Page Title Header -->
+<div class="flex items-center gap-4 mb-2">
+<button class="active:scale-95 transition-transform duration-200 ease-out text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-3xl font-headline font-extrabold text-primary tracking-tight">重点项目推进详情</h1>
+</div>
+<!-- Section 1: 项目推进标准 -->
+<section class="space-y-4">
+<h2 class="text-on-surface font-headline font-extrabold text-xl heavy-underline tracking-tight">项目推进标准</h2>
+<div class="glass-card rounded-xl p-5 space-y-4">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h3 class="font-headline font-bold text-lg text-primary">智能制造产线升级 A-04</h3>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>华东数字化产业园 3号楼</span>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">执行中</span>
+</div>
+<div class="text-on-surface-variant text-sm leading-relaxed bg-surface-container-low/50 p-3 rounded-lg border border-white/10">
+                本标准涉及全自动化组装线的软件集成与硬件调试，需满足ISO-9001高精度工业输出要求，确保日产能提升至120%以上。
+            </div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest">执行人</p>
+<div class="flex items-center">
+<div class="flex -space-x-2">
+<img alt="Team member" class="w-7 h-7 rounded-full border-2 border-white" data-alt="Professional portrait of a woman in business casual attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPBoAB-xw6DBilDSX_Wjx8WB2hbnnTOH9NlbkOzEaWndddfDK-ZgFwlIfkX2DvXHx4IckvSkqCfq5tt-dA-UWY7cVxKUMg7oqlsA3NwelZJXaADDcOlgVXBB2s_aeZ0CCnRKU7PwegSDa2bubQkOaRmtVTaht_ktjymGxDc4QW0pK5tt_ElcXhiJ2PqsJ1INXR7YqCS17lFMgG9RLY84-4Jwa-gXl80xRcDHvQFDFM3VacYX6qHbFQfGmCkOeNy12hgBSjHo8laX0"/>
+<img alt="Team member" class="w-7 h-7 rounded-full border-2 border-white" data-alt="Headshot of a smiling young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnoA1G-Q9SnJ3uxuVtSsjX7INqjog1dpywtjUONAmcyb6bVn5okfhGgdd1X_XuwCGi1T8DDUP-14W97p4xxO31xzSzJx8SvSm1MVco0xXRg2cZ79bLi3_vdkBjYqnWZ_n8iTVNqqN_76JFTIySbrRKL70G2b-AX6Av1LhoFHv8j-io0jMbD_ohSm01bXgiXutmT3O9rp-4x5VJZyLsmOziDSKBiXydgk6ctrL-H1t9vvyagD2HvbXHZO-ZKnJi3gUO_s9mVOWxhFo"/>
+<img alt="Team member" class="w-7 h-7 rounded-full border-2 border-white" data-alt="Portrait of a focused professional man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFt6z2hfTZLP5MYW9OsfiFsW4r_DIKLhYFkjH7y1z0kEaLmfXJT2AYTejtdPMwTTFUvl_83N5OqFtdftkpAyjT5kcdUOb2AO0z7_1qRtY9cOyFrxfBh7t2qichGRp1cINSuasLrxSOkso-grZBH5uVyGCi7o5qD3DUdqL2FVlgER7QUhn4vrwH2oBh-of9lxzjIKoakO6jdV1YBzQqGpgW6aUi9tposmxVe0FwuvenPPIxcnrMAsKaR3dDWSG_LavOLw37io7-Tmw"/>
+<div class="w-7 h-7 rounded-full border-2 border-white bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-primary">+4</div>
+</div>
+<span class="ml-2 text-xs text-on-surface font-medium">王小美...</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest">验收人</p>
+<div class="flex items-center gap-2">
+<img alt="Inspector" class="w-7 h-7 rounded-full border border-primary/20" data-alt="Middle-aged male executive in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDf-FnBVNiSY4RAaJSqh3xNiHDoR0lQSblWPIwyUbRLV7b1eanMOLn496jG7hx1U6WOLlkVJTkphUvVHO3DhXQR3lnkzZGzKotWPKx3SoPgZL_lExi_02vV4PESSKxfAwzS5VP4kY6kGGE29LUpUcGtBZSsWJ4uHk-t6qKGBf9gDRXqIUZk0nxNfEIDZGSa3NFMLT519tN3W1UWznOD7qCc4vef1f0K5M-zzGubx5lOPvKTqNhmoXOTJrsgDMhUVCZprOcNImjMmg"/>
+<span class="text-xs text-on-surface font-bold">王建</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest">完成时限：2024.12.30</p>
+<div class="flex items-center gap-1">
+<span class="text-[10px] font-bold text-outline uppercase tracking-widest">进度：</span>
+<span class="text-primary font-headline font-bold text-sm">75%</span>
+</div>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-3/4 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: 项目推进过程反馈 -->
+<section class="space-y-4">
+<h2 class="text-on-surface font-headline font-extrabold text-xl heavy-underline tracking-tight">项目推进过程反馈</h2>
+<div class="relative pl-6 space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-0.5 before:bg-outline-variant/30">
+<!-- Feedback Item 1 -->
+<div class="relative">
+<div class="absolute -left-[19px] top-1 w-4 h-4 rounded-full bg-primary-container border-4 border-white"></div>
+<div class="glass-card rounded-xl p-4 space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<img alt="User" class="w-6 h-6 rounded-full border border-white/50" data-alt="Female professional avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPBoAB-xw6DBilDSX_Wjx8WB2hbnnTOH9NlbkOzEaWndddfDK-ZgFwlIfkX2DvXHx4IckvSkqCfq5tt-dA-UWY7cVxKUMg7oqlsA3NwelZJXaADDcOlgVXBB2s_aeZ0CCnRKU7PwegSDa2bubQkOaRmtVTaht_ktjymGxDc4QW0pK5tt_ElcXhiJ2PqsJ1INXR7YqCS17lFMgG9RLY84-4Jwa-gXl80xRcDHvQFDFM3VacYX6qHbFQfGmCkOeNy12hgBSjHo8laX0"/>
+<span class="text-xs font-bold text-on-surface">王小美</span>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded font-bold">进度反馈</span>
+</div>
+<span class="text-[10px] text-outline font-medium">10-25 14:30</span>
+</div>
+<p class="text-sm text-on-surface-variant">模块集成测试已完成 80%，目前正在进行压力负载测试，未发现严重溢出。预计下周进入预验收阶段。</p>
+<div class="grid grid-cols-2 gap-2">
+<div class="aspect-video rounded-lg overflow-hidden bg-surface-container">
+<img alt="Workshop Integration" class="w-full h-full object-cover" data-alt="Modern industrial automation workshop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvAeZFAwNFdAEoRyd8-GSAvZb5UMu2Zdrb0dGLPNgXNx32IpGRGQtCcZ-vci-0bHTnay-NixIpq2hP3eLrVnEhhCU-85cPjKXDiJhg1oZUpKIJrvWy3vcLzp0W1JNkyIJfGTO49FQVOws-NyGTrmH3SYzSuMVDsXh7Q8SlivsaV9RByUZSS9J8RxZ4WP1ljVBy2SzA9GeJZd2uZL9s4EelUFD60WL-wECDaN9AaZHpkmMqCeTBkTyhkVybKKOcde8ZQPgZvGSFeVI"/>
+</div>
+<div class="aspect-video rounded-lg overflow-hidden bg-surface-container">
+<img alt="Data Monitor" class="w-full h-full object-cover" data-alt="Industrial data graphs on a tablet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWTqZJL5bErHOVhnfjfUBGarntuj-w7F4w-T6xT6L8EpL-dOuZ00nxrQEV-hyYyYyzqFRfxTvSUV636G2SKmusD6hIC2K1Bb3oNdpJx52iPCbQ5tvgP5LHNhnmV-GPzKqy5lsYFfHOcxBIX6a4Yht2qmiLXY75V-8ciIe98ec3__nA0MKAyoVY2tHx-d3QJBF1XCZxLt8Wqzwmy5I4u_mb8-Gy0t2tb6uG4fACXDq-LR8zbu5rb0Pqet9O82zJ4zxJJL0RDsGGoY4"/>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-red-200/30 bg-red-50/50 backdrop-blur-sm px-4 pb-3 rounded-lg mt-4 mb-1">
+<div class="flex items-center gap-2 mb-2">
+<img alt="Inspector" class="w-5 h-5 rounded-full border border-red-200/50" data-alt="Male executive avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDf-FnBVNiSY4RAaJSqh3xNiHDoR0lQSblWPIwyUbRLV7b1eanMOLn496jG7hx1U6WOLlkVJTkphUvVHO3DhXQR3lnkzZGzKotWPKx3SoPgZL_lExi_02vV4PESSKxfAwzS5VP4kY6kGGE29LUpUcGtBZSsWJ4uHk-t6qKGBf9gDRXqIUZk0nxNfEIDZGSa3NFMLT519tN3W1UWznOD7qCc4vef1f0K5M-zzGubx5lOPvKTqNhmoXOTJrsgDMhUVCZprOcNImjMmg"/>
+<div class="flex items-center gap-1.5">
+<span class="text-[10px] font-bold text-red-900">王建</span>
+<span class="text-[10px] font-bold text-red-700/80 uppercase tracking-wider">意见</span>
+</div>
+</div>
+<p class="text-xs text-red-800 italic">“进度把握良好，注意关注负载下的能耗波动情况。”</p>
+</div>
+</div>
+</div>
+<!-- Feedback Item 2 -->
+<div class="relative">
+<div class="absolute -left-[19px] top-1 w-4 h-4 rounded-full bg-outline-variant border-4 border-white"></div>
+<div class="glass-card rounded-xl p-4 space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<img alt="User" class="w-6 h-6 rounded-full border border-white/50" data-alt="Male professional avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnoA1G-Q9SnJ3uxuVtSsjX7INqjog1dpywtjUONAmcyb6bVn5okfhGgdd1X_XuwCGi1T8DDUP-14W97p4xxO31xzSzJx8SvSm1MVco0xXRg2cZ79bLi3_vdkBjYqnWZ_n8iTVNqqN_76JFTIySbrRKL70G2b-AX6Av1LhoFHv8j-io0jMbD_ohSm01bXgiXutmT3O9rp-4x5VJZyLsmOziDSKBiXydgk6ctrL-H1t9vvyagD2HvbXHZO-ZKnJi3gUO_s9mVOWxhFo"/>
+<span class="text-xs font-bold text-on-surface">张伟</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] px-2 py-0.5 rounded font-bold">节点验收</span>
+</div>
+<span class="text-[10px] text-outline font-medium">10-18 09:15</span>
+</div>
+<p class="text-sm text-on-surface-variant">硬件架构已固定，地脚螺栓加固完毕，传感器支架对中精度通过首检。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: 项目推进验收意见 -->
+<section class="space-y-4">
+<h2 class="text-on-surface font-headline font-extrabold text-xl heavy-underline tracking-tight">项目推进验收意见</h2>
+<div class="relative p-0.5 rounded-2xl bg-gradient-to-br from-primary-container to-secondary-container shadow-xl">
+<div class="bg-white/90 backdrop-blur-md rounded-[14px] p-6 space-y-5">
+<div class="flex items-center gap-3">
+<img alt="Acceptor" class="w-10 h-10 rounded-full border-2 border-primary/20 shadow-sm" data-alt="Male executive avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDf-FnBVNiSY4RAaJSqh3xNiHDoR0lQSblWPIwyUbRLV7b1eanMOLn496jG7hx1U6WOLlkVJTkphUvVHO3DhXQR3lnkzZGzKotWPKx3SoPgZL_lExi_02vV4PESSKxfAwzS5VP4kY6kGGE29LUpUcGtBZSsWJ4uHk-t6qKGBf9gDRXqIUZk0nxNfEIDZGSa3NFMLT519tN3W1UWznOD7qCc4vef1f0K5M-zzGubx5lOPvKTqNhmoXOTJrsgDMhUVCZprOcNImjMmg"/>
+<div>
+<h4 class="font-headline font-bold text-on-surface leading-tight">最终验收结论 · 王建</h4>
+<p class="text-[10px] text-primary font-bold uppercase tracking-tighter">Verified Completion Status</p>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
+<p class="text-sm text-on-surface leading-relaxed font-medium">
+                        经验收组现场核实，本项目产线升级已完全符合设计初衷。传感器响应速度提升15ms，安全防护等级达标。正式批准进入量产测试阶段。
+                    </p>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="bg-primary/10 text-primary text-[10px] px-3 py-1 rounded-full font-bold">验收已通过</span>
+<div class="text-right">
+<p class="text-[10px] text-outline">验收时间：2024年11月01日</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB for Interaction -->
+<div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-8 pt-4 bg-white/40 dark:bg-black/40 backdrop-blur-md border-t border-white/20">
+<div class="flex gap-3 w-full max-w-2xl mx-auto">
+<button class="flex-1 bg-primary/80 backdrop-blur shadow-lg rounded-full py-4 px-4 text-white font-headline font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 hover:bg-primary">
+<span class="material-symbols-outlined text-lg">history_edu</span>
+            过程反馈
+        </button>
+<button class="flex-1 bg-error/80 backdrop-blur shadow-lg rounded-full py-4 px-4 text-white font-headline font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 hover:bg-error">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+            验收申请反馈
+        </button>
+</div>
+</div></body></html>

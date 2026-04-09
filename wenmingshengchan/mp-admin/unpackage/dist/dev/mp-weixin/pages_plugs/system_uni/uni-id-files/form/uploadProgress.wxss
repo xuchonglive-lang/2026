@@ -1,0 +1,107 @@
+.body.data-v-e4430210 {
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.total-progress.data-v-e4430210 {
+  margin-bottom: 15px;
+}
+.total-progress .span.data-v-e4430210 {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+.progress-slots.data-v-e4430210 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 12px;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+.progress-slot.data-v-e4430210 {
+  border: 1px solid #e4e7ed;
+  border-radius: 6px;
+  padding: 12px;
+  background-color: #fafafa;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.progress-slot.idle.data-v-e4430210 {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+}
+.progress-slot.uploading.data-v-e4430210 {
+  background-color: #ecf5ff;
+  border-color: #b3d8ff;
+  -webkit-box-shadow: 0 2px 4px rgba(64, 158, 255, 0.1);
+          box-shadow: 0 2px 4px rgba(64, 158, 255, 0.1);
+}
+.progress-slot.completed.data-v-e4430210 {
+  background-color: #f0f9ff;
+  border-color: #67c23a;
+}
+.progress-slot.failed.data-v-e4430210 {
+  background-color: #fef0f0;
+  border-color: #f56c6c;
+}
+.slot-header.data-v-e4430210 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 8px;
+}
+.slot-title.data-v-e4430210 {
+  font-size: 12px;
+  color: #606266;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+.slot-status.data-v-e4430210 {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: #f4f4f5;
+  color: #909399;
+}
+.progress-slot.uploading .slot-status.data-v-e4430210 {
+  background-color: #409eff;
+  color: white;
+}
+.progress-slot.completed .slot-status.data-v-e4430210 {
+  background-color: #67c23a;
+  color: white;
+}
+.progress-slot.failed .slot-status.data-v-e4430210 {
+  background-color: #f56c6c;
+  color: white;
+}
+.slot-progress-text.data-v-e4430210 {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: #909399;
+  margin-top: 4px;
+}
+.status-text.data-v-e4430210 {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+}
+.data-v-e4430210 .el-progress .el-progress-bar__outer {
+  height: 6px;
+  border-radius: 3px;
+}
+.data-v-e4430210 .el-progress .el-progress-bar__inner {
+  border-radius: 3px;
+}

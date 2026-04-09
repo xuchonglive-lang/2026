@@ -1,0 +1,305 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* ====================================================================
+   AUDIT STATUS PAGE — Industrial Clarity / Precision Lens 1:1
+   ==================================================================== */
+.page-audit.data-v-f8dd53fc {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+  color: #191c1e;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.grid-floor.data-v-f8dd53fc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+  background-size: 48rpx 48rpx;
+  pointer-events: none;
+}
+/* Ambient Orbs */
+.orb.data-v-f8dd53fc {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.orb-top.data-v-f8dd53fc {
+  top: 10%;
+  left: 5%;
+  width: 400rpx;
+  height: 400rpx;
+  background: rgba(0, 80, 203, 0.08);
+  -webkit-filter: blur(80px);
+          filter: blur(80px);
+}
+.orb-bottom.data-v-f8dd53fc {
+  bottom: 20%;
+  right: 5%;
+  width: 300rpx;
+  height: 300rpx;
+  background: rgba(66, 92, 160, 0.1);
+  -webkit-filter: blur(60px);
+          filter: blur(60px);
+}
+/* Header */
+.page-header.data-v-f8dd53fc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32rpx;
+  height: 128rpx;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+}
+.header-left.data-v-f8dd53fc {
+  display: flex;
+  align-items: center;
+}
+.header-icon.data-v-f8dd53fc {
+  font-size: 40rpx;
+  color: #1d4ed8;
+  margin-right: 12rpx;
+}
+.header-title.data-v-f8dd53fc {
+  font-family: "Manrope", sans-serif;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+.header-action.data-v-f8dd53fc {
+  display: flex;
+  align-items: center;
+  padding: 16rpx;
+  border-radius: 50%;
+}
+.header-icon-sm.data-v-f8dd53fc {
+  font-size: 36rpx;
+  color: #64748b;
+}
+/* Main Content */
+.main-content.data-v-f8dd53fc {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 128rpx 48rpx 160rpx;
+  position: relative;
+  z-index: 1;
+}
+.center-card-wrap.data-v-f8dd53fc {
+  width: 100%;
+  max-width: 750rpx;
+}
+/* Center Card */
+.center-card.data-v-f8dd53fc {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+  border-radius: 48rpx;
+  padding: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+/* Status Icon */
+.status-icon-wrap.data-v-f8dd53fc {
+  position: relative;
+  margin-bottom: 64rpx;
+}
+.status-circle.data-v-f8dd53fc {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.status-circle-pending.data-v-f8dd53fc {
+  background-color: rgba(0, 80, 203, 0.05);
+}
+.status-circle-error.data-v-f8dd53fc {
+  background-color: rgba(186, 26, 26, 0.1);
+}
+.status-emoji.data-v-f8dd53fc {
+  font-size: 96rpx;
+}
+.sync-badge.data-v-f8dd53fc {
+  position: absolute;
+  bottom: -8rpx;
+  right: -8rpx;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 8rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+.sync-icon.data-v-f8dd53fc {
+  font-size: 36rpx;
+}
+/* Status Text */
+.status-title.data-v-f8dd53fc {
+  font-family: "Manrope", sans-serif;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #191c1e;
+  letter-spacing: -0.01em;
+  margin-bottom: 16rpx;
+}
+.status-title-error.data-v-f8dd53fc {
+  color: #ba1a1a;
+}
+.status-desc.data-v-f8dd53fc {
+  font-family: "Inter", sans-serif;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #424656;
+  margin-bottom: 96rpx;
+}
+.status-syncing.data-v-f8dd53fc {
+  font-family: monospace;
+  font-size: 28rpx;
+  color: #64748b;
+  padding: 80rpx 0;
+  text-align: center;
+}
+/* Divider */
+.status-divider.data-v-f8dd53fc {
+  width: 100%;
+  height: 2rpx;
+  background: linear-gradient(to right, transparent, rgba(194, 198, 216, 0.5), transparent);
+  margin-bottom: 64rpx;
+}
+/* Footer */
+.status-footer.data-v-f8dd53fc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.info-row.data-v-f8dd53fc {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+.info-icon.data-v-f8dd53fc {
+  font-size: 24rpx;
+  margin-right: 12rpx;
+}
+.info-text.data-v-f8dd53fc {
+  font-family: "Inter", sans-serif;
+  font-size: 24rpx;
+  color: #64748b;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+/* Action Button */
+.btn-action.data-v-f8dd53fc {
+  padding: 24rpx 64rpx;
+  background-color: #0066ff;
+  color: #ffffff;
+  border-radius: 48rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 8rpx 32rpx rgba(0, 102, 255, 0.3);
+  transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-action.data-v-f8dd53fc:active {
+  -webkit-transform: scale(0.96);
+          transform: scale(0.96);
+}
+.btn-action-text.data-v-f8dd53fc {
+  font-family: "Inter", sans-serif;
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: 600;
+}
+.btn-action-arrow.data-v-f8dd53fc {
+  font-size: 24rpx;
+  color: #ffffff;
+  margin-left: 12rpx;
+}
+/* Meta Row */
+.meta-row.data-v-f8dd53fc {
+  display: flex;
+  gap: 32rpx;
+  margin-top: 64rpx;
+  padding: 0 16rpx;
+}
+.meta-card.data-v-f8dd53fc {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32rpx;
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+}
+.meta-label.data-v-f8dd53fc {
+  font-family: "Inter", sans-serif;
+  font-size: 20rpx;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8rpx;
+}
+.meta-value.data-v-f8dd53fc {
+  font-family: "Manrope", sans-serif;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0050cb;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* uniapp button reset */
+button.data-v-f8dd53fc::after {
+  border: none;
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>我的任务 - 生产专业管理平台</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#565e74",
+                        "on-secondary": "#f9f8ff",
+                        "secondary-container": "#d8e2ff",
+                        "surface-variant": "#d9e4ea",
+                        "tertiary-fixed": "#e3dbfd",
+                        "on-error-container": "#752121",
+                        "on-primary-container": "#4a5167",
+                        "surface-container-highest": "#d9e4ea",
+                        "on-tertiary-fixed": "#3e3a54",
+                        "secondary": "#005bc4",
+                        "outline": "#717c82",
+                        "on-secondary-fixed-variant": "#0057bd",
+                        "on-primary": "#f7f7ff",
+                        "inverse-primary": "#dae2fd",
+                        "secondary-fixed-dim": "#c3d4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0b0f10",
+                        "surface-tint": "#565e74",
+                        "outline-variant": "#a9b4b9",
+                        "error-container": "#fe8983",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-background": "#2a3439",
+                        "on-surface": "#2a3439",
+                        "on-tertiary-fixed-variant": "#5b5672",
+                        "on-primary-fixed-variant": "#535b71",
+                        "surface-container": "#e8eff3",
+                        "surface-container-low": "#f0f4f7",
+                        "on-secondary-fixed": "#003c86",
+                        "error-dim": "#4e0309",
+                        "tertiary-dim": "#54506b",
+                        "inverse-on-surface": "#9a9d9f",
+                        "tertiary-fixed-dim": "#d4cdee",
+                        "tertiary": "#605c78",
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#fff7f6",
+                        "surface-container-high": "#e1e9ee",
+                        "surface": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "primary-container": "#dae2fd",
+                        "on-primary-fixed": "#373f54",
+                        "secondary-dim": "#004fad",
+                        "on-surface-variant": "#566166",
+                        "on-tertiary-container": "#514d68",
+                        "surface-dim": "#cfdce3",
+                        "on-secondary-container": "#004eaa",
+                        "tertiary-container": "#e3dbfd",
+                        "error": "#9f403d",
+                        "primary-dim": "#4a5268",
+                        "primary-fixed-dim": "#ccd4ee",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary": "#fcf7ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(169, 180, 185, 0.15); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 h-16 glass-nav shadow-sm">
+<div class="flex items-center justify-between px-6 lg:px-12 w-full max-w-screen-2xl mx-auto h-full">
+<div class="flex items-center space-x-8">
+<span class="text-lg font-semibold tracking-tighter text-slate-900">生产专业管理平台</span>
+<div class="hidden md:flex items-center space-x-6 h-full">
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium" href="#">平台首页</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium" href="#">工作推进</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium" href="#">专业管理</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium" href="#">专业信息</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium" href="#">培训管理</a>
+<a class="text-slate-900 font-semibold border-b-2 border-slate-900 pb-5 translate-y-2.5 text-sm font-medium" href="#">个人中心</a>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-surface-container-low border-none rounded-md pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-secondary/30 transition-all" placeholder="搜索任务..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-md transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-md transition-all active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ring-1 ring-slate-200">
+<img alt="User Avatar" data-alt="professional corporate headshot avatar of a male employee with short hair and glasses wearing a neutral shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsIvYnLSsMY5DytrLAFFZvFKfLMQ7FdQ6arDCd9M54FGf0EGd7HdjMQzEUlb24-pdqNcjRX7rIVHz7qRwq68nlJvhfZLfg00qvBTNJu55sn5htscFj1Ej2nX7WTTvU7gfYsskQq_WVgN4bDC13kit6MovufkWIb_TVhFJpkOtfwylMwVEUhdav5aRK4SwIlXbj0vT9-0WWjgPsJ2IWAiZCBpeWT_bFxsPSScT5gpx-HJDcVGjzoahMQ-jWyCWbevWHG33bYYktl5M"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="pt-32 pb-20 px-6">
+<div class="max-w-[1350px] mx-auto">
+<!-- Page Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 space-y-4 md:space-y-0">
+<div>
+<h1 class="text-[24px] font-bold text-slate-900 tracking-tight">我的任务</h1>
+<p class="text-slate-500 text-sm mt-1">管理并跟进您的日常生产任务与安全指标</p>
+</div>
+<button class="bg-primary hover:bg-primary-dim text-white px-5 py-2.5 rounded-md text-sm font-medium shadow-sm flex items-center space-x-2 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>新建任务</span>
+</button>
+</div>
+<!-- Tab Navigation -->
+<div class="flex border-b border-slate-200 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+<button class="px-6 py-3 text-sm font-medium text-slate-500 hover:text-slate-900 transition-all relative">
+                    我安排的任务
+                </button>
+<button class="px-6 py-3 text-sm font-semibold text-blue-600 relative">
+                    我接收的任务
+                    <div class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"></div>
+</button>
+</div>
+<!-- Task List Stack -->
+<div class="flex flex-col gap-4">
+<!-- Task Card 1 -->
+<div class="bg-white border border-slate-200 rounded-[6px] p-5 flex items-center justify-between hover:bg-slate-50 transition-all cursor-pointer group shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<div class="flex items-center space-x-6">
+<div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+<div class="space-y-1">
+<h3 class="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">消防演练计划</h3>
+<div class="flex items-center space-x-3">
+<span class="bg-blue-50 text-[#3B82F6] px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase">进行中</span>
+<span class="text-xs text-slate-400">ID: TSK-2024-089</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-12">
+<div class="flex items-center space-x-3">
+<img alt="Avatar" class="w-7 h-7 rounded-full bg-slate-100" data-alt="minimalist avatar circle with initials for a user named Zhang San" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqPeMHEoVMgviA-AfauAN69SFp1DcJjcUC1dn_67NfzqllIVquokxiRxXfLPb53Luv-aZ32-RVfKw2HUeYXJ5aebBsmA6fQNN2KeuMsj5ru9DfIcNGY623hHyfcpVArPPLQXrB6RHw88p5M_3Tk6Ej5tGxIoXRLdv2p-gdOX7WpoDnBEIiUF7M9fdKoHJzTogT9Qw4MOUudgaktm7INvYw5TjnJnqMDO7saZM0Sb4X28X-FmGJtsOeF7_Tsl6hsVxzEKfPvbDGIAs"/>
+<span class="text-sm font-medium text-slate-700">张三</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-500 min-w-[120px]">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="text-sm font-medium tracking-tight">2025-12-28</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Task Card 2 -->
+<div class="bg-white border border-slate-200 rounded-[6px] p-5 flex items-center justify-between hover:bg-slate-50 transition-all cursor-pointer group shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<div class="flex items-center space-x-6">
+<div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
+<div class="space-y-1">
+<h3 class="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">安全检查整改</h3>
+<div class="flex items-center space-x-3">
+<span class="bg-amber-50 text-[#F59E0B] px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase">待验收</span>
+<span class="text-xs text-slate-400">ID: TSK-2024-092</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-12">
+<div class="flex items-center space-x-3">
+<img alt="Avatar" class="w-7 h-7 rounded-full bg-slate-100" data-alt="minimalist avatar circle with initials for a user named Li Si" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8c2BilNHyhlXY2HdN6pCc9wtBfMqftAKcF7g8krzCxwB_V8AGXIQq4xiu9HEG9CEwIDnG2VtF3xK54xemPQOuqTgcE6e7MDiyps132oTeyqw6wdHZ-_FMCZr9-kxc43CQNEbGR8pEDr5mpLYv40VBLPeV1GSii2rT7-q4kgOOHu_KHuWcsnumH1r_ofnW73vzMnB1GjFpqO_ovmrWQOasv3c62_0b0M05guCuH5MfJd-fGBCz-9i-k-pOgSorRbxWngiResVKwpU"/>
+<span class="text-sm font-medium text-slate-700">李四</span>
+</div>
+<div class="flex items-center space-x-2 text-[#EF4444] min-w-[120px]">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+<span class="text-sm font-semibold tracking-tight">2025-12-22</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Task Card 3 -->
+<div class="bg-white border border-slate-200 rounded-[6px] p-5 flex items-center justify-between hover:bg-slate-50 transition-all cursor-pointer group shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<div class="flex items-center space-x-6">
+<div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+<div class="space-y-1">
+<h3 class="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">设备维护排查</h3>
+<div class="flex items-center space-x-3">
+<span class="bg-emerald-50 text-[#10B981] px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase">已完成</span>
+<span class="text-xs text-slate-400">ID: TSK-2024-075</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-12">
+<div class="flex items-center space-x-3">
+<img alt="Avatar" class="w-7 h-7 rounded-full bg-slate-100" data-alt="minimalist avatar circle with initials for a user named Wang Wu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQINeW8tqsJbUusvAcom7kCE61oTFPdE_a3IcTEUnO5KAfOAo8gKM2tCxN9tQEUpDFhXHq0qFrqu5RmDqZTq7jbB94hf4ZfKvxVFYZabDIjfk8VnmYhv8spBRsPKLV2sls4CQJ-ot2-BUclIJ7Za-9D3x9Scy1Wp0Wr6SnMTptZElCBp-Q9olMwyjFqV1WXM9-NeQTjBCxmFXFg0YyHO6uLZ4WCYIUMcTXc475y4MPHf-GmuYEoAi_hhNvXqXyqBKeKAG4rAMPL-s"/>
+<span class="text-sm font-medium text-slate-700">王五</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-400 min-w-[120px]">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="text-sm font-medium tracking-tight">2025-12-15</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Task Card 4 -->
+<div class="bg-white border border-slate-200 rounded-[6px] p-5 flex items-center justify-between hover:bg-slate-50 transition-all cursor-pointer group shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<div class="flex items-center space-x-6">
+<div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+<div class="space-y-1">
+<h3 class="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">月度安全报告</h3>
+<div class="flex items-center space-x-3">
+<span class="bg-blue-50 text-[#3B82F6] px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase">进行中</span>
+<span class="text-xs text-slate-400">ID: TSK-2024-098</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-12">
+<div class="flex items-center space-x-3">
+<img alt="Avatar" class="w-7 h-7 rounded-full bg-slate-100" data-alt="minimalist avatar circle with initials for a user named Zhao Liu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFAsD18gWKm50pTyIV74sPIYtZYrK6N3MpXx9264T3VqqR__NPIexag1I_i-SNkr1WiNsMGGuuH6erkAJ988S2wPiQ0CaBC3ht__7OVthUVSS4vSVjI-xKr47EgXoyMCbrZBbBBhIKBKHDAw28on-o4sYD4hxKp2ALW_s-BJUi29NFzV7dZMvqgIvwW8klNA9K0Ck5ww0ffKb9S0LJjf8LqGts-4UmjWhxwGXJ-h4u7nzl0CmwTw2-eGzjqLcdVZ_wosW5sIP0BDE"/>
+<span class="text-sm font-medium text-slate-700">赵六</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-500 min-w-[120px]">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="text-sm font-medium tracking-tight">2025-12-25</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Task Card 5 -->
+<div class="bg-white border border-slate-200 rounded-[6px] p-5 flex items-center justify-between hover:bg-slate-50 transition-all cursor-pointer group shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<div class="flex items-center space-x-6">
+<div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+<div class="space-y-1">
+<h3 class="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">培训材料更新</h3>
+<div class="flex items-center space-x-3">
+<span class="bg-blue-50 text-[#3B82F6] px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase">进行中</span>
+<span class="text-xs text-slate-400">ID: TSK-2024-102</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-12">
+<div class="flex items-center space-x-3 opacity-0">
+<!-- Empty Avatar space for alignment consistency -->
+<div class="w-7 h-7"></div>
+<span class="text-sm">Unassigned</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-500 min-w-[120px]">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="text-sm font-medium tracking-tight">2025-12-30</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-400">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Pagination/Footer Actions -->
+<div class="mt-8 flex items-center justify-between text-sm text-slate-500 font-medium">
+<span>显示 1 到 5 条，共 24 条任务</span>
+<div class="flex space-x-2">
+<button class="px-4 py-2 bg-white border border-slate-200 rounded-[6px] hover:bg-slate-50 disabled:opacity-50" disabled="">上一页</button>
+<button class="px-4 py-2 bg-white border border-slate-200 rounded-[6px] hover:bg-slate-50">下一页</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-8 bg-slate-50 border-t border-slate-200">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 max-w-screen-2xl mx-auto space-y-4 md:space-y-0">
+<span class="font-['Inter'] text-xs text-slate-500">© 2024 生产专业管理平台. All rights reserved.</span>
+<div class="flex items-center space-x-6">
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-slate-900 underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-slate-900 underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-slate-900 underline transition-all" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

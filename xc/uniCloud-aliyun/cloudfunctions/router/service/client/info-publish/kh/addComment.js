@@ -33,18 +33,35 @@ module.exports = {
 			if (vk.pubfn.isNull(parentComment)) return { code: -1, msg: '回复的评论不存在' };
 		}
 
+		// 查询发表者的详细信息，兼容匿名评论且防止查全量引发 _id: undefined 报错
+		let currentUid = (userInfo && userInfo.uid) || data.uid;
+		let currentUser = null;
+		if (vk.pubfn.isNotNull(currentUid)) {
+			currentUser = await vk.baseDao.findByWhereJson({
+				dbName: 'uni-id-users',
+				whereJson: { _id: currentUid },
+				fieldJson: { _id: true, nickname: true, avatar: true },
+			});
+		}
+		let author_nickname = currentUser && currentUser.nickname ? currentUser.nickname : '匿名用户';
+		let author_avatar = currentUser && currentUser.avatar ? currentUser.avatar : '';
+
 		// 写入评论
 		res.id = await vk.baseDao.add({
 			dbName: 'xc-info-comments',
 			dataJson: {
 				tenant_id: userInfo.tenant_id || '',
+				target_type: data.target_type || 'info-publish',
+				target_id: data.target_id || article_id,
 				article_id,
 				parent_id: parent_id || '',
 				reply_to_uid: reply_to_uid || '',
 				reply_to_nickname: reply_to_nickname || '',
 				content: content.trim(),
 				is_deleted: false,
-				created_by: userInfo.uid,
+				created_by: currentUid || '',
+				author_nickname,
+				author_avatar,
 				created_at: Date.now(),
 			},
 		});

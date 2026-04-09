@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>培训专业管理平台 - 课程中心</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#cfdce3",
+                        "inverse-on-surface": "#9a9d9f",
+                        "tertiary": "#605c78",
+                        "inverse-primary": "#dae2fd",
+                        "primary": "#565e74",
+                        "surface": "#f7f9fb",
+                        "outline": "#717c82",
+                        "tertiary-container": "#e3dbfd",
+                        "surface-tint": "#565e74",
+                        "primary-dim": "#4a5268",
+                        "on-tertiary": "#fcf7ff",
+                        "on-secondary-fixed-variant": "#0057bd",
+                        "on-primary-fixed": "#373f54",
+                        "on-tertiary-container": "#514d68",
+                        "tertiary-fixed-dim": "#d4cdee",
+                        "on-background": "#2a3439",
+                        "background": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f4f7",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#004eaa",
+                        "on-primary-container": "#4a5167",
+                        "outline-variant": "#a9b4b9",
+                        "on-tertiary-fixed": "#3e3a54",
+                        "primary-container": "#dae2fd",
+                        "error-container": "#fe8983",
+                        "primary-fixed-dim": "#ccd4ee",
+                        "tertiary-dim": "#54506b",
+                        "surface-variant": "#d9e4ea",
+                        "on-secondary": "#f9f8ff",
+                        "tertiary-fixed": "#e3dbfd",
+                        "secondary-dim": "#004fad",
+                        "on-surface-variant": "#566166",
+                        "error": "#9f403d",
+                        "on-primary": "#f7f7ff",
+                        "secondary-container": "#d8e2ff",
+                        "inverse-surface": "#0b0f10",
+                        "surface-container": "#e8eff3",
+                        "on-secondary-fixed": "#003c86",
+                        "secondary-fixed-dim": "#c3d4ff",
+                        "surface-container-high": "#e1e9ee",
+                        "surface-container-highest": "#d9e4ea",
+                        "on-primary-fixed-variant": "#535b71",
+                        "on-tertiary-fixed-variant": "#5b5672",
+                        "error-dim": "#4e0309",
+                        "on-error-container": "#752121",
+                        "on-error": "#fff7f6",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#dae2fd",
+                        "on-surface": "#2a3439",
+                        "secondary": "#005bc4",
+                        "info": "#3B82F6"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(169, 180, 185, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container">
+<!-- Shared TopAppBar Logic -->
+<header class="fixed top-0 left-0 right-0 z-50 h-[64px] glass-header">
+<div class="mx-auto max-w-[1440px] px-8 h-full flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="text-on-surface font-bold text-lg tracking-tight">生产专业管理平台</span>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-secondary font-semibold text-sm border-b-2 border-secondary h-[64px] flex items-center px-1" href="#">培训管理</a>
+<a class="text-on-surface-variant hover:text-on-surface font-medium text-sm transition-colors" href="#">生产控制</a>
+<a class="text-on-surface-variant hover:text-on-surface font-medium text-sm transition-colors" href="#">设备监控</a>
+<a class="text-on-surface-variant hover:text-on-surface font-medium text-sm transition-colors" href="#">统计分析</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-on-surface-variant" data-icon="search">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm w-64 focus:ring-1 focus:ring-secondary/20 placeholder:text-on-surface-variant/60" placeholder="搜索课程、文章..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-semibold">管理员</p>
+<p class="text-[10px] text-on-surface-variant">生产安全部</p>
+</div>
+<div class="size-10 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a corporate male administrator in neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaJBISzrjuNP7fpYzXdgEhDzzpzOZSv3r0I4CrEbQNM6fDLj2l8xHW76kfEpumg3y-r_p2As6s3XYwsHimgTt2QqmGy1nn4lnvrJqA9psNikGqZNAWISqUhGouAyLxcU-sMxX_aX4YQBiEW4LN2qHhzvBAdm9Tdh3ANMtUYVsU78CsXCWTJq6n3QKpGP_mCldLOfWCMp4pqfszzLfEtYPVzSC88Eyzg8knNCz0389ZjQyQVBzMs5tM8555QetdmZV8adGbbj2HziQ"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="mt-[64px] mx-auto max-w-[1440px] px-8 py-10 flex gap-10">
+<!-- Sidebar -->
+<aside class="w-[180px] shrink-0">
+<h3 class="text-on-surface-variant font-bold text-xs uppercase tracking-wider mb-6 px-3">培训分类</h3>
+<div class="flex flex-col gap-1">
+<div class="group">
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface font-semibold text-sm">
+<span>调度室指挥</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+<div class="mt-1 ml-3 flex flex-col border-l border-outline-variant/30">
+<a class="px-4 py-1.5 text-xs text-secondary font-medium" href="#">规章制度</a>
+<a class="px-4 py-1.5 text-xs text-on-surface-variant hover:text-on-surface transition-colors" href="#">应急流程</a>
+<a class="px-4 py-1.5 text-xs text-on-surface-variant hover:text-on-surface transition-colors" href="#">设备操作</a>
+</div>
+</div>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-medium text-sm transition-all" href="#">
+<span>四防管理</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_right</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-medium text-sm transition-all" href="#">
+<span>铲运管理</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_right</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-medium text-sm transition-all" href="#">
+<span>安全生产</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_right</span>
+</a>
+</div>
+</aside>
+<!-- Content Area -->
+<section class="flex-1">
+<!-- Video Courses -->
+<div class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="movie">movie</span>
+<h2 class="text-xl font-bold tracking-tight">视频课程</h2>
+</div>
+<div class="flex border-b border-outline-variant/20 gap-8">
+<button class="pb-3 border-b-2 border-secondary text-on-surface font-bold text-sm">调度室指挥</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium text-sm">计划管理</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium text-sm">组织管理</button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<!-- Course Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(42,52,57,0.06)] transition-all">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="industrial control room with monitors and professional equipment in soft blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFlu3Uh6BJCbsfrO6t4ZD7OYwFOLGLLVqbTjzH7eTVJiuXf3DondQBJZP6GggivzH3FWqS_Ba0WtWwXpxrgYjpTS7kIwG0-QfG_vEQn-_TKsvqumTLpJSW081aI1dKVLPSgQtUjQedk4IU41emBUEJ3bxa5aNaOKq0ABr0MO6dh2POH3HnTPrLWKXas1PLPmJl_K79n9lNWdavq-UeDVmbieDrdzwM_fqW9Kr6XiQ3yBXYaivpTJkqvYHl9Nz2kZh6oNeKDUwBJOo"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/70 text-white text-[10px] font-bold rounded">11学时</span>
+</div>
+<div class="p-4">
+<h4 class="text-on-surface font-bold text-base mb-3 group-hover:text-secondary transition-colors">阿斯蒂芬 - 调度核心规程</h4>
+<div class="flex items-center justify-between text-on-surface-variant text-xs">
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span>0</span>
+<span>2025-12-24</span>
+</div>
+<span class="font-medium">管理员</span>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(42,52,57,0.06)] transition-all">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="modern corporate office meeting room with digital screen showing complex data charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDloGpYQTUuxvcZhFvzKMl5lj0Ik9VZvgIINp7CQ9HhL6K_Nhd56gIbLMXILBaG7h987GkjTB6kFGCQzMgyguo4i71b689ClD3g6YM-dFtZmffXf67KxsjQdUhJcpKnecCubbwRLcJ5d2iCUjGLjKS97InrEhj_NLYNK_fFnHedcKT-dw_RufCt5P4KvUasP8_sXtACJW9uSslQK2I8-bEkheZkJkjzl2YY8TOew2l8Zlki3UnWMdG7bS4movTA_TATegbA3fMcp2A"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/70 text-white text-[10px] font-bold rounded">8学时</span>
+</div>
+<div class="p-4">
+<h4 class="text-on-surface font-bold text-base mb-3 group-hover:text-secondary transition-colors">现场指挥与应急响应</h4>
+<div class="flex items-center justify-between text-on-surface-variant text-xs">
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span>124</span>
+<span>2025-12-20</span>
+</div>
+<span class="font-medium">管理员</span>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(42,52,57,0.06)] transition-all">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="technician examining industrial machinery with a tablet in a bright well-lit factory environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaJLQWryURoKcGbvTIUMxtCEstDlurtZ9t4w0ViFro30OaKZJzHc4g9MZt3uuirqv8Vqw0hqq6yOozEhMrVTx-jztjPRs6SPykTWcmhfu9w6KuWuFUQAxM7y9vSRMDOMUvylF6WZbsXMuciuTX3bg-e5F8e8jdUcH-Gh8gZzAMTmzKyatADJ42HC7nXG8yGjMyiDcQ_MyPatt_VMQl0YXsomswCX5uF4-7LuhVfFNq17fykCZEMIr5WOCn9m4CYw24UvdGJiR7ntg"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/70 text-white text-[10px] font-bold rounded">15学时</span>
+</div>
+<div class="p-4">
+<h4 class="text-on-surface font-bold text-base mb-3 group-hover:text-secondary transition-colors">安全生产标准化作业指导</h4>
+<div class="flex items-center justify-between text-on-surface-variant text-xs">
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span>45</span>
+<span>2025-12-15</span>
+</div>
+<span class="font-medium">管理员</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Article Training -->
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="description">description</span>
+<h2 class="text-xl font-bold tracking-tight">图文培训</h2>
+</div>
+<div class="flex border-b border-outline-variant/20 gap-8">
+<button class="pb-3 border-b-2 border-secondary text-on-surface font-bold text-sm">调度室指挥</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium text-sm">计划管理</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium text-sm">组织管理</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Article Card 1 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(42,52,57,0.06)] transition-all border border-transparent hover:border-secondary/10 flex gap-6 items-start">
+<div class="size-24 bg-surface-container-low rounded-lg shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="close-up of hands typing on a laptop with documents on a clean desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnWBLiFnpX0I7W-P6NZCQG6ZFjSV6p5DZKaO2yd-AYRS4Yy7RrEXm6rtGQjxRM99VsI3FhwsGwC6LJuC4yTcJwpZQe1EvBF_-kLDEUBjn8eCuEmTuoOG6fHQGdP1-_2sEmxTQLdTRXuE8CNJ1E3yQ_6q_OEt4NKwEUbZBdXXb-uwUXJgqSIblConuCj7O8dRpq3gBnJeMQXeMRPeLUtRPt7KrQRrCOPU37EnVxjGFkp6WY2ET0C2FgVk0SLwB6BqZFynNZl35ooe4"/>
+</div>
+<div class="flex-1">
+<h4 class="text-on-surface font-bold text-lg mb-2 group-hover:text-secondary transition-colors">关于加强冬季生产安全调度的补充通知</h4>
+<p class="text-on-surface-variant text-sm mb-4 leading-relaxed line-clamp-2">针对近期极端天气频发，各级调度室需严格执行24小时值班制度，重点监控能源消耗与设备抗寒性能。本文档详细规定了应急预案的启动条件与执行流程...</p>
+<div class="flex items-center gap-6 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1 font-medium"><span class="material-symbols-outlined text-[14px]">person</span>管理员</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span>312 阅读</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span>2025-01-10</span>
+</div>
+</div>
+</div>
+<!-- Article Card 2 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(42,52,57,0.06)] transition-all border border-transparent hover:border-secondary/10 flex gap-6 items-start">
+<div class="size-24 bg-surface-container-low rounded-lg shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="overhead view of a team collaborating on a architectural plan on a white desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWMDls1gEJK1j2mlUvdsuSoub22HedENIIScwvVgX74JlzIZiKh0SU28x0jbelU_URz7IBNHY8jkQNPOfRsmXaTjb-UF-Z1GH_K704zAs0sZOtsOXBtUofqMt6YZ-51gtRiPk0ID1AE5y1BeyEKg6KoPyglJhPUu5mMomHm-u42GBIOJh-eKom2NM2F53nFn-81zLqg9mjWy4jcEvbXozVzTnNOVpwR84EB0oljB_fGVEnQYxdJOH6bfKvbfYAeUyvVonHFzdoeGY"/>
+</div>
+<div class="flex-1">
+<h4 class="text-on-surface font-bold text-lg mb-2 group-hover:text-secondary transition-colors">新型智能调度系统的应用指南 (V2.1)</h4>
+<p class="text-on-surface-variant text-sm mb-4 leading-relaxed line-clamp-2">全新升级的AI辅助调度模块上线，本指南详细介绍了如何利用大数据分析模块进行产能预测，并展示了如何通过三维数字孪生界面进行实时设备管控...</p>
+<div class="flex items-center gap-6 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1 font-medium"><span class="material-symbols-outlined text-[14px]">person</span>技术部</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span>856 阅读</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span>2025-01-05</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-outline-variant/10 py-12 bg-surface-container-low">
+<div class="mx-auto max-w-[1440px] px-8 flex flex-col items-center gap-6">
+<div class="flex items-center gap-8 text-on-surface-variant text-sm font-medium">
+<a class="hover:text-on-surface" href="#">关于平台</a>
+<a class="hover:text-on-surface" href="#">使用帮助</a>
+<a class="hover:text-on-surface" href="#">隐私条款</a>
+<a class="hover:text-on-surface" href="#">意见反馈</a>
+</div>
+<div class="text-on-surface-variant/60 text-xs flex flex-col items-center gap-2">
+<p>冀ICP备2024077622号-1 © 2024 xuchong</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>网络安全举报中心</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

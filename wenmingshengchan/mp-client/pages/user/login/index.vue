@@ -1,0 +1,281 @@
+<template>
+  <view class="page-login">
+    <!-- Level 0: Industrial Grid Floor -->
+    <view class="grid-floor"></view>
+
+    <!-- Level 2: Active Glass Login Card -->
+    <view class="login-card">
+      <!-- Brand Logo -->
+      <view class="logo-box">
+        <image class="logo-img" src="/static/logo.png" mode="aspectFill" />
+      </view>
+
+      <!-- System Title -->
+      <text class="sys-title">文明生产专业管理系统</text>
+
+      <!-- Primary Action: WeChat Login Button -->
+      <button class="btn-wechat" @click="handleWechatAuth">
+        <text class="btn-icon">💬</text>
+        <text class="btn-text">微信授权登录</text>
+      </button>
+
+      <!-- Privacy Policy Disclaimer -->
+      <text class="privacy-text">登录即代表您同意我们的服务协议和隐私政策</text>
+    </view>
+
+    <!-- Privacy authorization Native Component -->
+    <AuthDialog ref="authDialog" @accept="onAuthAccept"></AuthDialog>
+  </view>
+</template>
+
+<script>
+import AuthDialog from '@/components/AuthDialog/AuthDialog.vue'
+
+export default {
+  components: {
+    AuthDialog
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    async handleWechatAuth() {
+      // 第一阶段：先行发起不带用户资料的纯代码静默通讯
+      uni.showLoading({ title: '安全信道建立中...' });
+
+      try {
+        const [loginErr, loginRes] = await uni.login({ provider: 'weixin' });
+        if (loginErr || !loginRes.code) throw new Error('微信通信链路异常');
+
+        // 发起纯粹的底层静默登录验证
+        let res = await uni.vk.callFunction({
+          url: 'client/user/pub/loginByWeixin',
+          data: {
+            code: loginRes.code
+            // 此时不传 userInfo，仅仅摸底
+          }
+        });
+
+        uni.hideLoading();
+
+        if (res.code === 0) {
+          if(res.userInfo) {
+            this.vk.setVuex('$user.userInfo', res.userInfo);
+          }
+
+          // 核心拦截判断：这名用户的核心资料库里，是否有过我们为其填充的微信昵称与头像？
+          let hasAvatarAndNickname = res.userInfo && res.userInfo.nickname && res.userInfo.avatar;
+
+          if (!hasAvatarAndNickname) {
+            // 是新用户，或者以前直接强退了没有走完资料，唤醒头像昵称授权组件！
+            this.$refs.authDialog.show();
+            return; // 阻断流程，等待对话框给出 accept 信号
+          }
+
+          // 不管是不是今天注册的，只要他拥有头像和昵称，第二次以后点进来一律走全自动路由跳转分发
+          this.routeUser(res.userInfo);
+        } else {
+          uni.showToast({ title: res.msg || '鉴权被系统拒绝', icon: 'none' });
+        }
+      } catch (e) {
+        uni.hideLoading();
+        uni.showToast({ title: e.message || '网络断开无响应', icon: 'none' });
+      }
+    },
+
+    // 路由自动分发中心，根据审查进度跃迁不同页面
+    routeUser(userInfo) {
+      let status = userInfo.audit_status || 0;
+      if (status === 0) {
+        // 白板/待完善用户 -> 强制跳明细完善页
+        uni.reLaunch({ url: '/pages/user/register/index' });
+      } else if (status === 1 || status === 2) {
+        // 待审批/被拒绝 -> 锁在黑屋听候发落
+        uni.reLaunch({ url: '/pages/user/audit-status/index' });
+      } else if (status === 3) {
+        // 持牌放行用户 -> 进入生产系统控制主台
+        uni.reLaunch({ url: '/pages/index/index' });
+      }
+    },
+
+    async onAuthAccept(userInfoForm) {
+      uni.showLoading({ title: '凭据构建与入库中...' });
+
+      try {
+        let finalAvatar = userInfoForm.avatar;
+        let finalNickname = userInfoForm.nickname;
+
+        // 如果头像是本地沙盒图片，抢先转存上云兑换公网永久 URL
+        if (finalAvatar && (finalAvatar.startsWith('http://tmp') || finalAvatar.startsWith('wxfile://') || finalAvatar.startsWith('file://'))) {
+          let uploadRes = await uni.vk.callFunctionUtil.uploadFile({
+            filePath: finalAvatar,
+            fileType: "image",
+            needSave: false
+          });
+          if (uploadRes && uploadRes.url) {
+            finalAvatar = uploadRes.url;
+          }
+        }
+
+        // 因为之前那个 code 已经被消耗掉了，马上为本次满级提交再取一枚新 code！
+        const [loginErr, loginRes] = await uni.login({ provider: 'weixin' });
+        if (loginErr || !loginRes.code) throw new Error('通信链路异常');
+
+        // 第二阶段：携带着上传好的真身实体与新 code 再次发起降维打击（覆盖信息）
+        let res = await uni.vk.callFunction({
+          url: 'client/user/pub/loginByWeixin',
+          data: {
+            code: loginRes.code,
+            userInfo: {
+              avatar: finalAvatar,
+              nickname: finalNickname
+            }
+          }
+        });
+
+        uni.hideLoading();
+
+        if (res.code === 0) {
+          if(res.userInfo) {
+            this.vk.setVuex('$user.userInfo', res.userInfo);
+          }
+          this.$refs.authDialog.hide();
+          uni.showToast({ title: '身份烙印成功', icon: 'none', duration: 1500 });
+
+          setTimeout(() => {
+            this.routeUser(res.userInfo);
+          }, 1000);
+        } else {
+          uni.showToast({ title: res.msg || '入库发生阻断', icon: 'none' });
+        }
+      } catch (e) {
+        uni.hideLoading();
+        uni.showToast({ title: e.message || '网络断开无响应', icon: 'none' });
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+/* ====================================================================
+   LOGIN PAGE — Industrial Clarity / Precision Lens 1:1
+   ==================================================================== */
+.page-login {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Level 0: Grid */
+.grid-floor {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, rgba(0, 80, 203, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 80, 203, 0.03) 1px, transparent 1px);
+  background-size: 16rpx 16rpx;
+  pointer-events: none;
+}
+
+/* Level 2: Login Card */
+.login-card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 720rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24rpx;
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+  padding: 96rpx 80rpx 64rpx;
+}
+
+/* Logo */
+.logo-box {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 24rpx;
+  background: rgba(224, 227, 229, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  margin-bottom: 48rpx;
+  box-shadow: inset 0 2rpx 8rpx rgba(0,0,0,0.06);
+}
+.logo-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Title */
+.sys-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 44rpx;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+  color: #191c1e;
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+/* WeChat Login Button */
+.btn-wechat {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  padding: 0 48rpx;
+  border-radius: 24rpx;
+  background-color: #0066ff;
+  color: #ffffff;
+  border: none;
+  margin-bottom: 64rpx;
+  box-shadow: inset 0 4rpx 8rpx rgba(255, 255, 255, 0.2), 0 8rpx 20rpx rgba(0, 102, 255, 0.2);
+  transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-wechat:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 12rpx rgba(0, 102, 255, 0.2);
+}
+.btn-icon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+}
+.btn-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+/* Privacy */
+.privacy-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #424656;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 6rpx;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* uniapp button reset */
+button::after { border: none; }
+</style>

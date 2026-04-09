@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "抽奖活动",
+  "usingComponents": {
+    "list-vk-data-table-sort": "/pages_plugs/system_uni/lucky-draw/list-vk-data-table-sort",
+    "list-vk-data-form-qrcode": "/pages_plugs/system_uni/lucky-draw/list-vk-data-form-qrcode",
+    "set-key": "/pages_plugs/system_uni/lucky-draw/form/setKey",
+    "activity-detail": "/pages_plugs/system_uni/lucky-draw/form/activityDetail",
+    "win-list": "/pages_plugs/system_uni/lucky-draw/form/winList",
+    "help": "/pages_plugs/system_uni/lucky-draw/form/help"
+  }
+}

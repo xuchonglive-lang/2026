@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>专业信息 - 生产专业管理平台</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#f7f9fb",
+              "surface-container-low": "#f0f4f7",
+              "secondary-container": "#d8e2ff",
+              "surface-variant": "#d9e4ea",
+              "on-primary-fixed": "#373f54",
+              "on-error": "#fff7f6",
+              "on-tertiary-container": "#414f62",
+              "on-tertiary": "#f7f9ff",
+              "error-dim": "#4e0309",
+              "tertiary-fixed-dim": "#c1d0e6",
+              "on-primary": "#f7f7ff",
+              "secondary-dim": "#004fad",
+              "outline-variant": "#a9b4b9",
+              "on-surface": "#2a3439",
+              "tertiary": "#526073",
+              "on-tertiary-fixed-variant": "#4a596c",
+              "error-container": "#fe8983",
+              "surface-dim": "#cfdce3",
+              "on-secondary-fixed-variant": "#0057bd",
+              "surface-bright": "#f7f9fb",
+              "tertiary-fixed": "#cfdef5",
+              "inverse-primary": "#dae2fd",
+              "primary": "#565e74",
+              "secondary-fixed-dim": "#c3d4ff",
+              "inverse-surface": "#0b0f10",
+              "primary-fixed-dim": "#ccd4ee",
+              "secondary": "#005bc4",
+              "inverse-on-surface": "#9a9d9f",
+              "error": "#9f403d",
+              "on-tertiary-fixed": "#2e3d4e",
+              "surface": "#f7f9fb",
+              "primary-dim": "#4a5268",
+              "on-secondary-container": "#004eaa",
+              "surface-container-highest": "#d9e4ea",
+              "on-background": "#2a3439",
+              "surface-container": "#e8eff3",
+              "on-secondary-fixed": "#003c86",
+              "tertiary-container": "#cfdef5",
+              "on-primary-container": "#4a5167",
+              "on-surface-variant": "#566166",
+              "on-primary-fixed-variant": "#535b71",
+              "primary-container": "#dae2fd",
+              "surface-container-high": "#e1e9ee",
+              "on-error-container": "#752121",
+              "secondary-fixed": "#d8e2ff",
+              "surface-tint": "#565e74",
+              "outline": "#717c82",
+              "tertiary-dim": "#465467",
+              "primary-fixed": "#dae2fd",
+              "on-secondary": "#f9f8ff",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            color: #2a3439;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ghost-border {
+            border: 1px solid rgba(169, 180, 185, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 h-16 glass-header shadow-sm">
+<div class="flex items-center justify-between px-8 w-full max-w-[1350px] mx-auto h-full">
+<div class="flex items-center gap-8">
+<span class="text-lg font-bold text-slate-900 tracking-tight">生产专业管理平台</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-900 font-semibold border-b-2 border-slate-900 pb-1 text-sm" href="#">专业信息</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors text-sm" href="#">运行监控</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors text-sm" href="#">计划任务</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors text-sm" href="#">数据报表</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors text-sm" href="#">系统设置</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-md transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-md transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ml-2">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional corporate manager with a friendly expression in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0my8b8omPZMtodP6xN8DIYkVvJ6MQw-8UKxyY6dpe4Xbv-n6LOY0PCDzWTzPYwIHcDAw6R9EUO-eZzPpbvup1lY_HigQ_hDKesSv22f4J1p74wpU_MnDgQ44aTRb10bONvkNJUZ-VeIyhgxeNzqlYPWQWhkg9tt3P4D0d7FQm3lx6qVhKeZu4cYv5rYEjLruFEwnRRU1bQMGbYqiN_erSu9JH29oxecOVmcxLEery02PHAwpKcdx57EAQmGSKSzpXayJHOZLyCJo"/>
+</div>
+</div>
+</div>
+</header><div class="fixed top-16 left-0 w-full h-1 bg-slate-100 z-50" id="reading-progress-container">
+<div class="h-full bg-[#3B82F6] transition-all duration-150 ease-out" id="reading-progress-bar" style="width: 0%"></div>
+</div>
+<!-- Main Content Area -->
+<main class="pt-24 pb-20 w-full max-w-[1350px] mx-auto px-8 flex gap-12">
+<!-- Left Sidebar: Sticky (200px) -->
+<aside class="w-[200px] flex-shrink-0">
+<div class="sticky top-20 flex flex-col gap-8">
+<!-- Author Card -->
+<div class="flex flex-col items-center text-center p-4 bg-white rounded-xl ghost-border">
+<div class="w-16 h-16 rounded-full overflow-hidden mb-3 border-2 border-surface-container-low">
+<img alt="超级管理员" class="w-full h-full object-cover" data-alt="Professional profile photo of a senior technical administrator in a clean minimalist style with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSWFS1YWSV8uvmoY4nPT9XAx2clhBw_19VH0livlRwVPJwrvW7bU_sGNjSaad2Q9cwCOAAQrOPirB2WOreAd3y2KOdN9fZrjyc-6Nkmx4SEjZgLfOmeq-xcKhkcmpQCOlm1A_-KAWJ4G59mlKZT2JcPMM-Ajz4ustIbaWmxRMZsji9dfsZTAXgXMcch_NHuoRt9dOdaevHJ77P1hKPIqy2a6y-YblMGPxJYdnaUNoGp3gxNCiLBiSB_14LW7zdA15nbkHJjbxY-1Q"/>
+</div>
+<span class="text-sm font-bold text-on-surface">超级管理员</span>
+<span class="text-[0.6875rem] font-medium uppercase tracking-wider text-[#94A3B8] mt-1">发布人</span>
+</div>
+<!-- Table of Contents -->
+<nav class="flex flex-col gap-4">
+<div class="flex items-center gap-2 px-2 text-on-surface-variant font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">notes</span>
+<span>文章目录</span>
+</div>
+<ul class="flex flex-col text-sm space-y-0.5">
+<li>
+<a class="block py-2 px-3 text-[#3B82F6] border-l-2 border-[#3B82F6] bg-slate-50 font-medium" href="#MarkdownIt">#MarkdownIt</a>
+</li>
+<li>
+<a class="block py-2 px-3 text-slate-500 hover:bg-[#F1F5F9] transition-colors pl-5" href="#说明">#说明</a>
+</li>
+<li>
+<a class="block py-2 px-3 text-slate-500 hover:bg-[#F1F5F9] transition-colors pl-5" href="#用法">#用法</a>
+</li>
+<li>
+<a class="block py-2 px-3 text-slate-500 hover:bg-[#F1F5F9] transition-colors pl-5" href="#构造器">#构造器</a>
+</li>
+<li>
+<a class="block py-2 px-3 text-slate-500 hover:bg-[#F1F5F9] transition-colors pl-5" href="#实例方法">#实例方法</a>
+</li>
+<li>
+<a class="block py-2 px-3 text-slate-500 hover:bg-[#F1F5F9] transition-colors pl-5" href="#实例属性">#实例属性</a>
+</li>
+<li>
+<a class="block py-2 px-3 text-slate-500 hover:bg-[#F1F5F9] transition-colors pl-5" href="#MarkdownIt.new">#MarkdownIt.new</a>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<!-- Right Content: Flexible -->
+<article class="flex-grow max-w-4xl">
+<header class="mb-8">
+<h1 class="text-[28px] font-bold text-slate-900 leading-tight mb-6">阿斯蒂芬阿斯顿法师打发斯蒂芬</h1>
+<div class="flex flex-wrap items-center gap-6 text-sm text-slate-500">
+<span class="px-2.5 py-0.5 bg-[#3B82F6] text-white text-[11px] font-bold rounded-full">重点工作</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">person</span>
+<span>超级管理员</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>2025-12-21</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">visibility</span>
+<span>30 阅读</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">chat_bubble</span>
+<span>1 评论</span>
+</div>
+</div>
+<div class="h-[1px] bg-slate-200/60 w-full mt-8"></div>
+</header>
+<section class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6">
+<p>在复杂的生产管理体系中，专业信息的准确传递与结构化存储是提升运营效率的核心。本文档旨在阐述 MarkdownIt 的深度集成策略及其在自动化任务分配中的实际应用。通过标准化的文本解析引擎，我们能够实现从非结构化指令到结构化数据的无缝转换。</p>
+<h2 class="text-xl font-bold text-slate-900 pt-4" id="MarkdownIt"># MarkdownIt 核心架构</h2>
+<p>MarkdownIt 不仅仅是一个简单的解析器，它是一套基于插件体系的工业级文档处理方案。其内部采用流水线模式，确保在高并发环境下依然保持极高的处理效率与内存安全性。</p>
+<div class="bg-[#0F172A] p-6 rounded-xl overflow-x-auto my-8">
+<pre class="font-mono text-sm text-slate-300 leading-6"><code>// 构造器初始化示例
+const md = require('markdown-it')({
+  html: true,
+  linkify: true,
+  typographer: true
+});
+
+// 执行解析
+const result = md.render('# Hello World');
+console.log(result);</code></pre>
+</div>
+<h3 class="text-lg font-semibold text-slate-800" id="说明">1. 设计说明</h3>
+<p>该模块在系统底层充当数据网关的作用，负责校验所有进入生产调度中心的指令。通过自定义 Rules，我们可以捕获特定的管理关键词并触发即时监控预警。</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+<div class="p-6 bg-surface-container-lowest rounded-xl ghost-border">
+<h4 class="font-bold text-secondary mb-2">构造器模式</h4>
+<p class="text-sm">支持多实例并行运算，每个实例可独立配置渲染策略，适用于不同密级的任务指令解析。</p>
+</div>
+<div class="p-6 bg-surface-container-lowest rounded-xl ghost-border">
+<h4 class="font-bold text-secondary mb-2">安全沙箱</h4>
+<p class="text-sm">内置 XSS 过滤机制，确保第三方平台同步的数据在渲染过程中不会对内网管理界面造成安全威胁。</p>
+</div>
+</div>
+<p>更多关于实例方法的使用，请参考下方的 API 定义部分。开发者应重点关注 <code>renderInline</code> 方法在移动端显示优化中的表现。</p>
+</section>
+<!-- Attachment Section -->
+<section class="mt-16 p-8 bg-surface-container-low rounded-2xl">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-on-surface-variant">attach_file</span>
+<h3 class="font-bold text-on-surface">附件列表</h3>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-4 bg-white rounded-xl hover:shadow-sm transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-red-50 text-red-600 rounded flex items-center justify-center font-bold text-xs uppercase">PDF</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">2025年度生产计划详情.pdf</p>
+<p class="text-[0.6875rem] text-slate-400 mt-0.5">4.2 MB · 超级管理员 · 2小时前</p>
+</div>
+</div>
+<button class="text-secondary hover:underline text-sm font-medium">下载文件</button>
+</div>
+</div>
+</section>
+<!-- Comment Section -->
+<section class="mt-12">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-on-surface-variant">forum</span>
+<h3 class="font-bold text-on-surface">评论 (1)</h3>
+</div>
+<div class="flex gap-4 mb-10">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden flex-shrink-0">
+<img alt="Current User" class="w-full h-full object-cover" data-alt="close-up profile photo of a modern office employee in natural soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFmA0DOXHdI71OMtqsNMAy-ptu40Brdhj7esVDGTs4bZZiGG5gxmCqUfISHYsqxtgGIvxnj_dpl8OyGg9Hl0KMPdS8B9WBj7HwyhzzWD_QkU5QgVbCiindOgs8WYddcIkDnzc21zN6lCN_NfPGCOwWc3FQ06fzdGegJt7Eyv1nN5swpvqw7sutrzjmCYBlYB5L64a3TrVme1S2A5qULbE0NxU0rZ2ayA0lBYDJUQm3PjNGBcHQJ4aLAWWusf5E5_GJa-I5QlyVkWw"/>
+</div>
+<div class="flex-grow">
+<textarea class="w-full h-24 p-4 bg-white ghost-border rounded-xl focus:ring-2 focus:ring-secondary/10 focus:border-secondary transition-all outline-none resize-none text-sm" placeholder="撰写评论..."></textarea>
+<div class="mt-3 flex justify-end">
+<button class="px-6 py-2 bg-primary text-on-primary rounded-lg text-sm font-semibold shadow-sm hover:opacity-90 transition-opacity">发表评论</button>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden flex-shrink-0">
+<img alt="技术专家" class="w-full h-full object-cover" data-alt="professional portrait of a senior tech expert with a clean workspace background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJQqwS0EVIX_Rwh_VQti-InyTXAzmkcKPfrrvT0ilPYAYG3vcYo06EPKMAYQm9p4N6VeUJPO2Tn_mql2b7owrs8IHaPDzo-zSdZNA0laS9ZDw3CZMtFs2FjyQ8kiQpCFJQxVxKZx1JqIuuYw7tHEVcy0N6NlfOgpzzYlgqZb7mbSGAtOSSa10Gt7ScDTht5L3vUIy1QjVn8YSIE6r8tinZGOEagyOoNZZl3cZbUkk5arDXpKsgmCJQUlHdaMO6rW7DRtNciwhMd5Y"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-sm font-bold text-slate-900">技术专家02</span>
+<span class="text-[0.6875rem] text-slate-400">2025-12-21 14:30</span>
+</div>
+<p class="text-sm text-slate-700 leading-relaxed">
+                                关于 MarkdownIt 在高频并发下的性能表现，建议在初始化阶段预加载常用的插件库，避免在 render 过程中动态加载导致的主线程阻塞。
+                            </p>
+<div class="mt-2 flex gap-4">
+<button class="text-[11px] text-slate-400 hover:text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">thumb_up</span> 点赞
+                                </button>
+<button class="text-[11px] text-slate-400 hover:text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">reply</span> 回复
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</article>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-slate-200/15 bg-slate-50">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 w-full max-w-[1350px] mx-auto">
+<div class="mb-4 md:mb-0">
+<span class="text-[0.6875rem] font-medium uppercase tracking-wider text-slate-400">冀ICP备2024077622号-1 © 2024 xuchong</span>
+</div>
+<div class="flex gap-8">
+<a class="text-[0.6875rem] font-medium uppercase tracking-wider text-slate-400 hover:text-slate-600 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[0.6875rem] font-medium uppercase tracking-wider text-slate-400 hover:text-slate-600 transition-colors" href="#">Terms of Service</a>
+<a class="text-[0.6875rem] font-medium uppercase tracking-wider text-slate-400 hover:text-slate-600 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('reading-progress-bar').style.width = scrolled + '%';
+  });
+</script></body></html>

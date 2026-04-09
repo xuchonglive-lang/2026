@@ -1,0 +1,109 @@
+/* 这里是你自己写的全局css样式 */
+
+/* 禁用双击缩放，直接触发点击，解决Web端点击响应延迟的问题 */
+a,
+button,
+view,
+text {
+  touch-action: manipulation;
+}
+/* 滚动条美化方案开始 去掉下方css的注释即可 */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(135, 135, 135, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(135, 135, 135, 0.4);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(135, 135, 135, 0.8);
+}
+
+/* 滚动条美化方案结束 */
+
+/* 富文本编辑器样式开始 */
+.ql-indent-1 {
+  padding-left: 3em;
+}
+.ql-indent-2 {
+  padding-left: 6em;
+}
+.ql-indent-3 {
+  padding-left: 9em;
+}
+.ql-indent-4 {
+  padding-left: 12em;
+}
+.ql-indent-5 {
+  padding-left: 15em;
+}
+.ql-indent-6 {
+  padding-left: 18em;
+}
+.ql-indent-7 {
+  padding-left: 21em;
+}
+.ql-indent-8 {
+  padding-left: 24em;
+}
+/* 富文本编辑器样式结束 */
+
+/* ==========================================================================
+   Civilized Production System - Industrial Glassmorphism 
+   文明生产系统 - 工业毛玻璃态 (Admin端同布)
+   ========================================================================== */
+
+/* 字体设定 (假设已在宿主引入) */
+.font-manrope { font-family: 'Manrope', system-ui, sans-serif; font-weight: 700; }
+.font-inter { font-family: 'Inter', system-ui, sans-serif; font-weight: 400; }
+
+/* 工业深色底层域 */
+.industrial-bg {
+  background-color: #0B0E14;
+  color: #F8FAFC;
+}
+
+/* 结构网格点阵 (背景层) */
+.industrial-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* 环境辉光效果 (工业高亮) */
+.ambient-glow {
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.5); /* Primary Orange Glow */
+}
+.ambient-glow-processing {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Blue Glow */
+}
+.ambient-glow-danger {
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);  /* Red Glow */
+}
+
+/* 通用毛玻璃面板 */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* 核心态势数据标配高亮字 */
+.text-industrial-primary {
+  color: #FF6B00;
+}
+
+/* Flex 常用辅助类 */
+.flex { display: flex; align-items: center; }
+.flex-1 { flex: 1; }
+.flex-col { display: flex; flex-direction: column; }
+.w-full { width: 100%; }

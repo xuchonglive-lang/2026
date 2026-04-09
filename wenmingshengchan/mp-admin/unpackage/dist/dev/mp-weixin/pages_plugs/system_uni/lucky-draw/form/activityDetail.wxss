@@ -1,0 +1,51 @@
+.drawer-content.data-v-1189ef1e {
+  padding: 0 20px;
+}
+.drawer-content .h2.data-v-1189ef1e {
+  font-size: 24px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+.drawer-content .h3.data-v-1189ef1e {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+.drawer-content .module-container.data-v-1189ef1e {
+  margin-bottom: 24px;
+}
+.drawer-content .tags-group.data-v-1189ef1e {
+  margin: 12px 0;
+}
+.drawer-content .tags-group .el-tag.data-v-1189ef1e {
+  margin-right: 8px;
+}
+.drawer-content .time-info.data-v-1189ef1e {
+  color: #666;
+  font-size: 14px;
+  margin: 12px 0;
+}
+.drawer-content .people-limit.data-v-1189ef1e {
+  color: #e6a23c;
+  font-size: 14px;
+}
+.drawer-content .stat-card.data-v-1189ef1e {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.drawer-content .stat-value.data-v-1189ef1e {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.drawer-content .stat-label.data-v-1189ef1e {
+  color: #666;
+  font-size: 12px;
+}
+.drawer-content .tips.data-v-1189ef1e {
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}

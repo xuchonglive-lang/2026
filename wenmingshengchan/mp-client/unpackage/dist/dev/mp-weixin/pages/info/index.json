@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "z-paging": "/node-modules/z-paging/components/z-paging/z-paging",
+    "u-search": "/uni_modules/vk-uview-ui/components/u-search/u-search",
+    "u-icon": "/uni_modules/vk-uview-ui/components/u-icon/u-icon",
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
+  }
+}

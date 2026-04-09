@@ -1,0 +1,1 @@
+请为 Google Stitch 生成一段详细的 UI 描述，包含页面布局、配色方案（如 Linear 风格/shadcn 审美）、关键组件（Card, Nav, Hero section）以及具体的交互逻辑。”

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "winList-vk-data-table-receiver_name": "/pages_plugs/system_uni/lucky-draw/form/winList-vk-data-table-receiver_name",
+    "winList-vk-data-table-receiver_mobile": "/pages_plugs/system_uni/lucky-draw/form/winList-vk-data-table-receiver_mobile",
+    "winList-vk-data-table-formatted_address": "/pages_plugs/system_uni/lucky-draw/form/winList-vk-data-table-formatted_address",
+    "winList-vk-data-table-express_name": "/pages_plugs/system_uni/lucky-draw/form/winList-vk-data-table-express_name",
+    "winList-vk-data-table-express_no": "/pages_plugs/system_uni/lucky-draw/form/winList-vk-data-table-express_no"
+  },
+  "component": true
+}

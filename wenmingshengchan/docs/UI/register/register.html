@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-container": "#294487",
+                        "secondary-fixed": "#dae1ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001849",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#425ca0",
+                        "on-surface-variant": "#424656",
+                        "secondary-container": "#9bb4fe",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-container": "#cc4204",
+                        "outline": "#727687",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b3c5ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#fff6f4",
+                        "on-secondary-fixed": "#001849",
+                        "on-primary-container": "#f8f7ff",
+                        "surface-container": "#eceef0",
+                        "outline-variant": "#c2c6d8",
+                        "primary": "#0050cb",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "surface-tint": "#0054d6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0066ff",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed-variant": "#284386",
+                        "tertiary": "#a33200",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .industrial-grid {
+            background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="industrial-grid text-on-surface">
+<header class="fixed top-0 w-full z-50 bg-white/25 dark:bg-slate-900/25 backdrop-blur-xl border-b border-white/20 flex items-center justify-between px-4 h-16 shadow-[0_8px_32px_0_rgba(0,80,203,0.08)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 text-2xl">precision_manufacturing</span>
+<h1 class="text-lg font-bold text-slate-900 font-manrope tracking-tight">文明生产管理系统</h1>
+</div>
+<div class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 active:scale-95 duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-slate-500">help_outline</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-md mx-auto space-y-6">
+<div class="flex flex-col items-center mb-8">
+<div class="relative">
+<div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-lg">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="professional avatar of a person with a clean business casual look, soft lighting, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiUTdZZ9OUdREvI6xcArE4P_JgpuU1_cukCQm16iPqyO0TyyyYII55BPqicSdmHmcxIXuywZNWhezkrPPRDUIjQvwXUguEzUWvE-FFhzHbc2Gk35OKTIBuB9UIM_-XStlE2TExikTxXUcPwRkuGKX6Jkvv8PbaWfAanhuwATkF1Vrdi9owt1PMGyHH8wqUNtHWqqunfnuabjBQvxISC_cwvWkpF0pampbk05JIBNSvwTuWCimUVuhB1OAKSs64ptqaIEYL8ZkVBtA"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary-container p-1.5 rounded-full border-2 border-white shadow-md">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h2 class="mt-4 text-xl font-bold font-headline text-on-surface">WeChat_User_88</h2>
+<p class="text-sm text-on-surface-variant font-label tracking-wide mt-1">完善个人信息以开启权限</p>
+</div>
+<section class="space-y-4">
+<div class="glass-card rounded-xl p-5 group transition-all duration-300">
+<label class="block text-[10px] font-bold text-primary mb-1 tracking-widest uppercase">REAL NAME</label>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant font-medium" placeholder="请输入真实姓名" type="text"/>
+</div>
+</div>
+<div class="glass-card rounded-xl p-5 group transition-all duration-300">
+<label class="block text-[10px] font-bold text-primary mb-1 tracking-widest uppercase">MOBILE NUMBER</label>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">smartphone</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant font-medium" placeholder="请输入手机号" type="tel"/>
+</div>
+</div>
+<div class="glass-card rounded-xl p-5 group transition-all duration-300">
+<label class="block text-[10px] font-bold text-primary mb-1 tracking-widest uppercase">ORGANIZATION</label>
+<div class="flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-3 overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant">account_tree</span>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium truncate">选择部门 - 小组</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</section>
+<div class="pt-4 px-2">
+<p class="text-[11px] text-on-surface-variant leading-relaxed text-center opacity-70">
+                提交后将进入后台审核阶段，审核通过后即可访问生产看板与实时反馈功能。
+            </p>
+</div>
+</main>
+<div class="fixed bottom-0 w-full p-6 pb-10 bg-gradient-to-t from-background via-background/80 to-transparent">
+<button class="w-full max-w-md mx-auto h-14 bg-primary-container text-white rounded-xl font-bold text-base shadow-[0_8px_20px_-4px_rgba(0,102,255,0.4)] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span>立即提交注册</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</body></html>

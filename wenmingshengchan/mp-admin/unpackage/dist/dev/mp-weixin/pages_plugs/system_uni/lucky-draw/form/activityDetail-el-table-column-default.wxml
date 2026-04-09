@@ -1,0 +1,1 @@
+<view class="tags-group data-v-1189ef1e"><el-tag vue-id="1fb2f296-10" class="data-v-1189ef1e" bind:__l="__l" vue-slots="{{['default']}}">{{(scope.row.lv_text?scope.row.lv_text+'：':'')+" "+scope.row.name}}</el-tag></view>

@@ -1,5 +1,5 @@
 <template>
-  <view class="app-layout" :class="{ 'is-pc': isPc, 'is-h5': !isPc }">
+  <view class="min-h-screen bg-base-200/50" :class="{ 'is-pc': isPc, 'is-h5': !isPc }">
     <!-- 顶部导航栏 -->
     <top-nav-bar
       :is-pc="isPc"
@@ -15,14 +15,14 @@
     />
 
     <!-- 主内容区 -->
-    <view class="app-layout__body" :style="bodyStyle">
+    <view class="flex max-w-[1350px] mx-auto w-full px-0 min-h-[calc(100vh-65px)]" :style="bodyStyle">
       <!-- PC 端可选左侧菜单 -->
-      <view v-if="isPc && showSideMenu" class="app-layout__side">
+      <view v-if="isPc && showSideMenu" class="flex-shrink-0 relative z-10 w-64 shadow-sm">
         <side-menu :menu-items="sideMenuItems" />
       </view>
 
       <!-- 内容插槽 -->
-      <view class="app-layout__content" :class="{ 'has-side-menu': isPc && showSideMenu }">
+      <view class="flex-1 w-full relative z-0 animate-[contentFadeInUp_0.6s_ease-out]">
         <slot />
       </view>
     </view>
@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     bodyStyle() {
-      const topH = this.isPc ? 'var(--topnav-height-pc)' : 'var(--topnav-height-h5)'
+      // TopNavBar 使用了 sticky 定位，自然占位，无需再额外加 paddingTop 造成顶部断层翻倍空白
       let bottomH = '0px'
       if (this.isPc && this.showFooter) {
         bottomH = 'var(--footer-height)'
@@ -68,7 +68,7 @@ export default {
         bottomH = 'var(--tabbar-height)'
       }
       return {
-        paddingTop: topH,
+        paddingTop: '0px',
         paddingBottom: bottomH,
       }
     },
@@ -100,28 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-layout {
-  min-height: 100vh;
-  background-color: var(--color-bg-page);
-}
-
-.app-layout__body {
-  display: flex;
-  min-height: calc(100vh - var(--topnav-height-pc));
-}
-
-.app-layout__side {
-  flex-shrink: 0;
-}
-
-.app-layout__content {
-  flex: 1;
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  width: 100%;
-  animation: contentFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
 @keyframes contentFadeInUp {
   0% {
     opacity: 0;
@@ -131,17 +109,5 @@ export default {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.is-pc .app-layout__content {
-  padding: var(--spacing-lg);
-}
-
-.is-h5 .app-layout__content {
-  padding: var(--spacing-sm) var(--spacing-md);
-}
-
-.is-h5 .app-layout__body {
-  min-height: calc(100vh - var(--topnav-height-h5));
 }
 </style>

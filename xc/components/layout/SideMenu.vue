@@ -1,14 +1,16 @@
 <template>
-  <view class="side-menu">
-    <view
-      v-for="item in menuItems"
-      :key="item.path || item.title"
-      class="side-menu__item"
-      :class="{ 'is-active': currentPath === item.path }"
-      @click="navigateTo(item.path)"
-    >
-      <text class="side-menu__text">{{ item.title }}</text>
-    </view>
+  <view class="w-[200px] bg-base-100 min-h-full border-r border-base-200">
+    <ul class="menu p-3 w-full gap-1 mt-2">
+      <li v-for="item in menuItems" :key="item.path || item.title">
+        <a 
+          :class="{'active bg-primary/10 text-primary font-bold border-l-4 border-primary rounded-l-none': currentPath === item.path, 'border-l-4 border-transparent': currentPath !== item.path}" 
+          @click="navigateTo(item.path)"
+          class="rounded-lg transition-all duration-200 hover:bg-base-200 hover:translate-x-1"
+        >
+          {{ item.title }}
+        </a>
+      </li>
+    </ul>
   </view>
 </template>
 
@@ -39,36 +41,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.side-menu {
-  width: 200px;
-  background-color: var(--color-bg-card);
-  border-right: 1px solid var(--color-border);
-  padding: var(--spacing-sm) 0;
-  min-height: 100%;
-}
-
-.side-menu__item {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  cursor: pointer;
-  transition: var(--transition-all);
-  border-left: 3px solid transparent;
-  margin: 0 var(--spacing-xs) var(--spacing-xs);
-  border-radius: var(--radius-sm);
-}
-
-.side-menu__item:hover {
-  background-color: var(--color-bg-page);
-  transform: translateX(4px);
-}
-
-.side-menu__item.is-active {
-  color: var(--color-primary);
-  background-color: var(--color-primary-light);
-  border-left-color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
-}
-
-.side-menu__text {
-  font-size: var(--font-size-body);
-}
+/* Scoped styles removed in favor of Tailwind CSS / DaisyUI utility classes */
 </style>

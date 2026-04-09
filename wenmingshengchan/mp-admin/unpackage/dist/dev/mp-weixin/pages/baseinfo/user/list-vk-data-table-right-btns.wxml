@@ -1,0 +1,1 @@
+<block wx:if="{{row.audit_status===1}}"><el-button vue-id="ec9e4c4a-9" type="warning" size="mini" icon="el-icon-s-check" plain="{{true}}" data-event-opts="{{[['^click',[['auditBtn',['$0'],['row']]]]]}}" bind:click="__e" class="data-v-49b28eea" bind:__l="__l" vue-slots="{{['default']}}"> 实施审核 </el-button></block>

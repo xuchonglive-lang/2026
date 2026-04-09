@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "人员信息管理",
+  "usingComponents": {
+    "list-el-tree-default": "/pages/baseinfo/user/list-el-tree-default",
+    "list-vk-data-table-right-btns": "/pages/baseinfo/user/list-vk-data-table-right-btns"
+  }
+}

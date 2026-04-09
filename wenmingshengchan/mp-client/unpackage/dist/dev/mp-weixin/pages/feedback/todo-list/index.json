@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
+  }
+}

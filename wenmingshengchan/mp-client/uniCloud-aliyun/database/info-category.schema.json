@@ -1,0 +1,38 @@
+{
+  "bsonType": "object",
+  "required": [
+    "name",
+    "sort",
+    "status"
+  ],
+  "permission": {
+    "read": "doc.status == 1 || 'admin' in auth.role",
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "文档唯一标识符ID，由 uniCloud 在数据写入时自动生成"
+    },
+    "name": {
+      "bsonType": "string",
+      "description": "文章分类的具体名称，例如：安防章程、日常通知等"
+    },
+    "sort": {
+      "bsonType": "int",
+      "description": "分类的排序权重值，数字越大排名越靠前",
+      "defaultValue": 0
+    },
+    "status": {
+      "bsonType": "int",
+      "description": "分类的生命周期状态 (0 代表停用并隐藏， 1 代表正常启用可见)",
+      "defaultValue": 1
+    },
+    "is_del": {
+      "bsonType": "int",
+      "description": "极其重要的全局逻辑删除标记，1代表已删除，0代表正常。防物理删除利器",
+      "defaultValue": 0
+    }
+  }
+}

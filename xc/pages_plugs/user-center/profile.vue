@@ -1,363 +1,149 @@
 <template>
-  <app-layout page-title="个人信息" :show-tab-bar="false">
-    <view class="profile-page">
-      <!-- 头部用户卡片 -->
-      <view class="profile-header">
-        <image
-          class="profile-avatar"
-          :src="userInfo.avatar || userInfo.wx_avatar || '/static/avatar-default.png'"
-          mode="aspectFill"
-        />
-        <view class="profile-header-info">
-          <text class="profile-name">{{ userInfo.real_name || userInfo.wx_nickname || '未设置' }}</text>
-          <text class="profile-wx-name" v-if="userInfo.wx_nickname">
-            <text class="profile-wx-icon">微信</text> {{ userInfo.wx_nickname }}
-          </text>
-        </view>
-      </view>
+  <app-layout page-title="个人资料">
+    <div class="max-w-[800px] mx-auto px-6 py-10">
+      
+      <!-- Top Action -->
+      <button class="flex items-center gap-1 text-sm text-slate-500 hover:text-on-surface mb-8 font-medium transition-colors" @click="goBack">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        返回主页
+      </button>
 
-      <!-- 基本信息 -->
-      <view class="profile-section">
-        <text class="profile-section-title">基本信息</text>
-        <view class="profile-cell" @click="editRealName">
-          <text class="profile-cell-label">真实姓名</text>
-          <view class="profile-cell-value">
-            <text>{{ userInfo.real_name || '未设置' }}</text>
-            <text class="profile-cell-arrow">›</text>
-          </view>
-        </view>
-        <view class="profile-cell" @click="editMobile">
-          <text class="profile-cell-label">手机号码</text>
-          <view class="profile-cell-value">
-            <text>{{ maskedMobile || '未绑定' }}</text>
-            <text class="profile-cell-arrow">›</text>
-          </view>
-        </view>
-      </view>
+      <!-- Headings -->
+      <header class="mb-8 border-b border-slate-200 pb-6 flex items-end justify-between">
+        <div>
+          <h1 class="text-[32px] leading-snug font-bold text-on-surface mb-2 tracking-tight">个人资料与账户</h1>
+          <p class="text-sm text-slate-500">更新并管理您在安环一体化平台上的工作身份与基本联系信息。</p>
+        </div>
+        <button class="text-sm font-semibold text-blue-600 px-4 py-2 hover:bg-blue-50 rounded-md transition-colors">
+          修改密码
+        </button>
+      </header>
 
-      <!-- 企业组织 -->
-      <view class="profile-section">
-        <text class="profile-section-title">企业组织</text>
-        <view class="profile-cell">
-          <text class="profile-cell-label">所属部门</text>
-          <view class="profile-cell-value">
-            <text>{{ userInfo.tenant_name || '未分配' }}</text>
-          </view>
-        </view>
-        <view class="profile-cell" v-if="userInfo.group_name">
-          <text class="profile-cell-label">内部小组</text>
-          <view class="profile-cell-value">
-            <text>{{ userInfo.group_name }}</text>
-          </view>
-        </view>
-        <view class="profile-cell">
-          <text class="profile-cell-label">角色</text>
-          <view class="profile-cell-value">
-            <text>{{ roleText }}</text>
-          </view>
-        </view>
-      </view>
+      <!-- Profile Avatar -->
+      <div class="card p-8 mb-8 flex flex-col sm:flex-row items-center gap-8 bg-slate-50 border border-slate-100">
+         <div class="relative group cursor-pointer group">
+            <div class="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center text-[36px] font-bold text-blue-700 shadow-sm border-2 border-white overflow-hidden">
+              <span v-if="!user.avatar">张</span>
+              <img v-else :src="user.avatar" class="w-full h-full object-cover">
+              
+              <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="material-symbols-outlined text-white text-[28px] mb-1">photo_camera</span>
+              </div>
+            </div>
+            
+            <div class="absolute bottom-1 right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="material-symbols-outlined text-white text-[14px]">done</span>
+            </div>
+         </div>
+         
+         <div class="text-center sm:text-left flex-1 min-w-0">
+           <h2 class="text-xl font-bold text-on-surface mb-1">{{ user.name }}</h2>
+           <p class="text-sm text-slate-500 mb-4">{{ user.dept }} - {{ user.post }}</p>
+           
+           <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+             <button class="btn-secondary h-8 px-4 text-xs font-semibold shadow-sm">更换当前头像</button>
+             <button class="text-xs font-medium text-slate-400 hover:text-red-500 transition-colors">移除图标</button>
+           </div>
+           <p class="text-[11px] text-slate-400 mt-3 hidden sm:block">支持 JPG, PNG 或 GIF 格式。最大文件体积 2MB。</p>
+         </div>
+      </div>
 
-      <!-- 退出登录 -->
-      <view class="profile-logout" @click="logout">
-        <text class="profile-logout-text">退出登录</text>
-      </view>
-    </view>
+      <!-- Form Setup -->
+      <form class="space-y-6" @submit.prevent="saveProfile">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-on-surface">真实姓名 <span class="text-red-500">*</span></label>
+            <input type="text" v-model="form.name" class="input-base h-11" placeholder="您的名字" required>
+          </div>
+          <div class="space-y-2 relative">
+            <label class="block text-sm font-semibold text-slate-500">员工编号 (ERP认证只读)</label>
+            <input type="text" v-model="form.id" class="input-base h-11 bg-slate-50 text-slate-500 font-mono cursor-not-allowed" readonly>
+            <span class="material-symbols-outlined absolute right-3 top-[34px] text-emerald-500 text-[18px]" title="实名认证已绑定">verified_user</span>
+          </div>
+        </div>
 
-    <!-- 编辑真实姓名弹窗 -->
-    <uni-popup ref="namePopup" type="dialog">
-      <view class="edit-popup">
-        <text class="edit-popup-title">修改真实姓名</text>
-        <input
-          class="edit-popup-input"
-          v-model="editForm.real_name"
-          placeholder="请输入真实姓名"
-          maxlength="20"
-        />
-        <view class="edit-popup-btns">
-          <button class="edit-popup-cancel" @click="$refs.namePopup.close()">取消</button>
-          <button class="edit-popup-confirm" :loading="saving" @click="saveRealName">保存</button>
-        </view>
-      </view>
-    </uni-popup>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-500">归属组织 / 机构</label>
+            <input type="text" v-model="form.dept" class="input-base h-11 bg-slate-50 cursor-not-allowed text-slate-600" readonly>
+            <p class="text-xs text-slate-400 mt-1">组织架构信息由人事系统自动同步，如需变更请联系主数据专员。</p>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-500">岗位头衔</label>
+            <input type="text" v-model="form.post" class="input-base h-11 bg-slate-50 cursor-not-allowed text-slate-600" readonly>
+          </div>
+        </div>
 
-    <!-- 编辑手机号弹窗 -->
-    <uni-popup ref="mobilePopup" type="dialog">
-      <view class="edit-popup">
-        <text class="edit-popup-title">修改手机号码</text>
-        <input
-          class="edit-popup-input"
-          v-model="editForm.mobile"
-          placeholder="请输入手机号码"
-          type="number"
-          maxlength="11"
-        />
-        <view class="edit-popup-btns">
-          <button class="edit-popup-cancel" @click="$refs.mobilePopup.close()">取消</button>
-          <button class="edit-popup-confirm" :loading="saving" @click="saveMobile">保存</button>
-        </view>
-      </view>
-    </uni-popup>
+        <div class="w-full h-px bg-slate-200 my-8"></div>
+        
+        <h3 class="text-base font-bold text-on-surface mb-6">联系方式信息</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2 relative">
+            <label class="block text-sm font-semibold text-on-surface">工作手机号码 <span class="text-red-500">*</span></label>
+            <div class="relative flex">
+               <span class="inline-flex items-center justify-center px-3 border border-r-0 border-slate-300 bg-slate-50 text-slate-500 text-sm rounded-l-md">+86</span>
+               <input type="tel" v-model="form.phone" class="input-base h-11 rounded-l-none pl-3 flex-1" placeholder="11位手机号" required>
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-on-surface">企业邮箱地址</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">mail</span>
+              <input type="email" v-model="form.email" class="input-base h-11 pl-10" placeholder="zhangsan@company.com">
+            </div>
+          </div>
+        </div>
+        
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-on-surface">简短的工作介绍 (签名)</label>
+          <textarea v-model="form.bio" rows="3" class="input-base py-3 w-full resize-none text-sm placeholder-slate-400" placeholder="一句话描述你的主要工作范围或职责..."></textarea>
+        </div>
+
+        <!-- Submit actions -->
+        <div class="pt-8 border-t border-slate-200 flex items-center justify-end gap-4 mt-12">
+          <button type="button" class="btn-secondary px-6" @click="goBack">取消修改</button>
+          <button type="submit" class="btn-primary px-8 flex items-center gap-2">
+             <span class="material-symbols-outlined text-[18px]">save</span> 
+             保存修改提交
+          </button>
+        </div>
+
+      </form>
+
+    </div>
   </app-layout>
 </template>
 
 <script>
 export default {
+  name: 'UserProfile',
   data() {
     return {
-      userInfo: {},
-      editForm: {
-        real_name: '',
-        mobile: ''
+      user: {
+        name: '张三',
+        dept: '生产技术部-电气组',
+        post: '主任工程师',
+        avatar: ''
       },
-      saving: false
+      form: {
+        name: '张三',
+        id: 'EMP-2018-40331',
+        dept: '运行体系 / 生产技术部 / 电气维护中心',
+        post: '高低压配网主任工程师 (资深技师岗)',
+        phone: '13800138000',
+        email: 'zhangsan@xuchong.com',
+        bio: '主要负责全场供配电设施的改造升级与防雷接地安全管理。'
+      }
     }
-  },
-  computed: {
-    maskedMobile() {
-      let m = this.userInfo.mobile
-      if (!m || m.length < 7) return m
-      return m.substring(0, 3) + '****' + m.substring(7)
-    },
-    roleText() {
-      let role = this.userInfo.role
-      if (!role || role.length === 0) return '普通用户'
-      return role.join('、')
-    }
-  },
-  onShow() {
-    this.loadUserInfo()
   },
   methods: {
-    loadUserInfo() {
-      this.userInfo = this.vk.getVuex('$user.userInfo') || {}
-    },
-    editRealName() {
-      this.editForm.real_name = this.userInfo.real_name || ''
-      this.$refs.namePopup.open()
-    },
-    editMobile() {
-      this.editForm.mobile = this.userInfo.mobile || ''
-      this.$refs.mobilePopup.open()
-    },
-    async saveRealName() {
-      let val = this.editForm.real_name
-      if (!val || !val.trim()) {
-        return this.vk.toast('请输入真实姓名')
-      }
-      this.saving = true
-      try {
-        let res = await this.vk.callFunction({
-          url: 'user/kh/updateInfo',
-          data: { real_name: val.trim(), mobile: this.userInfo.mobile }
-        })
-        if (res.code === 0) {
-          this.vk.toast(res.msg, 'success')
-          // 刷新 Vuex 用户信息
-          this.vk.setVuex('$user.userInfo.real_name', val.trim())
-          this.loadUserInfo()
-          this.$refs.namePopup.close()
-        }
-      } catch (e) {
-        // vk 框架已自动处理
-      } finally {
-        this.saving = false
-      }
-    },
-    async saveMobile() {
-      let val = this.editForm.mobile
-      if (!val || !this.vk.pubfn.test(val, 'mobile')) {
-        return this.vk.toast('请输入正确的手机号码')
-      }
-      this.saving = true
-      try {
-        let res = await this.vk.callFunction({
-          url: 'user/kh/updateInfo',
-          data: { real_name: this.userInfo.real_name, mobile: val }
-        })
-        if (res.code === 0) {
-          this.vk.toast(res.msg, 'success')
-          this.vk.setVuex('$user.userInfo.mobile', val)
-          this.loadUserInfo()
-          this.$refs.mobilePopup.close()
-        }
-      } catch (e) {
-        // vk 框架已自动处理
-      } finally {
-        this.saving = false
-      }
-    },
-    async logout() {
-      try {
-        await this.vk.userCenter.loginOut()
-        this.vk.navigateTo('/pages/login/index')
-      } catch (e) {
-        this.vk.toast('退出失败，请重试')
-      }
+    goBack() { uni.navigateBack() },
+    saveProfile() {
+      uni.showToast({ title: '资料已成功更新', icon: 'success' })
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.profile-page {
-  padding: var(--spacing-md, 16px);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* 头部卡片 */
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md, 16px);
-  padding: var(--spacing-lg, 24px);
-  background: var(--color-bg-card, #fff);
-  border-radius: var(--radius-base, 6px);
-  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15,23,42,0.04));
-  margin-bottom: var(--spacing-md, 16px);
-}
-.profile-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 9999px;
-  object-fit: cover;
-  border: 2px solid var(--color-border, #E2E8F0);
-}
-.profile-header-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.profile-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-text-primary, #0F172A);
-  letter-spacing: -0.02em;
-}
-.profile-wx-name {
-  font-size: 13px;
-  color: var(--color-text-secondary, #475569);
-}
-.profile-wx-icon {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 3px;
-  background: #07c160;
-  color: #fff;
-  font-size: 10px;
-  margin-right: 4px;
-}
-
-/* 分节 */
-.profile-section {
-  background: var(--color-bg-card, #fff);
-  border-radius: var(--radius-base, 6px);
-  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15,23,42,0.04));
-  margin-bottom: var(--spacing-md, 16px);
-  overflow: hidden;
-}
-.profile-section-title {
-  display: block;
-  padding: 12px 16px 8px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-text-secondary, #475569);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.profile-cell {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-top: 1px solid var(--color-border, #E2E8F0);
-  cursor: pointer;
-  transition: background 150ms;
-}
-.profile-cell:hover {
-  background: var(--color-bg-page, #F8FAFC);
-}
-.profile-cell-label {
-  font-size: 14px;
-  color: var(--color-text-primary, #0F172A);
-}
-.profile-cell-value {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  color: var(--color-text-secondary, #475569);
-}
-.profile-cell-arrow {
-  font-size: 16px;
-  color: var(--color-text-placeholder, #94A3B8);
-}
-
-/* 退出 */
-.profile-logout {
-  margin-top: var(--spacing-xl, 32px);
-  text-align: center;
-  padding: 14px;
-  background: var(--color-bg-card, #fff);
-  border-radius: var(--radius-base, 6px);
-  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15,23,42,0.04));
-  cursor: pointer;
-  transition: background 150ms;
-}
-.profile-logout:hover {
-  background: var(--color-bg-page, #F8FAFC);
-}
-.profile-logout-text {
-  color: var(--color-danger, #EF4444);
-  font-size: 15px;
-  font-weight: 500;
-}
-
-/* 编辑弹窗 */
-.edit-popup {
-  background: var(--color-bg-card, #fff);
-  border-radius: var(--radius-lg, 8px);
-  padding: 24px;
-  width: 80vw;
-  max-width: 360px;
-}
-.edit-popup-title {
-  display: block;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-text-primary, #0F172A);
-  margin-bottom: 16px;
-}
-.edit-popup-input {
-  width: 100%;
-  height: 40px;
-  padding: 0 12px;
-  border: 1px solid var(--color-border, #E2E8F0);
-  border-radius: var(--radius-sm, 4px);
-  font-size: 14px;
-  box-sizing: border-box;
-}
-.edit-popup-btns {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-.edit-popup-cancel,
-.edit-popup-confirm {
-  flex: 1;
-  height: 38px;
-  border-radius: var(--radius-sm, 4px);
-  font-size: 14px;
-  font-weight: 500;
-  border: none;
-}
-.edit-popup-cancel {
-  background: var(--color-bg-page, #F8FAFC);
-  color: var(--color-text-secondary, #475569);
-}
-.edit-popup-confirm {
-  background: var(--color-primary, #0F172A);
-  color: #fff;
-}
-</style>

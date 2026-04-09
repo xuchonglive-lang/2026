@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Plan Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#b3c5ff",
+                      "primary": "#0050cb",
+                      "surface-tint": "#0054d6",
+                      "on-primary-container": "#f8f7ff",
+                      "surface-variant": "#e0e3e5",
+                      "primary-fixed": "#dae1ff",
+                      "on-surface-variant": "#424656",
+                      "on-secondary-container": "#294487",
+                      "on-error-container": "#93000a",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary": "#ffffff",
+                      "surface-container-high": "#e6e8ea",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c2c6d8",
+                      "on-secondary-fixed": "#001849",
+                      "inverse-primary": "#b3c5ff",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-tertiary-container": "#fff6f4",
+                      "tertiary": "#a33200",
+                      "secondary": "#425ca0",
+                      "error-container": "#ffdad6",
+                      "surface": "#f7f9fb",
+                      "surface-bright": "#f7f9fb",
+                      "primary-container": "#0066ff",
+                      "tertiary-container": "#cc4204",
+                      "surface-container-highest": "#e0e3e5",
+                      "secondary-fixed": "#dae1ff",
+                      "background": "#f7f9fb",
+                      "tertiary-fixed-dim": "#ffb59d",
+                      "on-background": "#191c1e",
+                      "tertiary-fixed": "#ffdbd0",
+                      "surface-container": "#eceef0",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f2f4f6",
+                      "on-primary-fixed": "#001849",
+                      "on-tertiary-fixed": "#390c00",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#b3c5ff",
+                      "outline": "#727687",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#191c1e",
+                      "on-secondary-fixed-variant": "#284386",
+                      "surface-dim": "#d8dadc",
+                      "on-primary-fixed-variant": "#003fa4",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#9bb4fe",
+                      "on-tertiary-fixed-variant": "#832600"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .industrial-grid {
+            background-image: radial-gradient(circle, #0050cb10 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+        }
+        .headline-font { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-on-surface industrial-grid pb-24">
+<!-- Header Section -->
+<header class="px-4 pt-12 pb-6">
+<div class="flex items-center justify-between">
+<h1 class="text-3xl font-extrabold headline-font tracking-tight text-on-surface">计划管理</h1>
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-xl">precision_manufacturing</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-xs mt-1 uppercase tracking-widest font-medium">Industrial Management Console</p>
+</header>
+<!-- Search Panel -->
+<section class="px-4 mb-8">
+<div class="glass-panel rounded-xl p-4 flex flex-col gap-3">
+<div class="grid grid-cols-2 gap-3">
+<div class="space-y-1">
+<label class="text-[10px] font-bold text-primary uppercase tracking-wider ml-1">日期</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest/50 border-none rounded-lg py-2 pl-3 pr-8 text-sm font-medium focus:ring-1 focus:ring-primary/30" type="text" value="2024-11-20"/>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-primary text-sm">calendar_today</span>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-bold text-primary uppercase tracking-wider ml-1">区域</label>
+<div class="relative">
+<select class="w-full bg-surface-container-highest/50 border-none rounded-lg py-2 pl-3 pr-8 text-sm font-medium appearance-none focus:ring-1 focus:ring-primary/30"><option>所有区域</option><option>选矿主厂房</option><option>破碎车间</option></select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-primary text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-bold py-2.5 rounded-lg text-sm shadow-lg shadow-primary/20 active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">search</span>
+                搜索
+            </button>
+</div>
+</section>
+<!-- Grouped List -->
+<main class="px-4 space-y-8">
+<!-- Department Group 1 -->
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="h-5 w-1 bg-primary rounded-full"></div>
+<h2 class="text-sm font-extrabold headline-font text-on-surface">生产二部 <span class="text-primary opacity-60 ml-1">(3)</span></h2>
+<div class="flex-1 h-[1px] bg-gradient-to-r from-primary/20 to-transparent"></div>
+</div>
+<!-- Card 1 -->
+<div class="glass-panel rounded-xl p-4 space-y-3">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-bold text-on-surface">设备周期性检修 - A区</h3>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">待执行</span>
+</div>
+<div class="flex items-center gap-4 text-[11px] text-on-surface-variant font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">event</span>
+                        2024-11-20
+                    </div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> 选矿主厂房</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">发布人: 张三</span>
+</div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="User" class="inline-block h-6 w-6 rounded-full ring-2 ring-white/50" data-alt="portrait of a young male worker in professional safety gear blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFEU7q_blubdGrRMHYQdZWmB_O6MSjdOZziDIwXu7ZgZifRiGPM-vMMVjTp2IpIxBDFVUFNG8rCgKV5e0j0UHnsuNpOyRNM5SSCfu7KY4Q7_KqBA3pTDXXyDyh4cFRHpzwfpWcoa-4owN6tt2AEo5qoqd6XicAnIc7cfrCfHRa7uOCIzhuvsFVUJAH8SGyqtva_VInKKVVbvkYvnd07IjHK05eyPRnp9_y0mTAnhnf8id6aGcsNJsUOVQEf5O6yHfF021oEwlzDFg"/>
+<img alt="User" class="inline-block h-6 w-6 rounded-full ring-2 ring-white/50" data-alt="portrait of a female engineer with clear focused expression on soft blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnodEtOxWPxFEZ1T2XP6DBHH_aUDFv-6C751RQCnvoeL4doG9pfuYNf-9W1Tcc8jobzZMp4uItu09uJ0bWeZbfx0y8TWLZdUbE_YUcXYofiu3f4mAhrVCHetvM2PDJUOHeJViqqnQ9eeCDvf1-MeACrA1luo-YkIgyt9hn5HVqAxzpQrXM0WWpJILKUCcjzgaTY8sZFvJpIwsLZyEmqREpz7KJtAgjOTBSKD4Q3dL11ulKE1ectv0SnX_V8ZtivdauQqXW58DkQVY"/>
+<img alt="User" class="inline-block h-6 w-6 rounded-full ring-2 ring-white/50" data-alt="portrait of a male technician in a clean factory setting with neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL40tJJB5UGXfWT_WvlhqjaNd0rwxM7Jmg_ca_rqo-gkOUBTktLRPcoH1dhwxc1ESKFoTfr1HjNyHiYKfilGj29RAuuToyO7hHIKMsC17WQuXrXn1Zu92zGDYHaoOMOwNTqz2T9aUYZjsUR3t-KFuDrm8B2r8tGcqJRbg7485o8puOYdKlfoARSGo2RfrDAfiTU0ZvlHB6XlbAPGSNFohn_9pn5AGLfC2eJsbaYyYdnm0kWVfA_FqOvZ1m81zkXCBMupdVNVxZUoI"/>
+<div class="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center ring-2 ring-white/50">
+<span class="text-[8px] font-bold text-primary">+2</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2 bg-white/40 hover:bg-white/60 text-primary text-[11px] font-bold rounded-lg transition-colors border border-primary/10">执行反馈</button>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel rounded-xl p-4 space-y-3">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-bold text-on-surface">生产线温控校验</h3>
+<span class="px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">已完成</span>
+</div>
+<div class="flex items-center gap-4 text-[11px] text-on-surface-variant font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">event</span>
+                        2024-11-19
+                    </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">apartment</span>
+                        质检办
+                    </div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">发布人: 李四</span>
+</div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="User" class="inline-block h-6 w-6 rounded-full ring-2 ring-white/50" data-alt="profile photo of a smiling professional male in white factory uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfKJUJ3REevDKVS-ah3tLBhF3vM3Oj3zGhs3SOx_XUpLiNGX4mYes30kjD8E-Nxn5EmVuPq4WubYCq6RhVG19dslYcqXUqTiNxMnb-QyI53sR8MZcgLNRvyY6JEPvQ0y3vuXcs7cgOWGB0vJFZ0Gc3NUaVdBKscP5-m2xGvne4CKm7fCsQtGFlPAB3iLsrvis5B_ojrhtV4LyUn0G38YZFNVBC2bgkeR4as7zFqQDlWtBHktsPYX9tGXR5yXx9cttNtH4feeyuwHM"/>
+<img alt="User" class="inline-block h-6 w-6 rounded-full ring-2 ring-white/50" data-alt="profile photo of a female industrial designer with glasses in bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPnMkVSVT6pOzzwSS5qqEEDW5yNR--BPZNiHD0XlRPqkTC8o0-jqgKYecAiQn59n_3U-PSn3XQ8U0qckq4ZNFT9ukIny45vSh9Cs6FxC2fFHPzrdzBuD6jf4EGnfBpQx39dBgW1ULtLJCXM5k1GgA_bGpHz0PoyYiyFnp9_Dagrni0lfHQH35DpZRODwUHYc3mFQFzSSrJKJs_12avYYDDon2cBnjt043DBYcVHSMD5tSMxutXHQPt8DXajKiQMQU7Wl9pZ-ObQe0"/>
+</div>
+</div>
+<button class="w-full py-2 bg-white/40 hover:bg-white/60 text-primary text-[11px] font-bold rounded-lg transition-colors border border-primary/10">执行反馈</button>
+</div>
+</div>
+<!-- Department Group 2 -->
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="h-5 w-1 bg-primary rounded-full"></div>
+<h2 class="text-sm font-extrabold headline-font text-on-surface">维保中心 <span class="text-primary opacity-60 ml-1">(1)</span></h2>
+<div class="flex-1 h-[1px] bg-gradient-to-r from-primary/20 to-transparent"></div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-xl p-4 space-y-3">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-bold text-on-surface">供配电系统紧急检修</h3>
+<span class="px-2 py-0.5 bg-red-50 text-red-600 text-[10px] font-bold rounded-full uppercase tracking-tighter">异常</span>
+</div>
+<div class="flex items-center gap-4 text-[11px] text-on-surface-variant font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">event</span>
+                        2024-11-20
+                    </div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> 选矿主厂房</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">发布人: 王主管</span>
+</div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="User" class="inline-block h-6 w-6 rounded-full ring-2 ring-white/50" data-alt="portrait of a senior male engineer with gray hair in professional industrial attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDAVI_ayUpO14vsdN6-TmUC5vEU1XbRhA4utO5DqoUQGhCDTgx0wCOviWVeqp7N4NDMsqHGar2XyWHawyxse8LoYKrCjiD0S8mktEo_DtdjunMVzbkrxLCP-iiu6piJHbiHclFYhmCCfbDIqlVgOZwMiL73jM3noSM6pbTpKExms2CQeh1oFQJm2rVRBJ-RxlRkyMiTvqoUsdL2cXTTExlMQp57Tmh_MiCZ3fvPiVJFSAmzRHRKpVv8jPYV4JlLj-OHwiRK8ljNPk"/>
+</div>
+</div>
+<button class="w-full py-2 bg-white/40 hover:bg-white/60 text-primary text-[11px] font-bold rounded-lg transition-colors border border-primary/10">执行反馈</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<!-- style_shell_layout: fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 bg-white/20 dark:bg-black/20 -->
+<!-- style_component_shape: fixed bottom-0 w-full z-50 rounded-t-xl -->
+<!-- style_bg_color: bg-white/80 backdrop-blur-2xl dark:bg-slate-900/80 -->
+<!-- style_separation_logic: border-t border-white/20 dark:border-slate-800/20 -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-xl bg-white/80 backdrop-blur-2xl border-t border-white/20 flex justify-around items-center px-2 py-3 shadow-[0_-4px_24px_rgba(0,80,203,0.06)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase">Home</span>
+</a>
+<!-- Feedback -->
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">chat_bubble</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase">Feedback</span>
+</a>
+<!-- Projects -->
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">account_tree</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase">Projects</span>
+</a>
+<!-- Plans (ACTIVE) -->
+<!-- style_active_navigation: flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl px-3 py-1 -->
+<a class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-xl px-3 py-1 active:scale-90 transition-transform cubic-bezier(0.2,0.8,0.2,1)" href="#">
+<span class="material-symbols-outlined mb-1">assignment</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase">Plans</span>
+</a>
+<!-- Mine -->
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase">Mine</span>
+</a>
+</nav>
+</body></html>

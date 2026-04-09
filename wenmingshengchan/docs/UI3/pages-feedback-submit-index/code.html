@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-container": "#294487",
+                        "secondary-fixed": "#dae1ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001849",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#425ca0",
+                        "on-surface-variant": "#424656",
+                        "secondary-container": "#9bb4fe",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-container": "#cc4204",
+                        "outline": "#727687",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b3c5ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#fff6f4",
+                        "on-secondary-fixed": "#001849",
+                        "on-primary-container": "#f8f7ff",
+                        "surface-container": "#eceef0",
+                        "outline-variant": "#c2c6d8",
+                        "primary": "#0050cb",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "surface-tint": "#0054d6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0066ff",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed-variant": "#284386",
+                        "tertiary": "#a33200",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .industrial-grid {
+            background-image: radial-gradient(circle, #0050cb 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.03;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface">
+<div class="fixed inset-0 industrial-grid pointer-events-none"></div>
+<main class="pt-8 pb-32 px-4 max-w-2xl mx-auto">
+<div class="mb-6">
+<h2 class="text-2xl font-bold font-headline text-on-surface tracking-tight mb-1">反馈录入</h2>
+<p class="text-on-surface-variant text-sm">请按标准上传规定点位现场信息</p>
+</div>
+<section class="glass-card rounded-xl p-4 mb-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-[10px] uppercase tracking-wider text-primary font-bold bg-primary/10 px-2 py-0.5 rounded-full mb-2 inline-block">需反馈点位</span>
+<h3 class="text-lg font-semibold text-on-surface font-headline">A2区-组装流水线-042</h3>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+<div class="grid grid-cols-2 gap-4 border-t border-white/20 pt-4">
+<div>
+<p class="text-[10px] text-on-surface-variant mb-0.5">负责人</p>
+<p class="text-sm font-medium">张建国 (工号: 8812)</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant mb-0.5">部门及小组</p>
+<p class="text-sm font-medium">采一作业区 运转甲班</p>
+</div>
+</div>
+</section>
+<div class="mb-6">
+<button class="w-[40%] bg-error text-white text-xs font-bold py-2.5 rounded-lg shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center gap-1.5 mx-auto"><span class="material-symbols-outlined text-[16px]" data-icon="info">info</span>该点位上传标准[必看]</button>
+</div>
+<section class="mb-6">
+<div class="flex items-center justify-between mb-3 px-1">
+<h4 class="text-sm font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
+                    现场影像资料
+                </h4>
+<span class="text-[10px] text-on-surface-variant">支持 JPG, PNG</span>
+</div>
+<div class="glass-card rounded-xl p-4 flex flex-col gap-4">
+<div class="relative w-full aspect-video rounded-lg border-2 border-dashed border-outline-variant bg-white/10 flex flex-col items-center justify-center hover:bg-white/20 transition-all duration-300 group cursor-pointer overflow-hidden">
+<span class="material-symbols-outlined text-4xl text-primary/40 group-hover:scale-110 transition-transform duration-300" data-icon="add_a_photo">add_a_photo</span>
+<p class="mt-2 text-sm font-medium text-on-surface-variant">点击上传主现场照片</p>
+<p class="text-[10px] text-on-surface-variant/60">该照片将作为报告封面</p>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2">
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border border-white/30 bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-primary/50" data-icon="add">add</span>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border border-white/30 relative">
+<img alt="Factory Detail 1" class="w-full h-full object-cover" data-alt="close-up of industrial machinery and polished metallic parts in a clean factory environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPq94hN8IzumNlRdASxYyIciN6sBRmG_2uwP7gP8ZLiK_048zoUl2e5nMaoCTrHsQEUSEHppRV5DA2zb95nVCkzEAjXIt35nV7kZJgR2g8SAf82Iuec5UFyu953HTFXbdn32JYUKNmH--VnazvKEpDkattAV4-tSvvZeLxaheUUBl14zBSJraE9dafwNFn14iqMvqKvhhrVErNsY3Ecz5MaIVR8J0cEe9kD8idt1FPsdfzE9DQ6QELZjcCvfrduoS2b5eNLwPutZw"/>
+<button class="absolute top-1 right-1 bg-error/80 text-white rounded-full p-0.5 scale-75">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border border-white/30 relative">
+<img alt="Factory Detail 2" class="w-full h-full object-cover" data-alt="blurred background of a high-tech modern automated production line with blue lighting accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPrJ8w8Gd1UjcJ4oR8wRFC4Y3McarrZvCD2UbD4NeA-f1ngVqaxkiYu-w4KUTAf6dmNFboYkUfidrsK9p2DsxuwF5SbRVNNuKmfvv56lAEzINx-upks8ud2P2aQJOkVbx2YmJCu5QVcTo-2xYDv6lo_ZVnb66uwe8bGsPo1EYrbAdDvg4RM7ooykc7PMfh63o7gLs75A4y5VLTiiP41QD1q24SEuoeRqeGcUyLCmYHt4V9zpb-0aR1FXuaNtzQduLhiKcXmJnmMm4"/>
+<button class="absolute top-1 right-1 bg-error/80 text-white rounded-full p-0.5 scale-75">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border-2 border-dashed border-outline-variant/50 bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant text-[20px]" data-icon="image">image</span>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border-2 border-dashed border-outline-variant/50 bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant text-[20px]" data-icon="image">image</span>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<div class="flex items-center justify-between mb-3 px-1">
+<h4 class="text-sm font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit_note">edit_note</span>
+                    现场情况说明
+                </h4>
+</div>
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="bg-white/40 border-b border-white/20 p-2 flex gap-4 overflow-x-auto">
+<button class="p-1 hover:bg-primary/10 rounded transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="format_bold">format_bold</span></button>
+<button class="p-1 hover:bg-primary/10 rounded transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="format_italic">format_italic</span></button>
+<button class="p-1 hover:bg-primary/10 rounded transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+<button class="p-1 hover:bg-primary/10 rounded transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="format_quote">format_quote</span></button>
+<button class="p-1 hover:bg-primary/10 rounded transition-colors ml-auto"><span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="undo">undo</span></button>
+</div>
+<div class="p-4 bg-white/10 min-h-[180px]">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant/40 leading-relaxed resize-none h-full" placeholder="在此详细描述现场文明生产执行情况，包括但不限于：物料堆放、地面清洁度、员工合规状态等..."></textarea>
+</div>
+</div>
+</section>
+</main>
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-white/40 backdrop-blur-2xl border-t border-white/20 px-6 py-4 flex flex-col items-center">
+<button class="w-full max-w-md bg-primary-container text-white font-bold py-4 rounded-xl shadow-[0_4px_16px_rgba(0,80,203,0.3)] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+            提交反馈报告
+        </button>
+<p class="mt-2 text-[10px] text-on-surface-variant/60 font-medium">您的反馈将实时同步至文明生产管理后台</p>
+</div>
+<nav class="fixed bottom-0 w-full z-50 bg-white/25 dark:bg-slate-900/25 backdrop-blur-xl border-t border-white/20 shadow-[0_-8px_32px_0_rgba(0,80,203,0.08)] flex justify-around items-center px-2 py-3 pb-safe md:hidden hidden">
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-inter text-[10px] tracking-wider">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-blue-700 font-bold bg-blue-50/30 rounded-xl px-3 py-1">
+<span class="material-symbols-outlined" data-icon="sensors" style="font-variation-settings: 'FILL' 1;">sensors</span>
+<span class="font-inter text-[10px] tracking-wider">现场反馈</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-inter text-[10px] tracking-wider">重点项目</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-inter text-[10px] tracking-wider">计划执行</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[10px] tracking-wider">我的</span>
+</div>
+</nav>
+</body></html>

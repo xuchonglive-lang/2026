@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b3c5ff",
+                        "surface-tint": "#0054d6",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-primary": "#b3c5ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-surface-variant": "#424656",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-secondary-container": "#294487",
+                        "on-primary-container": "#f8f7ff",
+                        "on-secondary-fixed-variant": "#284386",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-container": "#9bb4fe",
+                        "on-tertiary-container": "#fff6f4",
+                        "tertiary": "#a33200",
+                        "primary-container": "#0066ff",
+                        "tertiary-container": "#cc4204",
+                        "background": "#f7f9fb",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed": "#dae1ff",
+                        "secondary": "#425ca0",
+                        "primary": "#0050cb",
+                        "outline": "#727687",
+                        "on-surface": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d8",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "on-primary-fixed": "#001849",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary-fixed": "#001849",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+            min-height: 100vh;
+        }
+        .industrial-grid {
+            background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="industrial-grid text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-blue-600/25 backdrop-blur-xl border-b border-white/20 shadow-[0_8px_32px_0_rgba(0,80,203,0.08)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-400">precision_manufacturing</span>
+<span class="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-wider font-headline">Civilized Production</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-600">settings</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-4 max-w-md mx-auto">
+<!-- Profile Section -->
+<section class="glass-card rounded-xl p-5 mb-6 flex items-center gap-4">
+<div class="relative">
+<img alt="User Portrait" class="w-20 h-20 rounded-full border-2 border-white/50 object-cover" data-alt="close-up portrait of a professional middle-aged man in business casual attire with a friendly expression, studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW8FQraPu0NIoi0swLW5KtdsUb5voOxessnmjbRy_StCxoRq49Ni2k9RLZfsg5CRrSKaNPzJNk2FG19tqd36w99fBD3QZfXX4A5vDtmn638IoBG70k-5RqEBCGlDpSEhEgWk9bUHQqsQrLxX35uQt2PW2yd9kaxgb6roYf-eusSdWOyvyD7ITjMGqcUG57KmHbvc4IIX6zLjH2AYO7Ydvyj6ElbPOeIjgcdoubwbvWjZfVY4cKwAHkP-dYTV2eeSYD8FMK2goDMIw"/>
+<div class="absolute bottom-0 right-0 w-6 h-6 bg-secondary-container rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold font-headline tracking-tight text-on-surface">张三</h2>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/50 text-on-secondary-container text-[10px] font-bold tracking-widest uppercase">已审核</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1 font-body">生产一部 · 高级生产经理</p>
+<div class="flex gap-4 mt-3">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-outline">工号</span>
+<span class="font-headline font-bold text-sm">CP-202408</span>
+</div>
+<div class="flex flex-col border-l border-white/20 pl-4">
+<span class="text-[10px] uppercase tracking-wider text-outline">职级</span>
+<span class="font-headline font-bold text-sm">L4</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Quick Look -->
+<div class="grid grid-cols-2 gap-3 mb-6">
+<div class="glass-card rounded-xl p-3">
+<p class="text-[10px] uppercase tracking-widest text-outline mb-1">本月完成率</p>
+<p class="text-xl font-extrabold font-headline text-primary">98.4%</p>
+</div>
+<div class="glass-card rounded-xl p-3">
+<p class="text-[10px] uppercase tracking-widest text-outline mb-1">安全天数</p>
+<p class="text-xl font-extrabold font-headline text-tertiary">428</p>
+</div>
+</div>
+<!-- Action Items List -->
+<div class="space-y-3">
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 active:scale-95 transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">rate_review</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-on-surface">现场反馈信息</p>
+<p class="text-[10px] text-on-surface-variant">Real-time Field Feedback</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 active:scale-95 transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">account_tree</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-on-surface">重点工作记录</p>
+<p class="text-[10px] text-on-surface-variant">Key Task Documentation</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 active:scale-95 transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">event_note</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-on-surface">计划执行历史</p>
+<p class="text-[10px] text-on-surface-variant">Execution Performance History</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 active:scale-95 transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">report_problem</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-on-surface">问题报备记录</p>
+<p class="text-[10px] text-on-surface-variant">Incident Reporting Logs</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<!-- Logout Button -->
+<button class="mt-10 w-full glass-card bg-surface-container-low/50 border-none rounded-xl py-4 px-6 flex items-center justify-center gap-2 active:scale-95 transition-all duration-300 shadow-[0_4px_16px_rgba(186,26,26,0.1)]">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">logout</span>
+<span class="text-error font-bold font-headline tracking-wide">退出登录</span>
+</button>
+<p class="text-center text-[10px] text-outline mt-8 uppercase tracking-[0.2em]">Civilized Production System v2.4.0</p>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe h-20 bg-white/25 backdrop-blur-xl border-t border-white/20 shadow-[0_-8px_32px_0_rgba(0,80,203,0.08)] rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">home_work</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1">现场反馈</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1">重点项目</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1">计划执行</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-600/10 text-blue-700 dark:text-blue-300 rounded-xl px-2 py-1 active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold mt-1">我的</span>
+</div>
+</nav>
+</body></html>

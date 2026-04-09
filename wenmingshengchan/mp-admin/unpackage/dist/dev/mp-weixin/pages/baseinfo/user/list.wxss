@@ -1,0 +1,32 @@
+.dept-manage .dept-tree-card.data-v-49b28eea {
+  min-height: calc(100vh - 120px);
+}
+.dept-manage .table-card.data-v-49b28eea {
+  min-height: calc(100vh - 120px);
+}
+.dept-manage .dept-tree-header.data-v-49b28eea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+}
+.dept-manage .dept-tree-node.data-v-49b28eea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+.dept-manage .dept-tree-node ._i.data-v-49b28eea {
+  color: #909399;
+  margin-right: 5px;
+}

@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "mp-admin"
+		},
+		{
+			"path": "mp-client"
+		},
+		{
+			"path": "docs"
+		},
+		{
+			"path": ".agent"
+		},
+		{
+			"path": ".specify"
+		},
+		{
+			"path": "specs"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

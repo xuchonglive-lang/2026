@@ -1,0 +1,104 @@
+{
+  "pages": [
+    "pages/user/login/index",
+    "pages/user/register/index",
+    "pages/user/audit-status/index",
+    "pages/user/mine/index",
+    "pages/report/submit-entry/index",
+    "pages/report/public-board/index",
+    "pages/report/my-record/index",
+    "pages/plan/list/index",
+    "pages/plan/feedback/index",
+    "pages/plan/history/index",
+    "pages/keywork/project/list/index",
+    "pages/keywork/project/process-feed/index",
+    "pages/keywork/project/apply-finish/index",
+    "pages/keywork/project/result-view/index",
+    "pages/feedback/todo-list/index",
+    "pages/feedback/submit/index",
+    "pages/feedback/history/index",
+    "pages/info/index",
+    "pages/info/detail/index",
+    "pages/index/index"
+  ],
+  "subPackages": [
+    {
+      "root": "pages_template",
+      "pages": [
+        "db/db",
+        "db/list/list",
+        "uni-id/index/index",
+        "uni-id/password/password",
+        "uni-id/mobile/mobile",
+        "uni-id/univerify/univerify",
+        "uni-id/weixin/weixin",
+        "uni-id/weixin/h5-weixin",
+        "uni-id/weixin/set-user-info",
+        "uni-id/alipay/alipay",
+        "uni-id/qq/qq",
+        "uni-id/util/util",
+        "uni-id/email/email",
+        "uni-id/login/index/index",
+        "uni-id/login/register/register",
+        "uni-id/login/forget/forget",
+        "uni-id/closeAccount/closeAccount",
+        "vk-vuex/vk-vuex",
+        "openapi/baidu/baidu",
+        "uni-id/test/test",
+        "plugs/lucky-draw/lucky-draw"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "rpxCalcMaxDeviceWidth": 450,
+    "rpxCalcBaseDeviceWidth": 375,
+    "rpxCalcIncludeWidth": 750,
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#94a3b8",
+    "selectedColor": "#0050cb",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/info/index",
+        "text": "信息传达"
+      },
+      {
+        "pagePath": "pages/keywork/project/list/index",
+        "text": "重点推进"
+      },
+      {
+        "pagePath": "pages/plan/list/index",
+        "text": "计划执行"
+      },
+      {
+        "pagePath": "pages/feedback/todo-list/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 180000,
+    "connectSocket": 60000,
+    "uploadFile": 6000000,
+    "downloadFile": 6000000
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "方便自动填写地址"
+    }
+  },
+  "__usePrivacyCheck__": true,
+  "usingComponents": {}
+}

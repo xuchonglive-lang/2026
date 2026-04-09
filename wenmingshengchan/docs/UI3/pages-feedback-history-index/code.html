@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdbd0",
+                        "secondary": "#425ca0",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-tint": "#0054d6",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7f9fb",
+                        "tertiary-container": "#cc4204",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "secondary-container": "#9bb4fe",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-tertiary-container": "#fff6f4",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0066ff",
+                        "outline-variant": "#c2c6d8",
+                        "surface-container-high": "#e6e8ea",
+                        "surface": "#f7f9fb",
+                        "on-primary-container": "#f8f7ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline": "#727687",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed": "#dae1ff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#424656",
+                        "inverse-on-surface": "#eff1f3",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dae1ff",
+                        "on-tertiary-fixed": "#390c00",
+                        "on-primary-fixed": "#001849",
+                        "on-secondary-fixed": "#001849",
+                        "tertiary": "#a33200",
+                        "primary": "#0050cb",
+                        "on-secondary-container": "#294487",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed-variant": "#284386"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .industrial-grid {
+            background-image: linear-gradient(rgba(0, 80, 203, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 80, 203, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface industrial-grid min-h-screen pb-24">
+<main class="pt-8 px-4 space-y-6">
+<div class="px-2">
+<h1 class="text-3xl font-extrabold text-on-surface font-headline tracking-tighter">现场反馈查询</h1>
+<p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mt-1 opacity-80">Industrial Ether Systems</p>
+</div>
+<section class="glass-panel rounded-xl p-4 shadow-[0_8px_32px_0_rgba(0,80,203,0.08)]">
+<div class="flex items-center justify-between gap-3">
+<div class="flex-1 space-y-1">
+<label class="text-[10px] font-bold text-primary uppercase tracking-widest font-headline">筛选日期</label>
+<div class="bg-surface-container-highest/50 rounded-lg px-3 py-2 flex items-center justify-between">
+<span class="text-sm font-medium">2024-05-23</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<label class="text-[10px] font-bold text-primary uppercase tracking-widest font-headline">所属班次</label>
+<div class="bg-surface-container-highest/50 rounded-lg px-3 py-2 flex items-center justify-between">
+<span class="text-sm font-medium">白班 8:00-20:00</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex justify-end mt-4">
+<button class="flex items-center gap-2 bg-primary text-white px-6 py-2 rounded-lg font-headline font-bold text-sm shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">search</span>
+<span>点击查询</span>
+</button>
+</div></section>
+<section class="space-y-4">
+<!-- Card 1 -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-[0_8px_32px_0_rgba(0,80,203,0.05)] border border-white/30">
+<div class="p-4 border-b border-white/10">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-extrabold text-on-surface tracking-tight">A2区-组装流水线-042</h3>
+<span class="bg-secondary-container/30 text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">运行中</span>
+</div>
+</div>
+<div class="p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a factory supervisor in a blue uniform with a focused expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1zZ7moh6O98tLsTwYzKKxlJDiaV6cwryc6c2s32o0tq18fKxLrMzRG5q5YBEYYJw7ueLdnLJRhlAFqf45q8yPihSom7SiWHvr4UNB6xdI2cYD6X_vmFP0wArtJNAlW2bsC7gpGUC6we5_Yj79Bt3UHh-b5UDSfg7aFgfNSlWiBgRFH2_EmzmRfMxZAm8AeYbKyW0LLOFr6KMOBBxN1mtMANaCS_bstZS7B8TpAGJ4LAbmw_cp7_it7zScJJbMts-BYxyCmr46Fec"/>
+</div>
+<div class="flex-1">
+<div class="flex items-baseline gap-2">
+<span class="text-sm font-bold text-on-surface">张建国</span>
+<span class="text-[10px] text-on-surface-variant">生产部 · 维修二组</span>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-outline mt-0.5">
+<span class="material-symbols-outlined text-[12px]">schedule</span>
+<span>2024-05-23 14:30</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3 overflow-x-auto px-4 pb-4 no-scrollbar">
+<div class="flex-shrink-0 w-48 h-32 rounded-lg overflow-hidden shadow-lg border border-white/20">
+<img class="w-full h-full object-cover" data-alt="close-up of industrial machinery gears and orange robotic arm in a clean modern factory setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1q4XdQEzaf_VmQH9skDKQnMZS8JjVmBI3OdZI02Cj25XPoCIRcPC9i8hSS9F3jvqjbYmWuqUpQYAV-6oL1ZZI7AuIYG7tFfXMPz7Gfcz7W_L7wGk5VuOu4hkU3F1TlZhBnCK10H1IV9J56UNVZXGzlPhlzPl8SgicKRZ3uBhZKAP0uO6cn9YOF6kbb7C-gCgFxNr5lo1Ptnzw2lyG1hr1evKVEGu9acJXTfcwgDwvrsVH9YTpw0UyfaG53-GeQnZmlI98uUCmt-Y"/>
+</div>
+<div class="flex-shrink-0 w-48 h-32 rounded-lg overflow-hidden shadow-lg border border-white/20">
+<img class="w-full h-full object-cover" data-alt="view of complex industrial piping and steel structures with blue ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYcbvAAJ2BaI_LOCc6HywWBz2uQX4Vuw-eYC9l7GCBIFxykHOKqzNg51yP3Cy0cykBDZDCO6ShXrYpiq4yINRltmK5mv7XfynUaOhSoXjL3OjAKWmm5F6ONEULyBtDybSmlMQvHbtPqoQ-FcIt75ensyffq4pbJd4lLiI7FY8RC4SwHDDJEbvvA_Xu-Ke_NwzlScZaGI8Ex80eTf9m8YMdU6YYcNruTSNVcoL8jp_3pGdueZSYP1VQ862f6GHwzda1-U3y_eOdKss"/>
+</div>
+</div>
+<div class="mx-4 mb-4 p-3 bg-surface-container-lowest/40 rounded-lg border border-white/10">
+<p class="text-xs text-on-surface-variant leading-relaxed font-body">
+                        在进行例行巡检时发现，该工位传送带驱动电机外壳温度异常（约65℃），并伴随轻微高频振动。已通知维护班组，建议在下一轮班次间隙进行润滑检查。
+                    </p>
+</div>
+</div>
+<!-- Card 2 (Modified) -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-[0_8px_32px_0_rgba(0,80,203,0.05)] border border-white/30">
+<div class="p-4 border-b border-white/10">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-extrabold text-on-surface tracking-tight">C5区-物料中转站-B02</h3>
+<span class="bg-error/10 text-error text-[10px] px-2 py-0.5 rounded-full font-bold border border-error/20">未按要求反馈</span>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div class="space-y-3">
+<label class="text-[10px] font-bold text-primary uppercase tracking-widest font-headline">要求反馈责任人：</label>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/10">
+<img alt="Responsible person 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClt0avl1khEhVdCbfjo6czMTRA9SuCwUF5fn3-UzId3Q7f7C0b3GScaiEBRovP5Md-60XOWNlGTcNGAlTjSZQhTJkK5BorMwUDrOAbIE8wTowzYYVq6ZzQVK5YaQVqrXZvBjY6EmE4FurPfGqDCC6lT6UGiRzgLuJQypqyZE9ExlcZJILnYzYVayC0dzYkluK3wiVVtcn-JWkB3C6x-rMQ94FredQqt45k43Hw4niA6LRLqp9lvF30uXAvAzuyV13cnDYCR_WEOc4"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">王晓梅</span>
+<span class="text-[10px] text-on-surface-variant">质检部 · 品控A组</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/10">
+<img alt="Responsible person 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzzs5wPZLxcKRCoYJ7SYuQaSs2ZSe5IJFmB1N5i0N1mHf4pKLQLZMey0dCO0t6u4GrG5DMRTKKZK4s_z88gDEWH4loKdzGdswXSaCHh3HUg6bIR7Ub6JNiAzEOIPNvjRcWaBkY1KGnzjViAfkUko7qgAe6MDlqKZ3SSoS-auUQAbygHjPbSZgIr70CmbFsKjcRTtGl3NrlJEvJ0j8tgOwalzsv9-edVRLMPbx4miGfHWKwPT7SVYGT3xhGROz30Wo7ZdLV7pDodwg"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">刘强</span>
+<span class="text-[10px] text-on-surface-variant">动力科 · 运行三班</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/10 flex items-center justify-center bg-surface-container-highest">
+<span class="material-symbols-outlined text-sm text-outline">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">李明</span>
+<span class="text-[10px] text-on-surface-variant">生产部 · 调度组</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center py-6 text-center space-y-2 opacity-40">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-2xl text-outline-variant">inventory_2</span>
+</div>
+<span class="text-xs font-medium text-on-surface-variant tracking-wide">暂无反馈信息</span>
+</div></div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-[0_8px_32px_0_rgba(0,80,203,0.05)] border border-white/30">
+<div class="p-4 border-b border-white/10">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-extrabold text-on-surface tracking-tight">D1-液压泵组-H04</h3>
+<span class="bg-secondary-container/30 text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">运行中</span>
+</div>
+</div>
+<div class="p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="middle aged engineer in hard hat smiling in front of industrial background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzzs5wPZLxcKRCoYJ7SYuQaSs2ZSe5IJFmB1N5i0N1mHf4pKLQLZMey0dCO0t6u4GrG5DMRTKKZK4s_z88gDEWH4loKdzGdswXSaCHh3HUg6bIR7Ub6JNiAzEOIPNvjRcWaBkY1KGnzjViAfkUko7qgAe6MDlqKZ3SSoS-auUQAbygHjPbSZgIr70CmbFsKjcRTtGl3NrlJEvJ0j8tgOwalzsv9-edVRLMPbx4miGfHWKwPT7SVYGT3xhGROz30Wo7ZdLV7pDodwg"/>
+</div>
+<div class="flex-1">
+<div class="flex items-baseline gap-2">
+<span class="text-sm font-bold text-on-surface">刘强</span>
+<span class="text-[10px] text-on-surface-variant">动力科 · 运行三班</span>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-outline mt-0.5">
+<span class="material-symbols-outlined text-[12px]">schedule</span>
+<span>2024-05-23 09:45</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3 overflow-x-auto px-4 pb-4 no-scrollbar">
+<div class="flex-shrink-0 w-48 h-32 rounded-lg overflow-hidden shadow-lg border border-white/20">
+<img class="w-full h-full object-cover" data-alt="pressure gauges on industrial pipe system showing high precision measurements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAReUvx6nyZ7Q7RNUCqQm_wnC-wWEcfuOTxejMIYHQepz1UEoWSPKdSvNKxRqgpBDkPcmgAZpEPGMPdk7WwBtnjSbhiO-PRU2M8dqj3lSoM06Qwekgd5YPGGf-yW28j_mqX-t2ODfsMhnGKKqKB4wZlOoLh9ny21Y9QJOYw7zITfFfnxmJFqhJX6KZEasuXFPeTSrbU2G6QUyOo5AKsVKOjl7QzK6RxoWmbwlzEWedJIY4rpQcjkc8XxsUyUR7wjJ0FuPq_4BWAIJw"/>
+</div>
+</div>
+<div class="mx-4 mb-4 p-3 bg-surface-container-lowest/40 rounded-lg border border-white/10">
+<p class="text-xs text-on-surface-variant leading-relaxed font-body">
+                        4号泵组出口压力表数值波动频率超过阈值（±0.5MPa），已现场调整反馈灵敏度。目前压力稳定在4.2MPa。
+                    </p>
+</div>
+</div>
+<!-- Empty State Placeholder -->
+</section>
+</main>
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[24px] bg-white/25 backdrop-blur-2xl border-t border-white/20 shadow-[0_-8px_32px_0_rgba(0,80,203,0.08)] flex justify-around items-center h-20 pb-safe px-6">
+<div class="flex flex-col items-center justify-center text-slate-500 py-1 px-3 active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-medium font-['Inter'] tracking-wider mt-1">工作台</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-600 text-white rounded-xl py-1 px-3 active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-medium font-['Inter'] tracking-wider mt-1">反馈</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 py-1 px-3 active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium font-['Inter'] tracking-wider mt-1">统计</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 py-1 px-3 active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium font-['Inter'] tracking-wider mt-1">我的</span>
+</div>
+</nav>
+</body></html>

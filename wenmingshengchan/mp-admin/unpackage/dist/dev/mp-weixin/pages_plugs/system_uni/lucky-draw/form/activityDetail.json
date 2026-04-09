@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "activityDetail-el-table-column-default": "/pages_plugs/system_uni/lucky-draw/form/activityDetail-el-table-column-default",
+    "vk-data-qrcode": "/components/vk-data-qrcode/vk-data-qrcode"
+  },
+  "component": true
+}

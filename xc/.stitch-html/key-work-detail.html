@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0 40px 40px -20px rgba(42, 52, 57, 0.04);
+        }
+        .ghost-border {
+            border: 1px solid rgba(169, 180, 185, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-tertiary-fixed": "#3e3a54",
+                "tertiary-fixed-dim": "#d4cdee",
+                "surface-variant": "#d9e4ea",
+                "surface-container-low": "#f0f4f7",
+                "error-dim": "#4e0309",
+                "tertiary-container": "#e3dbfd",
+                "surface": "#f7f9fb",
+                "error": "#9f403d",
+                "on-secondary-fixed-variant": "#0057bd",
+                "surface-tint": "#565e74",
+                "primary-fixed": "#dae2fd",
+                "surface-dim": "#cfdce3",
+                "primary": "#565e74",
+                "primary-dim": "#4a5268",
+                "secondary": "#005bc4",
+                "on-secondary": "#f9f8ff",
+                "on-primary-container": "#4a5167",
+                "surface-container-lowest": "#ffffff",
+                "on-surface-variant": "#566166",
+                "secondary-container": "#d8e2ff",
+                "tertiary": "#605c78",
+                "surface-container-highest": "#d9e4ea",
+                "outline": "#717c82",
+                "on-primary": "#f7f7ff",
+                "primary-fixed-dim": "#ccd4ee",
+                "secondary-fixed": "#d8e2ff",
+                "tertiary-fixed": "#e3dbfd",
+                "on-tertiary-container": "#514d68",
+                "on-secondary-container": "#004eaa",
+                "inverse-primary": "#dae2fd",
+                "surface-container": "#e8eff3",
+                "outline-variant": "#a9b4b9",
+                "background": "#f7f9fb",
+                "on-tertiary-fixed-variant": "#5b5672",
+                "surface-bright": "#f7f9fb",
+                "tertiary-dim": "#54506b",
+                "on-error-container": "#752121",
+                "primary-container": "#dae2fd",
+                "secondary-fixed-dim": "#c3d4ff",
+                "on-surface": "#2a3439",
+                "on-primary-fixed": "#373f54",
+                "inverse-on-surface": "#9a9d9f",
+                "on-primary-fixed-variant": "#535b71",
+                "on-secondary-fixed": "#003c86",
+                "error-container": "#fe8983",
+                "inverse-surface": "#0b0f10",
+                "surface-container-high": "#e1e9ee",
+                "on-error": "#fff7f6",
+                "on-background": "#2a3439",
+                "on-tertiary": "#fcf7ff",
+                "secondary-dim": "#004fad"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full h-[64px] z-50 glass-header shadow-sm shadow-slate-900/5">
+<div class="flex items-center justify-between px-8 w-full max-w-[1440px] mx-auto h-full">
+<div class="flex items-center gap-8">
+<span class="text-lg font-semibold text-on-surface tracking-tight">生产专业管理平台</span>
+<nav class="hidden md:flex items-center gap-6 h-full">
+<a class="text-slate-500 hover:text-on-surface transition-colors text-sm font-medium" href="#">平台首页</a>
+<a class="text-on-surface font-bold border-b-2 border-on-surface pb-5 mt-5 text-sm" href="#">工作推进</a>
+<a class="text-slate-500 hover:text-on-surface transition-colors text-sm font-medium" href="#">专业管理</a>
+<a class="text-slate-500 hover:text-on-surface transition-colors text-sm font-medium" href="#">专业信息</a>
+<a class="text-slate-500 hover:text-on-surface transition-colors text-sm font-medium" href="#">培训管理</a>
+<a class="text-slate-500 hover:text-on-surface transition-colors text-sm font-medium" href="#">个人中心</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest ml-2">
+<img alt="User avatar" data-alt="professional portrait of a corporate manager avatar with minimalist clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOJeBYoKqwl-NbpqCd-Rnrgj8d7Am6CytCbRFiqVBb4zmm1YSadATim-9tqYCgS5idnhVrizxVOjyUXicNex1BF-IpgU9QbbYFYkL4_K8XNuqGMTusMwZOasHzCZMUx8GlOI7NXFmeFjnoIZct_TNNETMa_pYw8tGONcdBzejRKCOlxf3qTNXgn44f1Lh7pEUmmTn2kpgnPD6ugA0Gzrgxzr-5iADGmVWCvyo1GYzCCwGlt9vlvzsRLKQUb2gjdNtKVEDALNcTtws"/>
+</div>
+</div>
+</div>
+</header>
+<main class="mt-[64px] flex-grow w-full max-w-[1350px] mx-auto px-6 py-12 flex flex-col gap-10">
+<!-- SECTION 1: Task Header -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-col gap-3">
+<h1 class="text-[32px] font-bold text-on-surface tracking-tight leading-tight">消防演练专项计划</h1>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-bold tracking-widest uppercase rounded-full">重点任务</span>
+<div class="flex items-center gap-2">
+<img alt="Admin" class="w-8 h-8 rounded-full bg-surface-container-low" data-alt="minimalist administrator avatar icon with soft grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxMEtl9um29f-29KBgtK3aCWfGCUTbpqwj_DnHaBCmwCUOvoK9I9ODD5adsWqYZZx2lbzFF3oP9VDMwodB9A1T-0h_JZ3KYvjyOX6pot8vlfiy5kA0ga3YNsIVR0RhTclbpSYjd7xVN6IfpVEUnPIpdtJbvEsKiMq755WFyde4przfpcic--aicg_mf7F6PMvEEqatteGEpFhST-X3CpnTAR2IAiqXV8J0TOGvI4-oEKHn-IhyJJSjmoprV9C0b0__Vao5_pJ_c6Y"/>
+<span class="text-sm font-medium text-on-surface">超级管理员</span>
+</div>
+<span class="text-sm">2025-12-15</span>
+<div class="flex items-center gap-1.5 ml-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+<span class="text-sm">30 阅读</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-lg border ghost-border text-on-surface font-medium text-sm hover:bg-surface-container-low transition-all">编辑任务</button>
+<button class="px-5 py-2.5 rounded-lg bg-primary text-on-primary font-medium text-sm hover:opacity-90 transition-all ambient-shadow">完成任务</button>
+</div>
+</div>
+<div class="w-full h-px bg-surface-variant/30"></div>
+</section>
+<!-- SECTION 2: Task Content -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Text Content -->
+<article class="prose prose-slate max-w-none text-on-surface-variant leading-relaxed">
+<p class="mb-4">根据《2025年度安全生产管理条例》及公司年度安全工作部署，本次消防演练旨在提升全体生产人员在突发状况下的应急反应能力及自救互救技能。</p>
+<p class="mb-4">演练范围涵盖A区生产车间、原材料仓库及行政办公大楼。重点测试火灾报警系统的灵敏度、疏散通道的畅通情况以及微型消防站的集结速度。</p>
+<h4 class="text-on-surface font-bold text-lg mt-6 mb-3">演练核心流程：</h4>
+<ul class="list-disc pl-5 space-y-2">
+<li>模拟火情触发及烟感报警联动（09:00 - 09:15）</li>
+<li>全员按照预定路线进行紧急疏散（09:15 - 09:30）</li>
+<li>现场灭火器使用实操讲解与考核（09:30 - 10:30）</li>
+<li>演练总结及安全隐患排查反馈（10:30 - 11:30）</li>
+</ul>
+</article>
+<!-- Attachments -->
+<div class="flex flex-col gap-4">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">附件资料</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<div class="flex items-center gap-4 p-4 rounded-xl surface-container-lowest ghost-border hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface group-hover:text-secondary transition-colors">消防预案.pdf</span>
+<span class="text-xs text-on-surface-variant">1.2 MB</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container-lowest ghost-border hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface group-hover:text-secondary transition-colors">演练记录.doc</span>
+<span class="text-xs text-on-surface-variant">856 KB</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Rail: Work Standards -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 p-6 rounded-xl bg-surface-container-low border-l-[3px] border-secondary flex flex-col gap-4 ambient-shadow">
+<h3 class="text-base font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="verified">verified</span>
+                        工作标准
+                    </h3>
+<div class="text-sm text-on-surface-variant leading-relaxed space-y-3">
+<p class="font-medium text-on-surface">1. 响应时效</p>
+<p>接到警报后，应急小组需在3分钟内完成集结。</p>
+<p class="font-medium text-on-surface">2. 疏散完整率</p>
+<p>应确保区域内人员100%撤离，不得遗漏任何角落。</p>
+<p class="font-medium text-on-surface">3. 文档归档</p>
+<p>演练结束后24小时内须上传现场照片及详细报告。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Feedback Timeline -->
+<section class="flex flex-col gap-8 mb-12">
+<div class="flex items-center gap-3">
+<h2 class="text-xl font-bold text-on-surface">工作反馈</h2>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant text-xs font-bold rounded-full">3</span>
+</div>
+<!-- Timeline -->
+<div class="flex flex-col gap-8 relative before:content-[''] before:absolute before:left-5 before:top-2 before:bottom-2 before:w-px before:bg-surface-variant/50">
+<!-- Feedback Item 1 -->
+<div class="flex gap-6 relative">
+<img alt="User" class="w-10 h-10 rounded-full z-10 bg-surface-container-lowest ring-4 ring-surface" data-alt="Avatar of a female engineer wearing safety gear and a headset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDkHuRizSbO4TlttWRDGNgjeidviw5TU6U1LFCuKdUCbgcEWr8cfE6KEGhWxLTqByCjFl8kGx-spwuHqD-YgKdXmNqjDX4-NJixA2l6eMHdwdXFZ-X2Bg3gXZ2l10QLdXOCyaJVkiFBOEsv1F-Sysbxgr6lJNM68p5EJFPvzJYKtZghh1oamrFc0q9njr-3TezG4SRzOdX-2N3Novr5PzXgpYnu3e9oqkFOw8fzBP8HV0UEXBUI4AsF7QF2PH-06Cl8ZJZt5FU6rk"/>
+<div class="flex flex-col gap-3 flex-1 pb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold text-on-surface">李晓华</span>
+<span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full tracking-wider">过程反馈</span>
+<span class="text-xs text-on-surface-variant">2025-12-16 10:30</span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest ghost-border">
+<p class="text-sm text-on-surface-variant">已完成各生产车间的烟感设备检测，目前发现B区3号车间存在一个失效点，已联系维保单位下午进行更换。演练准备工作进度完成80%。</p>
+</div>
+</div>
+</div>
+<!-- Feedback Item 2: Evaluation Card -->
+<div class="flex gap-6 relative">
+<img alt="User" class="w-10 h-10 rounded-full z-10 bg-surface-container-lowest ring-4 ring-surface" data-alt="Avatar of a mature male professional in a smart suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg7m53BJv-yo6xTv1J7BhXWxInWKRtyV8QosSOTQwHxR2o1hs-5GmcRuuLPecEr-VnYTn-O7kL_GNnLNdAwIoJDSb4RRoleCZbw97QqK7xwZcxRqhRj-NBFGAo1UuQ_DZ11wgS_67f-kcaF_JynE4SfESE_OfAJ67TyjJF8koEDnu758inkO8iSklQy3J2nGcDTjICVqKDWgaU3c2Gt1XPc4s_zMRPTp8cc86ScrP0DwvwTj5MXlYtht0WAflklJhZBiCAPWGKySU"/>
+<div class="flex flex-col gap-3 flex-1 pb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold text-on-surface">张明远</span>
+<span class="px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full tracking-wider">验收申请</span>
+<span class="text-xs text-on-surface-variant">2025-12-16 16:45</span>
+</div>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-surface-variant/50 flex flex-col gap-4 ambient-shadow">
+<p class="text-sm text-on-surface-variant">全员演练已按计划圆满结束。所有人员在8分钟内完成紧急疏散，未发生意外损伤。灭火器实操合格率达98%。申请该专项计划完工验收。</p>
+<div class="flex items-center gap-3 pt-2">
+<button class="flex-1 py-2.5 bg-green-500 text-white rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-green-600 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+                                    通过验收
+                                </button>
+<button class="flex-1 py-2.5 bg-red-500 text-white rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-red-600 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="cancel">cancel</span>
+                                    驳回申请
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Submit Feedback Form -->
+<div class="flex flex-col gap-4 mt-4">
+<textarea class="w-full p-4 rounded-xl bg-surface-container-low border-none focus:ring-2 focus:ring-secondary/20 min-h-[120px] text-sm text-on-surface" placeholder="输入您的工作反馈或进度更新..."></textarea>
+<button class="w-full py-4 bg-[#0F172A] text-white rounded-xl font-bold text-sm tracking-widest hover:bg-black transition-all ambient-shadow">
+                    提交反馈
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto bg-surface-container-low">
+<div class="flex flex-col md:flex-row items-center justify-between px-8 max-w-[1440px] mx-auto">
+<p class="text-xs font-normal tracking-wide text-on-surface-variant">© 2024 生产专业管理平台. All rights reserved.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="text-xs font-normal tracking-wide text-on-surface-variant hover:text-on-surface transition-colors" href="#">隐私政策</a>
+<a class="text-xs font-normal tracking-wide text-on-surface-variant hover:text-on-surface transition-colors" href="#">服务条款</a>
+<a class="text-xs font-normal tracking-wide text-on-surface-variant hover:text-on-surface transition-colors" href="#">帮助中心</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001849",
+                        "on-primary-container": "#f8f7ff",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "inverse-primary": "#b3c5ff",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-container": "#fff6f4",
+                        "primary-fixed": "#dae1ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#a33200",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-fixed": "#390c00",
+                        "secondary": "#425ca0",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c2c6d8",
+                        "on-secondary-fixed-variant": "#284386",
+                        "surface-dim": "#d8dadc",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary": "#0050cb",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed": "#ffdbd0",
+                        "secondary-container": "#9bb4fe",
+                        "surface-tint": "#0054d6",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-bright": "#f7f9fb",
+                        "outline": "#727687",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#294487",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed": "#dae1ff",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary-container": "#0066ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-error": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-surface-variant": "#424656",
+                        "tertiary-container": "#cc4204"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .industrial-grid {
+            background-image: radial-gradient(#0050cb10 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface industrial-grid min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/20 dark:bg-slate-900/20 backdrop-blur-xl border-b border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,80,203,0.08)] flex items-center justify-between px-4 h-12 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-400" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h1 class="text-lg font-bold text-slate-900 dark:text-slate-100 font-headline tracking-tight">工业文明生产管理</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500" data-icon="search">search</span>
+<span class="material-symbols-outlined text-slate-500" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="pt-16 px-4">
+<!-- Section Header -->
+<div class="mb-6">
+<h2 class="text-2xl font-extrabold font-headline text-on-surface tracking-tight mb-1">信息中心</h2>
+<p class="text-xs text-on-surface-variant font-medium tracking-widest uppercase">Information &amp; Notices</p>
+</div>
+<!-- Glassmorphism Tabs -->
+<nav class="flex overflow-x-auto no-scrollbar gap-6 mb-6 pb-0 sticky top-12 z-40 -mx-4 px-4 bg-white/10 backdrop-blur-md border-b border-white/20">
+<button class="flex-none px-2 py-3 text-sm font-bold text-primary border-b-2 border-primary transition-all active:scale-95">全部信息</button>
+<button class="flex-none px-2 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-all">安全管理</button>
+<button class="flex-none px-2 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-all">生产通知</button>
+<button class="flex-none px-2 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-all">政策解读</button>
+</nav>
+<!-- Feature Bento News (Main Highlight) -->
+<div class="mb-8 group">
+<div class="relative h-64 rounded-xl overflow-hidden shadow-[0_8px_32px_0_rgba(0,80,203,0.1)] transition-transform duration-500 group-hover:scale-[1.01]">
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent z-10"></div>
+<img alt="Modern industrial facility" class="w-full h-full object-cover" data-alt="Cinematic wide shot of a modern automated factory floor with clean blue lighting and advanced machinery in high-tech setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3A90w1El2RLxlrCVkNZfzXxU2ixr9lM-gdh8atyXntzgJOi3mjjo-64gTU2L9NG5WHarMlRluEKedZjU1EU8j2yNzjnIY7tVLUFlrzCqSv3i_YaMwdyupwOZ_A3khTdvFVdz3eFX27vMSism2llCi5RZa4TaQVPz0eJYELdGkoDR7OavbG1-coD50XLjG-UzlW1sCyItW40Kk6VG1qepYsP-Tg--7F-qhDVVZ_GtucY5CfaHIWKzMnf8wjV6Wi_kiYy1tjVlQyI4"/>
+<div class="absolute bottom-0 left-0 p-6 z-20 w-full">
+<span class="inline-block px-2 py-1 mb-3 text-[10px] font-bold tracking-widest bg-blue-600 text-white rounded-sm uppercase">Headline</span>
+<h3 class="text-xl font-bold text-white mb-2 leading-tight">2024年度工业文明生产标准化评估指南发布</h3>
+<div class="flex items-center gap-4 text-slate-300 text-xs font-medium">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="calendar_today">calendar_today</span>
+                            2024-05-20
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="visibility">visibility</span>
+                            12.4k
+                        </span>
+</div>
+</div>
+</div>
+</div>
+<!-- News Grid -->
+<div class="grid grid-cols-1 gap-4">
+<!-- News Card 1 -->
+<div class="glass-card rounded-xl p-4 flex gap-4 transition-all hover:translate-x-1 active:scale-95 duration-300">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold tracking-wider">安全管理</span>
+</div>
+<h4 class="text-base font-bold text-on-surface leading-snug mb-3">关于开展夏季高温作业安全检查的通知</h4>
+<div class="flex items-center gap-4 text-on-surface-variant text-[11px] font-medium">
+<span class="flex items-center gap-1">2024-05-18</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="visibility">visibility</span>
+                            3,204
+                        </span>
+</div>
+</div>
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-none">
+<img alt="Safety helmet on construction site" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close-up of a white industrial safety helmet resting on a steel beam with sunlight casting long shadows in workshop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK-jh1aXk_9VbJCq5h0gGCNpCRsXfO0BvHqGv8OVHVN0ldQWcNkSXRhsrMPySwh-L_HWUM8vt4HODu-6j8JTF8HtNk31HJRUPYw_n0sdTZ7zXkdNzkz1H05hBMxKDsd8fMzHEs9VTrU0aewQD049ZP5lhQFWlJ6pV5sqGrkX3Laum51ShjewiAcUdzGQmqsv3vF93JFenF8VjV3NX-qcB3k9MKyCfGQmsoTOP_SdQHn1c17G9mEZeivUNe7RJJpT_dSATIBjReyz4"/>
+</div>
+</div>
+<!-- News Card 2 -->
+<div class="glass-card rounded-xl p-4 flex gap-4 transition-all hover:translate-x-1 active:scale-95 duration-300">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container text-[10px] font-bold tracking-wider">生产通知</span>
+</div>
+<h4 class="text-base font-bold text-on-surface leading-snug mb-3">三号流水线升级改造期间停产公告</h4>
+<div class="flex items-center gap-4 text-on-surface-variant text-[11px] font-medium">
+<span class="flex items-center gap-1">2024-05-15</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="visibility">visibility</span>
+                            1,856
+                        </span>
+</div>
+</div>
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-none">
+<img alt="Production line mechanics" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Detailed shot of mechanical gears and conveyor belt systems in a clean industrial environment with soft blue light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9vURYsZk-1jOx-dS1ReQqkvp6hrF4jz9IsCkIq7TiXpKc3LEGTYY8wUs9l3wFPeuoMD6_KHnO3_clMmGekQj8ZjRNTOsghbDJ-iBTMrn3L6jJL76qKGbSRZPlw_KEPZlup6AQtsyPBr0BZF4lsd7Mf445bpO889wnt-QeCJ_e6_IlDp-tNux0K5k9l6N9UJnCFgiPuhEoSeIXOn5go3lIOg3tIRic-8gu4wbFLpzuRJTSK13atyhFbyEe_yKBQLr3SKXNvEJpags"/>
+</div>
+</div>
+<!-- News Card 3 -->
+<div class="glass-card rounded-xl p-4 flex gap-4 transition-all hover:translate-x-1 active:scale-95 duration-300">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-primary-container/10 text-primary text-[10px] font-bold tracking-wider">政策解读</span>
+</div>
+<h4 class="text-base font-bold text-on-surface leading-snug mb-3">智能制造补助资金申报流程图解指南</h4>
+<div class="flex items-center gap-4 text-on-surface-variant text-[11px] font-medium">
+<span class="flex items-center gap-1">2024-05-12</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="visibility">visibility</span>
+                            5,420
+                        </span>
+</div>
+</div>
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-none">
+<img alt="Technical documents" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Professional workspace with architectural blueprints and a digital tablet showing graphs and data on a minimalist desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAEk5X-LiqkL0l9uEO8vXXFowJbQeU0Qk2pUi1SOTugZl7bNCJvRf_gOGKtzuqDfwIkhI_1bd_u-jNSFQdbmnp2RPz7nF7mIJiVwXJtePp-0uPkCxFdjUGSHtNlnu8S3j7mgOfJxqJEHTen4Vsp5xCEFNmYjNx4E1hPm9-5TOseC4duRREWnyRWJLVmwm-Ynk5wX7xkfvZHLVF8_xfmxRZF1fJz_5nP7PqjF7eK5bsaNhLlcuIIJD2o4iSXyeDtoUJuFj_JNlrh34"/>
+</div>
+</div>
+<!-- News Card 4 (Text Only) -->
+<div class="glass-card rounded-xl p-4 transition-all hover:translate-x-1 active:scale-95 duration-300">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-bold tracking-wider">技术分享</span>
+</div>
+<h4 class="text-base font-bold text-on-surface leading-snug mb-3">高效能液压系统维护手册 (2024修订版)</h4>
+<p class="text-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">本手册详细介绍了新一代高效能液压系统的日常巡检、故障排查及核心组件保养流程，旨在提升设备稼动率...</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4 text-on-surface-variant text-[11px] font-medium">
+<span class="flex items-center gap-1">2024-05-10</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="visibility">visibility</span>
+                            2,110
+                        </span>
+</div>
+<span class="text-primary text-xs font-bold flex items-center gap-1">阅读全文 <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span></span>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary text-white rounded-full shadow-[0_8px_24px_rgba(0,80,203,0.3)] flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined" data-icon="edit_square">edit_square</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-xl z-50 bg-white/25 dark:bg-slate-900/40 backdrop-blur-2xl border-t border-white/20 dark:border-white/10 shadow-[0_-8px_32px_0_rgba(0,80,203,0.08)] flex justify-around items-center w-full px-2 pb-safe pt-2">
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:scale-105 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-medium tracking-wider uppercase">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:scale-105 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+<span class="text-[10px] font-medium tracking-wider uppercase">现场反馈</span>
+</div>
+<!-- Active Tab: Key Projects / Info center context maps to high level interest -->
+<div class="flex flex-col items-center justify-center bg-blue-600/10 dark:bg-blue-400/20 text-blue-700 dark:text-blue-300 rounded-xl px-3 py-1 hover:scale-105 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-[10px] font-medium tracking-wider uppercase">重点项目</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:scale-105 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="text-[10px] font-medium tracking-wider uppercase">计划执行</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:scale-105 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-medium tracking-wider uppercase">我的</span>
+</div>
+</nav>
+</body></html>
