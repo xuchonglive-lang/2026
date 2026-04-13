@@ -37,11 +37,11 @@
       "style": {}
     },
     {
-      "path": "pages/plan/list/index",
+      "path": "pages/plan/list",
       "style": {}
     },
     {
-      "path": "pages/plan/feedback/index",
+      "path": "pages/plan/feedback",
       "style": {}
     },
     {
@@ -111,7 +111,7 @@
         "text": "重点推进"
       },
       {
-        "pagePath": "pages/plan/list/index",
+        "pagePath": "pages/plan/list",
         "text": "计划执行"
       },
       {

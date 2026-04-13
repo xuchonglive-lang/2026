@@ -1,63 +1,49 @@
 'use strict';
 module.exports = {
   /**
-   * 创建日计划
+   * 新增日计划下达单据 (B端后台管理员专用)
    * @url admin/plan/sys/add
-   * @description 计划员创建当日治理计划并指派给本部门人员或班组，status 自动为1(执行中)
+   * @description 该接口接收管理平台录入的参数，通过系统统一的软删除与时间戳校验写入新计划集合中，初始态强制指定为 0 (执行中)
    */
   main: async (event) => {
-    let { data = {}, userInfo, util, filterResponse, originalParam } = event;
-    let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    let { uid } = data;
-    let res = { code: 0, msg: '' };
-    // 业务逻辑开始-----------------------------------------------------------
+    let { data = {}, userInfo, util } = event;
+    let { vk } = util;
+    let { uid } = userInfo; // 获取当前登录的管理员真实UID
 
-    let { title, content_standard, area_id, plan_date, assignee_type, assignee_target } = data;
-
-    // 入参校验
-    if (!title) return { code: -1, msg: '计划标题必须填写' };
-    if (!content_standard) return { code: -1, msg: '执行标准必须填写' };
-    if (!area_id) return { code: -1, msg: '执行区域必须选择' };
-    if (!plan_date) return { code: -1, msg: '计划日期必须选择' };
-    if (!assignee_type || !['group', 'users'].includes(assignee_type)) {
-      return { code: -1, msg: '派发方式不合法' };
-    }
-    if (!assignee_target || !Array.isArray(assignee_target) || assignee_target.length === 0) {
-      return { code: -1, msg: '必须指定执行人' };
-    }
-
-    // 获取操作人部门ID
-    let userDoc = await vk.baseDao.findById({
-      dbName: 'uni-id-users',
-      id: uid,
-      fieldJson: { department_id: 1 }
-    });
-    let deptId = userDoc ? userDoc.department_id : '';
-
-    // 安全重组数据，不直接透传 data
-    let insertData = {
-      dept_id: deptId,
-      title: title,
-      content_standard: content_standard,
-      area_id: area_id,
-      plan_date: plan_date,
-      issuer_uid: uid,
-      assignee_type: assignee_type,
-      assignee_target: assignee_target,
-      status: 1,
-      feedbacks: [],
-      verify_result: null,
-      is_del: 0
+    // 组装将要存入数据库的对象
+    // 合并前端传入的核心结构，并在此基础上做系统级覆写防御
+    let dataJson = {
+      ...data,               // 包含 title, status, desc 等
+      issuer_uid: uid,       // 下发人绑定为当前管理员
+      feedbacks: [],         // 历史反馈记录置空，开辟全新生命周期
+      status: 0,             // 预设默认状态：0执行中
+      is_del: 0,             // 采用软删除架构标记，0未删除，1逻辑死
+      create_time: Date.now()// 录入当前的创建绝对毫秒数
     };
 
-    res.id = await vk.baseDao.add({
-      dbName: 'daily-plan',
-      dataJson: insertData
+    // 时间转化容错：若前端发送的截止时间是字面量，在此化为毫秒时间戳进行精准计算
+    if (dataJson.deadline_time && typeof dataJson.deadline_time === 'string') {
+      dataJson.deadline_time = new Date(dataJson.deadline_time).getTime();
+    }
+
+    // 获取分配人员的信息，继承其部门
+    if (dataJson.assignee_ids && dataJson.assignee_ids.length > 0) {
+      let main_assignee_id = Array.isArray(dataJson.assignee_ids) ? dataJson.assignee_ids[0] : dataJson.assignee_ids;
+      let userRes = await vk.baseDao.findById({
+        dbName: "uni-id-users",
+        id: main_assignee_id
+      });
+      if (userRes && userRes.department_id) {
+        dataJson.dept_id = userRes.department_id;
+      }
+    }
+
+    // 调用基础增删改查安全模块将数据正式入库
+    let id = await vk.baseDao.add({
+      dbName: "daily-plan",
+      dataJson: dataJson
     });
 
-    res.msg = '计划创建成功';
-
-    // 业务逻辑结束-----------------------------------------------------------
-    return res;
-  },
-};
+    return { code: 0, msg: "添加成功", id };
+  }
+}

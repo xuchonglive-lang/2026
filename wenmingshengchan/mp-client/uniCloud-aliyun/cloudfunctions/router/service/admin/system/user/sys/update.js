@@ -21,7 +21,7 @@ module.exports = {
     let { uid } = data;
     let res = { code: 0, msg: '' };
     // 业务逻辑开始-----------------------------------------------------------
-    let { _id, nickname, gender, mobile, email, comment, allow_login_background, dcloud_appid = [], login_appid_type } = data;
+    let { _id, username, password, nickname, gender, mobile, email, comment, allow_login_background, dcloud_appid = [], login_appid_type } = data;
     let mobile_confirmed;
     let email_confirmed;
     // 参数合法校验开始-----------------------------------------------------------
@@ -32,6 +32,18 @@ module.exports = {
     // 参数合法校验结束-----------------------------------------------------------
 
     let dbName = 'uni-id-users';
+
+    // 检测username
+    if (username) {
+      let num = await vk.baseDao.count({
+        dbName,
+        whereJson: {
+          username: username,
+          _id: _.neq(_id),
+        },
+      });
+      if (num > 0) return { code: -1, msg: `用户名【${username}】已绑定给他人!` };
+    }
 
     // 检测mobile
     if (mobile) {
@@ -67,6 +79,13 @@ module.exports = {
       comment,
       allow_login_background,
     };
+    if (typeof username !== "undefined") {
+      if (username === '') {
+        dataJson.username = _.remove();
+      } else {
+        dataJson.username = username;
+      }
+    }
     // 设置允许登录的应用列表
     if (login_appid_type && typeof uniID.setAuthorizedAppLogin === 'function') {
       let setAuthorizedAppLoginRes = await uniID.setAuthorizedAppLogin({
@@ -79,6 +98,17 @@ module.exports = {
     } else if (login_appid_type === 0) {
       dataJson['dcloud_appid'] = _.remove();
     }
+    // 设置密码
+    if (password) {
+      let setPwdRes = await uniID.resetPwd({
+        uid: _id,
+        password,
+      });
+      if (setPwdRes.code !== 0) {
+        return setPwdRes;
+      }
+    }
+
     // 执行数据库API请求
     res.num = await vk.baseDao.updateById({
       dbName,

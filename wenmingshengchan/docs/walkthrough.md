@@ -1,46 +1,83 @@
-# 文明生产大基建：全局路由架构及 Stitch 前端结构化指令库
+# 日治理计划管理模块 — 完工总结
 
-## ✅ 架构复核与补全说明
-在重新查阅 6 份提案与当前 `pages.json` 后，我确认**所有业务页面均已覆盖**。
-但为了构架完整性，针对整个小程序必须存在的一个**“入口/仪表盘”**（`pages/index/index`），我已在本次提示词中将其补齐。目前的路由不仅打通了单页，也完全覆盖了业务全流程闭环。
+## 概述
+
+完成了日治理计划模块的全部云函数（C端5个 + B端5个）、公共工具函数、前端页面数据对接（C端2个 + B端1个），以及2个辅助下拉数据源接口。
 
 ---
 
-## 🔮 附：[高精度结构化] Stitch UI 自动化生成专用 Prompt 库
+## 交付物清单
 
-> [!TIP]
-> 经过优化，本次 Prompt 严格按照 **“顶部区块 -> 视口主体 (列表/表单布局) -> 底部悬浮/操作区”** 的三段式空间切割法进行描绘。您可以原封不动复制给 Stitch，这种描述法有助于 Stitch 生成具有完美 flex 嵌套且无废节点的优质 Node Tree。
+### 公共层（1个文件）
 
-### A. 【全局入口与基础用户模块】
-- **仪表盘/首页 (`pages/index/index`)【新增补全】**
-  - **Prompt**: _"为一个工业大屏风格的小程序设计首页仪表盘。顶部 [Header]: 显示企业 Logo 与一个通知小铃铛图标。中部 [Body]: 采用 2 列网格布局，分别放置四个快捷入口大色块卡片（待办点位、异常报备、最新发文、我的记录），卡片需包含图标和引导箭头。底部 [Footer]: 预留一个标准的主导航标签栏 (Tab Bar)。整体应用浅灰底色，主色调点缀 #0066FF。"_
-- **登录授权页 (`pages/user/login/index`)**
-  - **Prompt**: _"设计全屏的移动端登录页。顶部 [Header]: 留白，并在中心放置一个工业风的欢迎插画或企业标志。中部 [Body]: 纵向排列的表单区，包含账户输入框、密码输入框（带底边线），以及一行‘忘记密码’的链接。在中部略偏下的位置放置一个撑满全宽的、圆角 8px 的初级蓝色主按钮（一键微信登录）。背景应使用带有极少玻璃拟物态的纯净白底。"_
-- **信息完善/注册页 (`pages/user/register/index`)**
-  - **Prompt**: _"设计移动端分步式表单登记页。顶部 [Header]: 左侧带返回箭头，居中大标题'员工身份完善'。中部 [Body]: 由四个大间距输入组件组成的长表单（姓名输入框、手机号输入框、点击触发弹窗的部门选择器、班组选择器），表单区全部采用纯白卡片包裹。底部 [Footer]: 固定靠底（Sticky Bottom）放置一个'提交认证'操作按钮，按钮需带有顶部阴影以区分滑动区。"_
-- **个人中心面板 (`pages/user/mine/index`)**
-  - **Prompt**: _"设计个人资料大屏面板。顶部 [Header]: 使用一个带有深蓝色渐变背景的巨大卡片，左侧为圆形用户头像，右侧为姓名和绿色'已实名'的徽章。中部 [Body]: 建立两个卡片区块。第一块：4个图标组成的横向工具条（我的待办、我的报备等）。第二块：纵向菜单列表（包含设置、排班历史），每一行菜单左侧有小图标，右侧有向右的细箭头。底部背景使用 '#F8FAFC' 区分层次。"_
+| 文件 | 说明 |
+|------|------|
+| `service/common/plan-utils.js` | 被动感知状态计算 `getDisplayStatus()` + 过期判断 `isExpired()` + 状态字典 |
 
-### B. 【报备信息模块】 (问题报备与监察)
-- **隐患填报发起工具 (`pages/report/submit-entry/index`)**
-  - **Prompt**: _"设计一个极具可访问性的上报表单页。顶部 [Header]: 导航栏标题为'异常报备'。中部 [Body]: 第一层是一个高度 44px 的单行标题输入框；第二层是一个高度 120px 的多行富文本描述框（含有占位提示词）；第三层是一个标准的 3x3 响应式图片上传网格（默认带有一个虚线边框的➕号按钮）。底部 [Footer]: 悬浮一个醒目的橙黄色（警示色）的'匿名提交'大按钮。"_
-- **匿名问题公海展示池 (`pages/report/public-board/index`)**
-  - **Prompt**: _"设计无限下拉的流式信息页。顶部 [Header]: 包含一个带有搜索图标的输入框与右侧的筛选漏斗图标。中部 [Body]: 纵向排列的卡片列表。每一张卡片 [Card]: 上半部分左侧为加粗黑体标题，右侧为一个带圆角边框的状态 Tag（如处于不同的灰/绿颜色段）；下半部分是最多显示两行的灰色次级文本摘要。卡片四周必须有 16px 的边距与 8px 的内部间距填充。绝不出现头像。"_
-- **我的私密记录 (`pages/report/my-record/index`)**
-  - **Prompt**: _"设计移动端垂直时间轴历史页。顶部 [Header]: 居中的页面标题。中部 [Body]: 垂直分布的追踪记录。每个列表节点 [Item]: 展现为一个可折叠手风琴卡片，外露日期和自己的上报标题。展开后，内部嵌套一块带灰色强调底色的气泡框，里面显示官方管理人的头像及回复的正文细节处理说明。具有清晰的层次感。"_
+### C端云函数（5个文件）
 
-### C. 【日计划与点位核销模块】 (现场工单消缺)
-- **待办执行页 (`pages/plan/list/index` | `pages/feedback/todo-list/index`)**
-  - **Prompt**: _"设计工业任务清单页。顶部 [Header]: 一个横贯左右的标签页分段控制器 (Segmented Control)，分为'今日待办'与'逾期未交'。中部 [Body]: 纯纵向列表模型。每一行列表 [Row]: 左侧为一个圆形未勾选状态的 Checkbox 原型，中间是主标题加上方的微小截止日期时间戳（红色字体警示），右侧是一个清晰的执行引导箭头。要求列表视觉清爽，分割线使用 1px 的超浅灰色。"_
-- **现场反馈传图板 (`pages/feedback/submit/index` | `pages/plan/feedback/index`)**
-  - **Prompt**: _"设计行动导向的终端反馈屏。顶部 [Header]: 使用一个高亮大卡片铺满顶部，显示当前巨大的任务名称与基础信息要求。中部 [Body]: 是一个占据屏幕三分之一高度的，带有巨大相机的虚线上传区域，用于证据采集。紧接着下方是一个空白备注输入框（占位字：描述现场情况）。底部 [Footer]: 放一个 100% 宽度的无圆角矩形主按钮'确认完成该点位'。"_
+| 文件 | URL | 说明 |
+|------|-----|------|
+| `client/plan/kh/getTodoCount.js` | `client/plan/kh/getTodoCount` | 首页待办数量，今日+status∈{1,3}+我是执行人 |
+| `client/plan/kh/getList.js` | `client/plan/kh/getList` | 双Tab列表，tab=all/mine，foreignDB关联区域/部门/下达人 |
+| `client/plan/kh/getDetail.js` | `client/plan/kh/getDetail` | 详情页，批量关联反馈人/验收人姓名，计算 can_submit/can_verify |
+| `client/plan/kh/submitFeedback.js` | `client/plan/kh/submitFeedback` | 3层防护栈(状态→时限→身份)，`_.push()` 原子追加 |
+| `client/plan/kh/verifyTask.js` | `client/plan/kh/verifyTask` | 验收操作，角色+部门+状态三重校验，通过→5/驳回→3 |
 
-### D. 【专业信息传达模块】 (发文与公告阅读)
-- **信息大厅 (`pages/info/index/index`)**
-  - **Prompt**: _"设计现代企业公告枢纽。顶部 [Header]: 一个可在 X 轴滑动的栏目分类条（分类词汇如：制度、安全通告等），被选中的分类底下有蓝色的激活横线。中部 [Body]: 新闻图文列表。每一个列表卡片 [Card]: 采用左右比例为 7:3 的弹性布局。左侧堆叠两行粗体大字标题与下方的一行小字日期，右侧为一张 80x80px 带有 4px 圆角的缩略图片占位符。"_
-- **富文本承载与深读页 (`pages/info/detail/index`)**
-  - **Prompt**: _"设计沉浸式文章阅读页。顶部 [Header]: 完全留白，仅在首行放置一个超大字号（如 24px）、极重字重（如 800）的正文大标题。次行 [Meta]: 使用深灰色小字体水平并排显示作者姓名和具体至分钟的发布时间。中部 [Body]: 完全左对齐的文本区域，预留清晰的段落间距（Paragraph Gap: 24px），在段落之中适当穿插一张有微妙内阴影的宽幅配图占位。背景严格为 #FFFFFF。"_  
+### B端云函数（5个文件）
 
-### E. 【重点项目管控】 (复杂项目节点)
-- **项目流转阶段与主轴页 (`pages/keywork/project/process-feed/index`)**
-  - **Prompt**: _"设计复杂的移动端项目里程碑与工作流视图。顶部 [Header]: 项目概览卡片，包含总名称和总体进度条（Progress Bar）。中部 [Body]: 左侧画一条垂直分割的连续线条，并在节点处留有带颜色的圆圈图标（纵向 Stepper）。右侧为主体内容：当前所在的激活步骤被一个强调背景色块包裹，内含表单字段；历史完成的步骤则文本置灰，圆圈变成对号打勾。底部 [Footer]: 带有阴影的辅助工具栏，包含次级按键'保存草稿'及主级按键'申请阶段验收'。"_
+| 文件 | URL | 说明 |
+|------|-----|------|
+| `admin/plan/sys/add.js` | `admin/plan/sys/add` | 创建计划，安全重组数据，自动注入dept_id/issuer_uid |
+| `admin/plan/sys/update.js` | `admin/plan/sys/update` | 修改计划，白名单字段+feedbacks非空保护 |
+| `admin/plan/sys/delete.js` | `admin/plan/sys/delete` | 软删除(is_del=1)，feedbacks非空保护 |
+| `admin/plan/sys/getList.js` | `admin/plan/sys/getList` | 多维筛选+权限隔离+foreignDB+被动感知 |
+| `admin/plan/sys/getStatistics.js` | `admin/plan/sys/getStatistics` | 日期范围统计：完成/逾期/驳回/超时/完成率 |
+
+### 辅助接口（2个文件）
+
+| 文件 | 说明 |
+|------|------|
+| `admin/base-dept/sys/getAll.js` | 部门下拉选择数据源 |
+| `admin/user/sys/getAll.js` | 用户下拉选择数据源(status=0) |
+
+### 前端页面（3个文件）
+
+| 文件 | 改动类型 | 说明 |
+|------|----------|------|
+| `mp-client/pages/plan/list/index.vue` | 数据整合 | 双Tab切换、日期搜索、按部门分组、状态标签着色 |
+| `mp-client/pages/plan/feedback/index.vue` | 数据整合 | getDetail 动态渲染、反馈表单弹窗、验收按钮、照片上传+预览 |
+| `mp-admin/pages/plan/plan-list.vue` | 全新实现 | vk-data-table + vk-data-form，showRule 动态切换派发方式 |
+
+---
+
+## 关键设计决策与避坑措施
+
+| 坑点 | 对策 | 参照 |
+|------|------|------|
+| `db.command` 解构 | 从 `util` 解构 `_` 即 db.command | gotchas 2.4 |
+| 物理删除 | 全部使用软删除 `is_del=1` | gotchas 2.3 |
+| `select()` 返回对象 | 一律取 `.rows` | vk-fun skill |
+| foreignDB 外键黑洞 | 后端 getTableData 内 foreignDB 联表 | gotchas 2.2 |
+| `defaultValue` 失效 | addBtn 中手动赋值 `form1.data.status = 1` | gotchas 1.4 |
+| `require` 相对路径 | 从 `kh/` 到 `common/` 需3级 `../../../` | 执行时修复 |
+| `getTableData` 分页 | 传 `data: data` 让底层自动处理翻页参数 | cloud-function-guide |
+
+---
+
+## 状态机流转验证清单
+
+```
+创建 → status=1(执行中)
+提交反馈 → status=2(已提交)  [_.push() 原子追加]
+验收驳回 → status=3(未达标)  [可再次提交]
+验收通过 → status=5(已完成)  [终态]
+逾期(被动感知) → display_status=6  [status仍为1/3]
+超时未验收(被动感知) → display_status=4  [status仍为2]
+```
+
+## 待用户手动执行
+
+1. **UniCloud 控制台** 创建 `daily-plan` 集合并建立索引
+2. **上传云函数** 到阿里云服务空间
+3. **角色配置** 在用户管理中为相关人员添加 `plan_admin` 角色

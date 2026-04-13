@@ -7,8 +7,8 @@
     "pages/report/submit-entry/index",
     "pages/report/public-board/index",
     "pages/report/my-record/index",
-    "pages/plan/list/index",
-    "pages/plan/feedback/index",
+    "pages/plan/list",
+    "pages/plan/feedback",
     "pages/plan/history/index",
     "pages/keywork/project/list/index",
     "pages/keywork/project/process-feed/index",
@@ -78,7 +78,7 @@
         "text": "重点推进"
       },
       {
-        "pagePath": "pages/plan/list/index",
+        "pagePath": "pages/plan/list",
         "text": "计划执行"
       },
       {

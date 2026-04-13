@@ -1,48 +1,40 @@
 'use strict';
 module.exports = {
   /**
-   * 修改日计划（仅无反馈数据时允许）
+   * 修改/重整日计划单据核心数据 (B端后台管理员专用)
    * @url admin/plan/sys/update
-   * @description 事实数据保护：feedbacks 非空时拒绝修改基本信息
+   * @description 管理后台表单发起的实体数据篡改，支持各种预设状态下的容错转换与内容补齐。
    */
   main: async (event) => {
-    let { data = {}, userInfo, util, filterResponse, originalParam } = event;
-    let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    let res = { code: 0, msg: '' };
-    // 业务逻辑开始-----------------------------------------------------------
+    let { data = {}, userInfo, util } = event;
+    let { vk } = util;
 
-    let { _id } = data;
-    if (!_id) return { code: -1, msg: '_id 不能为空' };
-
-    // 查询原记录
-    let plan = await vk.baseDao.findById({ dbName: 'daily-plan', id: _id });
-    if (!plan) return { code: -1, msg: '计划不存在' };
-
-    // 事实数据保护
-    if (plan.feedbacks && plan.feedbacks.length > 0) {
-      return { code: 71008, msg: '该计划已有反馈数据，不可修改基本信息' };
+    // 克隆传递的表单数据源为局部变量
+    let dataJson = { ...data };
+    
+    // 中间件处理：如果前端发送了修改的截止时限且为本地格式字符串，予以抹平转换
+    if (dataJson.deadline_time && typeof dataJson.deadline_time === 'string') {
+      dataJson.deadline_time = new Date(dataJson.deadline_time).getTime();
+    }
+    // 获取分配人员的信息，继承其部门
+    if (dataJson.assignee_ids && dataJson.assignee_ids.length > 0) {
+      let main_assignee_id = Array.isArray(dataJson.assignee_ids) ? dataJson.assignee_ids[0] : dataJson.assignee_ids;
+      let userRes = await vk.baseDao.findById({
+        dbName: "uni-id-users",
+        id: main_assignee_id
+      });
+      if (userRes && userRes.department_id) {
+        dataJson.dept_id = userRes.department_id;
+      }
     }
 
-    // 白名单筛选允许修改的字段
-    let allowKeys = ['title', 'content_standard', 'area_id', 'plan_date', 'assignee_type', 'assignee_target'];
-    let updateData = {};
-    allowKeys.forEach(key => {
-      if (data[key] !== undefined) updateData[key] = data[key];
+    // 调用基础库，根据 _id 覆盖保存其值
+    let num = await vk.baseDao.updateById({
+      dbName: "daily-plan",
+      id: dataJson._id,
+      dataJson: dataJson
     });
 
-    if (Object.keys(updateData).length === 0) {
-      return { code: -1, msg: '没有需要修改的字段' };
-    }
-
-    await vk.baseDao.update({
-      dbName: 'daily-plan',
-      whereJson: { _id: _id },
-      dataJson: updateData
-    });
-
-    res.msg = '修改成功';
-
-    // 业务逻辑结束-----------------------------------------------------------
-    return res;
-  },
-};
+    return { code: 0, msg: "修改成功", num };
+  }
+}

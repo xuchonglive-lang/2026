@@ -80,7 +80,7 @@ var components
 try {
   components = {
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 508))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 536))
     },
   }
 } catch (e) {
@@ -195,7 +195,7 @@ var _default = {
         text: "重点推进",
         icon: "order"
       }, {
-        pagePath: "/pages/plan/list/index",
+        pagePath: "/pages/plan/list",
         text: "计划执行",
         icon: "calendar"
       }, {

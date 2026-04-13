@@ -840,9 +840,9 @@ function populateParameters(result) {
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "5.06",
-    uniCompilerVersion: "5.06",
-    uniRuntimeVersion: "5.06",
+    uniCompileVersion: "5.07",
+    uniCompilerVersion: "5.07",
+    uniRuntimeVersion: "5.07",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -948,9 +948,9 @@ var getAppBaseInfo = {
       hostTheme: theme,
       isUniAppX: false,
       uniPlatform: undefined || "mp-weixin",
-      uniCompileVersion: "5.06",
-      uniCompilerVersion: "5.06",
-      uniRuntimeVersion: "5.06"
+      uniCompileVersion: "5.07",
+      uniCompilerVersion: "5.07",
+      uniRuntimeVersion: "5.07"
     }));
   }
 };
@@ -12330,7 +12330,7 @@ var S = "development" === "development",
   k = "true" === undefined || !0 === undefined,
   A = I([]),
   T = "h5" === b ? "web" : "app-plus" === b || "app-harmony" === b ? "app" : b,
-  C = I({"address":["127.0.0.1","192.168.100.100"],"servePort":7000,"debugPort":9000,"initialLaunchType":"remote","skipFiles":["<node_internals>/**","D:/APP/Hbuilderx/HBuilderX/plugins/unicloud/**/*.js"]}),
+  C = I({"address":["127.0.0.1","198.18.0.1","192.168.100.100"],"servePort":7000,"debugPort":9000,"initialLaunchType":"remote","skipFiles":["<node_internals>/**","D:/APP/Hbuilderx/HBuilderX/plugins/unicloud/**/*.js"]}),
   P = I([{"provider":"aliyun","spaceName":"wenmingshengchan","spaceId":"mp-f5dec8e2-6434-4681-934d-fc46f8267fea","clientSecret":"bj1QzvYuni9rWUEMHQYIwg==","endpoint":"https://api.next.bspapp.com","failoverEndpoint":""}]) || [],
   O = true;
 var E = "";
@@ -21022,10 +21022,10 @@ var _default = {
     "path": "pages/report/my-record/index",
     "style": {}
   }, {
-    "path": "pages/plan/list/index",
+    "path": "pages/plan/list",
     "style": {}
   }, {
-    "path": "pages/plan/feedback/index",
+    "path": "pages/plan/feedback",
     "style": {}
   }, {
     "path": "pages/plan/history/index",
@@ -21079,7 +21079,7 @@ var _default = {
       "pagePath": "pages/keywork/project/list/index",
       "text": "重点推进"
     }, {
-      "pagePath": "pages/plan/list/index",
+      "pagePath": "pages/plan/list",
       "text": "计划执行"
     }, {
       "pagePath": "pages/feedback/todo-list/index",
@@ -38778,7 +38778,35 @@ exports.default = _default;
 /* 470 */,
 /* 471 */,
 /* 472 */,
-/* 473 */
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */
 /*!********************************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-main.js?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************/
@@ -38787,13 +38815,13 @@ exports.default = _default;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./z-paging-main.js?vue&type=script&lang=js& */ 474);
+/* harmony import */ var _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./z-paging-main.js?vue&type=script&lang=js& */ 502);
 /* harmony import */ var _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 474 */
+/* 502 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-main.js?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38811,37 +38839,37 @@ exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _zPagingStatic = _interopRequireDefault(__webpack_require__(/*! ./z-paging-static */ 475));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 476));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! ./z-paging-utils */ 477));
-var _commonLayout = _interopRequireDefault(__webpack_require__(/*! ./modules/common-layout */ 479));
-var _dataHandle = _interopRequireDefault(__webpack_require__(/*! ./modules/data-handle */ 480));
-var _i18n = _interopRequireDefault(__webpack_require__(/*! ./modules/i18n */ 483));
-var _nvue = _interopRequireDefault(__webpack_require__(/*! ./modules/nvue */ 488));
-var _empty = _interopRequireDefault(__webpack_require__(/*! ./modules/empty */ 489));
-var _refresher = _interopRequireDefault(__webpack_require__(/*! ./modules/refresher */ 490));
-var _loadMore = _interopRequireDefault(__webpack_require__(/*! ./modules/load-more */ 491));
-var _loading = _interopRequireDefault(__webpack_require__(/*! ./modules/loading */ 492));
-var _chatRecordMode = _interopRequireDefault(__webpack_require__(/*! ./modules/chat-record-mode */ 493));
-var _scroller = _interopRequireDefault(__webpack_require__(/*! ./modules/scroller */ 494));
-var _backToTop = _interopRequireDefault(__webpack_require__(/*! ./modules/back-to-top */ 495));
-var _virtualList = _interopRequireDefault(__webpack_require__(/*! ./modules/virtual-list */ 496));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! ./z-paging-enum */ 481));
+var _zPagingStatic = _interopRequireDefault(__webpack_require__(/*! ./z-paging-static */ 503));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 504));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! ./z-paging-utils */ 505));
+var _commonLayout = _interopRequireDefault(__webpack_require__(/*! ./modules/common-layout */ 507));
+var _dataHandle = _interopRequireDefault(__webpack_require__(/*! ./modules/data-handle */ 508));
+var _i18n = _interopRequireDefault(__webpack_require__(/*! ./modules/i18n */ 511));
+var _nvue = _interopRequireDefault(__webpack_require__(/*! ./modules/nvue */ 516));
+var _empty = _interopRequireDefault(__webpack_require__(/*! ./modules/empty */ 517));
+var _refresher = _interopRequireDefault(__webpack_require__(/*! ./modules/refresher */ 518));
+var _loadMore = _interopRequireDefault(__webpack_require__(/*! ./modules/load-more */ 519));
+var _loading = _interopRequireDefault(__webpack_require__(/*! ./modules/loading */ 520));
+var _chatRecordMode = _interopRequireDefault(__webpack_require__(/*! ./modules/chat-record-mode */ 521));
+var _scroller = _interopRequireDefault(__webpack_require__(/*! ./modules/scroller */ 522));
+var _backToTop = _interopRequireDefault(__webpack_require__(/*! ./modules/back-to-top */ 523));
+var _virtualList = _interopRequireDefault(__webpack_require__(/*! ./modules/virtual-list */ 524));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! ./z-paging-enum */ 509));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var zPagingRefresh = function zPagingRefresh() {
   __webpack_require__.e(/*! require.ensure | node-modules/z-paging/components/z-paging/components/z-paging-refresh */ "node-modules/z-paging/components/z-paging/components/z-paging-refresh").then((function () {
-    return resolve(__webpack_require__(/*! ../components/z-paging-refresh */ 587));
+    return resolve(__webpack_require__(/*! ../components/z-paging-refresh */ 615));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var zPagingLoadMore = function zPagingLoadMore() {
   __webpack_require__.e(/*! require.ensure | node-modules/z-paging/components/z-paging/components/z-paging-load-more */ "node-modules/z-paging/components/z-paging/components/z-paging-load-more").then((function () {
-    return resolve(__webpack_require__(/*! ../components/z-paging-load-more */ 594));
+    return resolve(__webpack_require__(/*! ../components/z-paging-load-more */ 622));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var zPagingEmptyView = function zPagingEmptyView() {
   __webpack_require__.e(/*! require.ensure | node-modules/z-paging/components/z-paging-empty-view/z-paging-empty-view */ "node-modules/z-paging/components/z-paging-empty-view/z-paging-empty-view").then((function () {
-    return resolve(__webpack_require__(/*! ../../z-paging-empty-view/z-paging-empty-view */ 601));
+    return resolve(__webpack_require__(/*! ../../z-paging-empty-view/z-paging-empty-view */ 629));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var systemInfo = _zPagingUtils.default.getSystemInfoSync();
@@ -39293,7 +39321,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 475 */
+/* 503 */
 /*!*********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-static.js ***!
   \*********************************************************************************************************************/
@@ -39322,7 +39350,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 476 */
+/* 504 */
 /*!***********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-constant.js ***!
   \***********************************************************************************************************************/
@@ -39356,7 +39384,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 477 */
+/* 505 */
 /*!********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-utils.js ***!
   \********************************************************************************************************************/
@@ -39373,8 +39401,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../config/index */ 478));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 476));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../config/index */ 506));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 504));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var storageKey = 'Z-PAGING-REFRESHER-TIME-STORAGE-KEY';
@@ -39691,7 +39719,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 478 */
+/* 506 */
 /*!***************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/config/index.js ***!
   \***************************************************************************************************************/
@@ -39710,7 +39738,7 @@ var _default = {};
 exports.default = _default;
 
 /***/ }),
-/* 479 */
+/* 507 */
 /*!***************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/common-layout.js ***!
   \***************************************************************************************************************************/
@@ -39725,7 +39753,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
 // [z-paging]通用布局相关模块
 var _default = {
   data: function data() {
@@ -39840,7 +39868,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 480 */
+/* 508 */
 /*!*************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/data-handle.js ***!
   \*************************************************************************************************************************/
@@ -39857,10 +39885,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 476));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
-var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 482));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 510));
 // [z-paging]数据处理模块
 var _default2 = {
   props: {
@@ -40581,7 +40609,7 @@ exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 481 */
+/* 509 */
 /*!*******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-enum.js ***!
   \*******************************************************************************************************************/
@@ -40642,7 +40670,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 482 */
+/* 510 */
 /*!**************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-interceptor.js ***!
   \**************************************************************************************************************************/
@@ -40757,7 +40785,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 483 */
+/* 511 */
 /*!******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/i18n.js ***!
   \******************************************************************************************************************/
@@ -40773,10 +40801,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 22);
-var _index = _interopRequireDefault(__webpack_require__(/*! ../../i18n/index.js */ 484));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 476));
-var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 482));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../../i18n/index.js */ 512));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
+var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 510));
 // [z-paging]i18n模块
 
 var _initVueI18n = (0, _uniI18n.initVueI18n)(_index.default),
@@ -40889,7 +40917,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 484 */
+/* 512 */
 /*!*************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/index.js ***!
   \*************************************************************************************************************/
@@ -40904,9 +40932,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 485));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 486));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 487));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 513));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 514));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 515));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -40915,7 +40943,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 485 */
+/* 513 */
 /*!************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/en.json ***!
   \************************************************************************************************************/
@@ -40925,7 +40953,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"zp.refresher.default\":\"Pull down to refresh\",\"zp.refresher.pulling\":\"Release to refresh\",\"zp.refresher.refreshing\":\"Refreshing...\",\"zp.refresher.complete\":\"Refresh succeeded\",\"zp.refresher.f2\":\"Refresh to enter 2f\",\"zp.loadingMore.default\":\"Click to load more\",\"zp.loadingMore.loading\":\"Loading...\",\"zp.loadingMore.noMore\":\"No more data\",\"zp.loadingMore.fail\":\"Load failed,click to reload\",\"zp.emptyView.title\":\"No data\",\"zp.emptyView.reload\":\"Reload\",\"zp.emptyView.error\":\"Sorry,load failed\",\"zp.refresherUpdateTime.title\":\"Last update: \",\"zp.refresherUpdateTime.none\":\"None\",\"zp.refresherUpdateTime.today\":\"Today\",\"zp.refresherUpdateTime.yesterday\":\"Yesterday\",\"zp.systemLoading.title\":\"Loading...\"}");
 
 /***/ }),
-/* 486 */
+/* 514 */
 /*!*****************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/zh-Hans.json ***!
   \*****************************************************************************************************************/
@@ -40935,7 +40963,7 @@ module.exports = JSON.parse("{\"zp.refresher.default\":\"Pull down to refresh\",
 module.exports = JSON.parse("{\"zp.refresher.default\":\"继续下拉刷新\",\"zp.refresher.pulling\":\"松开立即刷新\",\"zp.refresher.refreshing\":\"正在刷新...\",\"zp.refresher.complete\":\"刷新成功\",\"zp.refresher.f2\":\"松手进入二楼\",\"zp.loadingMore.default\":\"点击加载更多\",\"zp.loadingMore.loading\":\"正在加载...\",\"zp.loadingMore.noMore\":\"没有更多了\",\"zp.loadingMore.fail\":\"加载失败，点击重新加载\",\"zp.emptyView.title\":\"没有数据哦~\",\"zp.emptyView.reload\":\"重新加载\",\"zp.emptyView.error\":\"很抱歉，加载失败\",\"zp.refresherUpdateTime.title\":\"最后更新：\",\"zp.refresherUpdateTime.none\":\"无\",\"zp.refresherUpdateTime.today\":\"今天\",\"zp.refresherUpdateTime.yesterday\":\"昨天\",\"zp.systemLoading.title\":\"加载中...\"}");
 
 /***/ }),
-/* 487 */
+/* 515 */
 /*!*****************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/zh-Hant.json ***!
   \*****************************************************************************************************************/
@@ -40945,7 +40973,7 @@ module.exports = JSON.parse("{\"zp.refresher.default\":\"继续下拉刷新\",\"
 module.exports = JSON.parse("{\"zp.refresher.default\":\"繼續下拉重繪\",\"zp.refresher.pulling\":\"鬆開立即重繪\",\"zp.refresher.refreshing\":\"正在重繪...\",\"zp.refresher.complete\":\"重繪成功\",\"zp.refresher.f2\":\"鬆手進入二樓\",\"zp.loadingMore.default\":\"點擊加載更多\",\"zp.loadingMore.loading\":\"正在加載...\",\"zp.loadingMore.noMore\":\"沒有更多了\",\"zp.loadingMore.fail\":\"加載失敗，點擊重新加載\",\"zp.emptyView.title\":\"沒有數據哦~\",\"zp.emptyView.reload\":\"重新加載\",\"zp.emptyView.error\":\"很抱歉，加載失敗\",\"zp.refresherUpdateTime.title\":\"最後更新：\",\"zp.refresherUpdateTime.none\":\"無\",\"zp.refresherUpdateTime.today\":\"今天\",\"zp.refresherUpdateTime.yesterday\":\"昨天\",\"zp.systemLoading.title\":\"加載中...\"}");
 
 /***/ }),
-/* 488 */
+/* 516 */
 /*!******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/nvue.js ***!
   \******************************************************************************************************************/
@@ -40960,9 +40988,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 476));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
 // [z-paging]nvue独有部分模块
 var _default = {
   props: {},
@@ -40987,7 +41015,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 489 */
+/* 517 */
 /*!*******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/empty.js ***!
   \*******************************************************************************************************************/
@@ -41002,7 +41030,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
 // [z-paging]空数据图view模块
 var _default = {
   props: {
@@ -41149,7 +41177,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 490 */
+/* 518 */
 /*!***********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/refresher.js ***!
   \***********************************************************************************************************************/
@@ -41164,9 +41192,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 476));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
 // [z-paging]下拉刷新view模块
 var _default = {
   props: {
@@ -41826,7 +41854,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 491 */
+/* 519 */
 /*!***********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/load-more.js ***!
   \***********************************************************************************************************************/
@@ -41843,8 +41871,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
 // [z-paging]滚动到底部加载更多模块
 var _default = {
   props: {
@@ -42254,7 +42282,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 492 */
+/* 520 */
 /*!*********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/loading.js ***!
   \*********************************************************************************************************************/
@@ -42269,8 +42297,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
 // [z-paging]loading相关模块
 var _default = {
   props: {
@@ -42366,7 +42394,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 493 */
+/* 521 */
 /*!******************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/chat-record-mode.js ***!
   \******************************************************************************************************************************/
@@ -42381,7 +42409,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
 // [z-paging]聊天记录模式模块
 var _default = {
   props: {
@@ -42534,7 +42562,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 494 */
+/* 522 */
 /*!**********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/scroller.js ***!
   \**********************************************************************************************************************/
@@ -42551,8 +42579,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
 // [z-paging]scroll相关模块
 var _default = {
   props: {
@@ -43097,7 +43125,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 495 */
+/* 523 */
 /*!*************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/back-to-top.js ***!
   \*************************************************************************************************************************/
@@ -43112,7 +43140,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
 // [z-paging]点击返回顶部view模块
 var _default = {
   props: {
@@ -43240,7 +43268,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 496 */
+/* 524 */
 /*!**************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/virtual-list.js ***!
   \**************************************************************************************************************************/
@@ -43257,9 +43285,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 477));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 476));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 481));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
 // [z-paging]虚拟列表模块
 var _default = {
   props: {
@@ -43849,34 +43877,6 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
 /* 525 */,
 /* 526 */,
 /* 527 */,
@@ -43912,7 +43912,21 @@ exports.default = _default;
 /* 557 */,
 /* 558 */,
 /* 559 */,
-/* 560 */
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */
 /*!**************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/libs/util/emitter.js ***!
   \**************************************************************************************************/
@@ -43982,7 +43996,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 561 */
+/* 575 */
 /*!**********************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/libs/util/async-validator.js ***!
   \**********************************************************************************************************/
@@ -45160,10 +45174,10 @@ Schema.warning = warning;
 Schema.messages = messages;
 var _default = Schema;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 562)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 576)))
 
 /***/ }),
-/* 562 */
+/* 576 */
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -45194,7 +45208,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 563);
+        if (!path) path = __webpack_require__(/*! path */ 577);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -45207,7 +45221,7 @@ exports.features = {};
 
 
 /***/ }),
-/* 563 */
+/* 577 */
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -45517,7 +45531,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 562)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 576)))
 
 /***/ })
 ]]);

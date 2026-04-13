@@ -102,16 +102,16 @@ var components
 try {
   components = {
     uForm: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-form/u-form */ "uni_modules/vk-uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form/u-form.vue */ 548))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-form/u-form */ "uni_modules/vk-uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form/u-form.vue */ 562))
     },
     uFormItem: function () {
-      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form-item/u-form-item.vue */ 555))
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form-item/u-form-item.vue */ 569))
     },
     uInput: function () {
-      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-input/u-input.vue */ 566))
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-input/u-input.vue */ 580))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-button/u-button */ "uni_modules/vk-uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-button/u-button.vue */ 573))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-button/u-button */ "uni_modules/vk-uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-button/u-button.vue */ 587))
     },
   }
 } catch (e) {

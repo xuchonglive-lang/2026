@@ -54,7 +54,7 @@ export default {
           icon: "order"
         },
         {
-          pagePath: "/pages/plan/list/index",
+          pagePath: "/pages/plan/list",
           text: "计划执行",
           icon: "calendar"
         },

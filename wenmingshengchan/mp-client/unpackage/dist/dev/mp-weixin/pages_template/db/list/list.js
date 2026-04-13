@@ -102,13 +102,13 @@ var components
 try {
   components = {
     uSearch: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-search/u-search */ "uni_modules/vk-uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-search/u-search.vue */ 501))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-search/u-search */ "uni_modules/vk-uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-search/u-search.vue */ 529))
     },
     uEmpty: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-empty/u-empty */ "uni_modules/vk-uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-empty/u-empty.vue */ 522))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-empty/u-empty */ "uni_modules/vk-uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-empty/u-empty.vue */ 477))
     },
     uLoadmore: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore */ "uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore.vue */ 529))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore */ "uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore.vue */ 484))
     },
   }
 } catch (e) {

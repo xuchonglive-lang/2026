@@ -102,13 +102,13 @@ var components
 try {
   components = {
     zPaging: function () {
-      return Promise.all(/*! import() | node-modules/z-paging/components/z-paging/z-paging */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/z-paging/components/z-paging/z-paging")]).then(__webpack_require__.bind(null, /*! z-paging/components/z-paging/z-paging.vue */ 470))
+      return Promise.all(/*! import() | node-modules/z-paging/components/z-paging/z-paging */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/z-paging/components/z-paging/z-paging")]).then(__webpack_require__.bind(null, /*! z-paging/components/z-paging/z-paging.vue */ 498))
     },
     uSearch: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-search/u-search */ "uni_modules/vk-uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-search/u-search.vue */ 501))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-search/u-search */ "uni_modules/vk-uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-search/u-search.vue */ 529))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 508))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 536))
     },
     myTabBar: function () {
       return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 463))

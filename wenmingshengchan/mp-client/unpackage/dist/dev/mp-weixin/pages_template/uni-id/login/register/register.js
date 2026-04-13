@@ -102,7 +102,7 @@ var components
 try {
   components = {
     vkDataVerificationCode: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-unicloud/components/vk-data-verification-code/vk-data-verification-code */ "uni_modules/vk-unicloud/components/vk-data-verification-code/vk-data-verification-code").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-unicloud/components/vk-data-verification-code/vk-data-verification-code.vue */ 543))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-unicloud/components/vk-data-verification-code/vk-data-verification-code */ "uni_modules/vk-unicloud/components/vk-data-verification-code/vk-data-verification-code").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-unicloud/components/vk-data-verification-code/vk-data-verification-code.vue */ 557))
     },
   }
 } catch (e) {

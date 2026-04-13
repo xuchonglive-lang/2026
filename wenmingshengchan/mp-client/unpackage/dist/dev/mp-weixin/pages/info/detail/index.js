@@ -102,10 +102,10 @@ var components
 try {
   components = {
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 508))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 536))
     },
     uLoading: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-loading/u-loading */ "uni_modules/vk-uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-loading/u-loading.vue */ 515))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-loading/u-loading */ "uni_modules/vk-uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-loading/u-loading.vue */ 543))
     },
   }
 } catch (e) {

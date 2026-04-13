@@ -232,7 +232,7 @@
             action: '',
             // 表单字段显示规则
             columns: [
-              { key: 'username', title: '用户名', type: 'text', show: ['add'] },
+              { key: 'username', title: '用户名', type: 'text' },
               { key: 'nickname', title: '昵称', type: 'text' },
               {
                 key: 'gender',
@@ -240,7 +240,7 @@
                 type: 'radio',
                 data: genderData,
               },
-              { key: 'password', title: '密码', type: 'text', tips: '若密码为空，则默认为234567', show: ['add'] },
+              { key: 'password', title: '密码', type: 'text', tips: '创建时留空默认为234567；修改时留空表示不修改密码' },
               { key: 'mobile', title: '手机号', type: 'text' },
               {
                 key: 'login_appid_type',

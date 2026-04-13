@@ -35,6 +35,11 @@
 			"style": {
 				"navigationBarTitleText": "信息内容管理"
 			}
+		},{
+			"path": "pages/plan/plan-list",
+			"style": {
+				"navigationBarTitleText": "日计划管理"
+			}
 		},
 		{
 			"path": "pages/login/index",
