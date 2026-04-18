@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "specs"
+		},
+		{
+			"path": "mcgrouting-client-master"
 		}
 	],
 	"settings": {

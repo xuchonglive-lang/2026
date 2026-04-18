@@ -1,0 +1,551 @@
+@charset "UTF-8";
+/* COOL-UNI 颜色变量 */
+/* colorui 顶部波浪导航栏样式 */
+/* miniprogram/pages/post/post.wxss */
+/* =========== */
+/*   波浪动画   */
+/* =========== */
+/* 
+  Animation 微动画  
+  基于ColorUI组建库的动画模块 by 文晓港 2019年3月26日19:52:28
+ */
+/* css 滤镜 控制黑白底色gif的 */
+.gif-black.data-v-c70c99f8{  
+  mix-blend-mode: screen;
+}
+.gif-white.data-v-c70c99f8{  
+  mix-blend-mode: multiply;
+}
+/* Animation css */
+[class*=animation-].data-v-c70c99f8 {
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+.animation-fade.data-v-c70c99f8 {
+    -webkit-animation-name: fade-data-v-c70c99f8;
+            animation-name: fade-data-v-c70c99f8;
+    -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+}
+.animation-scale-up.data-v-c70c99f8 {
+    -webkit-animation-name: scale-up-data-v-c70c99f8;
+            animation-name: scale-up-data-v-c70c99f8
+}
+.animation-scale-down.data-v-c70c99f8 {
+    -webkit-animation-name: scale-down-data-v-c70c99f8;
+            animation-name: scale-down-data-v-c70c99f8
+}
+.animation-slide-top.data-v-c70c99f8 {
+    -webkit-animation-name: slide-top-data-v-c70c99f8;
+            animation-name: slide-top-data-v-c70c99f8
+}
+.animation-slide-bottom.data-v-c70c99f8 {
+    -webkit-animation-name: slide-bottom-data-v-c70c99f8;
+            animation-name: slide-bottom-data-v-c70c99f8
+}
+.animation-slide-left.data-v-c70c99f8 {
+    -webkit-animation-name: slide-left-data-v-c70c99f8;
+            animation-name: slide-left-data-v-c70c99f8
+}
+.animation-slide-right.data-v-c70c99f8 {
+    -webkit-animation-name: slide-right-data-v-c70c99f8;
+            animation-name: slide-right-data-v-c70c99f8
+}
+.animation-shake.data-v-c70c99f8 {
+    -webkit-animation-name: shake-data-v-c70c99f8;
+            animation-name: shake-data-v-c70c99f8
+}
+.animation-reverse.data-v-c70c99f8 {
+    animation-direction: reverse
+}
+@-webkit-keyframes fade-data-v-c70c99f8 {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@keyframes fade-data-v-c70c99f8 {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@-webkit-keyframes scale-up-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-up-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes scale-down-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-down-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes slide-top-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-top-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes slide-bottom-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-bottom-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes shake-data-v-c70c99f8 {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@keyframes shake-data-v-c70c99f8 {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@-webkit-keyframes slide-left-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-left-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@-webkit-keyframes slide-right-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-right-data-v-c70c99f8 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+image[class*="gif-"].data-v-c70c99f8 {
+  /* border-radius: 6rpx; */
+  display: block;
+}
+.gif-wave.data-v-c70c99f8 {
+  /* position: absolute; */
+  width: 100%;
+  bottom: -2rpx;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+/* 同上，结束 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 颜色变量 */
+/*文本基本颜色*/
+/* 下划线 */
+view.data-v-c70c99f8,
+scroll-view.data-v-c70c99f8,
+swiper.data-v-c70c99f8,
+swiper-item.data-v-c70c99f8,
+cover-view.data-v-c70c99f8,
+cover-image.data-v-c70c99f8,
+icon.data-v-c70c99f8,
+text.data-v-c70c99f8,
+rich-text.data-v-c70c99f8,
+progress.data-v-c70c99f8,
+button.data-v-c70c99f8,
+checkbox.data-v-c70c99f8,
+form.data-v-c70c99f8,
+input.data-v-c70c99f8,
+label.data-v-c70c99f8,
+radio.data-v-c70c99f8,
+slider.data-v-c70c99f8,
+switch.data-v-c70c99f8,
+textarea.data-v-c70c99f8,
+navigator.data-v-c70c99f8,
+audio.data-v-c70c99f8,
+camera.data-v-c70c99f8,
+image.data-v-c70c99f8,
+video.data-v-c70c99f8 {
+  /* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+  box-sizing: border-box;
+}
+image.data-v-c70c99f8 {
+  /* 去掉底部白色背景 */
+  display: block;
+}
+/* 布局 */
+.center.data-v-c70c99f8 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row.data-v-c70c99f8 {
+  display: flex;
+  flex-direction: row;
+}
+.column.data-v-c70c99f8 {
+  display: flex;
+  flex-direction: column;
+}
+.space-between.data-v-c70c99f8 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.one.data-v-c70c99f8 {
+  flex: 1;
+}
+/* input */
+.placeholder.data-v-c70c99f8 {
+  color: #999 !important;
+}
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+.noScorll.data-v-c70c99f8 ::-webkit-scrollbar {
+  display: none;
+}
+/* 解决 H5 的问题 */
+.text-ellipsis.data-v-c70c99f8 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+/* 蒙层 */
+.mask.data-v-c70c99f8 {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.mask.data-v-c70c99f8 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transition: background 0.3s ease-in-out;
+  visibility: hidden;
+}
+.mask.mask-show.data-v-c70c99f8 {
+  visibility: visible;
+}
+.popups.data-v-c70c99f8 {
+  position: absolute;
+  padding: 20rpx;
+  border-radius: 5px;
+  display: flex;
+}
+.popups .view.data-v-c70c99f8 {
+  padding: 10rpx;
+}
+.popups .image.data-v-c70c99f8 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.dark.data-v-c70c99f8 {
+  background-color: #4C4C4C;
+  color: #fff;
+}
+.dark .top-start.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  top: -18rpx;
+  left: 10rpx;
+  border-width: 0 20rpx 20rpx;
+  border-style: solid;
+  border-color: transparent transparent #4C4C4C;
+}
+.dark .top-end.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  top: -18rpx;
+  right: 10rpx;
+  border-width: 0 20rpx 20rpx;
+  border-style: solid;
+  border-color: transparent transparent #4C4C4C;
+}
+.dark .bottom-start.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  bottom: -18rpx;
+  left: 10rpx;
+  border-width: 20rpx 20rpx 0;
+  border-style: solid;
+  border-color: #4C4C4C transparent transparent;
+}
+.dark .bottom-end.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  bottom: -18rpx;
+  right: 10rpx;
+  border-width: 20rpx 20rpx 0;
+  border-style: solid;
+  border-color: #4C4C4C transparent transparent;
+}
+.dark .disabledColor.data-v-c70c99f8 {
+  color: #c5c8ce;
+}
+.light.data-v-c70c99f8 {
+  color: #515a6e;
+  box-shadow: 0rpx 0rpx 30rpx rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+.light .top-start.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  top: -18rpx;
+  left: 10rpx;
+  border-width: 0 20rpx 20rpx;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+}
+.light .top-end.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  top: -18rpx;
+  right: 10rpx;
+  border-width: 0 20rpx 20rpx;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+}
+.light .bottom-start.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  bottom: -18rpx;
+  left: 10rpx;
+  border-width: 20rpx 20rpx 0;
+  border-style: solid;
+  border-color: #fff transparent transparent;
+}
+.light .bottom-end.data-v-c70c99f8:after {
+  content: "";
+  position: absolute;
+  bottom: -18rpx;
+  right: 10rpx;
+  border-width: 20rpx 20rpx 0;
+  border-style: solid;
+  border-color: #fff transparent transparent;
+}
+.light .disabledColor.data-v-c70c99f8 {
+  color: #c5c8ce;
+}
+.solid-bottom.data-v-c70c99f8 {
+  border-bottom: 1px solid #ccc;
+}
+.solid-right.data-v-c70c99f8 {
+  border-right: 1px solid #ccc;
+}
+.popups .itemChild.data-v-c70c99f8:last-child {
+  border: none;
+}
+

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "cl-popup": "/node-modules/cl-uni/components/cl-popup/cl-popup",
+    "cl-icon": "/node-modules/cl-uni/components/cl-icon/cl-icon",
+    "cl-row": "/node-modules/cl-uni/components/cl-row/cl-row",
+    "cl-col": "/node-modules/cl-uni/components/cl-col/cl-col",
+    "cl-button": "/node-modules/cl-uni/components/cl-button/cl-button"
+  },
+  "component": true
+}

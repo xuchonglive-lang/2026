@@ -1,0 +1,219 @@
+// uni.scss
+@import "cl-uni/theme.scss";
+
+
+
+@import "@/common/css/uni.scss";
+@import "uview-ui/theme.scss";
+
+/* colorui 顶部波浪导航栏样式 */
+	/* miniprogram/pages/post/post.wxss */
+	/* =========== */
+	/*   波浪动画   */
+	/* =========== */
+@import "@/colorui/animation.css";
+	image[class*="gif-"] {
+	    /* border-radius: 6rpx; */
+	    display: block;
+	}
+	
+	
+.gif-wave{
+	    /* position: absolute; */
+	    width: 100%;
+	    bottom: -2rpx;
+	    left: 0;
+	    z-index: 99;
+	    mix-blend-mode: screen;
+	    height: 100rpx;
+}
+/* 同上，结束 */
+$color-primary: #ADB838;
+$color-success: #4cd964;
+$color-warning: #FAB714;
+$color-error: #D12E32;
+
+/* 文字基本颜色 */
+$text-color-base: #5A5B5C; //基本色
+$text-color-assist: #919293; //辅助色
+$text-color-black: #3B3C3E; //黑
+$text-color-grey: #878889; //灰
+$text-color-white: #ffffff; //白
+
+/* 背景颜色 */
+$bg-color: #F1F8FA;
+$bg-color-grey: #F5F5F5;
+$bg-color-primary: #E8EACF;
+
+/* 边框颜色 */
+$border-color:#e2e2e2;
+
+/* 尺寸变量 */
+
+/* 文字尺寸 */
+$font-size-sm:24rpx;
+$font-size-base:28rpx;
+$font-size-lg:32rpx;
+
+/* 图片尺寸 */
+$img-size-sm:40rpx;
+$img-size-base:52rpx;
+$img-size-lg:80rpx;
+
+/* Border Radius */
+$border-radius-sm: 4rpx;
+$border-radius-base: 6rpx;
+$border-radius-lg: 12rpx;
+$border-radius-circle: 50%;
+
+/* 水平间距 */
+$spacing-row-sm: 10px;
+$spacing-row-base: 20rpx;
+$spacing-row-lg: 30rpx;
+
+/* 垂直间距 */
+$spacing-col-sm: 8rpx;
+$spacing-col-base: 16rpx;
+$spacing-col-lg: 24rpx;
+
+/* 透明度 */
+$opacity-disabled: 0.3; // 组件禁用态的透明度
+
+/* 文章场景相关 */
+$color-title: #2C405A; // 文章标题颜色
+$font-size-title:40rpx;
+$color-subtitle: #555555; // 二级标题颜色
+$font-size-subtitle:36rpx;
+$color-paragraph: #3F536E; // 文章段落颜色
+$font-size-paragraph:30rpx;
+
+$box-shadow: 0 20rpx 20rpx -20rpx rgba($color: #333, $alpha: 0.1);
+
+
+/* 颜色变量 */
+$mxg-color-primary: #345dc2;
+$mxg-color-orange: #FB6932;
+$mxg-color-grey: #F8F9FB;
+
+/*文本基本颜色*/
+$mxg-text-color-grey: #959DA5; //辅助灰色，如加载更多的提示信息
+$mxg-text-color-red: #FA140E;
+$mxg-text-color-blue: #007aff;
+$mxg-text-color-black: #333333; 
+$mxg-text-color-placeholder: #a4a5a9;
+
+/* 下划线 */
+$mxg-underline: .5px solid #efeff4;
+/* #ifndef APP-PLUS-NVUE */
+view,
+scroll-view,
+swiper,
+swiper-item,
+cover-view,
+cover-image,
+icon,
+text,
+rich-text,
+progress,
+button,
+checkbox,
+form,
+input,
+label,
+radio,
+slider,
+switch,
+textarea,
+navigator,
+audio,
+camera,
+image,
+video {
+	/* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+	box-sizing: border-box;
+}
+
+
+image {
+	/* 去掉底部白色背景 */
+	display: block;
+}
+/* #endif */
+
+/* 布局 */
+.center{
+	/* #ifndef APP-PLUS-NVUE */
+	display:flex;
+	/* #endif */
+	align-items: center;
+	justify-content: center;
+}
+.row{
+	/* #ifndef APP-PLUS-NVUE */
+	display:flex;
+	/* #endif */
+	flex-direction: row;
+}
+.column{
+	/* #ifndef APP-PLUS-NVUE */
+	display:flex;
+	/* #endif */
+	flex-direction: column;
+}
+
+.space-between {
+	/* #ifndef APP-PLUS-NVUE */
+	display:flex;
+	/* #endif */
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.one{
+	flex: 1;
+}
+
+/* input */
+.placeholder{
+	color: #999 !important;
+}
+
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+/* #ifdef MP-WEIXIN || APP-PLUS */
+	.noScorll ::-webkit-scrollbar{
+		display: none;
+	}
+/* #endif */
+/* 解决 H5 的问题 */
+/* #ifdef H5 */
+	.noScorll ::-webkit-scrollbar {
+		width: 0 !important;
+		height: 0 !important;
+		display: none;
+	}
+/* #endif */
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis; //显示省略号
+	-webkit-line-clamp: 2; //最多2行
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
+
+/* 蒙层 */
+.mask {
+	z-index: 99;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.7);
+}

@@ -1,0 +1,457 @@
+@charset "UTF-8";
+/* COOL-UNI 颜色变量 */
+/* colorui 顶部波浪导航栏样式 */
+/* miniprogram/pages/post/post.wxss */
+/* =========== */
+/*   波浪动画   */
+/* =========== */
+/* 
+  Animation 微动画  
+  基于ColorUI组建库的动画模块 by 文晓港 2019年3月26日19:52:28
+ */
+/* css 滤镜 控制黑白底色gif的 */
+.gif-black.data-v-a3f2467a{  
+  mix-blend-mode: screen;
+}
+.gif-white.data-v-a3f2467a{  
+  mix-blend-mode: multiply;
+}
+/* Animation css */
+[class*=animation-].data-v-a3f2467a {
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+.animation-fade.data-v-a3f2467a {
+    -webkit-animation-name: fade-data-v-a3f2467a;
+            animation-name: fade-data-v-a3f2467a;
+    -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+}
+.animation-scale-up.data-v-a3f2467a {
+    -webkit-animation-name: scale-up-data-v-a3f2467a;
+            animation-name: scale-up-data-v-a3f2467a
+}
+.animation-scale-down.data-v-a3f2467a {
+    -webkit-animation-name: scale-down-data-v-a3f2467a;
+            animation-name: scale-down-data-v-a3f2467a
+}
+.animation-slide-top.data-v-a3f2467a {
+    -webkit-animation-name: slide-top-data-v-a3f2467a;
+            animation-name: slide-top-data-v-a3f2467a
+}
+.animation-slide-bottom.data-v-a3f2467a {
+    -webkit-animation-name: slide-bottom-data-v-a3f2467a;
+            animation-name: slide-bottom-data-v-a3f2467a
+}
+.animation-slide-left.data-v-a3f2467a {
+    -webkit-animation-name: slide-left-data-v-a3f2467a;
+            animation-name: slide-left-data-v-a3f2467a
+}
+.animation-slide-right.data-v-a3f2467a {
+    -webkit-animation-name: slide-right-data-v-a3f2467a;
+            animation-name: slide-right-data-v-a3f2467a
+}
+.animation-shake.data-v-a3f2467a {
+    -webkit-animation-name: shake-data-v-a3f2467a;
+            animation-name: shake-data-v-a3f2467a
+}
+.animation-reverse.data-v-a3f2467a {
+    animation-direction: reverse
+}
+@-webkit-keyframes fade-data-v-a3f2467a {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@keyframes fade-data-v-a3f2467a {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@-webkit-keyframes scale-up-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-up-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes scale-down-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-down-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes slide-top-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-top-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes slide-bottom-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-bottom-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes shake-data-v-a3f2467a {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@keyframes shake-data-v-a3f2467a {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@-webkit-keyframes slide-left-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-left-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@-webkit-keyframes slide-right-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-right-data-v-a3f2467a {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+image[class*="gif-"].data-v-a3f2467a {
+  /* border-radius: 6rpx; */
+  display: block;
+}
+.gif-wave.data-v-a3f2467a {
+  /* position: absolute; */
+  width: 100%;
+  bottom: -2rpx;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+/* 同上，结束 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 颜色变量 */
+/*文本基本颜色*/
+/* 下划线 */
+view.data-v-a3f2467a,
+scroll-view.data-v-a3f2467a,
+swiper.data-v-a3f2467a,
+swiper-item.data-v-a3f2467a,
+cover-view.data-v-a3f2467a,
+cover-image.data-v-a3f2467a,
+icon.data-v-a3f2467a,
+text.data-v-a3f2467a,
+rich-text.data-v-a3f2467a,
+progress.data-v-a3f2467a,
+button.data-v-a3f2467a,
+checkbox.data-v-a3f2467a,
+form.data-v-a3f2467a,
+input.data-v-a3f2467a,
+label.data-v-a3f2467a,
+radio.data-v-a3f2467a,
+slider.data-v-a3f2467a,
+switch.data-v-a3f2467a,
+textarea.data-v-a3f2467a,
+navigator.data-v-a3f2467a,
+audio.data-v-a3f2467a,
+camera.data-v-a3f2467a,
+image.data-v-a3f2467a,
+video.data-v-a3f2467a {
+  /* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+  box-sizing: border-box;
+}
+image.data-v-a3f2467a {
+  /* 去掉底部白色背景 */
+  display: block;
+}
+/* 布局 */
+.center.data-v-a3f2467a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row.data-v-a3f2467a {
+  display: flex;
+  flex-direction: row;
+}
+.column.data-v-a3f2467a {
+  display: flex;
+  flex-direction: column;
+}
+.space-between.data-v-a3f2467a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.one.data-v-a3f2467a {
+  flex: 1;
+}
+/* input */
+.placeholder.data-v-a3f2467a {
+  color: #999 !important;
+}
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+.noScorll.data-v-a3f2467a ::-webkit-scrollbar {
+  display: none;
+}
+/* 解决 H5 的问题 */
+.text-ellipsis.data-v-a3f2467a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+/* 蒙层 */
+.mask.data-v-a3f2467a {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.u-section.data-v-a3f2467a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.u-section__title.data-v-a3f2467a {
+  position: relative;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.u-section__title__icon-wrap.data-v-a3f2467a {
+  position: absolute;
+}
+.u-section__title__text.data-v-a3f2467a {
+  line-height: 1;
+}
+.u-section__right-info.data-v-a3f2467a {
+  color: #909399;
+  font-size: 26rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.u-section__right-info__icon-arrow.data-v-a3f2467a {
+  margin-left: 6rpx;
+}
+

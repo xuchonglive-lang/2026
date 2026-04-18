@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "添加材料下井信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse"
+  }
+}

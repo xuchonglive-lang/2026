@@ -1,0 +1,75 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/test/test",
+        "pages/setting/setting",
+        "pages/analyse/analyse",
+        "pages/list/list",
+        "pages/search/search",
+        "pages/login/login",
+        "pages/setting/addGroutingDialog/addGroutingDialog",
+        "pages/setting/addEntryofmaterialDialog/addEntryofmaterialDialog",
+        "pages/setting/addDescentofmaterialDialog/addDescentofmaterialDialog",
+        "pages/setting/manageGrouting/manageGrouting",
+        "pages/setting/manageDescentmaterial/manageDescentmaterial",
+        "pages/setting/manageEntrymaterial/manageEntrymaterial",
+        "pages/list/detail/descentofmaterial/descentofmaterialDetail",
+        "pages/list/detail/entryofmaterial/entryofmaterialDetail",
+        "pages/list/detail/grouting/groutingDetail",
+        "pages/index/dailypaper/dailypaper"
+    ],
+    "subPackages": [],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8",
+        "navigationBarTitleText": "ColorUI",
+        "navigationStyle": "custom"
+    },
+    "tabBar": {
+        "color": "#b0abb3",
+        "selectedColor": "#345DC2",
+        "backgroundColor": "#f8f8f8",
+        "borderStyle": "white",
+        "fontSize": "12px",
+        "height": "52px",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "程序首页",
+                "iconPath": "static/tabs/index.png",
+                "selectedIconPath": "static/tabs/index_active.png"
+            },
+            {
+                "pagePath": "pages/list/list",
+                "text": "写实信息",
+                "iconPath": "static/tabs/list.png",
+                "selectedIconPath": "./static/tabs/list_active.png"
+            },
+            {
+                "pagePath": "pages/analyse/analyse",
+                "text": "注浆分析",
+                "iconPath": "static/tabs/analyse.png",
+                "selectedIconPath": "./static/tabs/analyse_active.png"
+            },
+            {
+                "pagePath": "pages/search/search",
+                "text": "数据查询",
+                "iconPath": "static/tabs/search.png",
+                "selectedIconPath": "static/tabs/search_active.png"
+            },
+            {
+                "pagePath": "pages/setting/setting",
+                "text": "数据采集",
+                "iconPath": "static/tabs/setting.png",
+                "selectedIconPath": "static/tabs/setting_active.png"
+            }
+        ]
+    },
+    "permission": {},
+    "usingComponents": {
+        "mescroll-body": "/components/mescroll-uni/mescroll-body",
+        "cu-custom": "/colorui/components/cu-custom"
+    },
+    "sitemapLocation": "sitemap.json"
+}

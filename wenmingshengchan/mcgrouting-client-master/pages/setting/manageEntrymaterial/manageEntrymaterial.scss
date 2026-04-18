@@ -1,0 +1,55 @@
+
+	.item {
+			display: flex;
+			flex-direction: column;
+			/* align-items: center;
+			justify-content: center; */
+			background-color: #FFFFFF;
+			margin: 15rpx;
+			padding: 10rpx;
+		
+			border-radius: 25upx;
+			
+			
+			.title{
+				
+				
+				width:100%;
+				margin: 10rpx 5rpx;
+				
+						
+				.date{
+					font-size: 25rpx;
+					font-weight: 600;
+					
+				}
+				.title_text{
+					
+					font-size: 30rpx;
+					overflow: hidden;
+					text-overflow: ellipsis; //显示省略号
+					-webkit-line-clamp: 1; //最多2行
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					white-space: normal;
+				}
+			}
+			.info{
+				display: flex;
+				flex-direction:row;
+				align-items: center;
+				justify-content: space-between;
+				
+				width:100%;
+				
+				.name{
+					font-size: 25rpx;
+				}
+				.author{
+					font-size: 25rpx;
+				}
+			}
+		
+			
+	}
+	

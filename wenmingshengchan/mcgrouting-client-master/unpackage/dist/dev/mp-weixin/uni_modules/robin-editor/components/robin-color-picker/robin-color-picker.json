@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "robin-editor-header": "/uni_modules/robin-editor/components/robin-editor-header/robin-editor-header"
+  }
+}

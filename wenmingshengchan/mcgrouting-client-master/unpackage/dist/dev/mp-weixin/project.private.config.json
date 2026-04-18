@@ -1,0 +1,220 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null,
+          "partialCompile": {
+            "enabled": true,
+            "pages": []
+          }
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/list/list",
+          "pathName": "pages/list/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addEntryofmaterialDialog/addEntryofmaterialDialog",
+          "pathName": "pages/setting/addEntryofmaterialDialog/addEntryofmaterialDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addDescentofmaterialDialog/addDescentofmaterialDialog",
+          "pathName": "pages/setting/addDescentofmaterialDialog/addDescentofmaterialDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/list/groutingDetail",
+          "pathName": "pages/list/groutingDetail",
+          "query": "id=616adc4e915712000186591c",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/analyse/analyse",
+          "pathName": "pages/analyse/analyse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/analyse/analyse",
+          "pathName": "pages/analyse/analyse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "pathName": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "pathName": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addDescentofmaterialDialog/addDescentofmaterialDialog",
+          "pathName": "pages/setting/addDescentofmaterialDialog/addDescentofmaterialDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/list/list",
+          "pathName": "pages/list/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/manageGrouting/manageGrouting",
+          "pathName": "pages/setting/manageGrouting/manageGrouting",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "pathName": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "pathName": "pages/setting/addGroutingDialog/addGroutingDialog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setting/manageGrouting/manageGrouting",
+          "pathName": "pages/setting/manageGrouting/manageGrouting",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/analyse/analyse",
+          "pathName": "pages/analyse/analyse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/dailypaper/dailypaper",
+          "pathName": "pages/index/dailypaper/dailypaper",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/dailypaper/dailypaper",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/setting/manageGrouting/manageGrouting",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/analyse/analyse",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

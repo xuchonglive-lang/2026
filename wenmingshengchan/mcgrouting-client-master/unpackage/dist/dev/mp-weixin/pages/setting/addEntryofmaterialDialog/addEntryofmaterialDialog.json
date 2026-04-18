@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "添加材料进场信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cl-toast": "/node-modules/cl-uni/components/cl-toast/cl-toast",
+    "u-form": "/node-modules/uview-ui/components/u-form/u-form",
+    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
+    "cl-select": "/node-modules/cl-uni/components/cl-select/cl-select",
+    "cl-radio-group": "/node-modules/cl-uni/components/cl-radio-group/cl-radio-group",
+    "cl-radio": "/node-modules/cl-uni/components/cl-radio/cl-radio",
+    "cl-input": "/node-modules/cl-uni/components/cl-input/cl-input",
+    "robin-editor": "/uni_modules/robin-editor/components/robin-editor/robin-editor",
+    "cl-row": "/node-modules/cl-uni/components/cl-row/cl-row",
+    "cl-col": "/node-modules/cl-uni/components/cl-col/cl-col",
+    "cl-button": "/node-modules/cl-uni/components/cl-button/cl-button"
+  }
+}

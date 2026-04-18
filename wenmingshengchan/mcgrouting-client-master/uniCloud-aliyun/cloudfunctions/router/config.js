@@ -1,0 +1,32 @@
+// const config=require('config');
+// const uniID=require('uni-id');
+// uniID.init(config["uni"]);
+// const uniPay=require('uni-pay');
+// const db=uniCloud.database();
+// const pubFun=require('./util/pubFunction.js');
+const urlrewrite=require('./util/urlrewrite.js');
+// const middlewareService=require('./middleware/index.js');
+// const daoCenter=require('./dao/index.js');
+// const crypto=require('crypto');
+
+const requireFn = function(path) {
+  return require(path);
+}
+const initConfig = {
+  baseDir: __dirname, // 云函数根目录地址
+  requireFn,
+  // customUtil :{
+  //   // 你自己的工具包，写这里后即可听过customUtil.mynpm1调用
+  // 	// mynpm1:mynpm1
+  // },
+  // config,
+  // uniID,
+  // unipay,
+  // db,
+  // pubFun,
+  urlrewrite
+  // middlewareService,
+  // daoCenter,
+  // crypto
+};
+module.exports = initConfig;

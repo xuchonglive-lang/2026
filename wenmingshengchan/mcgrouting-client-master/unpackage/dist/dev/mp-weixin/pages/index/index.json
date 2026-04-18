@@ -1,0 +1,13 @@
+{
+  "navigationStyle": "default",
+  "navigationBarTitleText": "马城注浆治水智慧云",
+  "navigationBarBackgroundColor": "#0081ff",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "cl-icon": "/node-modules/cl-uni/components/cl-icon/cl-icon",
+    "u-line": "/node-modules/uview-ui/components/u-line/u-line",
+    "u-loading": "/node-modules/uview-ui/components/u-loading/u-loading",
+    "u-section": "/node-modules/uview-ui/components/u-section/u-section",
+    "headers": "/pages/index/components/header"
+  }
+}

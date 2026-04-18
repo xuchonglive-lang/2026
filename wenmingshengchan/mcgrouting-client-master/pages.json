@@ -1,0 +1,194 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+			// 1.1.0 版本后:
+			"cl-(.*)": "cl-uni/components/cl-$1/cl-$1.vue"
+		}
+	},
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle":"default",
+				"navigationBarTitleText": "马城注浆治水智慧云",
+				"navigationBarBackgroundColor": "#0081ff",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none",
+					"titleText":"首页"
+				}
+			}
+		},
+		{
+			"path": "pages/test/test",
+			"style": {
+				"navigationBarTitleText": "演示页面"
+			}
+		}, {
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "数据采集",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/analyse/analyse",
+			"style": {
+				"navigationBarTitleText": "注浆分析",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/list/list",
+			"style": {
+				"navigationBarTitleText": "写实信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "数据查询",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "微信登录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/setting/addGroutingDialog/addGroutingDialog",
+			"style": {
+				"navigationBarTitleText": "添加注浆反馈信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/setting/addEntryofmaterialDialog/addEntryofmaterialDialog",
+			"style": {
+				"navigationBarTitleText": "添加材料进场信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/setting/addDescentofmaterialDialog/addDescentofmaterialDialog",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/setting/manageGrouting/manageGrouting",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/setting/manageDescentmaterial/manageDescentmaterial",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/setting/manageEntrymaterial/manageEntrymaterial",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/list/detail/descentofmaterial/descentofmaterialDetail",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/list/detail/entryofmaterial/entryofmaterialDetail",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/list/detail/grouting/groutingDetail",
+			"style": {
+				"navigationBarTitleText": "添加材料下井信息",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/index/dailypaper/dailypaper",
+			"style": {
+				"navigationBarTitleText": "探水注浆写实日报",
+				"enablePullDownRefresh": false
+			}
+		
+		}
+		
+
+	],
+	
+
+	"tabBar": {
+		"color": "#b0abb3", //未选中时字体的颜色
+		"selectedColor": "#345DC2", //选中字体颜色
+		"backgroundColor": "#f8f8f8", // 背景色
+		"borderStyle": "white", // tabbar 上边框的颜色，可选值 black/white
+		"fontSize": "12px", // 字体大小
+		"height": "52px", // 标签栏高度
+		/* list最少两个，最多5个 */
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "程序首页",
+				"iconPath": "static/tabs/index.png", // 未选中图片
+				"selectedIconPath": "static/tabs/index_active.png" // 选中图片
+			},
+			{
+				"pagePath": "pages/list/list",
+				"text": "写实信息",
+				"iconPath": "static/tabs/list.png", // 未选中图片
+				"selectedIconPath": "./static/tabs/list_active.png" // 选中图片
+			},
+			{
+				"pagePath": "pages/analyse/analyse",
+				"text": "注浆分析",
+				"iconPath": "static/tabs/analyse.png", // 未选中图片
+				"selectedIconPath": "./static/tabs/analyse_active.png" // 选中图片
+			},
+			{
+				"pagePath": "pages/search/search",
+				"text": "数据查询",
+				"iconPath": "static/tabs/search.png", // 未选中图片
+				"selectedIconPath": "static/tabs/search_active.png" // 选中图片
+			},
+			{
+				"pagePath": "pages/setting/setting",
+				"text": "数据采集",
+				"iconPath": "static/tabs/setting.png", // 未选中图片
+				"selectedIconPath": "static/tabs/setting_active.png" // 选中图片
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationBarTitleText": "ColorUI",
+		"navigationStyle": "custom"
+	},
+	// colorui 导航自定义
+	"usingComponents": {
+
+		"cu-custom": "/colorui/components/cu-custom"
+
+	}
+}

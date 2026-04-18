@@ -1,0 +1,574 @@
+@charset "UTF-8";
+/* COOL-UNI 颜色变量 */
+/* colorui 顶部波浪导航栏样式 */
+/* miniprogram/pages/post/post.wxss */
+/* =========== */
+/*   波浪动画   */
+/* =========== */
+/* 
+  Animation 微动画  
+  基于ColorUI组建库的动画模块 by 文晓港 2019年3月26日19:52:28
+ */
+/* css 滤镜 控制黑白底色gif的 */
+.gif-black.data-v-131d5464{  
+  mix-blend-mode: screen;
+}
+.gif-white.data-v-131d5464{  
+  mix-blend-mode: multiply;
+}
+/* Animation css */
+[class*=animation-].data-v-131d5464 {
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+.animation-fade.data-v-131d5464 {
+    -webkit-animation-name: fade-data-v-131d5464;
+            animation-name: fade-data-v-131d5464;
+    -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+}
+.animation-scale-up.data-v-131d5464 {
+    -webkit-animation-name: scale-up-data-v-131d5464;
+            animation-name: scale-up-data-v-131d5464
+}
+.animation-scale-down.data-v-131d5464 {
+    -webkit-animation-name: scale-down-data-v-131d5464;
+            animation-name: scale-down-data-v-131d5464
+}
+.animation-slide-top.data-v-131d5464 {
+    -webkit-animation-name: slide-top-data-v-131d5464;
+            animation-name: slide-top-data-v-131d5464
+}
+.animation-slide-bottom.data-v-131d5464 {
+    -webkit-animation-name: slide-bottom-data-v-131d5464;
+            animation-name: slide-bottom-data-v-131d5464
+}
+.animation-slide-left.data-v-131d5464 {
+    -webkit-animation-name: slide-left-data-v-131d5464;
+            animation-name: slide-left-data-v-131d5464
+}
+.animation-slide-right.data-v-131d5464 {
+    -webkit-animation-name: slide-right-data-v-131d5464;
+            animation-name: slide-right-data-v-131d5464
+}
+.animation-shake.data-v-131d5464 {
+    -webkit-animation-name: shake-data-v-131d5464;
+            animation-name: shake-data-v-131d5464
+}
+.animation-reverse.data-v-131d5464 {
+    animation-direction: reverse
+}
+@-webkit-keyframes fade-data-v-131d5464 {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@keyframes fade-data-v-131d5464 {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@-webkit-keyframes scale-up-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-up-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes scale-down-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-down-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes slide-top-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-top-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes slide-bottom-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-bottom-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes shake-data-v-131d5464 {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@keyframes shake-data-v-131d5464 {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@-webkit-keyframes slide-left-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-left-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@-webkit-keyframes slide-right-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-right-data-v-131d5464 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+image[class*="gif-"].data-v-131d5464 {
+  /* border-radius: 6rpx; */
+  display: block;
+}
+.gif-wave.data-v-131d5464 {
+  /* position: absolute; */
+  width: 100%;
+  bottom: -2rpx;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+/* 同上，结束 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 颜色变量 */
+/*文本基本颜色*/
+/* 下划线 */
+view.data-v-131d5464,
+scroll-view.data-v-131d5464,
+swiper.data-v-131d5464,
+swiper-item.data-v-131d5464,
+cover-view.data-v-131d5464,
+cover-image.data-v-131d5464,
+icon.data-v-131d5464,
+text.data-v-131d5464,
+rich-text.data-v-131d5464,
+progress.data-v-131d5464,
+button.data-v-131d5464,
+checkbox.data-v-131d5464,
+form.data-v-131d5464,
+input.data-v-131d5464,
+label.data-v-131d5464,
+radio.data-v-131d5464,
+slider.data-v-131d5464,
+switch.data-v-131d5464,
+textarea.data-v-131d5464,
+navigator.data-v-131d5464,
+audio.data-v-131d5464,
+camera.data-v-131d5464,
+image.data-v-131d5464,
+video.data-v-131d5464 {
+  /* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+  box-sizing: border-box;
+}
+image.data-v-131d5464 {
+  /* 去掉底部白色背景 */
+  display: block;
+}
+/* 布局 */
+.center.data-v-131d5464 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row.data-v-131d5464 {
+  display: flex;
+  flex-direction: row;
+}
+.column.data-v-131d5464 {
+  display: flex;
+  flex-direction: column;
+}
+.space-between.data-v-131d5464 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.one.data-v-131d5464 {
+  flex: 1;
+}
+/* input */
+.placeholder.data-v-131d5464 {
+  color: #999 !important;
+}
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+.noScorll.data-v-131d5464 ::-webkit-scrollbar {
+  display: none;
+}
+/* 解决 H5 的问题 */
+.text-ellipsis.data-v-131d5464 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+/* 蒙层 */
+.mask.data-v-131d5464 {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+page.data-v-131d5464 {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+.fontsize.data-v-131d5464 {
+  font-size: 28rpx;
+  color: #666666;
+}
+.closer.data-v-131d5464 {
+  margin-bottom: -30rpx;
+}
+/* list 开始 */
+.vk-list-view.data-v-131d5464 {
+  background-color: #f8f8f8;
+}
+.vk-list-view .list-view.data-v-131d5464 {
+  padding: 0rpx 0rpx 20rpx 0rpx;
+}
+.vk-list-view .list-search.data-v-131d5464 {
+  background-color: #ffffff;
+  padding: 20rpx 30rpx;
+}
+.vk-list-view .list-head-desc-text.data-v-131d5464 {
+  font-size: 28rpx;
+  color: #999;
+  padding: 20rpx 30rpx 0rpx 30rpx;
+  padding-bottom: 0;
+  line-height: 52rpx;
+  width: 100%;
+}
+.vk-list-view .list-head-text-num.data-v-131d5464 {
+  font-weight: bold;
+  color: black;
+  font-size: 26rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+/* list 结束 */
+/* 自定义的模块样式*/
+.showZerenren.data-v-131d5464 {
+  margin-left: 15rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+.showZerenren .zerenren.data-v-131d5464 {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  margin-right: 15rpx;
+}
+.order.data-v-131d5464 {
+  border: 1rpx solid #aaaaaa;
+  width: 95%;
+  background-color: #ffffff;
+  margin: 30rpx auto;
+  border-radius: 25rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+  font-size: 28rpx;
+  box-shadow: 1px 1px 1px #aaaaaa;
+}
+.order .top.data-v-131d5464 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order .top .left.data-v-131d5464 {
+  width: 99%;
+  display: flex;
+  align-items: center;
+}
+.order .top .left .store.data-v-131d5464 {
+  width: 99%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  margin: 0 0rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.order .items.data-v-131d5464 {
+  display: flex;
+  margin: 15rpx 10rpx;
+  justify-content: flex-start;
+}
+.order .items .left.data-v-131d5464 {
+  display: flex;
+  margin: 10 rpx 5 rpx;
+  justify-content: flex-start;
+  flex: 1;
+}
+.order .items .middle.data-v-131d5464 {
+  display: flex;
+  margin: 10 rpx 5 rpx;
+  justify-content: flex-start;
+  flex: 1;
+}
+.order .items .right.data-v-131d5464 {
+  display: flex;
+  margin: 10 rpx 5 rpx;
+  justify-content: flex-start;
+  flex: 1;
+}
+.order .items .title.data-v-131d5464 {
+  background-color: red;
+}
+.order .items .value.data-v-131d5464 {
+  background-color: yellow;
+}
+.order .card-label.data-v-131d5464 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.order .bottom.data-v-131d5464 {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  line-height: 70rpx;
+  margin-top: 20rpx;
+}
+.order .bottom .btn.data-v-131d5464 {
+  line-height: 60rpx;
+  height: 60rpx;
+  width: 30%;
+  border-radius: 12rpx;
+  border: 2rpx solid #909399;
+  font-size: 28rpx;
+  text-align: center;
+  color: #909399;
+  padding: 2rpx;
+  margin-left: 10rpx;
+  color: #2979ff;
+  border-color: #2979ff;
+}
+.order .bottom .showZerenren.data-v-131d5464 {
+  width: 40%;
+}
+.order .bottom .duty.data-v-131d5464 {
+  width: 40%;
+  text-align: right;
+}
+.swiper-item.data-v-131d5464 {
+  height: 100%;
+}
+

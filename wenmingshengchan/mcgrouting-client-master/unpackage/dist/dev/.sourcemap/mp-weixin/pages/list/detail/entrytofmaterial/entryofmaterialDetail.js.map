@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;wEAAA,qBACA,sBACA,gK,mDACAA,EAAWC,a","file":"pages/list/detail/entrytofmaterial/entryofmaterialDetail.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/list/detail/entrytofmaterial/entryofmaterialDetail.vue'\ncreatePage(Page)"],"sourceRoot":""}

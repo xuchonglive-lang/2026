@@ -1,0 +1,107 @@
+
+	.item {
+			display: flex;
+			flex-direction: column;
+			/* align-items: center;
+			justify-content: center; */
+			background-color: #FFFFFF;
+			margin: 15rpx;
+			padding: 10rpx;
+			border-radius: 25upx;
+			
+			
+			.title{
+				
+				
+				width:100%;
+				margin: 10rpx 5rpx;
+				
+						
+				.date{
+					font-size: 25rpx;
+					font-weight: 600;
+					
+				}
+				.title_text{
+					
+					font-size: 30rpx;
+					overflow: hidden;
+					text-overflow: ellipsis; //显示省略号
+					-webkit-line-clamp: 1; //最多2行
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					white-space: normal;
+				}
+			}
+			.info{
+				display: flex;
+				flex-direction:row;
+				align-items: center;
+				justify-content: space-between;
+				
+				width:100%;
+				
+				.name{
+					font-size: 25rpx;
+				}
+				.author{
+					font-size: 25rpx;
+				}
+			}
+		
+			
+	}
+	
+	
+	
+	.searchbox {
+	
+		width: 100%;
+		height: 80rpx;
+		background-color: #FFFFFF;
+		padding: 5rpx 5rpx;
+	
+		.point {
+			.select {
+				background-color: #FFFFFF;
+	
+				width: 100%;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				padding: 8rpx 5rpx;
+				margin-bottom: -5rpx;
+	
+				.label {
+					width: 24%;
+					font-size: 26rpx;
+					line-height: 26rpx;
+					text-align: left;
+					padding-left: 10rpx;
+				}
+	
+				.cl-select {
+	
+					font-size: 22rpx;
+					padding: 0;
+					margin: 0;
+				}
+	
+				.text {
+					width: 100%;
+					border: 1rpx solid #DCDFE6;
+					height: 70rpx;
+					border-radius: 9rpx;
+					text-align: left;
+					line-height: 70rpx;
+					font-size: 22rpx;
+					padding: 0;
+					margin: 0;
+				}
+	
+			}
+	
+		}
+	
+	}
+	

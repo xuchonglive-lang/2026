@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "写实信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "me-tabs": "/components/me-tabs/me-tabs",
+    "mescroll-item": "/pages/list/mescroll-swiper-item"
+  }
+}

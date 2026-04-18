@@ -1,0 +1,663 @@
+@charset "UTF-8";
+/* COOL-UNI 颜色变量 */
+/* colorui 顶部波浪导航栏样式 */
+/* miniprogram/pages/post/post.wxss */
+/* =========== */
+/*   波浪动画   */
+/* =========== */
+/* 
+  Animation 微动画  
+  基于ColorUI组建库的动画模块 by 文晓港 2019年3月26日19:52:28
+ */
+/* css 滤镜 控制黑白底色gif的 */
+.gif-black{  
+  mix-blend-mode: screen;
+}
+.gif-white{  
+  mix-blend-mode: multiply;
+}
+/* Animation css */
+[class*=animation-] {
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+.animation-fade {
+    -webkit-animation-name: fade;
+            animation-name: fade;
+    -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+}
+.animation-scale-up {
+    -webkit-animation-name: scale-up;
+            animation-name: scale-up
+}
+.animation-scale-down {
+    -webkit-animation-name: scale-down;
+            animation-name: scale-down
+}
+.animation-slide-top {
+    -webkit-animation-name: slide-top;
+            animation-name: slide-top
+}
+.animation-slide-bottom {
+    -webkit-animation-name: slide-bottom;
+            animation-name: slide-bottom
+}
+.animation-slide-left {
+    -webkit-animation-name: slide-left;
+            animation-name: slide-left
+}
+.animation-slide-right {
+    -webkit-animation-name: slide-right;
+            animation-name: slide-right
+}
+.animation-shake {
+    -webkit-animation-name: shake;
+            animation-name: shake
+}
+.animation-reverse {
+    animation-direction: reverse
+}
+@-webkit-keyframes fade {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@keyframes fade {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@-webkit-keyframes scale-up {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-up {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes scale-down {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-down {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes slide-top {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-top {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes slide-bottom {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-bottom {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes shake {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@keyframes shake {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@-webkit-keyframes slide-left {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-left {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@-webkit-keyframes slide-right {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-right {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+image[class*="gif-"] {
+  /* border-radius: 6rpx; */
+  display: block;
+}
+.gif-wave {
+  /* position: absolute; */
+  width: 100%;
+  bottom: -2rpx;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+/* 同上，结束 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 颜色变量 */
+/*文本基本颜色*/
+/* 下划线 */
+view,
+scroll-view,
+swiper,
+swiper-item,
+cover-view,
+cover-image,
+icon,
+text,
+rich-text,
+progress,
+button,
+checkbox,
+form,
+input,
+label,
+radio,
+slider,
+switch,
+textarea,
+navigator,
+audio,
+camera,
+image,
+video {
+  /* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+  box-sizing: border-box;
+}
+image {
+  /* 去掉底部白色背景 */
+  display: block;
+}
+/* 布局 */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.one {
+  flex: 1;
+}
+/* input */
+.placeholder {
+  color: #999 !important;
+}
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+.noScorll ::-webkit-scrollbar {
+  display: none;
+}
+/* 解决 H5 的问题 */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+/* 蒙层 */
+.mask {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+page {
+  width: 100%;
+}
+.gen {
+  width: 100%;
+  overflow: hidden;
+}
+.loading {
+  margin: 0rpx auto;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #ccc;
+  font-size: 24rpx;
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+.zerenren {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  margin-right: 15rpx;
+}
+.jing {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  padding-left: 15rpx;
+  font-weight: 800;
+  font-size: 40rpx;
+}
+.dianwei {
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 15rpx;
+  font-size: 30rpx;
+  font-weight: 620;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+.xieshi_content {
+  width: 98%;
+  border-radius: 25rpx;
+  margin: 5rpx auto;
+  padding-left: 15rpx;
+}
+.xieshi_content .xieshi_item .xieshi_title {
+  font-size: 30rpx;
+  font-weight: 550;
+  border-radius: 10rpx;
+  padding-left: 15rpx;
+  margin-top: 20rpx;
+}
+.xieshi_content .xieshi_item .xieshi_item_content {
+  padding-left: 15rpx;
+}
+.xieshi_content .xieshi_item .xieshi_item_content .kong {
+  padding: 5rpx 10rpx;
+}
+.xieshi_content .xieshi_item .xieshi_item_content .kong .name {
+  padding-left: 15rpx;
+  border-radius: 10rpx;
+  font-weight: 600;
+}
+.xieshi_content .xieshi_item .xieshi_item_content .kong .dowhat .what .what_item {
+  border-bottom: 1rpx dashed green;
+}
+.xieshi_content .xieshi_item .xieshi_item_content .kong .dowhat .what .what_item_content {
+  margin-top: 10rpx;
+}
+.item {
+  margin: 30rpx 0;
+  margin-top: 44rpx;
+}
+.item:first-child {
+  margin-top: 0;
+}
+.item:last-child {
+  margin-bottom: 0;
+}
+.item .title {
+  font-size: 30rpx;
+  position: relative;
+  line-height: 1;
+  padding-left: 22rpx;
+  text-align: left;
+}
+.item .title:before {
+  width: 4px;
+  height: 15px;
+  border-radius: 100rpx;
+  background-color: #606266;
+  content: '';
+  position: absolute;
+  left: 6rpx;
+  top: -1px;
+}
+page {
+  width: 100%;
+}
+.container {
+  margin: -4rpx auto;
+  padding: 5rpx;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.container .select {
+  background-color: #FFFFFF;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15rpx 5rpx;
+}
+.container .select .label {
+  width: 24%;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  text-align: left;
+  padding-left: 10rpx;
+}
+.container .select .cl-select {
+  font-size: 22rpx;
+  padding: 0;
+  margin: 0;
+}
+.container .select2 {
+  border-radius: 25rpx;
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15rpx 5rpx;
+}
+.container .select2 .label {
+  width: 30%;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  text-align: center;
+  padding-left: 1rpx;
+}
+.container .select2 .cl-select {
+  font-size: 22rpx;
+  padding: 0;
+  margin: 0;
+}
+.container .content {
+  background-color: #FFFFFF;
+  padding: 5rpx 5rpx;
+  line-height: 50rpx;
+}
+.container .content .title {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.container .content .section {
+  width: 100%;
+}
+.container .content .section .name {
+  width: 100%;
+  text-align: left;
+  margin-left: 10rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.container .content .section .text {
+  width: 100%;
+}
+.container .content .section .text .charpter .headline {
+  width: 100%;
+  text-align: left;
+  margin-left: 35rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.container .content .section .text .charpter .body {
+  text-indent: 20px;
+}
+.height {
+  margin-top: 15rpx;
+  min-height: 80rpx;
+}
+.height2 {
+  min-height: 50rpx;
+}
+.height2 .action:first-child {
+  margin-left: 5rpx;
+  font-size: 30rpx;
+}
+.avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
+}
+.fankuicontent {
+  margin-bottom: 30rpx;
+  margin-left: 2rpx;
+}
+.fankuicontent .what .subitem {
+  margin-left: 40rpx;
+}
+.fankuicontent .what .border {
+  border-bottom: dashed 1rpx gray;
+}
+.biaotou {
+  font-size: 25rpx;
+}
+.biaotou .line {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.biaotou .line .dian {
+  width: 55%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.biaotou .line .zuanjin {
+  width: 15%;
+}
+.biaotou .line .shuini {
+  width: 15%;
+}
+.biaotou .line .shuiboli {
+  width: 15%;
+}
+.biaotou .line .border {
+  border-bottom: 1rpx dashed gray;
+}
+

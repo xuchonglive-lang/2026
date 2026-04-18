@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "探水注浆写实日报",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "time-picker": "/components/time-picker/time-picker",
+    "u-loading": "/node-modules/uview-ui/components/u-loading/u-loading",
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse"
+  }
+}

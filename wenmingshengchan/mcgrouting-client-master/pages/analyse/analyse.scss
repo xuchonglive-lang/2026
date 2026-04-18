@@ -1,0 +1,101 @@
+page{
+	width:100%;
+	
+	}
+.container{
+  margin: 5rpx auto;
+  padding: 5rpx;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  .select{
+    background-color: #FFFFFF;
+    border-radius: 25rpx;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15rpx 5rpx;
+			  .label{
+			  width: 24%;
+			  font-size: 26rpx;
+			  line-height: 26rpx;
+			  text-align: left;
+			  padding-left: 10rpx;
+			  }
+			  .cl-select{
+			  font-size: 22rpx;
+			  padding: 0;
+			  margin: 0;
+			  }
+    }
+	
+	
+	.select2{
+	
+	  border-radius: 25rpx;
+	  width: 90%;
+	  display: flex;
+	  justify-content: flex-start;
+	  align-items: center;
+	  padding: 15rpx 5rpx;
+				  .label{
+				  width: 30%;
+				  font-size: 26rpx;
+				  line-height: 26rpx;
+				  text-align: center;
+				  padding-left: 1rpx;
+				  }
+				  .cl-select{
+				  font-size: 22rpx;
+				  padding: 0;
+				  margin: 0;
+				  }
+	  }
+	
+
+
+.content{
+  margin-top: 15rpx;
+  background-color: #FFFFFF;
+  border-radius: 25rpx;
+  padding: 5rpx 5rpx;
+  line-height: 50rpx;
+  .title{
+    margin-top: 20rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    text-align: center;
+
+  }
+
+  .section{
+    width: 100%;
+    .name{
+      width: 100%;
+      text-align: left;
+      margin-left: 10rpx;
+      font-weight: bold;
+      font-size: 30rpx;
+    }
+    .text{
+      width: 100%;
+      .charpter{
+        .headline{
+          width: 100%;
+          text-align: left;
+          margin-left: 35rpx;
+          font-weight: bold;
+          font-size: 30rpx;
+        }
+        .body{
+          text-indent:20px
+
+        }
+
+      }
+    }
+  }
+}
+}

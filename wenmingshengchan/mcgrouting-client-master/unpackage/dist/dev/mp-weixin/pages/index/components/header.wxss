@@ -1,0 +1,540 @@
+@charset "UTF-8";
+/* COOL-UNI 颜色变量 */
+/* colorui 顶部波浪导航栏样式 */
+/* miniprogram/pages/post/post.wxss */
+/* =========== */
+/*   波浪动画   */
+/* =========== */
+/* 
+  Animation 微动画  
+  基于ColorUI组建库的动画模块 by 文晓港 2019年3月26日19:52:28
+ */
+/* css 滤镜 控制黑白底色gif的 */
+.gif-black.data-v-5a9854c0{  
+  mix-blend-mode: screen;
+}
+.gif-white.data-v-5a9854c0{  
+  mix-blend-mode: multiply;
+}
+/* Animation css */
+[class*=animation-].data-v-5a9854c0 {
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+.animation-fade.data-v-5a9854c0 {
+    -webkit-animation-name: fade-data-v-5a9854c0;
+            animation-name: fade-data-v-5a9854c0;
+    -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+}
+.animation-scale-up.data-v-5a9854c0 {
+    -webkit-animation-name: scale-up-data-v-5a9854c0;
+            animation-name: scale-up-data-v-5a9854c0
+}
+.animation-scale-down.data-v-5a9854c0 {
+    -webkit-animation-name: scale-down-data-v-5a9854c0;
+            animation-name: scale-down-data-v-5a9854c0
+}
+.animation-slide-top.data-v-5a9854c0 {
+    -webkit-animation-name: slide-top-data-v-5a9854c0;
+            animation-name: slide-top-data-v-5a9854c0
+}
+.animation-slide-bottom.data-v-5a9854c0 {
+    -webkit-animation-name: slide-bottom-data-v-5a9854c0;
+            animation-name: slide-bottom-data-v-5a9854c0
+}
+.animation-slide-left.data-v-5a9854c0 {
+    -webkit-animation-name: slide-left-data-v-5a9854c0;
+            animation-name: slide-left-data-v-5a9854c0
+}
+.animation-slide-right.data-v-5a9854c0 {
+    -webkit-animation-name: slide-right-data-v-5a9854c0;
+            animation-name: slide-right-data-v-5a9854c0
+}
+.animation-shake.data-v-5a9854c0 {
+    -webkit-animation-name: shake-data-v-5a9854c0;
+            animation-name: shake-data-v-5a9854c0
+}
+.animation-reverse.data-v-5a9854c0 {
+    animation-direction: reverse
+}
+@-webkit-keyframes fade-data-v-5a9854c0 {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@keyframes fade-data-v-5a9854c0 {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@-webkit-keyframes scale-up-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-up-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes scale-down-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-down-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes slide-top-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-top-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes slide-bottom-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-bottom-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes shake-data-v-5a9854c0 {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@keyframes shake-data-v-5a9854c0 {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@-webkit-keyframes slide-left-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-left-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@-webkit-keyframes slide-right-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-right-data-v-5a9854c0 {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+image[class*="gif-"].data-v-5a9854c0 {
+  /* border-radius: 6rpx; */
+  display: block;
+}
+.gif-wave.data-v-5a9854c0 {
+  /* position: absolute; */
+  width: 100%;
+  bottom: -2rpx;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+/* 同上，结束 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 颜色变量 */
+/*文本基本颜色*/
+/* 下划线 */
+view.data-v-5a9854c0,
+scroll-view.data-v-5a9854c0,
+swiper.data-v-5a9854c0,
+swiper-item.data-v-5a9854c0,
+cover-view.data-v-5a9854c0,
+cover-image.data-v-5a9854c0,
+icon.data-v-5a9854c0,
+text.data-v-5a9854c0,
+rich-text.data-v-5a9854c0,
+progress.data-v-5a9854c0,
+button.data-v-5a9854c0,
+checkbox.data-v-5a9854c0,
+form.data-v-5a9854c0,
+input.data-v-5a9854c0,
+label.data-v-5a9854c0,
+radio.data-v-5a9854c0,
+slider.data-v-5a9854c0,
+switch.data-v-5a9854c0,
+textarea.data-v-5a9854c0,
+navigator.data-v-5a9854c0,
+audio.data-v-5a9854c0,
+camera.data-v-5a9854c0,
+image.data-v-5a9854c0,
+video.data-v-5a9854c0 {
+  /* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+  box-sizing: border-box;
+}
+image.data-v-5a9854c0 {
+  /* 去掉底部白色背景 */
+  display: block;
+}
+/* 布局 */
+.center.data-v-5a9854c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row.data-v-5a9854c0 {
+  display: flex;
+  flex-direction: row;
+}
+.column.data-v-5a9854c0 {
+  display: flex;
+  flex-direction: column;
+}
+.space-between.data-v-5a9854c0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.one.data-v-5a9854c0 {
+  flex: 1;
+}
+/* input */
+.placeholder.data-v-5a9854c0 {
+  color: #999 !important;
+}
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+.noScorll.data-v-5a9854c0 ::-webkit-scrollbar {
+  display: none;
+}
+/* 解决 H5 的问题 */
+.text-ellipsis.data-v-5a9854c0 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+/* 蒙层 */
+.mask.data-v-5a9854c0 {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.header.data-v-5a9854c0 {
+  padding: 0 3%;
+  line-height: 80rpx;
+  overflow: hidden;
+  height: 450rpx;
+  color: #fff;
+  position: relative;
+}
+.place.data-v-5a9854c0 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5), #ffffff);
+}
+.left.data-v-5a9854c0 {
+  font-size: 26rpx;
+  color: #333;
+  float: left;
+  height: 80rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  align-items: center;
+  z-index: 800;
+}
+.left image.data-v-5a9854c0 {
+  width: 30rpx;
+  height: 30rpx;
+  float: left;
+  margin-right: 6rpx;
+}
+.left view.data-v-5a9854c0 {
+  width: 60vw;
+  height: 30rpx;
+  line-height: 30rpx;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.right.data-v-5a9854c0 {
+  height: 80rpx;
+  float: right;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+}
+.right image.data-v-5a9854c0 {
+  width: 40rpx;
+  height: 40rpx;
+}
+.right text.data-v-5a9854c0 {
+  margin-left: 10rpx;
+}
+.swiper.data-v-5a9854c0 {
+  width: 100%;
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: center;
+}
+.swiper-box.data-v-5a9854c0 {
+  width: 100%;
+  height: 45vw;
+  overflow: hidden;
+  /* border-radius: 15upx; */
+  /* box-shadow: 0upx 8upx 25upx rgba(0, 0, 0, 0.2); */
+  position: relative;
+  z-index: 1;
+}
+.swiper-box swiper.data-v-5a9854c0 {
+  width: 100%;
+  height: 45vw;
+}
+.swiper-box swiper swiper-item.data-v-5a9854c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-box swiper swiper-item image.data-v-5a9854c0 {
+  width: 95%;
+  height: 45vw;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+  transition: height .3s;
+}
+.swiper-item-side.data-v-5a9854c0 {
+  width: 95%;
+  height: 40vw !important;
+  transition: height .3s;
+}
+.indicator.data-v-5a9854c0 {
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 150rpx;
+  height: 5rpx;
+  border-radius: 3rpx;
+  overflow: hidden;
+  display: flex;
+}
+.dots.data-v-5a9854c0 {
+  width: 0rpx;
+  background-color: white;
+  transition: all 0.3s ease-out;
+}
+.on.data-v-5a9854c0 {
+  width: 30%;
+  background-color: white;
+  transition: all 0.3s ease-out;
+}
+

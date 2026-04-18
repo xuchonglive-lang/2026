@@ -1,0 +1,472 @@
+@charset "UTF-8";
+/* COOL-UNI 颜色变量 */
+/* colorui 顶部波浪导航栏样式 */
+/* miniprogram/pages/post/post.wxss */
+/* =========== */
+/*   波浪动画   */
+/* =========== */
+/* 
+  Animation 微动画  
+  基于ColorUI组建库的动画模块 by 文晓港 2019年3月26日19:52:28
+ */
+/* css 滤镜 控制黑白底色gif的 */
+.gif-black.data-v-b237504c{  
+  mix-blend-mode: screen;
+}
+.gif-white.data-v-b237504c{  
+  mix-blend-mode: multiply;
+}
+/* Animation css */
+[class*=animation-].data-v-b237504c {
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+.animation-fade.data-v-b237504c {
+    -webkit-animation-name: fade-data-v-b237504c;
+            animation-name: fade-data-v-b237504c;
+    -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+}
+.animation-scale-up.data-v-b237504c {
+    -webkit-animation-name: scale-up-data-v-b237504c;
+            animation-name: scale-up-data-v-b237504c
+}
+.animation-scale-down.data-v-b237504c {
+    -webkit-animation-name: scale-down-data-v-b237504c;
+            animation-name: scale-down-data-v-b237504c
+}
+.animation-slide-top.data-v-b237504c {
+    -webkit-animation-name: slide-top-data-v-b237504c;
+            animation-name: slide-top-data-v-b237504c
+}
+.animation-slide-bottom.data-v-b237504c {
+    -webkit-animation-name: slide-bottom-data-v-b237504c;
+            animation-name: slide-bottom-data-v-b237504c
+}
+.animation-slide-left.data-v-b237504c {
+    -webkit-animation-name: slide-left-data-v-b237504c;
+            animation-name: slide-left-data-v-b237504c
+}
+.animation-slide-right.data-v-b237504c {
+    -webkit-animation-name: slide-right-data-v-b237504c;
+            animation-name: slide-right-data-v-b237504c
+}
+.animation-shake.data-v-b237504c {
+    -webkit-animation-name: shake-data-v-b237504c;
+            animation-name: shake-data-v-b237504c
+}
+.animation-reverse.data-v-b237504c {
+    animation-direction: reverse
+}
+@-webkit-keyframes fade-data-v-b237504c {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@keyframes fade-data-v-b237504c {
+0% {
+        opacity: 0
+}
+100% {
+        opacity: 1
+}
+}
+@-webkit-keyframes scale-up-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-up-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(.2);
+                transform: scale(.2)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes scale-down-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@keyframes scale-down-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: scale(1.8);
+                transform: scale(1.8)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1)
+}
+}
+@-webkit-keyframes slide-top-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-top-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes slide-bottom-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@keyframes slide-bottom-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0)
+}
+}
+@-webkit-keyframes shake-data-v-b237504c {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@keyframes shake-data-v-b237504c {
+0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+10% {
+        -webkit-transform: translateX(-9px);
+                transform: translateX(-9px)
+}
+20% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px)
+}
+30% {
+        -webkit-transform: translateX(-7px);
+                transform: translateX(-7px)
+}
+40% {
+        -webkit-transform: translateX(6px);
+                transform: translateX(6px)
+}
+50% {
+        -webkit-transform: translateX(-5px);
+                transform: translateX(-5px)
+}
+60% {
+        -webkit-transform: translateX(4px);
+                transform: translateX(4px)
+}
+70% {
+        -webkit-transform: translateX(-3px);
+                transform: translateX(-3px)
+}
+80% {
+        -webkit-transform: translateX(2px);
+                transform: translateX(2px)
+}
+90% {
+        -webkit-transform: translateX(-1px);
+                transform: translateX(-1px)
+}
+}
+@-webkit-keyframes slide-left-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-left-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@-webkit-keyframes slide-right-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+@keyframes slide-right-data-v-b237504c {
+0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%)
+}
+100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0)
+}
+}
+image[class*="gif-"].data-v-b237504c {
+  /* border-radius: 6rpx; */
+  display: block;
+}
+.gif-wave.data-v-b237504c {
+  /* position: absolute; */
+  width: 100%;
+  bottom: -2rpx;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+/* 同上，结束 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 颜色变量 */
+/*文本基本颜色*/
+/* 下划线 */
+view.data-v-b237504c,
+scroll-view.data-v-b237504c,
+swiper.data-v-b237504c,
+swiper-item.data-v-b237504c,
+cover-view.data-v-b237504c,
+cover-image.data-v-b237504c,
+icon.data-v-b237504c,
+text.data-v-b237504c,
+rich-text.data-v-b237504c,
+progress.data-v-b237504c,
+button.data-v-b237504c,
+checkbox.data-v-b237504c,
+form.data-v-b237504c,
+input.data-v-b237504c,
+label.data-v-b237504c,
+radio.data-v-b237504c,
+slider.data-v-b237504c,
+switch.data-v-b237504c,
+textarea.data-v-b237504c,
+navigator.data-v-b237504c,
+audio.data-v-b237504c,
+camera.data-v-b237504c,
+image.data-v-b237504c,
+video.data-v-b237504c {
+  /* 
+	对元素指定宽度和高度包括了 padding 和 border 。
+	通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度 
+	还有个就是view之间不会有间隙
+	*/
+  box-sizing: border-box;
+}
+image.data-v-b237504c {
+  /* 去掉底部白色背景 */
+  display: block;
+}
+/* 布局 */
+.center.data-v-b237504c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row.data-v-b237504c {
+  display: flex;
+  flex-direction: row;
+}
+.column.data-v-b237504c {
+  display: flex;
+  flex-direction: column;
+}
+.space-between.data-v-b237504c {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.one.data-v-b237504c {
+  flex: 1;
+}
+/* input */
+.placeholder.data-v-b237504c {
+  color: #999 !important;
+}
+/* 隐藏滚动条的问题,但依旧具备可以滚动的功能 */
+/* 解决小程序和app  */
+.noScorll.data-v-b237504c ::-webkit-scrollbar {
+  display: none;
+}
+/* 解决 H5 的问题 */
+.text-ellipsis.data-v-b237504c {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+/* 蒙层 */
+.mask.data-v-b237504c {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.intro.data-v-b237504c {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 28rpx;
+  color: #919293;
+}
+.intro image.data-v-b237504c {
+  width: 165rpx;
+  height: 165rpx;
+}
+.intro .tips.data-v-b237504c {
+  line-height: 72rpx;
+  text-align: center;
+}
+.bottom.data-v-b237504c {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 40rpx;
+}
+.bottom .login-btn.data-v-b237504c {
+  width: 100%;
+  border-radius: 50rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 0;
+}
+.bottom .login-btn image.data-v-b237504c {
+  width: 36rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.bottom .row .grid.data-v-b237504c {
+  width: 20%;
+}
+.bottom .row .grid image.data-v-b237504c {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+

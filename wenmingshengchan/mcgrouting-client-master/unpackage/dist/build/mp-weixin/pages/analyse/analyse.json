@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "注浆分析",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cl-select": "/node-modules/cl-uni/components/cl-select/cl-select",
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse",
+    "z-table": "/components/z-table/z-table",
+    "qiun-data-charts": "/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts"
+  }
+}

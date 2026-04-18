@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "数据采集",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cl-toast": "/node-modules/cl-uni/components/cl-toast/cl-toast",
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast"
+  }
+}

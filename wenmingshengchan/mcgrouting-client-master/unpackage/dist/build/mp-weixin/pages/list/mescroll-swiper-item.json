@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "grouting": "/pages/list/item/grouting",
+    "entryofmaterial": "/pages/list/item/entryofmaterial",
+    "descentofmaterial": "/pages/list/item/descentofmaterial"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "添加材料下井信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cl-calendar": "/node-modules/cl-uni/components/cl-calendar/cl-calendar",
+    "cl-toast": "/node-modules/cl-uni/components/cl-toast/cl-toast",
+    "mark-slide-list": "/components/mark-slide-list/mark-slide-list"
+  }
+}

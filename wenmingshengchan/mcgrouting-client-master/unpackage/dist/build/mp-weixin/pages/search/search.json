@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "数据查询",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cl-calendar": "/node-modules/cl-uni/components/cl-calendar/cl-calendar",
+    "cl-select": "/node-modules/cl-uni/components/cl-select/cl-select",
+    "u-sticky": "/node-modules/uview-ui/components/u-sticky/u-sticky",
+    "z-table": "/components/z-table/z-table",
+    "cl-radio-group": "/node-modules/cl-uni/components/cl-radio-group/cl-radio-group",
+    "cl-radio": "/node-modules/cl-uni/components/cl-radio/cl-radio",
+    "qiun-data-charts": "/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts"
+  }
+}
