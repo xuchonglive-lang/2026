@@ -102,7 +102,7 @@ var components
 try {
   components = {
     uSelect: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 456))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 457))
     },
   }
 } catch (e) {

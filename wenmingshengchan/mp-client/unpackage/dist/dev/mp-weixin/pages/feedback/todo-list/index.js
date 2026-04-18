@@ -102,7 +102,7 @@ var components
 try {
   components = {
     myTabBar: function () {
-      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 463))
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 464))
     },
   }
 } catch (e) {
@@ -126,6 +126,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.listData.length
+  var g1 = !_vm.loading && _vm.listData.length === 0
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+        g1: g1,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -161,142 +172,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
 //
 //
 //
@@ -370,13 +252,68 @@ exports.default = void 0;
 //
 var _default = {
   data: function data() {
-    return {};
+    return {
+      listData: [],
+      loading: true
+    };
+  },
+  onShow: function onShow() {
+    this.fetchData();
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.fetchData().then(function () {
+      uni.stopPullDownRefresh();
+    });
   },
   methods: {
     goTo: function goTo(url) {
       uni.navigateTo({
         url: url
       });
+    },
+    goSubmit: function goSubmit(item) {
+      // 传递必要信息到提交页
+      uni.navigateTo({
+        url: "/pages/feedback/submit/index?id=".concat(item._id, "&name=").concat(item.point_info && item.point_info[0] ? item.point_info[0].name : '')
+      });
+    },
+    fetchData: function fetchData() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return uni.vk.callFunction({
+                  url: 'client/feedback/kh/getTodoList',
+                  data: {}
+                });
+              case 4:
+                res = _context.sent;
+                if (res.code === 0 && res.rows) {
+                  _this.listData = res.rows;
+                }
+                _context.next = 11;
+                break;
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
+                uni.vk.toast("获取待办列表失败");
+              case 11:
+                _context.prev = 11;
+                _this.loading = false;
+                return _context.finish(11);
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 8, 11, 14]]);
+      }))();
     }
   }
 };

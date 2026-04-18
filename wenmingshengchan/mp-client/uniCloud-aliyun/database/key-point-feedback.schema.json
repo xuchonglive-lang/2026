@@ -1,0 +1,107 @@
+{
+  "bsonType": "object",
+  "required": [
+    "config_id",
+    "point_id",
+    "area_id",
+    "dept_id",
+    "shift_date",
+    "shift_type",
+    "assignee_ids",
+    "status"
+  ],
+  "permission": {
+    "read": true,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "config_id": {
+      "bsonType": "string",
+      "description": "本实录关联的上层映射配置ID"
+    },
+    "point_id": {
+      "bsonType": "string",
+      "description": "点位关联ID"
+    },
+    "point_name": {
+      "bsonType": "string",
+      "description": "点位名称快照"
+    },
+    "area_id": {
+      "bsonType": "string",
+      "description": "区域关联ID"
+    },
+    "area_name": {
+      "bsonType": "string",
+      "description": "区域名称快照"
+    },
+    "dept_id": {
+      "bsonType": "string",
+      "description": "穿透权限核查的部门源头ID"
+    },
+    "shift_date": {
+      "bsonType": "string",
+      "description": "本周期所属签到日期 (格式 YYYY-MM-DD)"
+    },
+    "shift_type": {
+      "bsonType": "string",
+      "description": "day (白班) 或 night (夜班)"
+    },
+    "assignee_ids": {
+      "bsonType": "array",
+      "description": "冗余执行人数组",
+      "items": { "bsonType": "string" }
+    },
+    "submit_uid": {
+      "bsonType": "string",
+      "description": "成功抢答汇报的员工物理信息"
+    },
+    "submit_time": {
+      "bsonType": "timestamp",
+      "description": "汇报查证时间戳"
+    },
+    "main_image": {
+      "bsonType": "string",
+      "description": "核心主图反馈凭证(图床地址)"
+    },
+    "sub_images": {
+      "bsonType": "array",
+      "description": "辅助照片集",
+      "items": { "bsonType": "string" }
+    },
+    "photo_shoot_time": {
+      "bsonType": "string",
+      "description": "从照片EXIF元数据抓取的实际拍摄时间"
+    },
+    "device_model": {
+      "bsonType": "string",
+      "description": "从照片EXIF提取的拍摄设备型号"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "现场情况详细说明"
+    },
+    "status": {
+      "bsonType": "int",
+      "description": "0: 执行待反馈, 1: 已完满反馈, 2: 已逾期作硬封锁",
+      "defaultValue": 0
+    },
+    "audit_uid": {
+      "bsonType": "string",
+      "description": "违章督查落款人员号"
+    },
+    "audit_mark": {
+      "bsonType": "string",
+      "description": "违章标注详情描述"
+    },
+    "audit_time": {
+      "bsonType": "timestamp",
+      "description": "质检留档时间戳"
+    }
+  }
+}

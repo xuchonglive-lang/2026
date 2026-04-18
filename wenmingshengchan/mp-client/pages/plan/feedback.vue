@@ -8,23 +8,25 @@
 
       <view class="card-panel p-5">
         <view class="mb-6">
-          <text class="label-blue display-block mb-1">计划标题</text>
-          <text class="title-main display-block">{{ planInfo.title || '加载中...' }}</text>
+          <text class="label-grey display-block mb-1" style="font-size: 26rpx; color: #64748b;">计划标题</text>
+          <text class="title-main display-block" style="font-size: 32rpx;">{{ planInfo.title || '加载中...' }}</text>
         </view>
 
         <view class="grid-2 gap-4 mb-6">
           <view>
             <text class="label-grey display-block mb-2">执行区域</text>
             <view class="flex items-center gap-2">
-              <text class="material-symbols-outlined text-primary text-xl">location_on</text>
-              <text class="info-text font-bold">{{ (planInfo.area_info && planInfo.area_info.length > 0) ? planInfo.area_info[0].name : '全部区域' }}</text>
+              <view class="flex center" style="width: 40rpx; height: 40rpx;">
+                <text class="material-symbols-outlined text-primary" style="font-size: 40rpx;">location_on</text>
+              </view>
+              <text class="info-text font-bold" style="font-size: 28rpx;">{{ (planInfo.area_info && planInfo.area_info.length > 0) ? planInfo.area_info[0].name : '全部区域' }}</text>
             </view>
           </view>
           <view>
             <text class="label-grey display-block mb-2">计划下达人</text>
             <view class="flex items-center gap-2">
-              <image class="avatar-sm" :src="(planInfo.issuer_info && planInfo.issuer_info[0].avatar) ? planInfo.issuer_info[0].avatar : defaultAvatar" mode="aspectFill"></image>
-              <text class="info-text font-bold">{{ (planInfo.issuer_info && planInfo.issuer_info.length > 0) ? planInfo.issuer_info[0].nickname : '管理员' }}</text>
+              <image class="avatar-sm" :src="(planInfo.issuer_info && planInfo.issuer_info[0].avatar) ? planInfo.issuer_info[0].avatar : defaultAvatar" mode="aspectFill" style="width: 40rpx; height: 40rpx; border-radius: 50%;"></image>
+              <text class="info-text font-bold" style="font-size: 28rpx;">{{ (planInfo.issuer_info && planInfo.issuer_info.length > 0) ? planInfo.issuer_info[0].nickname : '管理员' }}</text>
             </view>
           </view>
         </view>
@@ -32,7 +34,7 @@
         <view class="mb-6">
           <text class="label-grey display-block mb-3">详细要求</text>
           <view class="content-text space-y-1">
-            <text class="display-block" style="white-space: pre-wrap;">{{ planInfo.content || '无详细内容要求' }}</text>
+            <mp-html :content="planInfo.content || '无详细内容要求'" />
           </view>
         </view>
 
@@ -77,13 +79,7 @@
           </view>
 
           <view class="feedback-box p-4">
-            <text class="content-text display-block mb-4">{{ item.content }}</text>
-            
-            <view class="grid-2 gap-3 mb-4" v-if="item.images && item.images.length > 0">
-              <view class="img-wrapper relative" v-for="(img, i) in item.images" :key="i">
-                <image class="feedback-img" :src="img" mode="aspectFill"></image>
-              </view>
-            </view>
+            <mp-html :content="item.content || ''" />
           </view>
         </view>
 
@@ -91,13 +87,13 @@
         <view v-if="item.type === 'audit'" class="card-panel p-5">
           <view class="flex justify-between items-center mb-3">
             <text class="info-text font-bold display-block">
-              {{ item.action === 'pass' ? '验收通过评语' : '驳回整改评语' }}
+              {{ item.audit_result === 'pass' ? '验收通过批示' : '驳回整改批示' }}
             </text>
             <text class="time-text">{{ $fn.timeFormat(item.time, 'yyyy-MM-dd hh:mm') }}</text>
           </view>
           
-          <view class="feedback-box p-5 pr-4 pl-4" :style="item.action === 'reject' ? 'background-color: #fef2f2;' : ''">
-            <text class="content-text display-block">{{ item.audit_mark }}</text>
+          <view class="feedback-box p-4" :style="item.audit_result === 'reject' ? 'background-color: #fef2f2;' : 'background-color: #f0fdf4;'">
+            <mp-html :content="item.content || ''" />
           </view>
         </view>
       </view>
@@ -117,6 +113,60 @@
         <text>进行主管验收</text>
       </view>
     </view>
+
+    <!-- Popup for Adding Feedback -->
+    <u-popup v-model="showFeedbackPopup" mode="bottom" border-radius="24" :closeable="true">
+      <view class="p-5" style="padding-bottom: space-between; min-height: 50vh;">
+        <view class="flex justify-between items-center mb-4" style="padding-right: 48rpx;">
+          <view class="font-bold text-xl" style="color: #0f172a;">添加执行反馈</view>
+        </view>
+        
+        <view class="editor-container mb-6">
+          <robin-editor 
+            ref="feedbackEditorRef"
+            v-model="feedbackContent"
+            :header="false"
+            :height="270"
+            :muiltImage="true"
+            :tools="['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'remove', 'font', 'image', 'clear']"
+          ></robin-editor>
+        </view>
+
+        <view class="primary-btn-lg flex center w-full mb-4" style="height: 96rpx; border-radius: 48rpx; box-shadow: none;" @click="submitFeedback">
+          <text>提交执行反馈</text>
+        </view>
+      </view>
+    </u-popup>
+
+    <!-- Popup for Supervisor Audit -->
+    <u-popup v-model="showAuditPopup" mode="bottom" border-radius="24" :closeable="true">
+      <view class="p-5" style="padding-bottom: space-between; min-height: 50vh;">
+        <view class="flex justify-between items-center mb-4" style="padding-right: 48rpx;">
+          <view class="font-bold text-xl" style="color: #0f172a;">进行主管验收</view>
+        </view>
+        
+        <text class="label-grey display-block mb-2">审核批示意见</text>
+        <view class="editor-container mb-6">
+          <robin-editor 
+            ref="auditEditorRef"
+            v-model="auditContent"
+            :header="false"
+            :height="270"
+            :muiltImage="true"
+            :tools="['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'remove', 'font', 'image', 'clear']"
+          ></robin-editor>
+        </view>
+
+        <view class="grid-2 gap-4 mb-4">
+          <view class="primary-btn-lg flex center w-full" style="height: 96rpx; border-radius: 48rpx; background-color: #ef4444; box-shadow: none;" @click="submitAudit('reject')">
+            <text>打回整改</text>
+          </view>
+          <view class="primary-btn-lg flex center w-full" style="height: 96rpx; border-radius: 48rpx; background-color: #10b981; box-shadow: none;" @click="submitAudit('pass')">
+            <text>验收合格</text>
+          </view>
+        </view>
+      </view>
+    </u-popup>
 
   </view>
 </template>
@@ -138,8 +188,26 @@ export default {
         feedbacks: []
       },
       // 若当前用户的头像或数据库未返回，使用的缺省兜底头像地址
-      defaultAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+      defaultAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+      
+      showFeedbackPopup: false,
+      feedbackContent: '',
+      
+      showAuditPopup: false,
+      auditContent: '',
+
+      // sp-editor 自定义工具栏：直接使用白名单 keys，避开 excludeKeys 的 Optional Chaining 编译兼容问题
+      spToolbarConfig: {
+        keys: ['header', 'bold', 'italic', 'underline', 'align', 'color', 'backgroundColor', 'listOrdered', 'listBullet', 'divider', 'image', 'undo', 'redo', 'clear'],
+        iconSize: '20px',
+        iconColumns: 7
+      }
     };
+  },
+  // 以下存放不应该被 Vue 设置为响应式的对象（如巨大的富文本实例），防止栈溢出或组件状态死锁
+  created() {
+    this._feedbackEditorCtx = null;
+    this._auditEditorCtx = null;
   },
   // 监听 - 页面滚动，实时映射高度数据
   onPageScroll(e) {
@@ -223,13 +291,156 @@ export default {
     },
 
     handleExecute() {
-      // 携带计划 ID 等前置信息跳转到正式填写反馈的表单页
-      // vk.navigateTo({ url: `/pages/plan/submit-feedback?id=${this.plan_id}` })
-      uni.showToast({ title: '暂未对接提交反馈界面', icon: 'none' })
+      // 唤起用于添加执行反馈的底部弹窗
+      this.showFeedbackPopup = true;
+      this.$nextTick(() => {
+        if (this.$refs.feedbackEditorRef && this.$refs.feedbackEditorRef.setImageUploader) {
+          this.$refs.feedbackEditorRef.setImageUploader(this.uploadImageForRobin);
+        }
+      });
     },
     
     handleAudit() {
-      uni.showToast({ title: '暂未对接主管验收界面', icon: 'none' })
+      // 唤起主管验收弹窗
+      this.showAuditPopup = true;
+      this.$nextTick(() => {
+        if (this.$refs.auditEditorRef && this.$refs.auditEditorRef.setImageUploader) {
+          this.$refs.auditEditorRef.setImageUploader(this.uploadImageForRobin);
+        }
+      });
+    },
+
+    /**
+     * 获取编辑器内容（适配提交时的验证逻辑）
+     */
+    getEditorContent(refName) {
+      return new Promise((resolve) => {
+        let editorRef = refName === 'feedbackEditor' ? this.$refs.feedbackEditorRef : this.$refs.auditEditorRef;
+        let fallbackContent = refName === 'feedbackEditor' ? this.feedbackContent : this.auditContent;
+        if (!editorRef || !editorRef.editorCtx) {
+           resolve(fallbackContent || '');
+           return;
+        }
+        editorRef.editorCtx.getContents({
+          success: (res) => resolve(res.html),
+          fail: () => resolve(fallbackContent || '')
+        });
+      });
+    },
+
+    /**
+     * 清空内容并在编辑器中反馈
+     */
+    clearEditor(refName) {
+      if (refName === 'feedbackEditor') {
+        this.feedbackContent = '';
+        if (this.$refs.feedbackEditorRef && this.$refs.feedbackEditorRef.editorCtx) this.$refs.feedbackEditorRef.editorCtx.clear();
+      } else {
+        this.auditContent = '';
+        if (this.$refs.auditEditorRef && this.$refs.auditEditorRef.editorCtx) this.$refs.auditEditorRef.editorCtx.clear();
+      }
+    },
+
+    /**
+     * 专属 robin-editor 设置图片上传函数的回调
+     */
+    uploadImageForRobin(img, callback) {
+      let vkObj = uni.vk || vk || getApp().globalData.vk;
+      vkObj.callFunctionUtil.uploadFile({
+        title: "上传中...",
+        filePath: img,
+        suffix: "png", // fallback suffix
+        provider: "unicloud",
+        success(res) {
+          // 上传成功后调用 callback 传入图片 URL 以供编辑器插入图片
+          callback ? callback(res.fileID || res.url) : null;
+        }
+      });
+    },
+
+    async submitFeedback() {
+      let html = await this.getEditorContent('feedbackEditor');
+      // 去除HTML标签检查是否为空
+      let rawText = html.replace(/<[^>]+>/g, '').trim();
+      if (!rawText && !html.includes('<img')) {
+        return uni.showToast({ title: '请输入反馈内容', icon: 'none' });
+      }
+      
+      // Extract image URLs from HTML for the backend images array
+      let extractedImages = [];
+      let imageMatch = html.match(/<img[^>]+src="([^">]+)"/g);
+      if (imageMatch) {
+        imageMatch.forEach(imgTag => {
+          let match = imgTag.match(/src="([^">]+)"/);
+          if (match && match[1]) {
+            extractedImages.push(match[1]);
+          }
+        });
+      }
+
+      uni.showLoading({ title: '提交中', mask: true });
+      try {
+        let res = await vk.callFunction({
+          url: 'client/plan/kh/submitFeedback',
+          data: {
+            plan_id: this.plan_id,
+            content: html,
+            images: extractedImages
+          }
+        });
+        uni.hideLoading();
+        if (res && res.code === 0) {
+          uni.showToast({ title: '反馈提交成功', icon: 'success' });
+          this.showFeedbackPopup = false;
+          this.clearEditor('feedbackEditor');
+          this.loadData();
+        }
+      } catch (err) {
+        uni.hideLoading();
+        console.error('提交执行反馈异常', err);
+      }
+    },
+    
+    async submitAudit(auditResult) {
+      let html = await this.getEditorContent('auditEditor');
+      let rawText = html.replace(/<[^>]+>/g, '').trim();
+      if (!rawText && !html.includes('<img')) {
+        return uni.showToast({ title: '请填写审核意见', icon: 'none' });
+      }
+      
+      let extractedImages = [];
+      let imageMatch = html.match(/<img[^>]+src="([^">]+)"/g);
+      if (imageMatch) {
+        imageMatch.forEach(imgTag => {
+          let match = imgTag.match(/src="([^">]+)"/);
+          if (match && match[1]) {
+            extractedImages.push(match[1]);
+          }
+        });
+      }
+
+      uni.showLoading({ title: '处理验收中', mask: true });
+      try {
+        let res = await vk.callFunction({
+          url: 'client/plan/kh/auditPlan',
+          data: {
+            plan_id: this.plan_id,
+            content: html,
+            images: extractedImages,
+            audit_result: auditResult
+          }
+        });
+        uni.hideLoading();
+        if (res && res.code === 0) {
+          uni.showToast({ title: res.msg || '审计操作成功', icon: 'success' });
+          this.showAuditPopup = false;
+          this.clearEditor('auditEditor');
+          this.loadData();
+        }
+      } catch (err) {
+        uni.hideLoading();
+        console.error('验收处理异常', err);
+      }
     }
   },
   // 侦听器映射结构
@@ -431,5 +642,43 @@ export default {
 }
 .action-footer {
   background: linear-gradient(to top, #f8fafc 60%, rgba(248, 250, 252, 0));
+}
+
+/* Editor Toolbar tags */
+.tool-tag {
+  font-size: 26rpx;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.tool-tag:active { background: #e2e8f0; }
+.tool-tag.primary {
+  color: #0066ff;
+  background: #eff6ff;
+  font-weight: 600;
+}
+.divider {
+  width: 2rpx;
+  height: 32rpx;
+  background: #cbd5e1;
+  margin: 0 4rpx;
+}
+.ml-3 { margin-left: 24rpx; }
+.mt-4 { margin-top: 32rpx; }
+.text-red-500 { color: #ef4444; }
+
+/* sp-editor 外部容器，给足明确的高度，避免微信小程序由于 flex: 1 导致整个盒子计算塌陷高度为 0 */
+.editor-container {
+  min-height: 540rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  border: 1px solid #e2e8f0;
+  display: block;
+  overflow: visible;
 }
 </style>

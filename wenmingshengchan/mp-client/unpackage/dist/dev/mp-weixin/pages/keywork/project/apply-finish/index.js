@@ -99,6 +99,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uNavbar: function () {
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-navbar/u-navbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-navbar/u-navbar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-navbar/u-navbar.vue */ 781))
+    },
+    uForm: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-form/u-form */ "uni_modules/vk-uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form/u-form.vue */ 612))
+    },
+    uFormItem: function () {
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form-item/u-form-item.vue */ 619))
+    },
+    uInput: function () {
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-input/u-input.vue */ 471))
+    },
+    uButton: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-button/u-button */ "uni_modules/vk-uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-button/u-button.vue */ 629))
+    },
+    uToast: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-toast/u-toast */ "uni_modules/vk-uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-toast/u-toast.vue */ 788))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -136,7 +174,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -146,12 +184,117 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
-    return {};
+    return {
+      vk: uni.vk,
+      projectId: '',
+      mode: 'feedback',
+      // 'feedback' or 'close'
+      loading: false,
+      tempImages: [],
+      form: {
+        desc_content: '',
+        attachment_imgs: []
+      }
+    };
+  },
+  onLoad: function onLoad(options) {
+    this.projectId = options.id;
+    this.mode = options.mode || 'feedback';
+  },
+  methods: {
+    uploadSuccess: function uploadSuccess(e) {
+      // 获取上传后的云端 URL，此处取决于 uni-file-picker 的返回
+      var urls = e.tempFilePaths || [];
+      if (e.tempFiles && e.tempFiles.length > 0) {
+        urls = e.tempFiles.map(function (f) {
+          return f.url || f.path;
+        });
+      }
+      this.form.attachment_imgs = this.form.attachment_imgs.concat(urls);
+    },
+    uploadDelete: function uploadDelete(e) {
+      var index = this.form.attachment_imgs.findIndex(function (url) {
+        return url === e.tempFilePath || url === e.tempFile.url;
+      });
+      if (index > -1) {
+        this.form.attachment_imgs.splice(index, 1);
+      }
+    },
+    submit: function submit() {
+      var _this = this;
+      if (!this.form.desc_content.trim()) {
+        this.$refs.uToast.show({
+          title: '请填写情况描述',
+          type: 'warning'
+        });
+        return;
+      }
+      this.loading = true;
+      var url = this.mode === 'close' ? 'client/keywork/kh/applyProjectClose' : 'client/keywork/kh/addProcessRecord';
+      this.vk.callFunction({
+        url: url,
+        data: {
+          project_id: this.projectId,
+          desc_content: this.form.desc_content,
+          attachment_imgs: this.form.attachment_imgs
+        },
+        success: function success(res) {
+          _this.$refs.uToast.show({
+            title: '提交成功',
+            type: 'success'
+          });
+          setTimeout(function () {
+            uni.navigateBack();
+          }, 1500);
+        },
+        complete: function complete() {
+          _this.loading = false;
+        }
+      });
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

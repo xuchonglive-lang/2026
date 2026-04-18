@@ -12330,7 +12330,7 @@ var S = "development" === "development",
   k = "true" === undefined || !0 === undefined,
   A = I([]),
   T = "h5" === b ? "web" : "app-plus" === b || "app-harmony" === b ? "app" : b,
-  C = I({"address":["127.0.0.1","198.18.0.1","192.168.100.100"],"servePort":7000,"debugPort":9000,"initialLaunchType":"remote","skipFiles":["<node_internals>/**","D:/APP/Hbuilderx/HBuilderX/plugins/unicloud/**/*.js"]}),
+  C = I({"address":["127.0.0.1","192.168.100.100"],"servePort":7000,"debugPort":9000,"initialLaunchType":"remote","skipFiles":["<node_internals>/**","D:/APP/Hbuilderx/HBuilderX/plugins/unicloud/**/*.js"]}),
   P = I([{"provider":"aliyun","spaceName":"wenmingshengchan","spaceId":"mp-f5dec8e2-6434-4681-934d-fc46f8267fea","clientSecret":"bj1QzvYuni9rWUEMHQYIwg==","endpoint":"https://api.next.bspapp.com","failoverEndpoint":""}]) || [],
   O = true;
 var E = "";
@@ -21014,13 +21014,19 @@ var _default = {
     "style": {}
   }, {
     "path": "pages/report/submit-entry/index",
-    "style": {}
+    "style": {
+      "navigationStyle": "custom"
+    }
   }, {
     "path": "pages/report/public-board/index",
-    "style": {}
+    "style": {
+      "navigationStyle": "custom"
+    }
   }, {
     "path": "pages/report/my-record/index",
-    "style": {}
+    "style": {
+      "navigationStyle": "custom"
+    }
   }, {
     "path": "pages/plan/list",
     "style": {}
@@ -21200,9 +21206,6 @@ var _default = {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "rpxCalcMaxDeviceWidth": 450,
-    "rpxCalcBaseDeviceWidth": 375,
-    "rpxCalcIncludeWidth": 750,
     "backgroundColor": "#F8F8F8"
   }
 };
@@ -21466,7 +21469,7 @@ exports.default = _default;
 /*! exports provided: id, displayName, version, description, keywords, main, dependencies, scripts, author, license, repository, name, engines, dcloudext, uni_modules, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"id\":\"vk-cloud-router\",\"displayName\":\"【开箱即用】vk-unicloud-router 云函数路由模式开发框架 - 一个函数搞定整套系统\",\"version\":\"2.23.1\",\"description\":\"这是一个unicloud快速开发框架+项目模板（已包含核心库）支持URL化，众多现成API供你使用（登录、注册、短信、微信百度服务端API等等）为你的业务扫平障碍。内置小白也能轻松上手的数据库API。\",\"keywords\":[\"vk-unicloud-router\",\"云函数路由、云对象路由\",\"vk云开发\",\"内置uni-id、数据库baseDao\",\"企业级云开发框架\"],\"main\":\"main.js\",\"dependencies\":{\"z-paging\":\"^2.8.6\"},\"scripts\":{\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"author\":\"VK\",\"license\":\"MIT\",\"repository\":\"https://gitee.com/vk-uni/vk-uni-cloud-router\",\"name\":\"vk-unicloud-router\",\"engines\":{\"HBuilderX\":\"^3.1.2\",\"uni-app\":\"^4.36\",\"uni-app-x\":\"\"},\"dcloudext\":{\"sale\":{\"regular\":{\"price\":\"0.00\"},\"sourcecode\":{\"price\":\"0.00\"}},\"contact\":{\"qq\":\"370725567\"},\"declaration\":{\"ads\":\"无\",\"data\":\"插件不采集任何数据\",\"permissions\":\"无\"},\"npmurl\":\"\",\"type\":\"unicloud-template-project\",\"darkmode\":\"x\",\"i18n\":\"√\",\"widescreen\":\"x\"},\"uni_modules\":{\"platforms\":{\"cloud\":{\"tcb\":\"√\",\"aliyun\":\"√\",\"alipay\":\"√\"},\"client\":{\"uni-app\":{\"vue\":{\"vue2\":\"√\",\"vue3\":\"√\"},\"web\":{\"safari\":\"√\",\"chrome\":\"√\"},\"app\":{\"vue\":\"√\",\"nvue\":\"√\",\"android\":\"√\",\"ios\":\"√\",\"harmony\":\"√\"},\"mp\":{\"weixin\":\"√\",\"alipay\":\"√\",\"toutiao\":\"√\",\"baidu\":\"√\",\"kuaishou\":\"√\",\"jd\":\"√\",\"harmony\":\"√\",\"qq\":\"√\",\"lark\":\"√\"},\"quickapp\":{\"huawei\":\"√\",\"union\":\"√\"}},\"uni-app-x\":{\"web\":{\"safari\":\"-\",\"chrome\":\"-\"},\"app\":{\"android\":\"-\",\"ios\":\"-\",\"harmony\":\"-\"},\"mp\":{\"weixin\":\"-\"}}}}}}");
+module.exports = JSON.parse("{\"id\":\"vk-cloud-router\",\"displayName\":\"【开箱即用】vk-unicloud-router 云函数路由模式开发框架 - 一个函数搞定整套系统\",\"version\":\"2.23.1\",\"description\":\"这是一个unicloud快速开发框架+项目模板（已包含核心库）支持URL化，众多现成API供你使用（登录、注册、短信、微信百度服务端API等等）为你的业务扫平障碍。内置小白也能轻松上手的数据库API。\",\"keywords\":[\"vk-unicloud-router\",\"云函数路由、云对象路由\",\"vk云开发\",\"内置uni-id、数据库baseDao\",\"企业级云开发框架\"],\"main\":\"main.js\",\"dependencies\":{\"exif-js\":\"^2.3.0\",\"mp-html\":\"^2.5.2\",\"z-paging\":\"^2.8.6\"},\"scripts\":{\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"author\":\"VK\",\"license\":\"MIT\",\"repository\":\"https://gitee.com/vk-uni/vk-uni-cloud-router\",\"name\":\"vk-unicloud-router\",\"engines\":{\"HBuilderX\":\"^3.1.2\",\"uni-app\":\"^4.36\",\"uni-app-x\":\"\"},\"dcloudext\":{\"sale\":{\"regular\":{\"price\":\"0.00\"},\"sourcecode\":{\"price\":\"0.00\"}},\"contact\":{\"qq\":\"370725567\"},\"declaration\":{\"ads\":\"无\",\"data\":\"插件不采集任何数据\",\"permissions\":\"无\"},\"npmurl\":\"\",\"type\":\"unicloud-template-project\",\"darkmode\":\"x\",\"i18n\":\"√\",\"widescreen\":\"x\"},\"uni_modules\":{\"platforms\":{\"cloud\":{\"tcb\":\"√\",\"aliyun\":\"√\",\"alipay\":\"√\"},\"client\":{\"uni-app\":{\"vue\":{\"vue2\":\"√\",\"vue3\":\"√\"},\"web\":{\"safari\":\"√\",\"chrome\":\"√\"},\"app\":{\"vue\":\"√\",\"nvue\":\"√\",\"android\":\"√\",\"ios\":\"√\",\"harmony\":\"√\"},\"mp\":{\"weixin\":\"√\",\"alipay\":\"√\",\"toutiao\":\"√\",\"baidu\":\"√\",\"kuaishou\":\"√\",\"jd\":\"√\",\"harmony\":\"√\",\"qq\":\"√\",\"lark\":\"√\"},\"quickapp\":{\"huawei\":\"√\",\"union\":\"√\"}},\"uni-app-x\":{\"web\":{\"safari\":\"-\",\"chrome\":\"-\"},\"app\":{\"android\":\"-\",\"ios\":\"-\",\"harmony\":\"-\"},\"mp\":{\"weixin\":\"-\"}}}}}}");
 
 /***/ }),
 /* 49 */,
@@ -38552,7 +38555,1024 @@ exports.default = _default;
 /* 244 */,
 /* 245 */,
 /* 246 */,
-/* 247 */,
+/* 247 */
+/*!**********************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/exif-js/exif.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ 13);
+(function () {
+  var debug = false;
+  var root = this;
+  var EXIF = function EXIF(obj) {
+    if (obj instanceof EXIF) return obj;
+    if (!(this instanceof EXIF)) return new EXIF(obj);
+    this.EXIFwrapped = obj;
+  };
+  if (true) {
+    if ( true && module.exports) {
+      exports = module.exports = EXIF;
+    }
+    exports.EXIF = EXIF;
+  } else {}
+  var ExifTags = EXIF.Tags = {
+    // version tags
+    0x9000: "ExifVersion",
+    // EXIF version
+    0xA000: "FlashpixVersion",
+    // Flashpix format version
+
+    // colorspace tags
+    0xA001: "ColorSpace",
+    // Color space information tag
+
+    // image configuration
+    0xA002: "PixelXDimension",
+    // Valid width of meaningful image
+    0xA003: "PixelYDimension",
+    // Valid height of meaningful image
+    0x9101: "ComponentsConfiguration",
+    // Information about channels
+    0x9102: "CompressedBitsPerPixel",
+    // Compressed bits per pixel
+
+    // user information
+    0x927C: "MakerNote",
+    // Any desired information written by the manufacturer
+    0x9286: "UserComment",
+    // Comments by user
+
+    // related file
+    0xA004: "RelatedSoundFile",
+    // Name of related sound file
+
+    // date and time
+    0x9003: "DateTimeOriginal",
+    // Date and time when the original image was generated
+    0x9004: "DateTimeDigitized",
+    // Date and time when the image was stored digitally
+    0x9290: "SubsecTime",
+    // Fractions of seconds for DateTime
+    0x9291: "SubsecTimeOriginal",
+    // Fractions of seconds for DateTimeOriginal
+    0x9292: "SubsecTimeDigitized",
+    // Fractions of seconds for DateTimeDigitized
+
+    // picture-taking conditions
+    0x829A: "ExposureTime",
+    // Exposure time (in seconds)
+    0x829D: "FNumber",
+    // F number
+    0x8822: "ExposureProgram",
+    // Exposure program
+    0x8824: "SpectralSensitivity",
+    // Spectral sensitivity
+    0x8827: "ISOSpeedRatings",
+    // ISO speed rating
+    0x8828: "OECF",
+    // Optoelectric conversion factor
+    0x9201: "ShutterSpeedValue",
+    // Shutter speed
+    0x9202: "ApertureValue",
+    // Lens aperture
+    0x9203: "BrightnessValue",
+    // Value of brightness
+    0x9204: "ExposureBias",
+    // Exposure bias
+    0x9205: "MaxApertureValue",
+    // Smallest F number of lens
+    0x9206: "SubjectDistance",
+    // Distance to subject in meters
+    0x9207: "MeteringMode",
+    // Metering mode
+    0x9208: "LightSource",
+    // Kind of light source
+    0x9209: "Flash",
+    // Flash status
+    0x9214: "SubjectArea",
+    // Location and area of main subject
+    0x920A: "FocalLength",
+    // Focal length of the lens in mm
+    0xA20B: "FlashEnergy",
+    // Strobe energy in BCPS
+    0xA20C: "SpatialFrequencyResponse",
+    //
+    0xA20E: "FocalPlaneXResolution",
+    // Number of pixels in width direction per FocalPlaneResolutionUnit
+    0xA20F: "FocalPlaneYResolution",
+    // Number of pixels in height direction per FocalPlaneResolutionUnit
+    0xA210: "FocalPlaneResolutionUnit",
+    // Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution
+    0xA214: "SubjectLocation",
+    // Location of subject in image
+    0xA215: "ExposureIndex",
+    // Exposure index selected on camera
+    0xA217: "SensingMethod",
+    // Image sensor type
+    0xA300: "FileSource",
+    // Image source (3 == DSC)
+    0xA301: "SceneType",
+    // Scene type (1 == directly photographed)
+    0xA302: "CFAPattern",
+    // Color filter array geometric pattern
+    0xA401: "CustomRendered",
+    // Special processing
+    0xA402: "ExposureMode",
+    // Exposure mode
+    0xA403: "WhiteBalance",
+    // 1 = auto white balance, 2 = manual
+    0xA404: "DigitalZoomRation",
+    // Digital zoom ratio
+    0xA405: "FocalLengthIn35mmFilm",
+    // Equivalent foacl length assuming 35mm film camera (in mm)
+    0xA406: "SceneCaptureType",
+    // Type of scene
+    0xA407: "GainControl",
+    // Degree of overall image gain adjustment
+    0xA408: "Contrast",
+    // Direction of contrast processing applied by camera
+    0xA409: "Saturation",
+    // Direction of saturation processing applied by camera
+    0xA40A: "Sharpness",
+    // Direction of sharpness processing applied by camera
+    0xA40B: "DeviceSettingDescription",
+    //
+    0xA40C: "SubjectDistanceRange",
+    // Distance to subject
+
+    // other tags
+    0xA005: "InteroperabilityIFDPointer",
+    0xA420: "ImageUniqueID" // Identifier assigned uniquely to each image
+  };
+
+  var TiffTags = EXIF.TiffTags = {
+    0x0100: "ImageWidth",
+    0x0101: "ImageHeight",
+    0x8769: "ExifIFDPointer",
+    0x8825: "GPSInfoIFDPointer",
+    0xA005: "InteroperabilityIFDPointer",
+    0x0102: "BitsPerSample",
+    0x0103: "Compression",
+    0x0106: "PhotometricInterpretation",
+    0x0112: "Orientation",
+    0x0115: "SamplesPerPixel",
+    0x011C: "PlanarConfiguration",
+    0x0212: "YCbCrSubSampling",
+    0x0213: "YCbCrPositioning",
+    0x011A: "XResolution",
+    0x011B: "YResolution",
+    0x0128: "ResolutionUnit",
+    0x0111: "StripOffsets",
+    0x0116: "RowsPerStrip",
+    0x0117: "StripByteCounts",
+    0x0201: "JPEGInterchangeFormat",
+    0x0202: "JPEGInterchangeFormatLength",
+    0x012D: "TransferFunction",
+    0x013E: "WhitePoint",
+    0x013F: "PrimaryChromaticities",
+    0x0211: "YCbCrCoefficients",
+    0x0214: "ReferenceBlackWhite",
+    0x0132: "DateTime",
+    0x010E: "ImageDescription",
+    0x010F: "Make",
+    0x0110: "Model",
+    0x0131: "Software",
+    0x013B: "Artist",
+    0x8298: "Copyright"
+  };
+  var GPSTags = EXIF.GPSTags = {
+    0x0000: "GPSVersionID",
+    0x0001: "GPSLatitudeRef",
+    0x0002: "GPSLatitude",
+    0x0003: "GPSLongitudeRef",
+    0x0004: "GPSLongitude",
+    0x0005: "GPSAltitudeRef",
+    0x0006: "GPSAltitude",
+    0x0007: "GPSTimeStamp",
+    0x0008: "GPSSatellites",
+    0x0009: "GPSStatus",
+    0x000A: "GPSMeasureMode",
+    0x000B: "GPSDOP",
+    0x000C: "GPSSpeedRef",
+    0x000D: "GPSSpeed",
+    0x000E: "GPSTrackRef",
+    0x000F: "GPSTrack",
+    0x0010: "GPSImgDirectionRef",
+    0x0011: "GPSImgDirection",
+    0x0012: "GPSMapDatum",
+    0x0013: "GPSDestLatitudeRef",
+    0x0014: "GPSDestLatitude",
+    0x0015: "GPSDestLongitudeRef",
+    0x0016: "GPSDestLongitude",
+    0x0017: "GPSDestBearingRef",
+    0x0018: "GPSDestBearing",
+    0x0019: "GPSDestDistanceRef",
+    0x001A: "GPSDestDistance",
+    0x001B: "GPSProcessingMethod",
+    0x001C: "GPSAreaInformation",
+    0x001D: "GPSDateStamp",
+    0x001E: "GPSDifferential"
+  };
+
+  // EXIF 2.3 Spec
+  var IFD1Tags = EXIF.IFD1Tags = {
+    0x0100: "ImageWidth",
+    0x0101: "ImageHeight",
+    0x0102: "BitsPerSample",
+    0x0103: "Compression",
+    0x0106: "PhotometricInterpretation",
+    0x0111: "StripOffsets",
+    0x0112: "Orientation",
+    0x0115: "SamplesPerPixel",
+    0x0116: "RowsPerStrip",
+    0x0117: "StripByteCounts",
+    0x011A: "XResolution",
+    0x011B: "YResolution",
+    0x011C: "PlanarConfiguration",
+    0x0128: "ResolutionUnit",
+    0x0201: "JpegIFOffset",
+    // When image format is JPEG, this value show offset to JPEG data stored.(aka "ThumbnailOffset" or "JPEGInterchangeFormat")
+    0x0202: "JpegIFByteCount",
+    // When image format is JPEG, this value shows data size of JPEG image (aka "ThumbnailLength" or "JPEGInterchangeFormatLength")
+    0x0211: "YCbCrCoefficients",
+    0x0212: "YCbCrSubSampling",
+    0x0213: "YCbCrPositioning",
+    0x0214: "ReferenceBlackWhite"
+  };
+  var StringValues = EXIF.StringValues = {
+    ExposureProgram: {
+      0: "Not defined",
+      1: "Manual",
+      2: "Normal program",
+      3: "Aperture priority",
+      4: "Shutter priority",
+      5: "Creative program",
+      6: "Action program",
+      7: "Portrait mode",
+      8: "Landscape mode"
+    },
+    MeteringMode: {
+      0: "Unknown",
+      1: "Average",
+      2: "CenterWeightedAverage",
+      3: "Spot",
+      4: "MultiSpot",
+      5: "Pattern",
+      6: "Partial",
+      255: "Other"
+    },
+    LightSource: {
+      0: "Unknown",
+      1: "Daylight",
+      2: "Fluorescent",
+      3: "Tungsten (incandescent light)",
+      4: "Flash",
+      9: "Fine weather",
+      10: "Cloudy weather",
+      11: "Shade",
+      12: "Daylight fluorescent (D 5700 - 7100K)",
+      13: "Day white fluorescent (N 4600 - 5400K)",
+      14: "Cool white fluorescent (W 3900 - 4500K)",
+      15: "White fluorescent (WW 3200 - 3700K)",
+      17: "Standard light A",
+      18: "Standard light B",
+      19: "Standard light C",
+      20: "D55",
+      21: "D65",
+      22: "D75",
+      23: "D50",
+      24: "ISO studio tungsten",
+      255: "Other"
+    },
+    Flash: {
+      0x0000: "Flash did not fire",
+      0x0001: "Flash fired",
+      0x0005: "Strobe return light not detected",
+      0x0007: "Strobe return light detected",
+      0x0009: "Flash fired, compulsory flash mode",
+      0x000D: "Flash fired, compulsory flash mode, return light not detected",
+      0x000F: "Flash fired, compulsory flash mode, return light detected",
+      0x0010: "Flash did not fire, compulsory flash mode",
+      0x0018: "Flash did not fire, auto mode",
+      0x0019: "Flash fired, auto mode",
+      0x001D: "Flash fired, auto mode, return light not detected",
+      0x001F: "Flash fired, auto mode, return light detected",
+      0x0020: "No flash function",
+      0x0041: "Flash fired, red-eye reduction mode",
+      0x0045: "Flash fired, red-eye reduction mode, return light not detected",
+      0x0047: "Flash fired, red-eye reduction mode, return light detected",
+      0x0049: "Flash fired, compulsory flash mode, red-eye reduction mode",
+      0x004D: "Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected",
+      0x004F: "Flash fired, compulsory flash mode, red-eye reduction mode, return light detected",
+      0x0059: "Flash fired, auto mode, red-eye reduction mode",
+      0x005D: "Flash fired, auto mode, return light not detected, red-eye reduction mode",
+      0x005F: "Flash fired, auto mode, return light detected, red-eye reduction mode"
+    },
+    SensingMethod: {
+      1: "Not defined",
+      2: "One-chip color area sensor",
+      3: "Two-chip color area sensor",
+      4: "Three-chip color area sensor",
+      5: "Color sequential area sensor",
+      7: "Trilinear sensor",
+      8: "Color sequential linear sensor"
+    },
+    SceneCaptureType: {
+      0: "Standard",
+      1: "Landscape",
+      2: "Portrait",
+      3: "Night scene"
+    },
+    SceneType: {
+      1: "Directly photographed"
+    },
+    CustomRendered: {
+      0: "Normal process",
+      1: "Custom process"
+    },
+    WhiteBalance: {
+      0: "Auto white balance",
+      1: "Manual white balance"
+    },
+    GainControl: {
+      0: "None",
+      1: "Low gain up",
+      2: "High gain up",
+      3: "Low gain down",
+      4: "High gain down"
+    },
+    Contrast: {
+      0: "Normal",
+      1: "Soft",
+      2: "Hard"
+    },
+    Saturation: {
+      0: "Normal",
+      1: "Low saturation",
+      2: "High saturation"
+    },
+    Sharpness: {
+      0: "Normal",
+      1: "Soft",
+      2: "Hard"
+    },
+    SubjectDistanceRange: {
+      0: "Unknown",
+      1: "Macro",
+      2: "Close view",
+      3: "Distant view"
+    },
+    FileSource: {
+      3: "DSC"
+    },
+    Components: {
+      0: "",
+      1: "Y",
+      2: "Cb",
+      3: "Cr",
+      4: "R",
+      5: "G",
+      6: "B"
+    }
+  };
+  function addEvent(element, event, handler) {
+    if (element.addEventListener) {
+      element.addEventListener(event, handler, false);
+    } else if (element.attachEvent) {
+      element.attachEvent("on" + event, handler);
+    }
+  }
+  function imageHasData(img) {
+    return !!img.exifdata;
+  }
+  function base64ToArrayBuffer(base64, contentType) {
+    contentType = contentType || base64.match(/^data\:([^\;]+)\;base64,/mi)[1] || ''; // e.g. 'data:image/jpeg;base64,...' => 'image/jpeg'
+    base64 = base64.replace(/^data\:([^\;]+)\;base64,/gmi, '');
+    var binary = atob(base64);
+    var len = binary.length;
+    var buffer = new ArrayBuffer(len);
+    var view = new Uint8Array(buffer);
+    for (var i = 0; i < len; i++) {
+      view[i] = binary.charCodeAt(i);
+    }
+    return buffer;
+  }
+  function objectURLToBlob(url, callback) {
+    var http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.responseType = "blob";
+    http.onload = function (e) {
+      if (this.status == 200 || this.status === 0) {
+        callback(this.response);
+      }
+    };
+    http.send();
+  }
+  function getImageData(img, callback) {
+    function handleBinaryFile(binFile) {
+      var data = findEXIFinJPEG(binFile);
+      img.exifdata = data || {};
+      var iptcdata = findIPTCinJPEG(binFile);
+      img.iptcdata = iptcdata || {};
+      if (EXIF.isXmpEnabled) {
+        var xmpdata = findXMPinJPEG(binFile);
+        img.xmpdata = xmpdata || {};
+      }
+      if (callback) {
+        callback.call(img);
+      }
+    }
+    if (img.src) {
+      if (/^data\:/i.test(img.src)) {
+        // Data URI
+        var arrayBuffer = base64ToArrayBuffer(img.src);
+        handleBinaryFile(arrayBuffer);
+      } else if (/^blob\:/i.test(img.src)) {
+        // Object URL
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+          handleBinaryFile(e.target.result);
+        };
+        objectURLToBlob(img.src, function (blob) {
+          fileReader.readAsArrayBuffer(blob);
+        });
+      } else {
+        var http = new XMLHttpRequest();
+        http.onload = function () {
+          if (this.status == 200 || this.status === 0) {
+            handleBinaryFile(http.response);
+          } else {
+            throw "Could not load image";
+          }
+          http = null;
+        };
+        http.open("GET", img.src, true);
+        http.responseType = "arraybuffer";
+        http.send(null);
+      }
+    } else if (self.FileReader && (img instanceof self.Blob || img instanceof self.File)) {
+      var fileReader = new FileReader();
+      fileReader.onload = function (e) {
+        if (debug) console.log("Got file of length " + e.target.result.byteLength);
+        handleBinaryFile(e.target.result);
+      };
+      fileReader.readAsArrayBuffer(img);
+    }
+  }
+  function findEXIFinJPEG(file) {
+    var dataView = new DataView(file);
+    if (debug) console.log("Got file of length " + file.byteLength);
+    if (dataView.getUint8(0) != 0xFF || dataView.getUint8(1) != 0xD8) {
+      if (debug) console.log("Not a valid JPEG");
+      return false; // not a valid jpeg
+    }
+
+    var offset = 2,
+      length = file.byteLength,
+      marker;
+    while (offset < length) {
+      if (dataView.getUint8(offset) != 0xFF) {
+        if (debug) console.log("Not a valid marker at offset " + offset + ", found: " + dataView.getUint8(offset));
+        return false; // not a valid marker, something is wrong
+      }
+
+      marker = dataView.getUint8(offset + 1);
+      if (debug) console.log(marker);
+
+      // we could implement handling for other markers here,
+      // but we're only looking for 0xFFE1 for EXIF data
+
+      if (marker == 225) {
+        if (debug) console.log("Found 0xFFE1 marker");
+        return readEXIFData(dataView, offset + 4, dataView.getUint16(offset + 2) - 2);
+
+        // offset += 2 + file.getShortAt(offset+2, true);
+      } else {
+        offset += 2 + dataView.getUint16(offset + 2);
+      }
+    }
+  }
+  function findIPTCinJPEG(file) {
+    var dataView = new DataView(file);
+    if (debug) console.log("Got file of length " + file.byteLength);
+    if (dataView.getUint8(0) != 0xFF || dataView.getUint8(1) != 0xD8) {
+      if (debug) console.log("Not a valid JPEG");
+      return false; // not a valid jpeg
+    }
+
+    var offset = 2,
+      length = file.byteLength;
+    var isFieldSegmentStart = function isFieldSegmentStart(dataView, offset) {
+      return dataView.getUint8(offset) === 0x38 && dataView.getUint8(offset + 1) === 0x42 && dataView.getUint8(offset + 2) === 0x49 && dataView.getUint8(offset + 3) === 0x4D && dataView.getUint8(offset + 4) === 0x04 && dataView.getUint8(offset + 5) === 0x04;
+    };
+    while (offset < length) {
+      if (isFieldSegmentStart(dataView, offset)) {
+        // Get the length of the name header (which is padded to an even number of bytes)
+        var nameHeaderLength = dataView.getUint8(offset + 7);
+        if (nameHeaderLength % 2 !== 0) nameHeaderLength += 1;
+        // Check for pre photoshop 6 format
+        if (nameHeaderLength === 0) {
+          // Always 4
+          nameHeaderLength = 4;
+        }
+        var startOffset = offset + 8 + nameHeaderLength;
+        var sectionLength = dataView.getUint16(offset + 6 + nameHeaderLength);
+        return readIPTCData(file, startOffset, sectionLength);
+        break;
+      }
+
+      // Not the marker, continue searching
+      offset++;
+    }
+  }
+  var IptcFieldMap = {
+    0x78: 'caption',
+    0x6E: 'credit',
+    0x19: 'keywords',
+    0x37: 'dateCreated',
+    0x50: 'byline',
+    0x55: 'bylineTitle',
+    0x7A: 'captionWriter',
+    0x69: 'headline',
+    0x74: 'copyright',
+    0x0F: 'category'
+  };
+  function readIPTCData(file, startOffset, sectionLength) {
+    var dataView = new DataView(file);
+    var data = {};
+    var fieldValue, fieldName, dataSize, segmentType, segmentSize;
+    var segmentStartPos = startOffset;
+    while (segmentStartPos < startOffset + sectionLength) {
+      if (dataView.getUint8(segmentStartPos) === 0x1C && dataView.getUint8(segmentStartPos + 1) === 0x02) {
+        segmentType = dataView.getUint8(segmentStartPos + 2);
+        if (segmentType in IptcFieldMap) {
+          dataSize = dataView.getInt16(segmentStartPos + 3);
+          segmentSize = dataSize + 5;
+          fieldName = IptcFieldMap[segmentType];
+          fieldValue = getStringFromDB(dataView, segmentStartPos + 5, dataSize);
+          // Check if we already stored a value with this name
+          if (data.hasOwnProperty(fieldName)) {
+            // Value already stored with this name, create multivalue field
+            if (data[fieldName] instanceof Array) {
+              data[fieldName].push(fieldValue);
+            } else {
+              data[fieldName] = [data[fieldName], fieldValue];
+            }
+          } else {
+            data[fieldName] = fieldValue;
+          }
+        }
+      }
+      segmentStartPos++;
+    }
+    return data;
+  }
+  function readTags(file, tiffStart, dirStart, strings, bigEnd) {
+    var entries = file.getUint16(dirStart, !bigEnd),
+      tags = {},
+      entryOffset,
+      tag,
+      i;
+    for (i = 0; i < entries; i++) {
+      entryOffset = dirStart + i * 12 + 2;
+      tag = strings[file.getUint16(entryOffset, !bigEnd)];
+      if (!tag && debug) console.log("Unknown tag: " + file.getUint16(entryOffset, !bigEnd));
+      tags[tag] = readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd);
+    }
+    return tags;
+  }
+  function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
+    var type = file.getUint16(entryOffset + 2, !bigEnd),
+      numValues = file.getUint32(entryOffset + 4, !bigEnd),
+      valueOffset = file.getUint32(entryOffset + 8, !bigEnd) + tiffStart,
+      offset,
+      vals,
+      val,
+      n,
+      numerator,
+      denominator;
+    switch (type) {
+      case 1: // byte, 8-bit unsigned int
+      case 7:
+        // undefined, 8-bit byte, value depending on field
+        if (numValues == 1) {
+          return file.getUint8(entryOffset + 8, !bigEnd);
+        } else {
+          offset = numValues > 4 ? valueOffset : entryOffset + 8;
+          vals = [];
+          for (n = 0; n < numValues; n++) {
+            vals[n] = file.getUint8(offset + n);
+          }
+          return vals;
+        }
+      case 2:
+        // ascii, 8-bit byte
+        offset = numValues > 4 ? valueOffset : entryOffset + 8;
+        return getStringFromDB(file, offset, numValues - 1);
+      case 3:
+        // short, 16 bit int
+        if (numValues == 1) {
+          return file.getUint16(entryOffset + 8, !bigEnd);
+        } else {
+          offset = numValues > 2 ? valueOffset : entryOffset + 8;
+          vals = [];
+          for (n = 0; n < numValues; n++) {
+            vals[n] = file.getUint16(offset + 2 * n, !bigEnd);
+          }
+          return vals;
+        }
+      case 4:
+        // long, 32 bit int
+        if (numValues == 1) {
+          return file.getUint32(entryOffset + 8, !bigEnd);
+        } else {
+          vals = [];
+          for (n = 0; n < numValues; n++) {
+            vals[n] = file.getUint32(valueOffset + 4 * n, !bigEnd);
+          }
+          return vals;
+        }
+      case 5:
+        // rational = two long values, first is numerator, second is denominator
+        if (numValues == 1) {
+          numerator = file.getUint32(valueOffset, !bigEnd);
+          denominator = file.getUint32(valueOffset + 4, !bigEnd);
+          val = new Number(numerator / denominator);
+          val.numerator = numerator;
+          val.denominator = denominator;
+          return val;
+        } else {
+          vals = [];
+          for (n = 0; n < numValues; n++) {
+            numerator = file.getUint32(valueOffset + 8 * n, !bigEnd);
+            denominator = file.getUint32(valueOffset + 4 + 8 * n, !bigEnd);
+            vals[n] = new Number(numerator / denominator);
+            vals[n].numerator = numerator;
+            vals[n].denominator = denominator;
+          }
+          return vals;
+        }
+      case 9:
+        // slong, 32 bit signed int
+        if (numValues == 1) {
+          return file.getInt32(entryOffset + 8, !bigEnd);
+        } else {
+          vals = [];
+          for (n = 0; n < numValues; n++) {
+            vals[n] = file.getInt32(valueOffset + 4 * n, !bigEnd);
+          }
+          return vals;
+        }
+      case 10:
+        // signed rational, two slongs, first is numerator, second is denominator
+        if (numValues == 1) {
+          return file.getInt32(valueOffset, !bigEnd) / file.getInt32(valueOffset + 4, !bigEnd);
+        } else {
+          vals = [];
+          for (n = 0; n < numValues; n++) {
+            vals[n] = file.getInt32(valueOffset + 8 * n, !bigEnd) / file.getInt32(valueOffset + 4 + 8 * n, !bigEnd);
+          }
+          return vals;
+        }
+    }
+  }
+
+  /**
+  * Given an IFD (Image File Directory) start offset
+  * returns an offset to next IFD or 0 if it's the last IFD.
+  */
+  function getNextIFDOffset(dataView, dirStart, bigEnd) {
+    //the first 2bytes means the number of directory entries contains in this IFD
+    var entries = dataView.getUint16(dirStart, !bigEnd);
+
+    // After last directory entry, there is a 4bytes of data,
+    // it means an offset to next IFD.
+    // If its value is '0x00000000', it means this is the last IFD and there is no linked IFD.
+
+    return dataView.getUint32(dirStart + 2 + entries * 12, !bigEnd); // each entry is 12 bytes long
+  }
+
+  function readThumbnailImage(dataView, tiffStart, firstIFDOffset, bigEnd) {
+    // get the IFD1 offset
+    var IFD1OffsetPointer = getNextIFDOffset(dataView, tiffStart + firstIFDOffset, bigEnd);
+    if (!IFD1OffsetPointer) {
+      // console.log('******** IFD1Offset is empty, image thumb not found ********');
+      return {};
+    } else if (IFD1OffsetPointer > dataView.byteLength) {
+      // this should not happen
+      // console.log('******** IFD1Offset is outside the bounds of the DataView ********');
+      return {};
+    }
+    // console.log('*******  thumbnail IFD offset (IFD1) is: %s', IFD1OffsetPointer);
+
+    var thumbTags = readTags(dataView, tiffStart, tiffStart + IFD1OffsetPointer, IFD1Tags, bigEnd);
+
+    // EXIF 2.3 specification for JPEG format thumbnail
+
+    // If the value of Compression(0x0103) Tag in IFD1 is '6', thumbnail image format is JPEG.
+    // Most of Exif image uses JPEG format for thumbnail. In that case, you can get offset of thumbnail
+    // by JpegIFOffset(0x0201) Tag in IFD1, size of thumbnail by JpegIFByteCount(0x0202) Tag.
+    // Data format is ordinary JPEG format, starts from 0xFFD8 and ends by 0xFFD9. It seems that
+    // JPEG format and 160x120pixels of size are recommended thumbnail format for Exif2.1 or later.
+
+    if (thumbTags['Compression']) {
+      // console.log('Thumbnail image found!');
+
+      switch (thumbTags['Compression']) {
+        case 6:
+          // console.log('Thumbnail image format is JPEG');
+          if (thumbTags.JpegIFOffset && thumbTags.JpegIFByteCount) {
+            // extract the thumbnail
+            var tOffset = tiffStart + thumbTags.JpegIFOffset;
+            var tLength = thumbTags.JpegIFByteCount;
+            thumbTags['blob'] = new Blob([new Uint8Array(dataView.buffer, tOffset, tLength)], {
+              type: 'image/jpeg'
+            });
+          }
+          break;
+        case 1:
+          console.log("Thumbnail image format is TIFF, which is not implemented.");
+          break;
+        default:
+          console.log("Unknown thumbnail image format '%s'", thumbTags['Compression']);
+      }
+    } else if (thumbTags['PhotometricInterpretation'] == 2) {
+      console.log("Thumbnail image format is RGB, which is not implemented.");
+    }
+    return thumbTags;
+  }
+  function getStringFromDB(buffer, start, length) {
+    var outstr = "";
+    for (n = start; n < start + length; n++) {
+      outstr += String.fromCharCode(buffer.getUint8(n));
+    }
+    return outstr;
+  }
+  function readEXIFData(file, start) {
+    if (getStringFromDB(file, start, 4) != "Exif") {
+      if (debug) console.log("Not valid EXIF data! " + getStringFromDB(file, start, 4));
+      return false;
+    }
+    var bigEnd,
+      tags,
+      tag,
+      exifData,
+      gpsData,
+      tiffOffset = start + 6;
+
+    // test for TIFF validity and endianness
+    if (file.getUint16(tiffOffset) == 0x4949) {
+      bigEnd = false;
+    } else if (file.getUint16(tiffOffset) == 0x4D4D) {
+      bigEnd = true;
+    } else {
+      if (debug) console.log("Not valid TIFF data! (no 0x4949 or 0x4D4D)");
+      return false;
+    }
+    if (file.getUint16(tiffOffset + 2, !bigEnd) != 0x002A) {
+      if (debug) console.log("Not valid TIFF data! (no 0x002A)");
+      return false;
+    }
+    var firstIFDOffset = file.getUint32(tiffOffset + 4, !bigEnd);
+    if (firstIFDOffset < 0x00000008) {
+      if (debug) console.log("Not valid TIFF data! (First offset less than 8)", file.getUint32(tiffOffset + 4, !bigEnd));
+      return false;
+    }
+    tags = readTags(file, tiffOffset, tiffOffset + firstIFDOffset, TiffTags, bigEnd);
+    if (tags.ExifIFDPointer) {
+      exifData = readTags(file, tiffOffset, tiffOffset + tags.ExifIFDPointer, ExifTags, bigEnd);
+      for (tag in exifData) {
+        switch (tag) {
+          case "LightSource":
+          case "Flash":
+          case "MeteringMode":
+          case "ExposureProgram":
+          case "SensingMethod":
+          case "SceneCaptureType":
+          case "SceneType":
+          case "CustomRendered":
+          case "WhiteBalance":
+          case "GainControl":
+          case "Contrast":
+          case "Saturation":
+          case "Sharpness":
+          case "SubjectDistanceRange":
+          case "FileSource":
+            exifData[tag] = StringValues[tag][exifData[tag]];
+            break;
+          case "ExifVersion":
+          case "FlashpixVersion":
+            exifData[tag] = String.fromCharCode(exifData[tag][0], exifData[tag][1], exifData[tag][2], exifData[tag][3]);
+            break;
+          case "ComponentsConfiguration":
+            exifData[tag] = StringValues.Components[exifData[tag][0]] + StringValues.Components[exifData[tag][1]] + StringValues.Components[exifData[tag][2]] + StringValues.Components[exifData[tag][3]];
+            break;
+        }
+        tags[tag] = exifData[tag];
+      }
+    }
+    if (tags.GPSInfoIFDPointer) {
+      gpsData = readTags(file, tiffOffset, tiffOffset + tags.GPSInfoIFDPointer, GPSTags, bigEnd);
+      for (tag in gpsData) {
+        switch (tag) {
+          case "GPSVersionID":
+            gpsData[tag] = gpsData[tag][0] + "." + gpsData[tag][1] + "." + gpsData[tag][2] + "." + gpsData[tag][3];
+            break;
+        }
+        tags[tag] = gpsData[tag];
+      }
+    }
+
+    // extract thumbnail
+    tags['thumbnail'] = readThumbnailImage(file, tiffOffset, firstIFDOffset, bigEnd);
+    return tags;
+  }
+  function findXMPinJPEG(file) {
+    if (!('DOMParser' in self)) {
+      // console.warn('XML parsing not supported without DOMParser');
+      return;
+    }
+    var dataView = new DataView(file);
+    if (debug) console.log("Got file of length " + file.byteLength);
+    if (dataView.getUint8(0) != 0xFF || dataView.getUint8(1) != 0xD8) {
+      if (debug) console.log("Not a valid JPEG");
+      return false; // not a valid jpeg
+    }
+
+    var offset = 2,
+      length = file.byteLength,
+      dom = new DOMParser();
+    while (offset < length - 4) {
+      if (getStringFromDB(dataView, offset, 4) == "http") {
+        var startOffset = offset - 1;
+        var sectionLength = dataView.getUint16(offset - 2) - 1;
+        var xmpString = getStringFromDB(dataView, startOffset, sectionLength);
+        var xmpEndIndex = xmpString.indexOf('xmpmeta>') + 8;
+        xmpString = xmpString.substring(xmpString.indexOf('<x:xmpmeta'), xmpEndIndex);
+        var indexOfXmp = xmpString.indexOf('x:xmpmeta') + 10;
+        //Many custom written programs embed xmp/xml without any namespace. Following are some of them.
+        //Without these namespaces, XML is thought to be invalid by parsers
+        xmpString = xmpString.slice(0, indexOfXmp) + 'xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/" ' + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' + 'xmlns:tiff="http://ns.adobe.com/tiff/1.0/" ' + 'xmlns:plus="http://schemas.android.com/apk/lib/com.google.android.gms.plus" ' + 'xmlns:ext="http://www.gettyimages.com/xsltExtension/1.0" ' + 'xmlns:exif="http://ns.adobe.com/exif/1.0/" ' + 'xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#" ' + 'xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#" ' + 'xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/" ' + 'xmlns:xapGImg="http://ns.adobe.com/xap/1.0/g/img/" ' + 'xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/" ' + xmpString.slice(indexOfXmp);
+        var domDocument = dom.parseFromString(xmpString, 'text/xml');
+        return xml2Object(domDocument);
+      } else {
+        offset++;
+      }
+    }
+  }
+  function xml2json(xml) {
+    var json = {};
+    if (xml.nodeType == 1) {
+      // element node
+      if (xml.attributes.length > 0) {
+        json['@attributes'] = {};
+        for (var j = 0; j < xml.attributes.length; j++) {
+          var attribute = xml.attributes.item(j);
+          json['@attributes'][attribute.nodeName] = attribute.nodeValue;
+        }
+      }
+    } else if (xml.nodeType == 3) {
+      // text node
+      return xml.nodeValue;
+    }
+
+    // deal with children
+    if (xml.hasChildNodes()) {
+      for (var i = 0; i < xml.childNodes.length; i++) {
+        var child = xml.childNodes.item(i);
+        var nodeName = child.nodeName;
+        if (json[nodeName] == null) {
+          json[nodeName] = xml2json(child);
+        } else {
+          if (json[nodeName].push == null) {
+            var old = json[nodeName];
+            json[nodeName] = [];
+            json[nodeName].push(old);
+          }
+          json[nodeName].push(xml2json(child));
+        }
+      }
+    }
+    return json;
+  }
+  function xml2Object(xml) {
+    try {
+      var obj = {};
+      if (xml.children.length > 0) {
+        for (var i = 0; i < xml.children.length; i++) {
+          var item = xml.children.item(i);
+          var attributes = item.attributes;
+          for (var idx in attributes) {
+            var itemAtt = attributes[idx];
+            var dataKey = itemAtt.nodeName;
+            var dataValue = itemAtt.nodeValue;
+            if (dataKey !== undefined) {
+              obj[dataKey] = dataValue;
+            }
+          }
+          var nodeName = item.nodeName;
+          if (typeof obj[nodeName] == "undefined") {
+            obj[nodeName] = xml2json(item);
+          } else {
+            if (typeof obj[nodeName].push == "undefined") {
+              var old = obj[nodeName];
+              obj[nodeName] = [];
+              obj[nodeName].push(old);
+            }
+            obj[nodeName].push(xml2json(item));
+          }
+        }
+      } else {
+        obj = xml.textContent;
+      }
+      return obj;
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+  EXIF.enableXmp = function () {
+    EXIF.isXmpEnabled = true;
+  };
+  EXIF.disableXmp = function () {
+    EXIF.isXmpEnabled = false;
+  };
+  EXIF.getData = function (img, callback) {
+    if ((self.Image && img instanceof self.Image || self.HTMLImageElement && img instanceof self.HTMLImageElement) && !img.complete) return false;
+    if (!imageHasData(img)) {
+      getImageData(img, callback);
+    } else {
+      if (callback) {
+        callback.call(img);
+      }
+    }
+    return true;
+  };
+  EXIF.getTag = function (img, tag) {
+    if (!imageHasData(img)) return;
+    return img.exifdata[tag];
+  };
+  EXIF.getIptcTag = function (img, tag) {
+    if (!imageHasData(img)) return;
+    return img.iptcdata[tag];
+  };
+  EXIF.getAllTags = function (img) {
+    if (!imageHasData(img)) return {};
+    var a,
+      data = img.exifdata,
+      tags = {};
+    for (a in data) {
+      if (data.hasOwnProperty(a)) {
+        tags[a] = data[a];
+      }
+    }
+    return tags;
+  };
+  EXIF.getAllIptcTags = function (img) {
+    if (!imageHasData(img)) return {};
+    var a,
+      data = img.iptcdata,
+      tags = {};
+    for (a in data) {
+      if (data.hasOwnProperty(a)) {
+        tags[a] = data[a];
+      }
+    }
+    return tags;
+  };
+  EXIF.pretty = function (img) {
+    if (!imageHasData(img)) return "";
+    var a,
+      data = img.exifdata,
+      strPretty = "";
+    for (a in data) {
+      if (data.hasOwnProperty(a)) {
+        if (_typeof(data[a]) == "object") {
+          if (data[a] instanceof Number) {
+            strPretty += a + " : " + data[a] + " [" + data[a].numerator + "/" + data[a].denominator + "]\r\n";
+          } else {
+            strPretty += a + " : [" + data[a].length + " values]\r\n";
+          }
+        } else {
+          strPretty += a + " : " + data[a] + "\r\n";
+        }
+      }
+    }
+    return strPretty;
+  };
+  EXIF.readFromBinaryFile = function (file) {
+    return findEXIFinJPEG(file);
+  };
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+      return EXIF;
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  }
+}).call(this);
+
+/***/ }),
 /* 248 */,
 /* 249 */,
 /* 250 */,
@@ -38781,7 +39801,76 @@ exports.default = _default;
 /* 473 */,
 /* 474 */,
 /* 475 */,
-/* 476 */,
+/* 476 */
+/*!**************************************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/libs/util/emitter.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/**
+ * 递归使用 call 方式this指向
+ * @param componentName // 需要找的组件的名称
+ * @param eventName // 事件名称
+ * @param params // 需要传递的参数
+ */
+function _broadcast(componentName, eventName, params) {
+  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
+  var $children;
+  $children = this.$children;
+  $children.map(function (child) {
+    if (componentName === child.$options.name) {
+      child.$emit.apply(child, [eventName].concat(params));
+    } else {
+      _broadcast.apply(child, [componentName, eventName].concat(params));
+    }
+  });
+}
+var _default = {
+  methods: {
+    /**
+     * 派发 (向上查找) (一个)
+     * @param componentName // 需要找的组件的名称
+     * @param eventName // 事件名称
+     * @param params // 需要传递的参数
+     */
+    dispatch: function dispatch(componentName, eventName, params) {
+      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
+      var name = parent.$options.name; // 获取当前组件实例的name
+      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
+      // 循环出当前名称的一样的组件实例
+      while (parent && (!name || name !== componentName)) {
+        parent = parent.$parent;
+        if (parent) {
+          name = parent.$options.name;
+        }
+      }
+      // 有节点表示当前找到了name一样的实例
+      if (parent) {
+        parent.$emit.apply(parent, [eventName].concat(params));
+      }
+    },
+    /**
+     * 广播 (向下查找) (广播多个)
+     * @param componentName // 需要找的组件的名称
+     * @param eventName // 事件名称
+     * @param params // 需要传递的参数
+     */
+    broadcast: function broadcast(componentName, eventName, params) {
+      _broadcast.call(this, componentName, eventName, params);
+    }
+  }
+};
+exports.default = _default;
+
+/***/ }),
 /* 477 */,
 /* 478 */,
 /* 479 */,
@@ -38803,10 +39892,2749 @@ exports.default = _default;
 /* 495 */,
 /* 496 */,
 /* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */
+/* 498 */
+/*!****************************************************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/components/u-trees/MpHtmlParser.js ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 499));
+var _CssHandler = _interopRequireDefault(__webpack_require__(/*! ./CssHandler.js */ 500));
+var _getSystemInfoSync = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/getSystemInfoSync.js */ 79));
+/**
+ * html 解析器
+ * @tutorial https://github.com/jin-yufeng/Parser
+ * @version 20201029
+ * @author JinYufeng
+ * @listens MIT
+ */
+
+var blankChar = _config.default.blankChar;
+var windowWidth = (0, _getSystemInfoSync.default)().windowWidth;
+var emoji;
+function MpHtmlParser(data) {
+  var _this = this;
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  this.attrs = {};
+  this.CssHandler = new _CssHandler.default(options.tagStyle, windowWidth);
+  this.data = data;
+  this.domain = options.domain;
+  this.DOM = [];
+  this.i = this.start = this.audioNum = this.imgNum = this.videoNum = 0;
+  options.prot = (this.domain || '').includes('://') ? this.domain.split('://')[0] : 'http';
+  this.options = options;
+  this.state = this.Text;
+  this.STACK = [];
+  // 工具函数
+  this.bubble = function () {
+    for (var i = _this.STACK.length, item; item = _this.STACK[--i];) {
+      if (_config.default.richOnlyTags[item.name]) return false;
+      item.c = 1;
+    }
+    return true;
+  };
+  this.decode = function (val, amp) {
+    var i = -1,
+      j,
+      en;
+    while (1) {
+      if ((i = val.indexOf('&', i + 1)) == -1) break;
+      if ((j = val.indexOf(';', i + 2)) == -1) break;
+      if (val[i + 1] == '#') {
+        en = parseInt((val[i + 2] == 'x' ? '0' : '') + val.substring(i + 2, j));
+        if (!isNaN(en)) val = val.substr(0, i) + String.fromCharCode(en) + val.substr(j + 1);
+      } else {
+        en = val.substring(i + 1, j);
+        if (_config.default.entities[en] || en == amp) val = val.substr(0, i) + (_config.default.entities[en] || '&') + val.substr(j + 1);
+      }
+    }
+    return val;
+  };
+  this.getUrl = function (url) {
+    if (url[0] == '/') {
+      if (url[1] == '/') url = _this.options.prot + ':' + url;else if (_this.domain) url = _this.domain + url;
+    } else if (_this.domain && url.indexOf('data:') != 0 && !url.includes('://')) url = _this.domain + '/' + url;
+    return url;
+  };
+  this.isClose = function () {
+    return _this.data[_this.i] == '>' || _this.data[_this.i] == '/' && _this.data[_this.i + 1] == '>';
+  };
+  this.section = function () {
+    return _this.data.substring(_this.start, _this.i);
+  };
+  this.parent = function () {
+    return _this.STACK[_this.STACK.length - 1];
+  };
+  this.siblings = function () {
+    return _this.STACK.length ? _this.parent().children : _this.DOM;
+  };
+}
+MpHtmlParser.prototype.parse = function () {
+  if (emoji) this.data = emoji.parseEmoji(this.data);
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);
+  }
+  if (this.state == this.Text) this.setText();
+  while (this.STACK.length) {
+    this.popNode(this.STACK.pop());
+  }
+  return this.DOM;
+};
+// 设置属性
+MpHtmlParser.prototype.setAttr = function () {
+  var name = this.attrName.toLowerCase(),
+    val = this.attrVal;
+  if (_config.default.boolAttrs[name]) this.attrs[name] = 'T';else if (val) {
+    if (name == 'src' || name == 'data-src' && !this.attrs.src) this.attrs.src = this.getUrl(this.decode(val, 'amp'));else if (name == 'href' || name == 'style') this.attrs[name] = this.decode(val, 'amp');else if (name.substr(0, 5) != 'data-') this.attrs[name] = val;
+  }
+  this.attrVal = '';
+  while (blankChar[this.data[this.i]]) {
+    this.i++;
+  }
+  if (this.isClose()) this.setNode();else {
+    this.start = this.i;
+    this.state = this.AttrName;
+  }
+};
+// 设置文本节点
+MpHtmlParser.prototype.setText = function () {
+  var back,
+    text = this.section();
+  if (!text) return;
+  text = _config.default.onText && _config.default.onText(text, function () {
+    return back = true;
+  }) || text;
+  if (back) {
+    this.data = this.data.substr(0, this.start) + text + this.data.substr(this.i);
+    var j = this.start + text.length;
+    for (this.i = this.start; this.i < j; this.i++) {
+      this.state(this.data[this.i]);
+    }
+    return;
+  }
+  if (!this.pre) {
+    // 合并空白符
+    var flag,
+      tmp = [];
+    for (var i = text.length, c; c = text[--i];) {
+      if (!blankChar[c]) {
+        tmp.unshift(c);
+        if (!flag) flag = 1;
+      } else {
+        if (tmp[0] != ' ') tmp.unshift(' ');
+        if (c == '\n' && flag == void 0) flag = 0;
+      }
+    }
+    if (flag == 0) return;
+    text = tmp.join('');
+  }
+  this.siblings().push({
+    type: 'text',
+    text: this.decode(text)
+  });
+};
+// 设置元素节点
+MpHtmlParser.prototype.setNode = function () {
+  var node = {
+      name: this.tagName.toLowerCase(),
+      attrs: this.attrs
+    },
+    close = _config.default.selfClosingTags[node.name];
+  if (this.options.nodes.length) node.type = 'node';
+  this.attrs = {};
+  if (!_config.default.ignoreTags[node.name]) {
+    // 处理属性
+    var attrs = node.attrs,
+      style = this.CssHandler.match(node.name, attrs, node) + (attrs.style || ''),
+      styleObj = {};
+    if (attrs.id) {
+      if (this.options.compress & 1) attrs.id = void 0;else if (this.options.useAnchor) this.bubble();
+    }
+    if (this.options.compress & 2 && attrs.class) attrs.class = void 0;
+    switch (node.name) {
+      case 'a':
+      case 'ad':
+        this.bubble();
+        break;
+      case 'font':
+        if (attrs.color) {
+          styleObj['color'] = attrs.color;
+          attrs.color = void 0;
+        }
+        if (attrs.face) {
+          styleObj['font-family'] = attrs.face;
+          attrs.face = void 0;
+        }
+        if (attrs.size) {
+          var size = parseInt(attrs.size);
+          if (size < 1) size = 1;else if (size > 7) size = 7;
+          var map = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
+          styleObj['font-size'] = map[size - 1];
+          attrs.size = void 0;
+        }
+        break;
+      case 'embed':
+        var src = node.attrs.src || '',
+          type = node.attrs.type || '';
+        if (type.includes('video') || src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8')) node.name = 'video';else if (type.includes('audio') || src.includes('.m4a') || src.includes('.wav') || src.includes('.mp3') || src.includes('.aac')) node.name = 'audio';else break;
+        if (node.attrs.autostart) node.attrs.autoplay = 'T';
+        node.attrs.controls = 'T';
+      case 'video':
+      case 'audio':
+        if (!attrs.id) attrs.id = node.name + ++this["".concat(node.name, "Num")];else this["".concat(node.name, "Num")]++;
+        if (node.name == 'video') {
+          if (this.videoNum > 3) node.lazyLoad = 1;
+          if (attrs.width) {
+            styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
+            attrs.width = void 0;
+          }
+          if (attrs.height) {
+            styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
+            attrs.height = void 0;
+          }
+        }
+        if (!attrs.controls && !attrs.autoplay) attrs.controls = 'T';
+        attrs.source = [];
+        if (attrs.src) {
+          attrs.source.push(attrs.src);
+          attrs.src = void 0;
+        }
+        this.bubble();
+        break;
+      case 'td':
+      case 'th':
+        if (attrs.colspan || attrs.rowspan) for (var k = this.STACK.length, item; item = this.STACK[--k];) {
+          if (item.name == 'table') {
+            item.flag = 1;
+            break;
+          }
+        }
+    }
+    if (attrs.align) {
+      if (node.name == 'table') {
+        if (attrs.align == 'center') styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';else styleObj['float'] = attrs.align;
+      } else styleObj['text-align'] = attrs.align;
+      attrs.align = void 0;
+    }
+    // 压缩 style
+    var styles = style.split(';');
+    style = '';
+    for (var i = 0, len = styles.length; i < len; i++) {
+      var info = styles[i].split(':');
+      if (info.length < 2) continue;
+      var _key = info[0].trim().toLowerCase(),
+        _value = info.slice(1).join(':').trim();
+      if (_value[0] == '-' || _value.includes('safe')) style += ";".concat(_key, ":").concat(_value);else if (!styleObj[_key] || _value.includes('import') || !styleObj[_key].includes('import')) styleObj[_key] = _value;
+    }
+    if (node.name == 'img') {
+      if (attrs.src && !attrs.ignore) {
+        if (this.bubble()) attrs.i = (this.imgNum++).toString();else attrs.ignore = 'T';
+      }
+      if (attrs.ignore) {
+        style += ';-webkit-touch-callout:none';
+        styleObj['max-width'] = '100%';
+      }
+      var width;
+      if (styleObj.width) width = styleObj.width;else if (attrs.width) width = attrs.width.includes('%') ? attrs.width : parseFloat(attrs.width) + 'px';
+      if (width) {
+        styleObj.width = width;
+        attrs.width = '100%';
+        if (parseInt(width) > windowWidth) {
+          styleObj.height = '';
+          if (attrs.height) attrs.height = void 0;
+        }
+      }
+      if (styleObj.height) {
+        attrs.height = styleObj.height;
+        styleObj.height = '';
+      } else if (attrs.height && !attrs.height.includes('%')) attrs.height = parseFloat(attrs.height) + 'px';
+    }
+    for (var key in styleObj) {
+      var value = styleObj[key];
+      if (!value) continue;
+      if (key.includes('flex') || key == 'order' || key == 'self-align') node.c = 1;
+      // 填充链接
+      if (value.includes('url')) {
+        var j = value.indexOf('(');
+        if (j++ != -1) {
+          while (value[j] == '"' || value[j] == "'" || blankChar[value[j]]) {
+            j++;
+          }
+          value = value.substr(0, j) + this.getUrl(value.substr(j));
+        }
+      }
+      // 转换 rpx
+      else if (value.includes('rpx')) value = value.replace(/[0-9.]+\s*rpx/g, function ($) {
+        return parseFloat($) * windowWidth / 750 + 'px';
+      });else if (key == 'white-space' && value.includes('pre') && !close) this.pre = node.pre = true;
+      style += ";".concat(key, ":").concat(value);
+    }
+    style = style.substr(1);
+    if (style) attrs.style = style;
+    if (!close) {
+      node.children = [];
+      if (node.name == 'pre' && _config.default.highlight) {
+        this.remove(node);
+        this.pre = node.pre = true;
+      }
+      this.siblings().push(node);
+      this.STACK.push(node);
+    } else if (!_config.default.filter || _config.default.filter(node, this) != false) this.siblings().push(node);
+  } else {
+    if (!close) this.remove(node);else if (node.name == 'source') {
+      var parent = this.parent();
+      if (parent && (parent.name == 'video' || parent.name == 'audio') && node.attrs.src) parent.attrs.source.push(node.attrs.src);
+    } else if (node.name == 'base' && !this.domain) this.domain = node.attrs.href;
+  }
+  if (this.data[this.i] == '/') this.i++;
+  this.start = this.i + 1;
+  this.state = this.Text;
+};
+// 移除标签
+MpHtmlParser.prototype.remove = function (node) {
+  var _this2 = this;
+  var name = node.name,
+    j = this.i;
+  // 处理 svg
+  var handleSvg = function handleSvg() {
+    var src = _this2.data.substring(j, _this2.i + 1);
+    node.attrs.xmlns = 'http://www.w3.org/2000/svg';
+    for (var key in node.attrs) {
+      if (key == 'viewbox') src = " viewBox=\"".concat(node.attrs.viewbox, "\"") + src;else if (key != 'style') src = " ".concat(key, "=\"").concat(node.attrs[key], "\"") + src;
+    }
+    src = '<svg' + src;
+    var parent = _this2.parent();
+    if (node.attrs.width == '100%' && parent && (parent.attrs.style || '').includes('inline')) parent.attrs.style = 'width:300px;max-width:100%;' + parent.attrs.style;
+    _this2.siblings().push({
+      name: 'img',
+      attrs: {
+        src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
+        style: node.attrs.style,
+        ignore: 'T'
+      }
+    });
+  };
+  if (node.name == 'svg' && this.data[j] == '/') return handleSvg(this.i++);
+  while (1) {
+    if ((this.i = this.data.indexOf('</', this.i + 1)) == -1) {
+      if (name == 'pre' || name == 'svg') this.i = j;else this.i = this.data.length;
+      return;
+    }
+    this.start = this.i += 2;
+    while (!blankChar[this.data[this.i]] && !this.isClose()) {
+      this.i++;
+    }
+    if (this.section().toLowerCase() == name) {
+      // 代码块高亮
+      if (name == 'pre') {
+        this.data = this.data.substr(0, j + 1) + _config.default.highlight(this.data.substring(j + 1, this.i - 5), node.attrs) + this.data.substr(this.i - 5);
+        return this.i = j;
+      } else if (name == 'style') this.CssHandler.getStyle(this.data.substring(j + 1, this.i - 7));else if (name == 'title') this.DOM.title = this.data.substring(j + 1, this.i - 7);
+      if ((this.i = this.data.indexOf('>', this.i)) == -1) this.i = this.data.length;
+      if (name == 'svg') handleSvg();
+      return;
+    }
+  }
+};
+// 节点出栈处理
+MpHtmlParser.prototype.popNode = function (node) {
+  // 空白符处理
+  if (node.pre) {
+    node.pre = this.pre = void 0;
+    for (var i = this.STACK.length; i--;) {
+      if (this.STACK[i].pre) this.pre = true;
+    }
+  }
+  var siblings = this.siblings(),
+    len = siblings.length,
+    childs = node.children;
+  if (node.name == 'head' || _config.default.filter && _config.default.filter(node, this) == false) return siblings.pop();
+  var attrs = node.attrs;
+  // 替换一些标签名
+  if (_config.default.blockTags[node.name]) node.name = 'div';else if (!_config.default.trustTags[node.name]) node.name = 'span';
+  // 处理列表
+  if (node.c && (node.name == 'ul' || node.name == 'ol')) {
+    if ((node.attrs.style || '').includes('list-style:none')) {
+      for (var _i = 0, child; child = childs[_i++];) {
+        if (child.name == 'li') child.name = 'div';
+      }
+    } else if (node.name == 'ul') {
+      var floor = 1;
+      for (var _i2 = this.STACK.length; _i2--;) {
+        if (this.STACK[_i2].name == 'ul') floor++;
+      }
+      if (floor != 1) for (var _i3 = childs.length; _i3--;) {
+        childs[_i3].floor = floor;
+      }
+    } else {
+      for (var _i4 = 0, num = 1, _child; _child = childs[_i4++];) {
+        if (_child.name == 'li') {
+          _child.type = 'ol';
+          _child.num = function (num, type) {
+            if (type == 'a') return String.fromCharCode(97 + (num - 1) % 26);
+            if (type == 'A') return String.fromCharCode(65 + (num - 1) % 26);
+            if (type == 'i' || type == 'I') {
+              num = (num - 1) % 99 + 1;
+              var one = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+                ten = ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+                res = (ten[Math.floor(num / 10) - 1] || '') + (one[num % 10 - 1] || '');
+              if (type == 'i') return res.toLowerCase();
+              return res;
+            }
+            return num;
+          }(num++, attrs.type) + '.';
+        }
+      }
+    }
+  }
+  // 处理表格
+  if (node.name == 'table') {
+    var padding = parseFloat(attrs.cellpadding),
+      spacing = parseFloat(attrs.cellspacing),
+      border = parseFloat(attrs.border);
+    if (node.c) {
+      if (isNaN(padding)) padding = 2;
+      if (isNaN(spacing)) spacing = 2;
+    }
+    if (border) attrs.style = "border:".concat(border, "px solid gray;").concat(attrs.style || '');
+    if (node.flag && node.c) {
+      // 有 colspan 或 rowspan 且含有链接的表格转为 grid 布局实现
+      attrs.style = "".concat(attrs.style || '', ";").concat(spacing ? ";grid-gap:".concat(spacing, "px") : ';border-left:0;border-top:0');
+      var row = 1,
+        col = 1,
+        colNum,
+        trs = [],
+        children = [],
+        map = {};
+      (function f(ns) {
+        for (var i = 0; i < ns.length; i++) {
+          if (ns[i].name == 'tr') trs.push(ns[i]);else f(ns[i].children || []);
+        }
+      })(node.children);
+      for (var _i5 = 0; _i5 < trs.length; _i5++) {
+        for (var j = 0, td; td = trs[_i5].children[j]; j++) {
+          if (td.name == 'td' || td.name == 'th') {
+            while (map[row + '.' + col]) {
+              col++;
+            }
+            var cell = {
+              name: 'div',
+              c: 1,
+              attrs: {
+                style: (td.attrs.style || '') + (border ? ";border:".concat(border, "px solid gray") + (spacing ? '' : ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '')
+              },
+              children: td.children
+            };
+            if (td.attrs.colspan) {
+              cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + parseInt(td.attrs.colspan));
+              if (!td.attrs.rowspan) cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + 1);
+              col += parseInt(td.attrs.colspan) - 1;
+            }
+            if (td.attrs.rowspan) {
+              cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + parseInt(td.attrs.rowspan));
+              if (!td.attrs.colspan) cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + 1);
+              for (var k = 1; k < td.attrs.rowspan; k++) {
+                map[row + k + '.' + col] = 1;
+              }
+            }
+            children.push(cell);
+            col++;
+          }
+        }
+        if (!colNum) {
+          colNum = col - 1;
+          attrs.style += ";grid-template-columns:repeat(".concat(colNum, ",auto)");
+        }
+        col = 1;
+        row++;
+      }
+      node.children = children;
+    } else {
+      attrs.style = "border-spacing:".concat(spacing, "px;").concat(attrs.style || '');
+      if (border || padding) (function f(ns) {
+        for (var i = 0, n; n = ns[i]; i++) {
+          if (n.name == 'th' || n.name == 'td') {
+            if (border) n.attrs.style = "border:".concat(border, "px solid gray;").concat(n.attrs.style || '');
+            if (padding) n.attrs.style = "padding:".concat(padding, "px;").concat(n.attrs.style || '');
+          } else f(n.children || []);
+        }
+      })(childs);
+    }
+    if (this.options.autoscroll) {
+      var table = Object.assign({}, node);
+      node.name = 'div';
+      node.attrs = {
+        style: 'overflow:scroll'
+      };
+      node.children = [table];
+    }
+  }
+  this.CssHandler.pop && this.CssHandler.pop(node);
+  // 自动压缩
+  if (node.name == 'div' && !Object.keys(attrs).length && childs.length == 1 && childs[0].name == 'div') siblings[len - 1] = childs[0];
+};
+// 状态机
+MpHtmlParser.prototype.Text = function (c) {
+  if (c == '<') {
+    var next = this.data[this.i + 1],
+      isLetter = function isLetter(c) {
+        return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
+      };
+    if (isLetter(next)) {
+      this.setText();
+      this.start = this.i + 1;
+      this.state = this.TagName;
+    } else if (next == '/') {
+      this.setText();
+      if (isLetter(this.data[++this.i + 1])) {
+        this.start = this.i + 1;
+        this.state = this.EndTag;
+      } else this.Comment();
+    } else if (next == '!' || next == '?') {
+      this.setText();
+      this.Comment();
+    }
+  }
+};
+MpHtmlParser.prototype.Comment = function () {
+  var key;
+  if (this.data.substring(this.i + 2, this.i + 4) == '--') key = '-->';else if (this.data.substring(this.i + 2, this.i + 9) == '[CDATA[') key = ']]>';else key = '>';
+  if ((this.i = this.data.indexOf(key, this.i + 2)) == -1) this.i = this.data.length;else this.i += key.length - 1;
+  this.start = this.i + 1;
+  this.state = this.Text;
+};
+MpHtmlParser.prototype.TagName = function (c) {
+  if (blankChar[c]) {
+    this.tagName = this.section();
+    while (blankChar[this.data[this.i]]) {
+      this.i++;
+    }
+    if (this.isClose()) this.setNode();else {
+      this.start = this.i;
+      this.state = this.AttrName;
+    }
+  } else if (this.isClose()) {
+    this.tagName = this.section();
+    this.setNode();
+  }
+};
+MpHtmlParser.prototype.AttrName = function (c) {
+  if (c == '=' || blankChar[c] || this.isClose()) {
+    this.attrName = this.section();
+    if (blankChar[c]) while (blankChar[this.data[++this.i]]) {
+      ;
+    }
+    if (this.data[this.i] == '=') {
+      while (blankChar[this.data[++this.i]]) {
+        ;
+      }
+      this.start = this.i--;
+      this.state = this.AttrValue;
+    } else this.setAttr();
+  }
+};
+MpHtmlParser.prototype.AttrValue = function (c) {
+  if (c == '"' || c == "'") {
+    this.start++;
+    if ((this.i = this.data.indexOf(c, this.i + 1)) == -1) return this.i = this.data.length;
+    this.attrVal = this.section();
+    this.i++;
+  } else {
+    for (; !blankChar[this.data[this.i]] && !this.isClose(); this.i++) {
+      ;
+    }
+    this.attrVal = this.section();
+  }
+  this.setAttr();
+};
+MpHtmlParser.prototype.EndTag = function (c) {
+  if (blankChar[c] || c == '>' || c == '/') {
+    var name = this.section().toLowerCase();
+    for (var i = this.STACK.length; i--;) {
+      if (this.STACK[i].name == name) break;
+    }
+    if (i != -1) {
+      var node;
+      while ((node = this.STACK.pop()).name != name) {
+        this.popNode(node);
+      }
+      this.popNode(node);
+    } else if (name == 'p' || name == 'br') this.siblings().push({
+      name: name,
+      attrs: {}
+    });
+    this.i = this.data.indexOf('>', this.i);
+    this.start = this.i + 1;
+    if (this.i == -1) this.i = this.data.length;else this.state = this.Text;
+  }
+};
+var _default = MpHtmlParser;
+exports.default = _default;
+
+/***/ }),
+/* 499 */
+/*!**********************************************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/components/u-trees/config.js ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/* 配置文件 */
+var cfg = {
+  // 出错占位图
+  errorImg: null,
+  // 过滤器函数
+  filter: null,
+  // 代码高亮函数
+  highlight: null,
+  // 文本处理函数
+  onText: null,
+  // 实体编码列表
+  entities: {
+    quot: '"',
+    apos: "'",
+    semi: ';',
+    nbsp: '\xA0',
+    ensp: "\u2002",
+    emsp: "\u2003",
+    ndash: '–',
+    mdash: '—',
+    middot: '·',
+    lsquo: '‘',
+    rsquo: '’',
+    ldquo: '“',
+    rdquo: '”',
+    bull: '•',
+    hellip: '…'
+  },
+  blankChar: makeMap(' ,\xA0,\t,\r,\n,\f'),
+  boolAttrs: makeMap('allowfullscreen,autoplay,autostart,controls,ignore,loop,muted'),
+  // 块级标签，将被转为 div
+  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
+  // 将被移除的标签
+  ignoreTags: makeMap('area,base,canvas,frame,iframe,input,link,map,meta,param,script,source,style,svg,textarea,title,track,wbr'),
+  // 只能被 rich-text 显示的标签
+  richOnlyTags: makeMap('a,colgroup,fieldset,legend'),
+  // 自闭合的标签
+  selfClosingTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
+  // 信任的标签
+  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
+  // 默认的标签样式
+  userAgentStyles: {
+    address: 'font-style:italic',
+    big: 'display:inline;font-size:1.2em',
+    blockquote: 'background-color:#f6f6f6;border-left:3px solid #dbdbdb;color:#6c6c6c;padding:5px 0 5px 10px',
+    caption: 'display:table-caption;text-align:center',
+    center: 'text-align:center',
+    cite: 'font-style:italic',
+    dd: 'margin-left:40px',
+    mark: 'background-color:yellow',
+    pre: 'font-family:monospace;white-space:pre;overflow:scroll',
+    s: 'text-decoration:line-through',
+    small: 'display:inline;font-size:0.8em',
+    u: 'text-decoration:underline'
+  }
+};
+function makeMap(str) {
+  var map = Object.create(null),
+    list = str.split(',');
+  for (var i = list.length; i--;) {
+    map[list[i]] = true;
+  }
+  return map;
+}
+if (wx.canIUse('editor')) {
+  cfg.blockTags.pre = void 0;
+  cfg.ignoreTags.rp = true;
+  Object.assign(cfg.richOnlyTags, makeMap('bdi,bdo,caption,rt,ruby'));
+  Object.assign(cfg.trustTags, makeMap('bdi,bdo,caption,pre,rt,ruby'));
+}
+var _default = cfg;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+
+/***/ }),
+/* 500 */
+/*!**************************************************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/components/u-trees/CssHandler.js ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 499));
+var isLetter = function isLetter(c) {
+  return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
+};
+function CssHandler(tagStyle) {
+  var styles = Object.assign(Object.create(null), _config.default.userAgentStyles);
+  for (var item in tagStyle) {
+    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];
+  }
+  this.styles = styles;
+}
+CssHandler.prototype.getStyle = function (data) {
+  this.styles = new parser(data, this.styles).parse();
+};
+CssHandler.prototype.match = function (name, attrs) {
+  var tmp,
+    matched = (tmp = this.styles[name]) ? tmp + ';' : '';
+  if (attrs.class) {
+    var items = attrs.class.split(' ');
+    for (var i = 0, item; item = items[i]; i++) {
+      if (tmp = this.styles['.' + item]) matched += tmp + ';';
+    }
+  }
+  if (tmp = this.styles['#' + attrs.id]) matched += tmp + ';';
+  return matched;
+};
+var _default = CssHandler;
+exports.default = _default;
+function parser(data, init) {
+  this.data = data;
+  this.floor = 0;
+  this.i = 0;
+  this.list = [];
+  this.res = init;
+  this.state = this.Space;
+}
+parser.prototype.parse = function () {
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);
+  }
+  return this.res;
+};
+parser.prototype.section = function () {
+  return this.data.substring(this.start, this.i);
+};
+// 状态机
+parser.prototype.Space = function (c) {
+  if (c == '.' || c == '#' || isLetter(c)) {
+    this.start = this.i;
+    this.state = this.Name;
+  } else if (c == '/' && this.data[this.i + 1] == '*') this.Comment();else if (!_config.default.blankChar[c] && c != ';') this.state = this.Ignore;
+};
+parser.prototype.Comment = function () {
+  this.i = this.data.indexOf('*/', this.i) + 1;
+  if (!this.i) this.i = this.data.length;
+  this.state = this.Space;
+};
+parser.prototype.Ignore = function (c) {
+  if (c == '{') this.floor++;else if (c == '}' && ! --this.floor) {
+    this.list = [];
+    this.state = this.Space;
+  }
+};
+parser.prototype.Name = function (c) {
+  if (_config.default.blankChar[c]) {
+    this.list.push(this.section());
+    this.state = this.NameSpace;
+  } else if (c == '{') {
+    this.list.push(this.section());
+    this.Content();
+  } else if (c == ',') {
+    this.list.push(this.section());
+    this.Comma();
+  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_') this.state = this.Ignore;
+};
+parser.prototype.NameSpace = function (c) {
+  if (c == '{') this.Content();else if (c == ',') this.Comma();else if (!_config.default.blankChar[c]) this.state = this.Ignore;
+};
+parser.prototype.Comma = function () {
+  while (_config.default.blankChar[this.data[++this.i]]) {
+    ;
+  }
+  if (this.data[this.i] == '{') this.Content();else {
+    this.start = this.i--;
+    this.state = this.Name;
+  }
+};
+parser.prototype.Content = function () {
+  this.start = ++this.i;
+  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
+  var content = this.section();
+  for (var i = 0, item; item = this.list[i++];) {
+    if (this.res[item]) this.res[item] += ';' + content;else this.res[item] = content;
+  }
+  this.list = [];
+  this.state = this.Space;
+};
+
+/***/ }),
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */
+/*!**********************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/components/mp-html/parser.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, wx) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/**
+ * @fileoverview html 解析器
+ */
+
+// 配置
+var config = {
+  // 信任的标签（保持标签名不变）
+  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,ruby,rt,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
+  // 块级标签（转为 div，其他的非信任标签转为 span）
+  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
+  // 要移除的标签
+  ignoreTags: makeMap('area,base,canvas,embed,frame,head,iframe,input,link,map,meta,param,rp,script,source,style,textarea,title,track,wbr'),
+  // 自闭合的标签
+  voidTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
+  // html 实体
+  entities: {
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    ensp: "\u2002",
+    emsp: "\u2003",
+    nbsp: '\xA0',
+    semi: ';',
+    ndash: '–',
+    mdash: '—',
+    middot: '·',
+    lsquo: '‘',
+    rsquo: '’',
+    ldquo: '“',
+    rdquo: '”',
+    bull: '•',
+    hellip: '…',
+    larr: '←',
+    uarr: '↑',
+    rarr: '→',
+    darr: '↓'
+  },
+  // 默认的标签样式
+  tagStyle: {
+    address: 'font-style:italic',
+    big: 'display:inline;font-size:1.2em',
+    caption: 'display:table-caption;text-align:center',
+    center: 'text-align:center',
+    cite: 'font-style:italic',
+    dd: 'margin-left:40px',
+    mark: 'background-color:yellow',
+    pre: 'font-family:monospace;white-space:pre',
+    s: 'text-decoration:line-through',
+    small: 'display:inline;font-size:0.8em',
+    strike: 'text-decoration:line-through',
+    u: 'text-decoration:underline'
+  },
+  // svg 大小写对照表
+  svgDict: {
+    animatetransform: 'animateTransform',
+    lineargradient: 'linearGradient',
+    viewbox: 'viewBox',
+    attributename: 'attributeName',
+    repeatcount: 'repeatCount',
+    repeatdur: 'repeatDur',
+    foreignobject: 'foreignObject'
+  }
+};
+var tagSelector = {};
+var windowWidth, system;
+if (uni.canIUse('getWindowInfo')) {
+  windowWidth = uni.getWindowInfo().windowWidth;
+  system = uni.getDeviceInfo().system;
+} else {
+  var systemInfo = uni.getSystemInfoSync();
+  windowWidth = systemInfo.windowWidth;
+  system = systemInfo.system;
+}
+var blankChar = makeMap(' ,\r,\n,\t,\f');
+var idIndex = 0;
+
+/**
+ * @description 创建 map
+ * @param {String} str 逗号分隔
+ */
+function makeMap(str) {
+  var map = Object.create(null);
+  var list = str.split(',');
+  for (var i = list.length; i--;) {
+    map[list[i]] = true;
+  }
+  return map;
+}
+
+/**
+ * @description 解码 html 实体
+ * @param {String} str 要解码的字符串
+ * @param {Boolean} amp 要不要解码 &amp;
+ * @returns {String} 解码后的字符串
+ */
+function decodeEntity(str, amp) {
+  var i = str.indexOf('&');
+  while (i !== -1) {
+    var j = str.indexOf(';', i + 3);
+    var code = void 0;
+    if (j === -1) break;
+    if (str[i + 1] === '#') {
+      // &#123; 形式的实体
+      code = parseInt((str[i + 2] === 'x' ? '0' : '') + str.substring(i + 2, j));
+      if (!isNaN(code)) {
+        str = str.substr(0, i) + String.fromCharCode(code) + str.substr(j + 1);
+      }
+    } else {
+      // &nbsp; 形式的实体
+      code = str.substring(i + 1, j);
+      if (config.entities[code] || code === 'amp' && amp) {
+        str = str.substr(0, i) + (config.entities[code] || '&') + str.substr(j + 1);
+      }
+    }
+    i = str.indexOf('&', i + 1);
+  }
+  return str;
+}
+
+/**
+ * @description 合并多个块级标签，加快长内容渲染
+ * @param {Array} nodes 要合并的标签数组
+ */
+function mergeNodes(nodes) {
+  var i = nodes.length - 1;
+  for (var j = i; j >= -1; j--) {
+    if (j === -1 || nodes[j].c || !nodes[j].name || nodes[j].name !== 'div' && nodes[j].name !== 'p' && nodes[j].name[0] !== 'h' || (nodes[j].attrs.style || '').includes('inline')) {
+      if (i - j >= 5) {
+        nodes.splice(j + 1, i - j, {
+          name: 'div',
+          attrs: {},
+          children: nodes.slice(j + 1, i + 1)
+        });
+      }
+      i = j - 1;
+    }
+  }
+}
+
+/**
+ * @description html 解析器
+ * @param {Object} vm 组件实例
+ */
+function Parser(vm) {
+  this.options = vm || {};
+  this.tagStyle = Object.assign({}, config.tagStyle, this.options.tagStyle);
+  this.imgList = vm.imgList || [];
+  this.imgList._unloadimgs = 0;
+  this.plugins = vm.plugins || [];
+  this.attrs = Object.create(null);
+  this.stack = [];
+  this.nodes = [];
+  this.pre = (this.options.containerStyle || '').includes('white-space') && this.options.containerStyle.includes('pre') ? 2 : 0;
+}
+
+/**
+ * @description 执行解析
+ * @param {String} content 要解析的文本
+ */
+Parser.prototype.parse = function (content) {
+  // 插件处理
+  for (var i = this.plugins.length; i--;) {
+    if (this.plugins[i].onUpdate) {
+      content = this.plugins[i].onUpdate(content, config) || content;
+    }
+  }
+  new Lexer(this).parse(content);
+  // 出栈未闭合的标签
+  while (this.stack.length) {
+    this.popNode();
+  }
+  if (this.nodes.length > 50) {
+    mergeNodes(this.nodes);
+  }
+  return this.nodes;
+};
+
+/**
+ * @description 将标签暴露出来（不被 rich-text 包含）
+ */
+Parser.prototype.expose = function () {
+  for (var i = this.stack.length; i--;) {
+    var item = this.stack[i];
+    if (item.c || item.name === 'a' || item.name === 'video' || item.name === 'audio') return;
+    item.c = 1;
+  }
+};
+
+/**
+ * @description 处理插件
+ * @param {Object} node 要处理的标签
+ * @returns {Boolean} 是否要移除此标签
+ */
+Parser.prototype.hook = function (node) {
+  for (var i = this.plugins.length; i--;) {
+    if (this.plugins[i].onParse && this.plugins[i].onParse(node, this) === false) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * @description 将链接拼接上主域名
+ * @param {String} url 需要拼接的链接
+ * @returns {String} 拼接后的链接
+ */
+Parser.prototype.getUrl = function (url) {
+  var domain = this.options.domain;
+  if (url[0] === '/') {
+    if (url[1] === '/') {
+      // // 开头的补充协议名
+      url = (domain ? domain.split('://')[0] : 'http') + ':' + url;
+    } else if (domain) {
+      // 否则补充整个域名
+      url = domain + url;
+    }
+  } else if (!url.includes('data:') && !url.includes('://')) {
+    if (domain) {
+      url = domain + '/' + url;
+    }
+  }
+  return url;
+};
+
+/**
+ * @description 解析样式表
+ * @param {Object} node 标签
+ * @returns {Object}
+ */
+Parser.prototype.parseStyle = function (node) {
+  var attrs = node.attrs;
+  var list = (this.tagStyle[node.name] || '').split(';').concat((attrs.style || '').split(';'));
+  var styleObj = {};
+  var tmp = '';
+  if (attrs.id && !this.xml) {
+    // 暴露锚点
+    if (this.options.useAnchor) {
+      this.expose();
+    } else if (node.name !== 'img' && node.name !== 'a' && node.name !== 'video' && node.name !== 'audio') {
+      attrs.id = undefined;
+    }
+  }
+
+  // 转换 width 和 height 属性
+  if (attrs.width) {
+    styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
+    attrs.width = undefined;
+  }
+  if (attrs.height) {
+    styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
+    attrs.height = undefined;
+  }
+  for (var i = 0, len = list.length; i < len; i++) {
+    var info = list[i].split(':');
+    if (info.length < 2) continue;
+    var key = info.shift().trim().toLowerCase();
+    var value = info.join(':').trim();
+    if (value[0] === '-' && value.lastIndexOf('-') > 0 || value.includes('safe')) {
+      // 兼容性的 css 不压缩
+      tmp += ";".concat(key, ":").concat(value);
+    } else if (!styleObj[key] || value.includes('import') || !styleObj[key].includes('import')) {
+      // 重复的样式进行覆盖
+      if (value.includes('url')) {
+        // 填充链接
+        var j = value.indexOf('(') + 1;
+        if (j) {
+          while (value[j] === '"' || value[j] === "'" || blankChar[value[j]]) {
+            j++;
+          }
+          value = value.substr(0, j) + this.getUrl(value.substr(j));
+        }
+      } else if (value.includes('rpx')) {
+        // 转换 rpx（rich-text 内部不支持 rpx）
+        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {
+          return parseFloat($) * windowWidth / 750 + 'px';
+        });
+      }
+      styleObj[key] = value;
+    }
+  }
+  node.attrs.style = tmp;
+  return styleObj;
+};
+
+/**
+ * @description 解析到标签名
+ * @param {String} name 标签名
+ * @private
+ */
+Parser.prototype.onTagName = function (name) {
+  this.tagName = this.xml ? name : name.toLowerCase();
+  if (this.tagName === 'svg') {
+    this.xml = (this.xml || 0) + 1; // svg 标签内大小写敏感
+    config.ignoreTags.style = undefined; // svg 标签内 style 可用
+  }
+};
+
+/**
+ * @description 解析到属性名
+ * @param {String} name 属性名
+ * @private
+ */
+Parser.prototype.onAttrName = function (name) {
+  name = this.xml ? name : name.toLowerCase();
+  if (name.substr(0, 5) === 'data-') {
+    if (name === 'data-src' && !this.attrs.src) {
+      // data-src 自动转为 src
+      this.attrName = 'src';
+    } else if (this.tagName === 'img' || this.tagName === 'a') {
+      // a 和 img 标签保留 data- 的属性，可以在 imgtap 和 linktap 事件中使用
+      this.attrName = name;
+    } else {
+      // 剩余的移除以减小大小
+      this.attrName = undefined;
+    }
+  } else {
+    this.attrName = name;
+    this.attrs[name] = 'T'; // boolean 型属性缺省设置
+  }
+};
+
+/**
+ * @description 解析到属性值
+ * @param {String} val 属性值
+ * @private
+ */
+Parser.prototype.onAttrVal = function (val) {
+  var name = this.attrName || '';
+  if (name === 'style' || name === 'href') {
+    // 部分属性进行实体解码
+    this.attrs[name] = decodeEntity(val, true);
+  } else if (name.includes('src')) {
+    // 拼接主域名
+    this.attrs[name] = this.getUrl(decodeEntity(val, true));
+  } else if (name) {
+    this.attrs[name] = val;
+  }
+};
+
+/**
+ * @description 解析到标签开始
+ * @param {Boolean} selfClose 是否有自闭合标识 />
+ * @private
+ */
+Parser.prototype.onOpenTag = function (selfClose) {
+  // 拼装 node
+  var node = Object.create(null);
+  node.name = this.tagName;
+  node.attrs = this.attrs;
+  // 避免因为自动 diff 使得 type 被设置为 null 导致部分内容不显示
+  if (this.options.nodes.length) {
+    node.type = 'node';
+  }
+  this.attrs = Object.create(null);
+  var attrs = node.attrs;
+  var parent = this.stack[this.stack.length - 1];
+  var siblings = parent ? parent.children : this.nodes;
+  var close = this.xml ? selfClose : config.voidTags[node.name];
+
+  // 替换标签名选择器
+  if (tagSelector[node.name]) {
+    attrs.class = tagSelector[node.name] + (attrs.class ? ' ' + attrs.class : '');
+  }
+
+  // 转换 embed 标签
+  if (node.name === 'embed') {
+    var src = attrs.src || '';
+    // 按照后缀名和 type 将 embed 转为 video 或 audio
+    if (src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8') || (attrs.type || '').includes('video')) {
+      node.name = 'video';
+    } else if (src.includes('.mp3') || src.includes('.wav') || src.includes('.aac') || src.includes('.m4a') || (attrs.type || '').includes('audio')) {
+      node.name = 'audio';
+    }
+    if (attrs.autostart) {
+      attrs.autoplay = 'T';
+    }
+    attrs.controls = 'T';
+  }
+
+  // 处理音视频
+  if (node.name === 'video' || node.name === 'audio') {
+    // 设置 id 以便获取 context
+    if (node.name === 'video' && !attrs.id) {
+      attrs.id = 'v' + idIndex++;
+    }
+    // 没有设置 controls 也没有设置 autoplay 的自动设置 controls
+    if (!attrs.controls && !attrs.autoplay) {
+      attrs.controls = 'T';
+    }
+    // 用数组存储所有可用的 source
+    node.src = [];
+    if (attrs.src) {
+      node.src.push(attrs.src);
+      attrs.src = undefined;
+    }
+    this.expose();
+  }
+
+  // 处理自闭合标签
+  if (close) {
+    if (!this.hook(node) || config.ignoreTags[node.name]) {
+      // 通过 base 标签设置主域名
+      if (node.name === 'base' && !this.options.domain) {
+        this.options.domain = attrs.href;
+      } else if (node.name === 'source' && parent && (parent.name === 'video' || parent.name === 'audio') && attrs.src) {
+        // 设置 source 标签（仅父节点为 video 或 audio 时有效）
+        parent.src.push(attrs.src);
+      }
+      return;
+    }
+
+    // 解析 style
+    var styleObj = this.parseStyle(node);
+
+    // 处理图片
+    if (node.name === 'img') {
+      if (attrs.src) {
+        // 标记 webp
+        if (attrs.src.includes('webp')) {
+          node.webp = 'T';
+        }
+        // data url 图片如果没有设置 original-src 默认为不可预览的小图片
+        if (attrs.src.includes('data:') && this.options.previewImg !== 'all' && !attrs['original-src']) {
+          attrs.ignore = 'T';
+        }
+        if (!attrs.ignore || node.webp || attrs.src.includes('cloud://')) {
+          for (var i = this.stack.length; i--;) {
+            var item = this.stack[i];
+            if (item.name === 'a') {
+              node.a = item.attrs;
+            }
+            if (item.name === 'table' && !node.webp && !attrs.src.includes('cloud://')) {
+              if (!styleObj.display || styleObj.display.includes('inline')) {
+                node.t = 'inline-block';
+              } else {
+                node.t = styleObj.display;
+              }
+              styleObj.display = undefined;
+            }
+            var style = item.attrs.style || '';
+            if (style.includes('flex:') && !style.includes('flex:0') && !style.includes('flex: 0') && (!styleObj.width || parseInt(styleObj.width) > 100)) {
+              styleObj.width = '100% !important';
+              styleObj.height = '';
+              for (var j = i + 1; j < this.stack.length; j++) {
+                this.stack[j].attrs.style = (this.stack[j].attrs.style || '').replace('inline-', '');
+              }
+            } else if (style.includes('flex') && styleObj.width === '100%') {
+              for (var _j = i + 1; _j < this.stack.length; _j++) {
+                var _style = this.stack[_j].attrs.style || '';
+                if (!_style.includes(';width') && !_style.includes(' width') && _style.indexOf('width') !== 0) {
+                  styleObj.width = '';
+                  break;
+                }
+              }
+            } else if (style.includes('inline-block')) {
+              if (styleObj.width && styleObj.width[styleObj.width.length - 1] === '%') {
+                item.attrs.style += ';max-width:' + styleObj.width;
+                styleObj.width = '';
+              } else {
+                item.attrs.style += ';max-width:100%';
+              }
+            }
+            item.c = 1;
+          }
+          attrs.i = this.imgList.length.toString();
+          var _src = attrs['original-src'] || attrs.src;
+          if (this.imgList.includes(_src)) {
+            // 如果有重复的链接则对域名进行随机大小写变换避免预览时错位
+            var _i = _src.indexOf('://');
+            if (_i !== -1) {
+              _i += 3;
+              var newSrc = _src.substr(0, _i);
+              for (; _i < _src.length; _i++) {
+                if (_src[_i] === '/') break;
+                newSrc += Math.random() > 0.5 ? _src[_i].toUpperCase() : _src[_i];
+              }
+              newSrc += _src.substr(_i);
+              _src = newSrc;
+            }
+          }
+          this.imgList.push(_src);
+          if (!node.t) {
+            this.imgList._unloadimgs += 1;
+          }
+        }
+      }
+      if (styleObj.display === 'inline') {
+        styleObj.display = '';
+      }
+      if (attrs.ignore) {
+        styleObj['max-width'] = styleObj['max-width'] || '100%';
+        attrs.style += ';-webkit-touch-callout:none';
+      }
+
+      // 设置的宽度超出屏幕，为避免变形，高度转为自动
+      if (parseInt(styleObj.width) > windowWidth) {
+        styleObj.height = undefined;
+      }
+      // 记录是否设置了宽高
+      if (!isNaN(parseInt(styleObj.width))) {
+        node.w = 'T';
+      }
+      if (!isNaN(parseInt(styleObj.height)) && (!styleObj.height.includes('%') || parent && (parent.attrs.style || '').includes('height'))) {
+        node.h = 'T';
+      }
+      if (node.w && node.h && styleObj['object-fit']) {
+        if (styleObj['object-fit'] === 'contain') {
+          node.m = 'aspectFit';
+        } else if (styleObj['object-fit'] === 'cover') {
+          node.m = 'aspectFill';
+        }
+      }
+    } else if (node.name === 'svg') {
+      siblings.push(node);
+      this.stack.push(node);
+      this.popNode();
+      return;
+    }
+    for (var key in styleObj) {
+      if (styleObj[key]) {
+        attrs.style += ";".concat(key, ":").concat(styleObj[key].replace(' !important', ''));
+      }
+    }
+    attrs.style = attrs.style.substr(1) || undefined;
+  } else {
+    if ((node.name === 'pre' || (attrs.style || '').includes('white-space') && attrs.style.includes('pre')) && this.pre !== 2) {
+      this.pre = node.pre = 1;
+    }
+    node.children = [];
+    this.stack.push(node);
+  }
+
+  // 加入节点树
+  siblings.push(node);
+};
+
+/**
+ * @description 解析到标签结束
+ * @param {String} name 标签名
+ * @private
+ */
+Parser.prototype.onCloseTag = function (name) {
+  // 依次出栈到匹配为止
+  name = this.xml ? name : name.toLowerCase();
+  var i;
+  for (i = this.stack.length; i--;) {
+    if (this.stack[i].name === name) break;
+  }
+  if (i !== -1) {
+    while (this.stack.length > i) {
+      this.popNode();
+    }
+  } else if (name === 'p' || name === 'br') {
+    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
+    siblings.push({
+      name: name,
+      attrs: {
+        class: tagSelector[name] || '',
+        style: this.tagStyle[name] || ''
+      }
+    });
+  }
+};
+
+/**
+ * @description 处理标签出栈
+ * @private
+ */
+Parser.prototype.popNode = function () {
+  var editable = this.options.editable;
+  var node = this.stack.pop();
+  var attrs = node.attrs;
+  var children = node.children;
+  var parent = this.stack[this.stack.length - 1];
+  var siblings = parent ? parent.children : this.nodes;
+  if (!this.hook(node) || config.ignoreTags[node.name]) {
+    // 获取标题
+    if (node.name === 'title' && children.length && children[0].type === 'text' && this.options.setTitle) {
+      uni.setNavigationBarTitle({
+        title: children[0].text
+      });
+    }
+    siblings.pop();
+    return;
+  }
+  if (node.pre && this.pre !== 2) {
+    // 是否合并空白符标识
+    this.pre = node.pre = undefined;
+    for (var i = this.stack.length; i--;) {
+      if (this.stack[i].pre) {
+        this.pre = 1;
+      }
+    }
+  }
+  var styleObj = {};
+
+  // 转换 svg
+  if (node.name === 'svg') {
+    if (this.xml > 1) {
+      // 多层 svg 嵌套
+      this.xml--;
+      return;
+    }
+    var src = '';
+    var style = attrs.style;
+    attrs.style = '';
+    attrs.xmlns = 'http://www.w3.org/2000/svg';
+    (function traversal(node) {
+      if (node.type === 'text') {
+        src += node.text;
+        return;
+      }
+      var name = config.svgDict[node.name] || node.name;
+      if (name === 'foreignObject') {
+        var _iterator = _createForOfIteratorHelper(node.children || []),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var child = _step.value;
+            if (child.attrs && !child.attrs.xmlns) {
+              child.attrs.xmlns = 'http://www.w3.org/1999/xhtml';
+              break;
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+      src += '<' + name;
+      for (var item in node.attrs) {
+        var val = node.attrs[item];
+        if (val) {
+          src += " ".concat(config.svgDict[item] || item, "=\"").concat(val.replace(/"/g, ''), "\"");
+        }
+      }
+      if (!node.children) {
+        src += '/>';
+      } else {
+        src += '>';
+        for (var _i2 = 0; _i2 < node.children.length; _i2++) {
+          traversal(node.children[_i2]);
+        }
+        src += '</' + name + '>';
+      }
+    })(node);
+    node.name = 'img';
+    node.attrs = {
+      src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
+      style: style,
+      ignore: 'T'
+    };
+    node.children = undefined;
+    this.xml = false;
+    config.ignoreTags.style = true;
+    return;
+  }
+
+  // 转换 align 属性
+  if (attrs.align) {
+    if (node.name === 'table') {
+      if (attrs.align === 'center') {
+        styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';
+      } else {
+        styleObj.float = attrs.align;
+      }
+    } else {
+      styleObj['text-align'] = attrs.align;
+    }
+    attrs.align = undefined;
+  }
+
+  // 转换 dir 属性
+  if (attrs.dir) {
+    styleObj.direction = attrs.dir;
+    attrs.dir = undefined;
+  }
+
+  // 转换 font 标签的属性
+  if (node.name === 'font') {
+    if (attrs.color) {
+      styleObj.color = attrs.color;
+      attrs.color = undefined;
+    }
+    if (attrs.face) {
+      styleObj['font-family'] = attrs.face;
+      attrs.face = undefined;
+    }
+    if (attrs.size) {
+      var size = parseInt(attrs.size);
+      if (!isNaN(size)) {
+        if (size < 1) {
+          size = 1;
+        } else if (size > 7) {
+          size = 7;
+        }
+        styleObj['font-size'] = ['x-small', 'small', 'medium', 'large', 'x-large', 'xx-large', 'xxx-large'][size - 1];
+      }
+      attrs.size = undefined;
+    }
+  }
+
+  // 一些编辑器的自带 class
+  if ((attrs.class || '').includes('align-center')) {
+    styleObj['text-align'] = 'center';
+  }
+  Object.assign(styleObj, this.parseStyle(node));
+  if (node.name !== 'table' && parseInt(styleObj.width) > windowWidth) {
+    styleObj['max-width'] = '100%';
+    styleObj['box-sizing'] = 'border-box';
+  }
+  if (config.blockTags[node.name]) {
+    if (!editable) {
+      node.name = 'div';
+    }
+  } else if (!config.trustTags[node.name] && !this.xml) {
+    // 未知标签转为 span，避免无法显示
+    node.name = 'span';
+  }
+  if (node.name === 'a' || node.name === 'ad') {
+    this.expose();
+  } else if (node.name === 'video') {
+    if ((styleObj.height || '').includes('auto')) {
+      styleObj.height = undefined;
+    }
+  } else if ((node.name === 'ul' || node.name === 'ol') && (node.c || editable)) {
+    // 列表处理
+    var types = {
+      a: 'lower-alpha',
+      A: 'upper-alpha',
+      i: 'lower-roman',
+      I: 'upper-roman'
+    };
+    if (types[attrs.type]) {
+      attrs.style += ';list-style-type:' + types[attrs.type];
+      attrs.type = undefined;
+    }
+    for (var _i3 = children.length; _i3--;) {
+      if (children[_i3].name === 'li') {
+        children[_i3].c = 1;
+      }
+    }
+  } else if (node.name === 'table') {
+    // 表格处理
+    // cellpadding、cellspacing、border 这几个常用表格属性需要通过转换实现
+    var padding = parseFloat(attrs.cellpadding);
+    var spacing = parseFloat(attrs.cellspacing);
+    var border = parseFloat(attrs.border);
+    var bordercolor = styleObj['border-color'];
+    var borderstyle = styleObj['border-style'];
+    if (node.c || editable) {
+      // padding 和 spacing 默认 2
+      if (isNaN(padding)) {
+        padding = 2;
+      }
+      if (isNaN(spacing)) {
+        spacing = 2;
+      }
+    }
+    if (border) {
+      attrs.style += ";border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray');
+    }
+    if (node.flag && (node.c || editable)) {
+      // 有 colspan 或 rowspan 且含有链接的表格通过 grid 布局实现
+      styleObj.display = 'grid';
+      if (styleObj['border-collapse'] === 'collapse') {
+        styleObj['border-collapse'] = undefined;
+        spacing = 0;
+      }
+      if (spacing) {
+        styleObj['grid-gap'] = spacing + 'px';
+        styleObj.padding = spacing + 'px';
+      } else if (border) {
+        // 无间隔的情况下避免边框重叠
+        attrs.style += ';border-left:0;border-top:0';
+      }
+      var width = []; // 表格的列宽
+      var trList = []; // tr 列表
+      var cells = []; // 保存新的单元格
+      var map = {}; // 被合并单元格占用的格子
+
+      (function traversal(nodes) {
+        for (var _i4 = 0; _i4 < nodes.length; _i4++) {
+          if (nodes[_i4].name === 'tr') {
+            trList.push(nodes[_i4]);
+          } else if (nodes[_i4].name === 'colgroup') {
+            var colI = 1;
+            var _iterator2 = _createForOfIteratorHelper(nodes[_i4].children || []),
+              _step2;
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var col = _step2.value;
+                if (col.name === 'col') {
+                  var _style2 = col.attrs.style || '';
+                  var start = _style2.indexOf('width') ? _style2.indexOf(';width') : 0;
+                  // 提取出宽度
+                  if (start !== -1) {
+                    var end = _style2.indexOf(';', start + 6);
+                    if (end === -1) {
+                      end = _style2.length;
+                    }
+                    width[colI] = _style2.substring(start ? start + 7 : 6, end);
+                  }
+                  colI += 1;
+                }
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+          } else {
+            traversal(nodes[_i4].children || []);
+          }
+        }
+      })(children);
+      for (var row = 1; row <= trList.length; row++) {
+        var col = 1;
+        for (var j = 0; j < trList[row - 1].children.length; j++) {
+          var td = trList[row - 1].children[j];
+          if (td.name === 'td' || td.name === 'th') {
+            // 这个格子被上面的单元格占用，则列号++
+            while (map[row + '.' + col]) {
+              col++;
+            }
+            if (editable) {
+              td.r = row;
+            }
+            var _style3 = td.attrs.style || '';
+            var start = _style3.indexOf('width') ? _style3.indexOf(';width') : 0;
+            // 提取出 td 的宽度
+            if (start !== -1) {
+              var end = _style3.indexOf(';', start + 6);
+              if (end === -1) {
+                end = _style3.length;
+              }
+              if (!td.attrs.colspan) {
+                width[col] = _style3.substring(start ? start + 7 : 6, end);
+              }
+              _style3 = _style3.substr(0, start) + _style3.substr(end);
+            }
+            // 设置竖直对齐
+            _style3 += ';display:flex';
+            start = _style3.indexOf('vertical-align');
+            if (start !== -1) {
+              var val = _style3.substr(start + 15, 10);
+              if (val.includes('middle')) {
+                _style3 += ';align-items:center';
+              } else if (val.includes('bottom')) {
+                _style3 += ';align-items:flex-end';
+              }
+            } else {
+              _style3 += ';align-items:center';
+            }
+            // 设置水平对齐
+            start = _style3.indexOf('text-align');
+            if (start !== -1) {
+              var _val = _style3.substr(start + 11, 10);
+              if (_val.includes('center')) {
+                _style3 += ';justify-content: center';
+              } else if (_val.includes('right')) {
+                _style3 += ';justify-content: right';
+              }
+            }
+            _style3 = (border ? ";border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray') + (spacing ? '' : ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') + ';' + _style3;
+            // 处理列合并
+            if (td.attrs.colspan) {
+              _style3 += ";grid-column-start:".concat(col, ";grid-column-end:").concat(col + parseInt(td.attrs.colspan));
+              if (!td.attrs.rowspan) {
+                _style3 += ";grid-row-start:".concat(row, ";grid-row-end:").concat(row + 1);
+              }
+              col += parseInt(td.attrs.colspan) - 1;
+            }
+            // 处理行合并
+            if (td.attrs.rowspan) {
+              _style3 += ";grid-row-start:".concat(row, ";grid-row-end:").concat(row + parseInt(td.attrs.rowspan));
+              if (!td.attrs.colspan) {
+                _style3 += ";grid-column-start:".concat(col, ";grid-column-end:").concat(col + 1);
+              }
+              // 记录下方单元格被占用
+              for (var rowspan = 1; rowspan < td.attrs.rowspan; rowspan++) {
+                for (var colspan = 0; colspan < (td.attrs.colspan || 1); colspan++) {
+                  map[row + rowspan + '.' + (col - colspan)] = 1;
+                }
+              }
+            }
+            if (_style3) {
+              td.attrs.style = _style3;
+            }
+            cells.push(td);
+            col++;
+          }
+        }
+        if (row === 1) {
+          var temp = '';
+          for (var _i5 = 1; _i5 < col; _i5++) {
+            temp += (width[_i5] ? width[_i5] : 'auto') + ' ';
+          }
+          styleObj['grid-template-columns'] = temp;
+        }
+      }
+      node.children = cells;
+    } else {
+      // 没有使用合并单元格的表格通过 table 布局实现
+      if (node.c || editable) {
+        styleObj.display = 'table';
+      }
+      if (!isNaN(spacing)) {
+        styleObj['border-spacing'] = spacing + 'px';
+      }
+      if (border || padding) {
+        // 遍历
+        (function traversal(nodes) {
+          for (var _i6 = 0; _i6 < nodes.length; _i6++) {
+            var _td = nodes[_i6];
+            if (_td.name === 'th' || _td.name === 'td') {
+              if (border) {
+                _td.attrs.style = "border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray', ";").concat(_td.attrs.style || '');
+              }
+              if (padding) {
+                _td.attrs.style = "padding:".concat(padding, "px;").concat(_td.attrs.style || '');
+              }
+            } else if (_td.children) {
+              traversal(_td.children);
+            }
+          }
+        })(children);
+      }
+    }
+    // 给表格添加一个单独的横向滚动层
+    if (this.options.scrollTable && !(attrs.style || '').includes('inline')) {
+      var table = Object.assign({}, node);
+      node.name = 'div';
+      node.attrs = {
+        style: 'overflow:auto'
+      };
+      node.children = [table];
+      attrs = table.attrs;
+    }
+  } else if ((node.name === 'tbody' || node.name === 'tr') && node.flag && (node.c || editable)) {
+    node.flag = undefined;
+    (function traversal(nodes) {
+      for (var _i7 = 0; _i7 < nodes.length; _i7++) {
+        if (nodes[_i7].name === 'td') {
+          // 颜色样式设置给单元格避免丢失
+          for (var _i8 = 0, _arr = ['color', 'background', 'background-color']; _i8 < _arr.length; _i8++) {
+            var _style4 = _arr[_i8];
+            if (styleObj[_style4]) {
+              nodes[_i7].attrs.style = _style4 + ':' + styleObj[_style4] + ';' + (nodes[_i7].attrs.style || '');
+            }
+          }
+        } else {
+          traversal(nodes[_i7].children || []);
+        }
+      }
+    })(children);
+  } else if ((node.name === 'td' || node.name === 'th') && (attrs.colspan || attrs.rowspan)) {
+    for (var _i9 = this.stack.length; _i9--;) {
+      if (this.stack[_i9].name === 'table' || this.stack[_i9].name === 'tbody' || this.stack[_i9].name === 'tr') {
+        this.stack[_i9].flag = 1; // 指示含有合并单元格
+      }
+    }
+  } else if (node.name === 'ruby') {
+    // 转换 ruby
+    node.name = 'span';
+    for (var _i10 = 0; _i10 < children.length - 1; _i10++) {
+      if (children[_i10].type === 'text' && children[_i10 + 1].name === 'rt') {
+        children[_i10] = {
+          name: 'div',
+          attrs: {
+            style: 'display:inline-block;text-align:center'
+          },
+          children: [{
+            name: 'div',
+            attrs: {
+              style: 'font-size:50%;' + (children[_i10 + 1].attrs.style || '')
+            },
+            children: children[_i10 + 1].children
+          }, children[_i10]]
+        };
+        children.splice(_i10 + 1, 1);
+      }
+    }
+  } else if (!editable && node.c) {
+    (function traversal(node) {
+      node.c = 2;
+      for (var _i11 = node.children.length; _i11--;) {
+        var child = node.children[_i11];
+        if (!child.c || child.name === 'table') {
+          node.c = 1;
+        }
+      }
+    })(node);
+  }
+  if ((styleObj.display || '').includes('flex') && !(node.c || editable)) {
+    for (var _i12 = children.length; _i12--;) {
+      var item = children[_i12];
+      if (item.f) {
+        item.attrs.style = (item.attrs.style || '') + item.f;
+        item.f = undefined;
+      }
+    }
+  }
+  // flex 布局时部分样式需要提取到 rich-text 外层
+  var flex = parent && ((parent.attrs.style || '').includes('flex') || (parent.attrs.style || '').includes('grid'))
+
+  // 检查基础库版本 virtualHost 是否可用
+  && !((node.c || editable) && wx.getNFCAdapter); // eslint-disable-line
+
+  if (flex) {
+    node.f = ';max-width:100%';
+  }
+  if (children.length >= 50 && (node.c || editable) && !(styleObj.display || '').includes('flex')) {
+    mergeNodes(children);
+  }
+  for (var key in styleObj) {
+    if (styleObj[key]) {
+      var _val2 = ";".concat(key, ":").concat(styleObj[key].replace(' !important', ''));
+      if (flex && (key.includes('flex') && key !== 'flex-direction' || key === 'align-self' || key.includes('grid') || styleObj[key][0] === '-' || key.includes('width') && _val2.includes('%'))) {
+        node.f += _val2;
+        if (key === 'width') {
+          attrs.style += ';width:100%';
+        }
+      } else {
+        attrs.style += _val2;
+      }
+    }
+  }
+  attrs.style = attrs.style.substr(1) || undefined;
+};
+
+/**
+ * @description 解析到文本
+ * @param {String} text 文本内容
+ */
+Parser.prototype.onText = function (text) {
+  if (!this.pre) {
+    // 合并空白符
+    var trim = '';
+    var flag;
+    for (var i = 0, len = text.length; i < len; i++) {
+      if (!blankChar[text[i]]) {
+        trim += text[i];
+      } else {
+        if (trim[trim.length - 1] !== ' ') {
+          trim += ' ';
+        }
+        if (text[i] === '\n' && !flag) {
+          flag = true;
+        }
+      }
+    }
+    // 去除含有换行符的空串
+    if (trim === ' ') {
+      if (flag) return;
+    }
+    text = trim;
+  }
+  var node = Object.create(null);
+  node.type = 'text';
+  node.text = decodeEntity(text);
+  if (this.hook(node)) {
+    if (this.options.selectable === 'force' && system.includes('iOS') && !uni.canIUse('rich-text.user-select')) {
+      this.expose();
+    }
+    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
+    siblings.push(node);
+  }
+};
+
+/**
+ * @description html 词法分析器
+ * @param {Object} handler 高层处理器
+ */
+function Lexer(handler) {
+  this.handler = handler;
+}
+
+/**
+ * @description 执行解析
+ * @param {String} content 要解析的文本
+ */
+Lexer.prototype.parse = function (content) {
+  this.content = content || '';
+  this.i = 0; // 标记解析位置
+  this.start = 0; // 标记一个单词的开始位置
+  this.state = this.text; // 当前状态
+  for (var len = this.content.length; this.i !== -1 && this.i < len;) {
+    this.state();
+  }
+};
+
+/**
+ * @description 检查标签是否闭合
+ * @param {String} method 如果闭合要进行的操作
+ * @returns {Boolean} 是否闭合
+ * @private
+ */
+Lexer.prototype.checkClose = function (method) {
+  var selfClose = this.content[this.i] === '/';
+  if (this.content[this.i] === '>' || selfClose && this.content[this.i + 1] === '>') {
+    if (method) {
+      this.handler[method](this.content.substring(this.start, this.i));
+    }
+    this.i += selfClose ? 2 : 1;
+    this.start = this.i;
+    this.handler.onOpenTag(selfClose);
+    if (this.handler.tagName === 'script') {
+      this.i = this.content.indexOf('</', this.i);
+      if (this.i !== -1) {
+        this.i += 2;
+        this.start = this.i;
+      }
+      this.state = this.endTag;
+    } else {
+      this.state = this.text;
+    }
+    return true;
+  }
+  return false;
+};
+
+/**
+ * @description 文本状态
+ * @private
+ */
+Lexer.prototype.text = function () {
+  this.i = this.content.indexOf('<', this.i); // 查找最近的标签
+  if (this.i === -1) {
+    // 没有标签了
+    if (this.start < this.content.length) {
+      this.handler.onText(this.content.substring(this.start, this.content.length));
+    }
+    return;
+  }
+  var c = this.content[this.i + 1];
+  if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
+    // 标签开头
+    if (this.start !== this.i) {
+      this.handler.onText(this.content.substring(this.start, this.i));
+    }
+    this.start = ++this.i;
+    this.state = this.tagName;
+  } else if (c === '/' || c === '!' || c === '?') {
+    if (this.start !== this.i) {
+      this.handler.onText(this.content.substring(this.start, this.i));
+    }
+    var next = this.content[this.i + 2];
+    if (c === '/' && (next >= 'a' && next <= 'z' || next >= 'A' && next <= 'Z')) {
+      // 标签结尾
+      this.i += 2;
+      this.start = this.i;
+      this.state = this.endTag;
+      return;
+    }
+    // 处理注释
+    var end = '-->';
+    if (c !== '!' || this.content[this.i + 2] !== '-' || this.content[this.i + 3] !== '-') {
+      end = '>';
+    }
+    this.i = this.content.indexOf(end, this.i);
+    if (this.i !== -1) {
+      this.i += end.length;
+      this.start = this.i;
+    }
+  } else {
+    this.i++;
+  }
+};
+
+/**
+ * @description 标签名状态
+ * @private
+ */
+Lexer.prototype.tagName = function () {
+  if (blankChar[this.content[this.i]]) {
+    // 解析到标签名
+    this.handler.onTagName(this.content.substring(this.start, this.i));
+    while (blankChar[this.content[++this.i]]) {
+      ;
+    }
+    if (this.i < this.content.length && !this.checkClose()) {
+      this.start = this.i;
+      this.state = this.attrName;
+    }
+  } else if (!this.checkClose('onTagName')) {
+    this.i++;
+  }
+};
+
+/**
+ * @description 属性名状态
+ * @private
+ */
+Lexer.prototype.attrName = function () {
+  var c = this.content[this.i];
+  if (blankChar[c] || c === '=') {
+    // 解析到属性名
+    this.handler.onAttrName(this.content.substring(this.start, this.i));
+    var needVal = c === '=';
+    var len = this.content.length;
+    while (++this.i < len) {
+      c = this.content[this.i];
+      if (!blankChar[c]) {
+        if (this.checkClose()) return;
+        if (needVal) {
+          // 等号后遇到第一个非空字符
+          this.start = this.i;
+          this.state = this.attrVal;
+          return;
+        }
+        if (this.content[this.i] === '=') {
+          needVal = true;
+        } else {
+          this.start = this.i;
+          this.state = this.attrName;
+          return;
+        }
+      }
+    }
+  } else if (!this.checkClose('onAttrName')) {
+    this.i++;
+  }
+};
+
+/**
+ * @description 属性值状态
+ * @private
+ */
+Lexer.prototype.attrVal = function () {
+  var c = this.content[this.i];
+  var len = this.content.length;
+  if (c === '"' || c === "'") {
+    // 有冒号的属性
+    this.start = ++this.i;
+    this.i = this.content.indexOf(c, this.i);
+    if (this.i === -1) return;
+    this.handler.onAttrVal(this.content.substring(this.start, this.i));
+  } else {
+    // 没有冒号的属性
+    for (; this.i < len; this.i++) {
+      if (blankChar[this.content[this.i]]) {
+        this.handler.onAttrVal(this.content.substring(this.start, this.i));
+        break;
+      } else if (this.checkClose('onAttrVal')) return;
+    }
+  }
+  while (blankChar[this.content[++this.i]]) {
+    ;
+  }
+  if (this.i < len && !this.checkClose()) {
+    this.start = this.i;
+    this.state = this.attrName;
+  }
+};
+
+/**
+ * @description 结束标签状态
+ * @returns {String} 结束的标签名
+ * @private
+ */
+Lexer.prototype.endTag = function () {
+  var c = this.content[this.i];
+  if (blankChar[c] || c === '>' || c === '/') {
+    this.handler.onCloseTag(this.content.substring(this.start, this.i));
+    if (c !== '>') {
+      this.i = this.content.indexOf('>', this.i);
+      if (this.i === -1) return;
+    }
+    this.start = ++this.i;
+    this.state = this.text;
+  } else {
+    this.i++;
+  }
+};
+var _default = Parser;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+
+/***/ }),
+/* 537 */
+/*!******************************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/components/mp-html/editable/index.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 538));
+var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 536));
+/**
+ * @fileoverview editable 插件
+ */
+
+function Editable(vm) {
+  var _this = this;
+  this.vm = vm;
+  this.editHistory = []; // 历史记录
+  this.editI = -1; // 历史记录指针
+  vm._mask = []; // 蒙版被点击时进行的操作
+
+  vm._setData = function (path, val) {
+    var paths = path.split('.');
+    var target = vm;
+    for (var i = 0; i < paths.length - 1; i++) {
+      target = target[paths[i]];
+    }
+    vm.$set(target, paths.pop(), val);
+  };
+
+  /**
+   * @description 移动历史记录指针
+   * @param {Number} num 移动距离
+   */
+  var move = function move(num) {
+    setTimeout(function () {
+      var item = _this.editHistory[_this.editI + num];
+      if (item) {
+        _this.editI += num;
+        vm._setData(item.key, item.value);
+      }
+    }, 200);
+  };
+  vm.undo = function () {
+    return move(-1);
+  }; // 撤销
+  vm.redo = function () {
+    return move(1);
+  }; // 重做
+
+  /**
+   * @description 更新记录
+   * @param {String} path 更新内容路径
+   * @param {*} oldVal 旧值
+   * @param {*} newVal 新值
+   * @param {Boolean} set 是否更新到视图
+   * @private
+   */
+  vm._editVal = function (path, oldVal, newVal, set) {
+    // 当前指针后的内容去除
+    while (_this.editI < _this.editHistory.length - 1) {
+      _this.editHistory.pop();
+    }
+
+    // 最多存储 30 条操作记录
+    while (_this.editHistory.length > 30) {
+      _this.editHistory.pop();
+      _this.editI--;
+    }
+    var last = _this.editHistory[_this.editHistory.length - 1];
+    if (!last || last.key !== path) {
+      if (last) {
+        // 去掉上一次的新值
+        _this.editHistory.pop();
+        _this.editI--;
+      }
+      // 存入这一次的旧值
+      _this.editHistory.push({
+        key: path,
+        value: oldVal
+      });
+      _this.editI++;
+    }
+
+    // 存入本次的新值
+    _this.editHistory.push({
+      key: path,
+      value: newVal
+    });
+    _this.editI++;
+
+    // 更新到视图
+    if (set) {
+      vm._setData(path, newVal);
+    }
+  };
+
+  /**
+   * @description 获取菜单项
+   * @private
+   */
+  vm._getItem = function (node, up, down) {
+    var items;
+    var i;
+    if (node === 'color') {
+      return _config.default.color;
+    }
+    if (node.name === 'img') {
+      items = _config.default.img.slice(0);
+      if (!vm.getSrc) {
+        i = items.indexOf('换图');
+        if (i !== -1) {
+          items.splice(i, 1);
+        }
+        i = items.indexOf('超链接');
+        if (i !== -1) {
+          items.splice(i, 1);
+        }
+        i = items.indexOf('预览图');
+        if (i !== -1) {
+          items.splice(i, 1);
+        }
+      }
+      i = items.indexOf('禁用预览');
+      if (i !== -1 && node.attrs.ignore) {
+        items[i] = '启用预览';
+      }
+    } else if (node.name === 'a') {
+      items = _config.default.link.slice(0);
+      if (!vm.getSrc) {
+        i = items.indexOf('更换链接');
+        if (i !== -1) {
+          items.splice(i, 1);
+        }
+      }
+    } else if (node.name === 'video' || node.name === 'audio') {
+      items = _config.default.media.slice(0);
+      i = items.indexOf('封面');
+      if (!vm.getSrc && i !== -1) {
+        items.splice(i, 1);
+      }
+      i = items.indexOf('循环');
+      if (node.attrs.loop && i !== -1) {
+        items[i] = '不循环';
+      }
+      i = items.indexOf('自动播放');
+      if (node.attrs.autoplay && i !== -1) {
+        items[i] = '不自动播放';
+      }
+    } else if (node.name === 'card') {
+      items = _config.default.card.slice(0);
+    } else {
+      items = _config.default.node.slice(0);
+    }
+    if (!up) {
+      i = items.indexOf('上移');
+      if (i !== -1) {
+        items.splice(i, 1);
+      }
+    }
+    if (!down) {
+      i = items.indexOf('下移');
+      if (i !== -1) {
+        items.splice(i, 1);
+      }
+    }
+    return items;
+  };
+
+  /**
+   * @description 显示 tooltip
+   * @param {object} obj
+   * @private
+   */
+  vm._tooltip = function (obj) {
+    vm.$set(vm, 'tooltip', {
+      top: obj.top,
+      items: obj.items
+    });
+    vm._tooltipcb = obj.success;
+  };
+
+  /**
+   * @description 显示滚动条
+   * @param {object} obj
+   * @private
+   */
+  vm._slider = function (obj) {
+    vm.$set(vm, 'slider', {
+      min: obj.min,
+      max: obj.max,
+      value: obj.value,
+      top: obj.top
+    });
+    vm._slideringcb = obj.changing;
+    vm._slidercb = obj.change;
+  };
+
+  /**
+   * @description 显示颜色选择
+   * @param {object} obj
+   * @private
+   */
+  vm._color = function (obj) {
+    vm.$set(vm, 'color', {
+      items: obj.items,
+      top: obj.top
+    });
+    vm._colorcb = obj.success;
+  };
+
+  /**
+   * @description 点击蒙版
+   * @private
+   */
+  vm._maskTap = function () {
+    // 隐藏所有悬浮窗
+    while (vm._mask.length) {
+      vm._mask.pop()();
+    }
+    if (vm.tooltip) {
+      vm.$set(vm, 'tooltip', null);
+    }
+    if (vm.slider) {
+      vm.$set(vm, 'slider', null);
+    }
+    if (vm.color) {
+      vm.$set(vm, 'color', null);
+    }
+  };
+
+  /**
+   * @description 插入节点
+   * @param {Object} node
+   */
+  function insert(node) {
+    if (vm._edit) {
+      vm._edit.insert(node);
+    } else {
+      var nodes = vm.nodes.slice(0);
+      nodes.push(node);
+      vm._editVal('nodes', vm.nodes, nodes, true);
+    }
+  }
+
+  /**
+   * @description 在光标处插入指定 html 内容
+   * @param {String} html 内容
+   */
+  vm.insertHtml = function (html) {
+    _this.inserting = true;
+    var arr = new _parser.default(vm).parse(html);
+    _this.inserting = undefined;
+    for (var i = 0; i < arr.length; i++) {
+      insert(arr[i]);
+    }
+  };
+
+  /**
+   * @description 在光标处插入图片
+   */
+  vm.insertImg = function () {
+    vm.getSrc && vm.getSrc('img').then(function (src) {
+      if (typeof src === 'string') {
+        src = [src];
+      }
+      var parser = new _parser.default(vm);
+      for (var i = 0; i < src.length; i++) {
+        insert({
+          name: 'img',
+          attrs: {
+            src: parser.getUrl(src[i])
+          }
+        });
+      }
+    }).catch(function () {});
+  };
+
+  /**
+   * @description 在光标处插入一个链接
+   */
+  vm.insertLink = function () {
+    vm.getSrc && vm.getSrc('link').then(function (url) {
+      insert({
+        name: 'a',
+        attrs: {
+          href: url
+        },
+        children: [{
+          type: 'text',
+          text: url
+        }]
+      });
+    }).catch(function () {});
+  };
+
+  /**
+   * @description 在光标处插入一个表格
+   * @param {Number} rows 行数
+   * @param {Number} cols 列数
+   */
+  vm.insertTable = function (rows, cols) {
+    var table = {
+      name: 'table',
+      attrs: {
+        style: 'display:table;width:100%;margin:10px 0;text-align:center;border-spacing:0;border-collapse:collapse;border:1px solid gray'
+      },
+      children: []
+    };
+    for (var i = 0; i < rows; i++) {
+      var tr = {
+        name: 'tr',
+        attrs: {},
+        children: []
+      };
+      for (var j = 0; j < cols; j++) {
+        tr.children.push({
+          name: 'td',
+          attrs: {
+            style: 'padding:2px;border:1px solid gray'
+          },
+          children: [{
+            type: 'text',
+            text: ''
+          }]
+        });
+      }
+      table.children.push(tr);
+    }
+    insert(table);
+  };
+
+  /**
+   * @description 插入视频/音频
+   * @param {Object} node
+   */
+  function insertMedia(node) {
+    if (typeof node.src === 'string') {
+      node.src = [node.src];
+    }
+    var parser = new _parser.default(vm);
+    // 拼接主域名
+    for (var i = 0; i < node.src.length; i++) {
+      node.src[i] = parser.getUrl(node.src[i]);
+    }
+    insert({
+      name: 'div',
+      attrs: {
+        style: 'text-align:center'
+      },
+      children: [node]
+    });
+  }
+
+  /**
+   * @description 在光标处插入一个视频
+   */
+  vm.insertVideo = function () {
+    vm.getSrc && vm.getSrc('video').then(function (src) {
+      insertMedia({
+        name: 'video',
+        attrs: {
+          controls: 'T'
+        },
+        children: [],
+        src: src
+      });
+    }).catch(function () {});
+  };
+
+  /**
+   * @description 在光标处插入一个音频
+   */
+  vm.insertAudio = function () {
+    vm.getSrc && vm.getSrc('audio').then(function (attrs) {
+      var src;
+      if (attrs.src) {
+        src = attrs.src;
+        attrs.src = undefined;
+      } else {
+        src = attrs;
+        attrs = {};
+      }
+      attrs.controls = 'T';
+      insertMedia({
+        name: 'audio',
+        attrs: attrs,
+        children: [],
+        src: src
+      });
+    }).catch(function () {});
+  };
+
+  /**
+   * @description 在光标处插入一段文本
+   */
+  vm.insertText = function () {
+    insert({
+      name: 'p',
+      attrs: {},
+      children: [{
+        type: 'text',
+        text: ''
+      }]
+    });
+  };
+
+  /**
+   * @description 清空内容
+   */
+  vm.clear = function () {
+    vm._maskTap();
+    vm._edit = undefined;
+    vm.$set(vm, 'nodes', [{
+      name: 'p',
+      attrs: {},
+      children: [{
+        type: 'text',
+        text: ''
+      }]
+    }]);
+  };
+
+  /**
+   * @description 获取编辑后的 html
+   */
+  vm.getContent = function () {
+    var html = '';
+    // 递归遍历获取
+    (function traversal(nodes, table) {
+      for (var i = 0; i < nodes.length; i++) {
+        var item = nodes[i];
+        if (item.type === 'text') {
+          html += item.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>').replace(/\xa0/g, '&nbsp;'); // 编码实体
+        } else {
+          if (item.name === 'img') {
+            item.attrs.i = '';
+            // 还原被转换的 svg
+            if ((item.attrs.src || '').includes('data:image/svg+xml;utf8,')) {
+              html += item.attrs.src.substr(24).replace(/%23/g, '#').replace('<svg', '<svg style="' + (item.attrs.style || '') + '"');
+              continue;
+            }
+          } else if (item.name === 'video' || item.name === 'audio') {
+            // 还原 video 和 audio 的 source
+            item = JSON.parse(JSON.stringify(item));
+            if (item.src.length > 1) {
+              item.children = [];
+              for (var j = 0; j < item.src.length; j++) {
+                item.children.push({
+                  name: 'source',
+                  attrs: {
+                    src: item.src[j]
+                  }
+                });
+              }
+            } else {
+              item.attrs.src = item.src[0];
+            }
+          } else if (item.name === 'div' && (item.attrs.style || '').includes('overflow:auto') && (item.children[0] || {}).name === 'table') {
+            // 还原滚动层
+            item = item.children[0];
+          }
+          // 还原 table
+          if (item.name === 'table') {
+            item = JSON.parse(JSON.stringify(item));
+            table = item.attrs;
+            if ((item.attrs.style || '').includes('display:grid')) {
+              item.attrs.style = item.attrs.style.split('display:grid')[0];
+              var children = [{
+                name: 'tr',
+                attrs: {},
+                children: []
+              }];
+              for (var _j = 0; _j < item.children.length; _j++) {
+                item.children[_j].attrs.style = item.children[_j].attrs.style.replace(/grid-[^;]+;*/g, '');
+                if (item.children[_j].r !== children.length) {
+                  children.push({
+                    name: 'tr',
+                    attrs: {},
+                    children: [item.children[_j]]
+                  });
+                } else {
+                  children[children.length - 1].children.push(item.children[_j]);
+                }
+              }
+              item.children = children;
+            }
+          }
+          html += '<' + item.name;
+          for (var attr in item.attrs) {
+            var val = item.attrs[attr];
+            if (!val) continue;
+            if (val === 'T' || val === true) {
+              // bool 型省略值
+              html += ' ' + attr;
+              continue;
+            } else if (item.name[0] === 't' && attr === 'style' && table) {
+              // 取消为了显示 table 添加的 style
+              val = val.replace(/;*display:table[^;]*/, '');
+              if (table.border) {
+                val = val.replace(/border[^;]+;*/g, function ($) {
+                  return $.includes('collapse') ? $ : '';
+                });
+              }
+              if (table.cellpadding) {
+                val = val.replace(/padding[^;]+;*/g, '');
+              }
+              if (!val) continue;
+            }
+            html += ' ' + attr + '="' + val.replace(/"/g, '&quot;') + '"';
+          }
+          html += '>';
+          if (item.children) {
+            traversal(item.children, table);
+            html += '</' + item.name + '>';
+          }
+        }
+      }
+    })(vm.nodes);
+
+    // 其他插件处理
+    for (var i = vm.plugins.length; i--;) {
+      if (vm.plugins[i].onGetContent) {
+        html = vm.plugins[i].onGetContent(html) || html;
+      }
+    }
+    return html;
+  };
+}
+Editable.prototype.onUpdate = function (content, config) {
+  var _this2 = this;
+  if (this.vm.editable) {
+    this.vm._maskTap();
+    config.entities.amp = '&';
+    if (!this.inserting) {
+      this.vm._edit = undefined;
+      if (!content) {
+        setTimeout(function () {
+          _this2.vm.$set(_this2.vm, 'nodes', [{
+            name: 'p',
+            attrs: {},
+            children: [{
+              type: 'text',
+              text: ''
+            }]
+          }]);
+        }, 0);
+      }
+    }
+  }
+};
+Editable.prototype.onParse = function (node) {
+  // 空白单元格可编辑
+  if (this.vm.editable && (node.name === 'td' || node.name === 'th') && !this.vm.getText(node.children)) {
+    node.children.push({
+      type: 'text',
+      text: ''
+    });
+  }
+};
+var _default = Editable;
+exports.default = _default;
+
+/***/ }),
+/* 538 */
+/*!*******************************************************************************************!*\
+  !*** D:/AI project/2026/wenmingshengchan/mp-client/components/mp-html/editable/config.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 以下项目可以删减或更换顺序，但不能添加或更改名字
+var _default = {
+  // 普通标签的菜单项
+  node: ['大小', '颜色', '斜体', '粗体', '下划线', '居中', '缩进', '上移', '下移', '删除'],
+  // 可以设置的文字颜色，此项可以添加 css 颜色
+  color: ['red', 'yellow', 'blue', 'green', 'gray', 'white', 'black'],
+  // 图片的菜单项
+  img: ['换图', '宽度', '超链接', '预览图', '禁用预览', '上移', '下移', '删除'],
+  // 链接的菜单项
+  link: ['更换链接', '上移', '下移', '删除'],
+  // 音视频的菜单项
+  media: ['封面', '循环', '自动播放', '上移', '下移', '删除'],
+  // 卡片的菜单项
+  card: ['上移', '下移', '删除']
+};
+exports.default = _default;
+
+/***/ }),
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */
 /*!********************************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-main.js?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************/
@@ -38815,13 +42643,13 @@ exports.default = _default;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./z-paging-main.js?vue&type=script&lang=js& */ 502);
+/* harmony import */ var _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!../../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./z-paging-main.js?vue&type=script&lang=js& */ 552);
 /* harmony import */ var _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_13_1_APP_Hbuilderx_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_z_paging_main_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 502 */
+/* 552 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-main.js?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38839,37 +42667,37 @@ exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _zPagingStatic = _interopRequireDefault(__webpack_require__(/*! ./z-paging-static */ 503));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 504));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! ./z-paging-utils */ 505));
-var _commonLayout = _interopRequireDefault(__webpack_require__(/*! ./modules/common-layout */ 507));
-var _dataHandle = _interopRequireDefault(__webpack_require__(/*! ./modules/data-handle */ 508));
-var _i18n = _interopRequireDefault(__webpack_require__(/*! ./modules/i18n */ 511));
-var _nvue = _interopRequireDefault(__webpack_require__(/*! ./modules/nvue */ 516));
-var _empty = _interopRequireDefault(__webpack_require__(/*! ./modules/empty */ 517));
-var _refresher = _interopRequireDefault(__webpack_require__(/*! ./modules/refresher */ 518));
-var _loadMore = _interopRequireDefault(__webpack_require__(/*! ./modules/load-more */ 519));
-var _loading = _interopRequireDefault(__webpack_require__(/*! ./modules/loading */ 520));
-var _chatRecordMode = _interopRequireDefault(__webpack_require__(/*! ./modules/chat-record-mode */ 521));
-var _scroller = _interopRequireDefault(__webpack_require__(/*! ./modules/scroller */ 522));
-var _backToTop = _interopRequireDefault(__webpack_require__(/*! ./modules/back-to-top */ 523));
-var _virtualList = _interopRequireDefault(__webpack_require__(/*! ./modules/virtual-list */ 524));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! ./z-paging-enum */ 509));
+var _zPagingStatic = _interopRequireDefault(__webpack_require__(/*! ./z-paging-static */ 553));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 554));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! ./z-paging-utils */ 555));
+var _commonLayout = _interopRequireDefault(__webpack_require__(/*! ./modules/common-layout */ 557));
+var _dataHandle = _interopRequireDefault(__webpack_require__(/*! ./modules/data-handle */ 558));
+var _i18n = _interopRequireDefault(__webpack_require__(/*! ./modules/i18n */ 561));
+var _nvue = _interopRequireDefault(__webpack_require__(/*! ./modules/nvue */ 566));
+var _empty = _interopRequireDefault(__webpack_require__(/*! ./modules/empty */ 567));
+var _refresher = _interopRequireDefault(__webpack_require__(/*! ./modules/refresher */ 568));
+var _loadMore = _interopRequireDefault(__webpack_require__(/*! ./modules/load-more */ 569));
+var _loading = _interopRequireDefault(__webpack_require__(/*! ./modules/loading */ 570));
+var _chatRecordMode = _interopRequireDefault(__webpack_require__(/*! ./modules/chat-record-mode */ 571));
+var _scroller = _interopRequireDefault(__webpack_require__(/*! ./modules/scroller */ 572));
+var _backToTop = _interopRequireDefault(__webpack_require__(/*! ./modules/back-to-top */ 573));
+var _virtualList = _interopRequireDefault(__webpack_require__(/*! ./modules/virtual-list */ 574));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! ./z-paging-enum */ 559));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var zPagingRefresh = function zPagingRefresh() {
   __webpack_require__.e(/*! require.ensure | node-modules/z-paging/components/z-paging/components/z-paging-refresh */ "node-modules/z-paging/components/z-paging/components/z-paging-refresh").then((function () {
-    return resolve(__webpack_require__(/*! ../components/z-paging-refresh */ 615));
+    return resolve(__webpack_require__(/*! ../components/z-paging-refresh */ 687));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var zPagingLoadMore = function zPagingLoadMore() {
   __webpack_require__.e(/*! require.ensure | node-modules/z-paging/components/z-paging/components/z-paging-load-more */ "node-modules/z-paging/components/z-paging/components/z-paging-load-more").then((function () {
-    return resolve(__webpack_require__(/*! ../components/z-paging-load-more */ 622));
+    return resolve(__webpack_require__(/*! ../components/z-paging-load-more */ 694));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var zPagingEmptyView = function zPagingEmptyView() {
   __webpack_require__.e(/*! require.ensure | node-modules/z-paging/components/z-paging-empty-view/z-paging-empty-view */ "node-modules/z-paging/components/z-paging-empty-view/z-paging-empty-view").then((function () {
-    return resolve(__webpack_require__(/*! ../../z-paging-empty-view/z-paging-empty-view */ 629));
+    return resolve(__webpack_require__(/*! ../../z-paging-empty-view/z-paging-empty-view */ 701));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var systemInfo = _zPagingUtils.default.getSystemInfoSync();
@@ -39321,7 +43149,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 503 */
+/* 553 */
 /*!*********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-static.js ***!
   \*********************************************************************************************************************/
@@ -39350,7 +43178,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 504 */
+/* 554 */
 /*!***********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-constant.js ***!
   \***********************************************************************************************************************/
@@ -39384,7 +43212,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 505 */
+/* 555 */
 /*!********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-utils.js ***!
   \********************************************************************************************************************/
@@ -39401,8 +43229,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../config/index */ 506));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 504));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../config/index */ 556));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! ./z-paging-constant */ 554));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var storageKey = 'Z-PAGING-REFRESHER-TIME-STORAGE-KEY';
@@ -39719,7 +43547,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 506 */
+/* 556 */
 /*!***************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/config/index.js ***!
   \***************************************************************************************************************/
@@ -39738,7 +43566,7 @@ var _default = {};
 exports.default = _default;
 
 /***/ }),
-/* 507 */
+/* 557 */
 /*!***************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/common-layout.js ***!
   \***************************************************************************************************************************/
@@ -39753,7 +43581,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
 // [z-paging]通用布局相关模块
 var _default = {
   data: function data() {
@@ -39868,7 +43696,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 508 */
+/* 558 */
 /*!*************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/data-handle.js ***!
   \*************************************************************************************************************************/
@@ -39885,10 +43713,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
-var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 510));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 554));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
+var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 560));
 // [z-paging]数据处理模块
 var _default2 = {
   props: {
@@ -40609,7 +44437,7 @@ exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 509 */
+/* 559 */
 /*!*******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-enum.js ***!
   \*******************************************************************************************************************/
@@ -40670,7 +44498,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 510 */
+/* 560 */
 /*!**************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/z-paging-interceptor.js ***!
   \**************************************************************************************************************************/
@@ -40785,7 +44613,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 511 */
+/* 561 */
 /*!******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/i18n.js ***!
   \******************************************************************************************************************/
@@ -40801,10 +44629,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 22);
-var _index = _interopRequireDefault(__webpack_require__(/*! ../../i18n/index.js */ 512));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
-var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 510));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../../i18n/index.js */ 562));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 554));
+var _zPagingInterceptor = _interopRequireDefault(__webpack_require__(/*! ../z-paging-interceptor */ 560));
 // [z-paging]i18n模块
 
 var _initVueI18n = (0, _uniI18n.initVueI18n)(_index.default),
@@ -40917,7 +44745,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 512 */
+/* 562 */
 /*!*************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/index.js ***!
   \*************************************************************************************************************/
@@ -40932,9 +44760,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 513));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 514));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 515));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 563));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 564));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 565));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -40943,7 +44771,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 513 */
+/* 563 */
 /*!************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/en.json ***!
   \************************************************************************************************************/
@@ -40953,7 +44781,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"zp.refresher.default\":\"Pull down to refresh\",\"zp.refresher.pulling\":\"Release to refresh\",\"zp.refresher.refreshing\":\"Refreshing...\",\"zp.refresher.complete\":\"Refresh succeeded\",\"zp.refresher.f2\":\"Refresh to enter 2f\",\"zp.loadingMore.default\":\"Click to load more\",\"zp.loadingMore.loading\":\"Loading...\",\"zp.loadingMore.noMore\":\"No more data\",\"zp.loadingMore.fail\":\"Load failed,click to reload\",\"zp.emptyView.title\":\"No data\",\"zp.emptyView.reload\":\"Reload\",\"zp.emptyView.error\":\"Sorry,load failed\",\"zp.refresherUpdateTime.title\":\"Last update: \",\"zp.refresherUpdateTime.none\":\"None\",\"zp.refresherUpdateTime.today\":\"Today\",\"zp.refresherUpdateTime.yesterday\":\"Yesterday\",\"zp.systemLoading.title\":\"Loading...\"}");
 
 /***/ }),
-/* 514 */
+/* 564 */
 /*!*****************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/zh-Hans.json ***!
   \*****************************************************************************************************************/
@@ -40963,7 +44791,7 @@ module.exports = JSON.parse("{\"zp.refresher.default\":\"Pull down to refresh\",
 module.exports = JSON.parse("{\"zp.refresher.default\":\"继续下拉刷新\",\"zp.refresher.pulling\":\"松开立即刷新\",\"zp.refresher.refreshing\":\"正在刷新...\",\"zp.refresher.complete\":\"刷新成功\",\"zp.refresher.f2\":\"松手进入二楼\",\"zp.loadingMore.default\":\"点击加载更多\",\"zp.loadingMore.loading\":\"正在加载...\",\"zp.loadingMore.noMore\":\"没有更多了\",\"zp.loadingMore.fail\":\"加载失败，点击重新加载\",\"zp.emptyView.title\":\"没有数据哦~\",\"zp.emptyView.reload\":\"重新加载\",\"zp.emptyView.error\":\"很抱歉，加载失败\",\"zp.refresherUpdateTime.title\":\"最后更新：\",\"zp.refresherUpdateTime.none\":\"无\",\"zp.refresherUpdateTime.today\":\"今天\",\"zp.refresherUpdateTime.yesterday\":\"昨天\",\"zp.systemLoading.title\":\"加载中...\"}");
 
 /***/ }),
-/* 515 */
+/* 565 */
 /*!*****************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/i18n/zh-Hant.json ***!
   \*****************************************************************************************************************/
@@ -40973,7 +44801,7 @@ module.exports = JSON.parse("{\"zp.refresher.default\":\"继续下拉刷新\",\"
 module.exports = JSON.parse("{\"zp.refresher.default\":\"繼續下拉重繪\",\"zp.refresher.pulling\":\"鬆開立即重繪\",\"zp.refresher.refreshing\":\"正在重繪...\",\"zp.refresher.complete\":\"重繪成功\",\"zp.refresher.f2\":\"鬆手進入二樓\",\"zp.loadingMore.default\":\"點擊加載更多\",\"zp.loadingMore.loading\":\"正在加載...\",\"zp.loadingMore.noMore\":\"沒有更多了\",\"zp.loadingMore.fail\":\"加載失敗，點擊重新加載\",\"zp.emptyView.title\":\"沒有數據哦~\",\"zp.emptyView.reload\":\"重新加載\",\"zp.emptyView.error\":\"很抱歉，加載失敗\",\"zp.refresherUpdateTime.title\":\"最後更新：\",\"zp.refresherUpdateTime.none\":\"無\",\"zp.refresherUpdateTime.today\":\"今天\",\"zp.refresherUpdateTime.yesterday\":\"昨天\",\"zp.systemLoading.title\":\"加載中...\"}");
 
 /***/ }),
-/* 516 */
+/* 566 */
 /*!******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/nvue.js ***!
   \******************************************************************************************************************/
@@ -40988,9 +44816,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 554));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
 // [z-paging]nvue独有部分模块
 var _default = {
   props: {},
@@ -41015,7 +44843,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 517 */
+/* 567 */
 /*!*******************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/empty.js ***!
   \*******************************************************************************************************************/
@@ -41030,7 +44858,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
 // [z-paging]空数据图view模块
 var _default = {
   props: {
@@ -41177,7 +45005,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 518 */
+/* 568 */
 /*!***********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/refresher.js ***!
   \***********************************************************************************************************************/
@@ -41192,9 +45020,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 554));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
 // [z-paging]下拉刷新view模块
 var _default = {
   props: {
@@ -41854,7 +45682,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 519 */
+/* 569 */
 /*!***********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/load-more.js ***!
   \***********************************************************************************************************************/
@@ -41871,8 +45699,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
 // [z-paging]滚动到底部加载更多模块
 var _default = {
   props: {
@@ -42282,7 +46110,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 520 */
+/* 570 */
 /*!*********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/loading.js ***!
   \*********************************************************************************************************************/
@@ -42297,8 +46125,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
 // [z-paging]loading相关模块
 var _default = {
   props: {
@@ -42394,7 +46222,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 521 */
+/* 571 */
 /*!******************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/chat-record-mode.js ***!
   \******************************************************************************************************************************/
@@ -42409,7 +46237,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
 // [z-paging]聊天记录模式模块
 var _default = {
   props: {
@@ -42562,7 +46390,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 522 */
+/* 572 */
 /*!**********************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/scroller.js ***!
   \**********************************************************************************************************************/
@@ -42579,8 +46407,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
 // [z-paging]scroll相关模块
 var _default = {
   props: {
@@ -43125,7 +46953,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 523 */
+/* 573 */
 /*!*************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/back-to-top.js ***!
   \*************************************************************************************************************************/
@@ -43140,7 +46968,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
 // [z-paging]点击返回顶部view模块
 var _default = {
   props: {
@@ -43268,7 +47096,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 524 */
+/* 574 */
 /*!**************************************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/node_modules/z-paging/components/z-paging/js/modules/virtual-list.js ***!
   \**************************************************************************************************************************/
@@ -43285,9 +47113,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
-var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 505));
-var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 504));
-var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 509));
+var _zPagingUtils = _interopRequireDefault(__webpack_require__(/*! .././z-paging-utils */ 555));
+var _zPagingConstant = _interopRequireDefault(__webpack_require__(/*! .././z-paging-constant */ 554));
+var _zPagingEnum = _interopRequireDefault(__webpack_require__(/*! .././z-paging-enum */ 559));
 // [z-paging]虚拟列表模块
 var _default = {
   props: {
@@ -43877,126 +47705,56 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */,
-/* 561 */,
-/* 562 */,
-/* 563 */,
-/* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */,
-/* 568 */,
-/* 569 */,
-/* 570 */,
-/* 571 */,
-/* 572 */,
-/* 573 */,
-/* 574 */
-/*!**************************************************************************************************!*\
-  !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/libs/util/emitter.js ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * 递归使用 call 方式this指向
- * @param componentName // 需要找的组件的名称
- * @param eventName // 事件名称
- * @param params // 需要传递的参数
- */
-function _broadcast(componentName, eventName, params) {
-  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
-  var $children;
-  $children = this.$children;
-  $children.map(function (child) {
-    if (componentName === child.$options.name) {
-      child.$emit.apply(child, [eventName].concat(params));
-    } else {
-      _broadcast.apply(child, [componentName, eventName].concat(params));
-    }
-  });
-}
-var _default = {
-  methods: {
-    /**
-     * 派发 (向上查找) (一个)
-     * @param componentName // 需要找的组件的名称
-     * @param eventName // 事件名称
-     * @param params // 需要传递的参数
-     */
-    dispatch: function dispatch(componentName, eventName, params) {
-      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
-      var name = parent.$options.name; // 获取当前组件实例的name
-      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
-      // 循环出当前名称的一样的组件实例
-      while (parent && (!name || name !== componentName)) {
-        parent = parent.$parent;
-        if (parent) {
-          name = parent.$options.name;
-        }
-      }
-      // 有节点表示当前找到了name一样的实例
-      if (parent) {
-        parent.$emit.apply(parent, [eventName].concat(params));
-      }
-    },
-    /**
-     * 广播 (向下查找) (广播多个)
-     * @param componentName // 需要找的组件的名称
-     * @param eventName // 事件名称
-     * @param params // 需要传递的参数
-     */
-    broadcast: function broadcast(componentName, eventName, params) {
-      _broadcast.call(this, componentName, eventName, params);
-    }
-  }
-};
-exports.default = _default;
-
-/***/ }),
-/* 575 */
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */
 /*!**********************************************************************************************************!*\
   !*** D:/AI project/2026/wenmingshengchan/mp-client/uni_modules/vk-uview-ui/libs/util/async-validator.js ***!
   \**********************************************************************************************************/
@@ -45174,10 +48932,10 @@ Schema.warning = warning;
 Schema.messages = messages;
 var _default = Schema;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 576)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../APP/Hbuilderx/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 625)))
 
 /***/ }),
-/* 576 */
+/* 625 */
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -45208,7 +48966,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 577);
+        if (!path) path = __webpack_require__(/*! path */ 626);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -45221,7 +48979,7 @@ exports.features = {};
 
 
 /***/ }),
-/* 577 */
+/* 626 */
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -45531,7 +49289,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 576)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 625)))
 
 /***/ })
 ]]);

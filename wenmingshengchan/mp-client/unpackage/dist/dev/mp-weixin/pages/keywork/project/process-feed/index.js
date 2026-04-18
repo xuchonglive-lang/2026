@@ -98,15 +98,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-}
-var recyclableRender = false
+var render = function () {}
 var staticRenderFns = []
-render._withStripped = true
+var recyclableRender
+var components
 
 
 
@@ -279,43 +274,73 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
-    return {};
+    return {
+      vk: uni.vk,
+      projectId: '',
+      projectInfo: null
+    };
   },
+  onLoad: function onLoad(options) {
+    if (options.id) {
+      this.projectId = options.id;
+      this.getDetail();
+    }
+  },
+  onShow: function onShow() {
+    if (this.projectId) {
+      this.getDetail(); // refresh after returning
+    }
+  },
+
   methods: {
+    getDetail: function getDetail() {
+      var _this = this;
+      this.vk.callFunction({
+        url: 'client/keywork/kh/getProjectDetail',
+        data: {
+          project_id: this.projectId
+        },
+        success: function success(res) {
+          _this.projectInfo = res.data;
+        }
+      });
+    },
+    getStatusName: function getStatusName(status) {
+      var map = {
+        0: '执行中',
+        1: '待验收',
+        2: '已归档',
+        3: '被驳回退修'
+      };
+      return map[status] || '未知';
+    },
+    getProcessTypeName: function getProcessTypeName(type) {
+      var map = {
+        1: '进度反馈',
+        2: '结项申请',
+        3: '审核驳回'
+      };
+      return map[type] || '记录';
+    },
+    getBadgeClass: function getBadgeClass(type) {
+      if (type === 1) return 'primary';
+      if (type === 2) return 'tertiary';
+      if (type === 3) return 'tertiary'; // Error-ish color
+      return 'primary';
+    },
+    goToFeedback: function goToFeedback() {
+      // 携带参数跳转至新页面或共用 apply-finish 控制
+      uni.navigateTo({
+        url: '/pages/keywork/project/apply-finish/index?id=' + this.projectId + '&mode=feedback'
+      });
+    },
+    goToApplyClose: function goToApplyClose() {
+      uni.navigateTo({
+        url: '/pages/keywork/project/apply-finish/index?id=' + this.projectId + '&mode=close'
+      });
+    },
     goBack: function goBack() {
       uni.navigateBack();
     }

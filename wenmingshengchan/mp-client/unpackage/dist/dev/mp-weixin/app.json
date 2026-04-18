@@ -53,9 +53,6 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "rpxCalcMaxDeviceWidth": 450,
-    "rpxCalcBaseDeviceWidth": 375,
-    "rpxCalcIncludeWidth": 750,
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
@@ -99,6 +96,6 @@
       "desc": "方便自动填写地址"
     }
   },
-  "__usePrivacyCheck__": true,
+  "__usePrivacyCheck__": false,
   "usingComponents": {}
 }

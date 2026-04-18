@@ -98,38 +98,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
-try {
-  components = {
-    myTabBar: function () {
-      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 463))
-    },
-  }
-} catch (e) {
-  if (
-    e.message.indexOf("Cannot find module") !== -1 &&
-    e.message.indexOf(".vue") !== -1
-  ) {
-    console.error(e.message)
-    console.error("1. 排查组件名称拼写是否正确")
-    console.error(
-      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
-    )
-    console.error(
-      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
-    )
-  } else {
-    throw e
-  }
-}
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-}
-var recyclableRender = false
+var render = function () {}
 var staticRenderFns = []
-render._withStripped = true
+var recyclableRender
+var components
 
 
 
@@ -282,85 +254,90 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
-    return {};
+    return {
+      vk: uni.vk,
+      dataList: [],
+      pageIndex: 1,
+      hasMore: true,
+      loading: false
+    };
+  },
+  onLoad: function onLoad() {
+    this.getList(true);
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.getList(true).then(function () {
+      return uni.stopPullDownRefresh();
+    });
+  },
+  onReachBottom: function onReachBottom() {
+    if (this.hasMore) {
+      this.getList(false);
+    }
   },
   methods: {
-    goToDetail: function goToDetail() {
-      uni.navigateTo({
-        url: '/pages/keywork/project/process-feed/index'
+    getList: function getList() {
+      var _this = this;
+      var isRefresh = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      if (isRefresh) {
+        this.pageIndex = 1;
+        this.hasMore = true;
+        this.dataList = [];
+      }
+      this.loading = true;
+      return new Promise(function (resolve) {
+        _this.vk.callFunction({
+          url: 'client/keywork/kh/getProjectList',
+          data: {
+            pageIndex: _this.pageIndex,
+            pageSize: 10
+          },
+          success: function success(res) {
+            if (res.rows.length < 10) _this.hasMore = false;
+            _this.dataList = _this.dataList.concat(res.rows);
+            _this.pageIndex++;
+          },
+          complete: function complete() {
+            _this.loading = false;
+            resolve();
+          }
+        });
       });
+    },
+    goToDetail: function goToDetail(id) {
+      uni.navigateTo({
+        url: '/pages/keywork/project/process-feed/index?id=' + id
+      });
+    },
+    getStatusName: function getStatusName(status) {
+      var map = {
+        0: '进行中',
+        1: '待验收',
+        2: '已完成',
+        3: '被驳回'
+      };
+      return map[status] || '未知';
+    },
+    getStatusClass: function getStatusClass(status) {
+      if (status === 2) return 'safe';
+      if (status === 3) return 'delay';
+      return 'in-progress';
+    },
+    isDelay: function isDelay(deadline, status) {
+      if (!deadline || status === 2) return false;
+      return new Date().getTime() > deadline;
+    },
+    getDelayText: function getDelayText(deadline, status) {
+      if (status === 2) return '已归档';
+      if (this.isDelay(deadline, status)) return '严重拖期';
+      return '正常推进';
+    },
+    getDelayClass: function getDelayClass(deadline, status) {
+      if (status === 2) return 'safe';
+      if (this.isDelay(deadline, status)) return 'delay';
+      return 'safe';
     }
   }
 };

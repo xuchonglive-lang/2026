@@ -8,14 +8,14 @@
 					<text class="hero-subtitle">Critical Control Points</text>
 					<text class="hero-title">本班待反馈重控点位</text>
 					<view class="hero-number-wrap">
-						<text class="hero-number">12</text>
+						<text class="hero-number">{{ todoCount }}</text>
 						<text class="hero-unit">个</text>
 					</view>
 				</view>
 				<view class="hero-bg-icon">
 					<u-icon name="clock" color="rgba(0,0,0,0.05)" size="200"></u-icon>
 				</view>
-				<view class="hero-footer">
+				<view class="hero-footer" @tap="navToTodo" style="cursor: pointer;">
 					<text class="hero-action-text">立即处理反馈</text>
 					<u-icon name="arrow-right" color="#0050cb" size="24"></u-icon>
 				</view>
@@ -34,7 +34,7 @@
 				</view>
 
 				<!-- Analysis Card -->
-				<view class="glass-card bento-card">
+				<view class="glass-card bento-card" @tap="navToSubmitEntry">
 					<view class="icon-wrap bg-tertiary-light">
 						<u-icon name="podium" color="#a33200" size="40"></u-icon>
 					</view>
@@ -80,7 +80,7 @@
 
 				<!-- Task List Card (现场问题公示) -->
 				<view class="glass-card list-card span-2">
-					<view class="list-header">
+					<view class="list-header" @tap="navToPublicBoard">
 						<text class="list-title">现场问题公示</text>
 						<view class="list-more">
 							<text>更多</text>
@@ -134,6 +134,7 @@
 		data() {
 			return {
 				data: {},
+				todoCount: 0
 			};
 		},
 		onLoad(options = {}) {
@@ -141,12 +142,37 @@
 			this.options = options;
 			this.init(options);
 		},
+		onShow() {
+			this.fetchTodoCount();
+		},
 		methods: {
 			init(options = {}) {
 				// 业务初始化
 			},
 			navToInfo() {
 				uni.switchTab({ url: '/pages/info/index' });
+			},
+			navToTodo() {
+				uni.navigateTo({ url: '/pages/feedback/todo-list/index' });
+			},
+			navToSubmitEntry() {
+				uni.navigateTo({ url: '/pages/report/submit-entry/index' });
+			},
+			navToPublicBoard() {
+				uni.navigateTo({ url: '/pages/report/public-board/index' });
+			},
+			async fetchTodoCount() {
+				try {
+					let res = await uni.vk.callFunction({
+						url: 'client/feedback/kh/getTodoCount',
+						data: {}
+					});
+					if (res.code === 0) {
+						this.todoCount = res.count || 0;
+					}
+				} catch (err) {
+					console.log("获取工单红点数失败");
+				}
 			}
 		}
 	};

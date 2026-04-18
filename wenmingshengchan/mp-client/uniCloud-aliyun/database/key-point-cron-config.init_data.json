@@ -1,0 +1,10 @@
+[
+  {
+    "shift_type": "day",
+    "trigger_time": "08:00"
+  },
+  {
+    "shift_type": "night",
+    "trigger_time": "20:00"
+  }
+]

@@ -240,6 +240,217 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Base Styles */
 .page-container.data-v-4da7e2fc {
   min-height: 100vh;
@@ -465,5 +676,45 @@
 }
 .action-footer.data-v-4da7e2fc {
   background: linear-gradient(to top, #f8fafc 60%, rgba(248, 250, 252, 0));
+}
+/* Editor Toolbar tags */
+.tool-tag.data-v-4da7e2fc {
+  font-size: 26rpx;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.tool-tag.data-v-4da7e2fc:active { background: #e2e8f0;
+}
+.tool-tag.primary.data-v-4da7e2fc {
+  color: #0066ff;
+  background: #eff6ff;
+  font-weight: 600;
+}
+.divider.data-v-4da7e2fc {
+  width: 2rpx;
+  height: 32rpx;
+  background: #cbd5e1;
+  margin: 0 4rpx;
+}
+.ml-3.data-v-4da7e2fc { margin-left: 24rpx;
+}
+.mt-4.data-v-4da7e2fc { margin-top: 32rpx;
+}
+.text-red-500.data-v-4da7e2fc { color: #ef4444;
+}
+/* sp-editor 外部容器，给足明确的高度，避免微信小程序由于 flex: 1 导致整个盒子计算塌陷高度为 0 */
+.editor-container.data-v-4da7e2fc {
+  min-height: 540rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  border: 1px solid #e2e8f0;
+  display: block;
+  overflow: visible;
 }
 

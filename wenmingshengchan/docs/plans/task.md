@@ -1,16 +1,9 @@
-# 日治理计划管理 — 执行任务清单
+# 重点项目管理 - 任务追踪 (Task List)
 
-| # | 任务 | 状态 |
-|---|------|------|
-| 1 | Task 1: DDL 惰性洗库与核心获取 API (`getList`, `getDetail`) | `[x]` |
-| 2 | Task 2: 原子化流转云函数 (`submitFeedback`, `auditPlan`) | `[x]` |
-| 3 | Task 3: B 端 Admin 台脚手架搭建与后端联调 | `[x]` |
-| 4 | Task 4: C 端列表页 Tabs 分流结构补充 (`list/index.vue`) | `[x]` |
-| 5 | Task 5: C 端反馈页数据与生命周期接驳 (`feedback/index.vue`) | `[x]` |
-
-## 前期遗留补充
-| # | 任务 | 状态 |
-|---|------|------|
-| U1 | 重构 `list/index.vue` (UI5 像素级静态复刻) | `[x]` |
-| U2 | 重构 `feedback/index.vue` (UI5 像素级静态复刻) | `[x]` |
-| U3 | 验证微信小程序样式编译 | `[x]` |
+| 状态 | 任务名称 | 描述 |
+| --- | --- | --- |
+| [x] | Task 1: 数据库底层建设 | 创建 `key-project` 和 `key-project-process` Schema。 |
+| [x] | Task 2.1: 云端 C端 接口 | 实现 `getProjectList`, `addProcessRecord`, `applyProjectClose`。 |
+| [x] | Task 2.2: 云端 B端 接口 | 实现 `createProject`, `auditProjectResult`, `getAdminProjectList`，并实施树状权限下推和防并发死锁。 |
+| [x] | Task 3: 客户端视图层 | 开发 `list.vue`, `process-feed.vue`, `apply-finish.vue` 及时间轴渲染、逾期计算，并无缝注入了获取详情的前端API支撑。 |
+| [x] | Task 4: B端后台界面 | 开发 `project-list.vue` 万能表单、动态标红警示及附带批注栏的验收结案集成面板。 |

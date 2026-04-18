@@ -1,0 +1,22 @@
+[
+  {
+    "IndexName": "idx_status_time",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "status", "Direction": "1" },
+        { "Name": "create_time", "Direction": "-1" }
+      ],
+      "MgoIsUnique": false
+    }
+  },
+  {
+    "IndexName": "idx_dept_status",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "manager_dept_id", "Direction": "1" },
+        { "Name": "status", "Direction": "1" }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbd0",
+                    "secondary-container": "#9bb4fe",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary": "#0050cb",
+                    "background": "#f7f9fb",
+                    "outline-variant": "#c2c6d8",
+                    "on-secondary-fixed-variant": "#284386",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#a33200",
+                    "on-primary-fixed": "#001849",
+                    "on-tertiary-fixed": "#390c00",
+                    "secondary": "#425ca0",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb59d",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-container": "#fff6f4",
+                    "primary-fixed": "#dae1ff",
+                    "on-primary-container": "#f8f7ff",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#b3c5ff",
+                    "inverse-primary": "#b3c5ff",
+                    "on-secondary-fixed": "#001849",
+                    "on-background": "#191c1e",
+                    "on-surface-variant": "#424656",
+                    "tertiary-container": "#cc4204",
+                    "primary-container": "#0066ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-tertiary-fixed-variant": "#832600",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#dae1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#191c1e",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#294487",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "surface-bright": "#f7f9fb",
+                    "outline": "#727687",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 80, 203, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 80, 203, 0.03) 0px, transparent 50%),
+                linear-gradient(to bottom, transparent, rgba(218, 225, 255, 0.2));
+            background-attachment: fixed;
+        }
+        .grid-texture {
+            background-image: linear-gradient(rgba(0, 80, 203, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 80, 203, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface antialiased min-h-screen pb-32">
+<div class="fixed inset-0 grid-texture pointer-events-none"></div>
+<main class="relative z-10 px-4 max-w-2xl mx-auto pt-8">
+<div class="mb-8">
+<h2 class="text-2xl font-headline font-bold text-on-surface tracking-tight">报备公示</h2>
+<p class="text-sm text-on-surface-variant mt-1">实时追踪反馈，透明化管理流程</p>
+</div>
+<div class="flex gap-2 mb-6 overflow-x-auto pb-2 no-scrollbar"><button class="px-4 py-2 rounded-full bg-primary text-on-primary text-xs font-semibold whitespace-nowrap shadow-lg shadow-primary/20">全部反馈</button>
+<button class="px-4 py-2 rounded-full bg-white/50 border border-white/40 text-on-surface-variant text-xs font-medium whitespace-nowrap">已受理</button>
+<button class="px-4 py-2 rounded-full bg-white/50 border border-white/40 text-on-surface-variant text-xs font-medium whitespace-nowrap">未受理</button></div>
+<div class="space-y-4">
+<div class="relative pl-6">
+<div class="absolute left-0 top-0 bottom-0 w-px bg-primary-fixed"></div>
+<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-primary ring-4 ring-white"></div>
+<div class="text-[0.65rem] font-headline font-bold text-primary uppercase tracking-[0.1em] mb-2">Today, 14:30</div>
+<div class="glass-card rounded-xl p-4 shadow-[0_8px_32px_0_rgba(0,80,203,0.05)] transition-all duration-300 active:scale-[0.99]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="build">build</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">C区3号传送带异常震动</h3>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary text-[10px] font-bold border border-tertiary-container/20">紧急</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-primary text-[10px] font-bold">维修中</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">经巡检发现，3号传送带中段支撑架构出现非正常震动，疑似轴承磨损。已暂时停机进行检查，待备件更换。</p>
+<div class="flex items-center gap-2 mb-4">
+<img class="w-16 h-16 rounded-lg object-cover border border-white/40" data-alt="close-up of industrial conveyor belt mechanism with metal rollers and technical assembly in a factory setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy5AxmZEMhSGMjPIwsGLONrP9atn1EoFEJUYPkY5JsfY90u8bnEtgxf1DaadvIRqp2sPEeQ8t7psSucaFfoii5W4aqBz7TyuXefJgBvY9M4VZ6yL48zKsr-16cxX9ZCTrUDkgk4Us0kHIhc-xgp3vTIjXElrW0UXZuWl82nGNhgFoV8jzD1pkpHyy3ndZk8FRowDhog3hgeZQFc3mm5Ir-oYUoiOzn1W9CpFLDALxIiOyPSfKzP5LQKQ-ejJTAOCHeBF32C42mFHM"/>
+<img class="w-16 h-16 rounded-lg object-cover border border-white/40" data-alt="technician tools on a clean industrial floor with soft lighting and mechanical focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeq0cmtkV4wX3W_dI8WDJCjI1cTpo7gTVm_F8CDxcPddRcqRNSpGh-fCwY276LpHeyliUJauOSZQZ4njkDQewvHtj709TS6wQKDh5lmmBGfvyOhZOJZVL7YSOLrYQN7WgOC3FNG0a1J9tjBgHsZithCX3dfSLRpQlmeGh2ybMFuu2F0Eq86OxgGhJ3TVXo_kIRcrv5CkZO87iBbtaIztXkUnUTYSaVLx84ncFYZT-oYA1cRTBmfNbodV40_9pGAramGKmB6s4KOzU"/>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg border border-white/60">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="forum">forum</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">管理部回复</span>
+</div>
+<p class="text-xs text-on-surface leading-relaxed">收到报备。工程部已于14:45调拨替换轴承，预计16:00前完成修复。请确保停机期间周边作业安全。</p>
+<div class="mt-2 text-[10px] text-on-surface-variant text-right">回复人: 张经理 · 5分钟前</div>
+</div>
+</div>
+</div>
+<div class="relative pl-6">
+<div class="absolute left-0 top-0 bottom-0 w-px bg-primary-fixed"></div>
+<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-primary ring-4 ring-white"></div>
+<div class="text-[0.65rem] font-headline font-bold text-primary uppercase tracking-[0.1em] mb-2">Yesterday, 09:15</div>
+<div class="glass-card rounded-xl p-4 shadow-[0_8px_32px_0_rgba(0,80,203,0.05)] opacity-90">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">二号库照明亮度不足</h3>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container text-[10px] font-bold border border-secondary-container/30">常规</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold">已结案</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">夜班反馈二号库西侧角落灯管老化，亮度明显降低，影响货物条码扫描效率。</p>
+<div class="p-3 bg-surface-container-low rounded-lg border border-white/60">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">处理结果</span>
+</div>
+<p class="text-xs text-on-surface leading-relaxed">后勤部已更换全部老化灯管为节能LED，实测流明度恢复标准范围。感谢反馈。</p>
+<div class="mt-2 text-[10px] text-on-surface-variant text-right">回复人: 后勤部 · 22小时前</div>
+</div>
+</div>
+</div>
+<div class="relative pl-6">
+<div class="absolute left-0 top-0 bottom-0 w-px bg-primary-fixed opacity-50"></div>
+<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-outline ring-4 ring-white"></div>
+<div class="text-[0.65rem] font-headline font-bold text-outline uppercase tracking-[0.1em] mb-2">23 May, 11:00</div>
+<div class="glass-card rounded-xl p-4 shadow-[0_8px_32px_0_rgba(0,80,203,0.05)] opacity-80">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="warning">warning</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">防滑地标磨损报修</h3>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container text-[10px] font-bold border border-secondary-container/30">常规</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold">已结案</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">出货口坡道防滑条大面积脱落，雨天作业存在安全隐患。</p>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-3 bg-white/30 dark:bg-slate-950/40 backdrop-blur-2xl border-t border-white/20 dark:border-white/5 shadow-[0_-8px_32px_0_rgba(0,80,203,0.05)] rounded-t-[2rem]">
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-600 active:scale-90 transition-transform duration-200 text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30 rounded-2xl px-3 py-1">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30 rounded-2xl px-3 py-1 active:scale-90 transition-transform duration-200 text-slate-500 dark:text-slate-400 hover:text-blue-600">
+<span class="material-symbols-outlined mb-1" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">现场反馈</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-600 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="assignment">assignment</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">重点项目</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-600 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="event_available">event_available</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">计划执行</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-600 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">我的</span>
+</div>
+</nav>
+</body></html>

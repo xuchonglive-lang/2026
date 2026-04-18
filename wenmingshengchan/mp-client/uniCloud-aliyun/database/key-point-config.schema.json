@@ -1,0 +1,50 @@
+{
+  "bsonType": "object",
+  "required": ["point_id", "area_id", "dept_id", "assignee_ids", "feedback_standard", "require_shifts", "status"],
+  "permission": {
+    "read": true,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "point_id": {
+      "bsonType": "string",
+      "description": "关联重控点位的ID (base-point)"
+    },
+    "area_id": {
+      "bsonType": "string",
+      "description": "所属区域ID"
+    },
+    "dept_id": {
+      "bsonType": "string",
+      "description": "关联归属的权责部门ID，作为权限防越界隔离凭据"
+    },
+    "assignee_ids": {
+      "bsonType": "array",
+      "description": "指定执行此反馈的各员工ID",
+      "items": { "bsonType": "string" }
+    },
+    "feedback_standard": {
+      "bsonType": "string",
+      "description": "明确反馈要求与标准 (富文本)"
+    },
+    "require_shifts": {
+      "bsonType": "array",
+      "description": "生效周期：night 或 day",
+      "items": { "bsonType": "string" }
+    },
+    "issuer_uid": {
+      "bsonType": "string",
+      "description": "配置下达人ID"
+    },
+    "status": {
+      "bsonType": "int",
+      "description": "系统启停控制：1为启用；0为禁用",
+      "defaultValue": 1
+    }
+  }
+}

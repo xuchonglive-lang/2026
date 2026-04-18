@@ -26,15 +26,21 @@
     },
     {
       "path": "pages/report/submit-entry/index",
-      "style": {}
+      "style": {
+        "navigationStyle": "custom"
+      }
     },
     {
       "path": "pages/report/public-board/index",
-      "style": {}
+      "style": {
+        "navigationStyle": "custom"
+      }
     },
     {
       "path": "pages/report/my-record/index",
-      "style": {}
+      "style": {
+        "navigationStyle": "custom"
+      }
     },
     {
       "path": "pages/plan/list",
@@ -258,9 +264,6 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "rpxCalcMaxDeviceWidth": 450,
-    "rpxCalcBaseDeviceWidth": 375,
-    "rpxCalcIncludeWidth": 750,
     "backgroundColor": "#F8F8F8"
   }
 }

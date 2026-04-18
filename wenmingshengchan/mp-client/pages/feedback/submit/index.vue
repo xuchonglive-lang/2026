@@ -14,27 +14,15 @@
         <view class="location-header">
           <view class="location-titles">
             <text class="tag-label">需反馈点位</text>
-            <text class="target-location">A2区-组装流水线-042</text>
+            <text class="target-location">{{ pointName || '加载中...' }}</text>
           </view>
           <text class="material-symbols-outlined text-primary">location_on</text>
         </view>
         <view class="info-grid">
           <view class="info-item">
-            <text class="info-label">负责人</text>
-            <text class="info-value">张建国 (工号: 8812)</text>
+            <text class="info-label">执勤人</text>
+            <text class="info-value">{{ userInfo.nickname || '系统未匹配' }}</text>
           </view>
-          <view class="info-item">
-            <text class="info-label">部门及小组</text>
-            <text class="info-value">采一作业区 运转甲班</text>
-          </view>
-        </view>
-      </view>
-
-      <!-- Standard Check Button -->
-      <view class="mb-24 flex-center">
-        <view class="standard-btn">
-          <text class="material-symbols-outlined icon-small">info</text>
-          <text class="standard-btn-text">该点位上传标准[必看]</text>
         </view>
       </view>
 
@@ -45,41 +33,27 @@
             <text class="material-symbols-outlined">photo_camera</text>
             <text class="section-title">现场影像资料</text>
           </view>
-          <text class="section-hint">支持 JPG, PNG</text>
+          <text class="section-hint">支持 JPG, PNG，将提取EXIF防伪信息</text>
         </view>
         
         <view class="glass-card flex-col-gap16">
-          <view class="upload-mainbox">
+          <view v-if="!mainImage" class="upload-mainbox" @click="uploadImage">
             <text class="material-symbols-outlined icon-large text-primary-40">add_a_photo</text>
             <text class="upload-main-text">点击上传主现场照片</text>
-            <text class="upload-sub-text">该照片将作为报告封面</text>
+            <text class="upload-sub-text">该照片将提取原图防伪时间</text>
+          </view>
+          <view v-else class="upload-mainbox" style="padding: 0; overflow: hidden;" @click="uploadImage">
+             <image :src="mainImage" style="width: 100%; height: 100%" mode="aspectFill"></image>
+             <view class="reupload-layer">
+                 <text style="color: #fff">重新上传</text>
+             </view>
           </view>
           
-          <scroll-view class="scroll-view-horizontal" scroll-x="true">
-            <view class="thumb-list">
-              <view class="thumb-add flex-center">
-                <text class="material-symbols-outlined text-primary-50">add</text>
-              </view>
-              <view class="thumb-item">
-                <image src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPq94hN8IzumNlRdASxYyIciN6sBRmG_2uwP7gP8ZLiK_048zoUl2e5nMaoCTrHsQEUSEHppRV5DA2zb95nVCkzEAjXIt35nV7kZJgR2g8SAf82Iuec5UFyu953HTFXbdn32JYUKNmH--VnazvKEpDkattAV4-tSvvZeLxaheUUBl14zBSJraE9dafwNFn14iqMvqKvhhrVErNsY3Ecz5MaIVR8J0cEe9kD8idt1FPsdfzE9DQ6QELZjcCvfrduoS2b5eNLwPutZw" mode="aspectFill" class="thumb-img"></image>
-                <view class="delete-btn flex-center">
-                  <text class="material-symbols-outlined icon-xs">close</text>
-                </view>
-              </view>
-              <view class="thumb-item">
-                <image src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPrJ8w8Gd1UjcJ4oR8wRFC4Y3McarrZvCD2UbD4NeA-f1ngVqaxkiYu-w4KUTAf6dmNFboYkUfidrsK9p2DsxuwF5SbRVNNuKmfvv56lAEzINx-upks8ud2P2aQJOkVbx2YmJCu5QVcTo-2xYDv6lo_ZVnb66uwe8bGsPo1EYrbAdDvg4RM7ooykc7PMfh63o7gLs75A4y5VLTiiP41QD1q24SEuoeRqeGcUyLCmYHt4V9zpb-0aR1FXuaNtzQduLhiKcXmJnmMm4" mode="aspectFill" class="thumb-img"></image>
-                <view class="delete-btn flex-center">
-                  <text class="material-symbols-outlined icon-xs">close</text>
-                </view>
-              </view>
-              <view class="thumb-placeholder flex-center">
-                <text class="material-symbols-outlined text-outline-variant">image</text>
-              </view>
-              <view class="thumb-placeholder flex-center">
-                <text class="material-symbols-outlined text-outline-variant">image</text>
-              </view>
-            </view>
-          </scroll-view>
+          <view v-if="mainImage" style="font-size: 24rpx; color: #666; margin-top: 10rpx">
+             <view>设备型号：{{ deviceModel || '未提取到' }}</view>
+             <view>拍摄时间：{{ shootTime || '未提取到' }}</view>
+          </view>
+
         </view>
       </view>
 
@@ -93,17 +67,8 @@
         </view>
         
         <view class="editor-wrap">
-          <scroll-view scroll-x="true" class="editor-toolbar-scroll">
-            <view class="editor-toolbar">
-              <view class="tool-btn"><text class="material-symbols-outlined">format_bold</text></view>
-              <view class="tool-btn"><text class="material-symbols-outlined">format_italic</text></view>
-              <view class="tool-btn"><text class="material-symbols-outlined">format_list_bulleted</text></view>
-              <view class="tool-btn"><text class="material-symbols-outlined">format_quote</text></view>
-              <view class="tool-btn tool-pull-right"><text class="material-symbols-outlined">undo</text></view>
-            </view>
-          </scroll-view>
           <view class="editor-content">
-            <textarea class="textarea-input" placeholder="在此详细描述现场文明生产执行情况，包括但不限于：物料堆放、地面清洁度、员工合规状态等..." placeholder-class="placeholder-style" :maxlength="-1"></textarea>
+            <textarea v-model="content" class="textarea-input" placeholder="在此详细描述现场文明生产执行情况，包括但不限于：物料堆放、地面清洁度、员工合规状态等..." placeholder-class="placeholder-style" :maxlength="-1"></textarea>
           </view>
         </view>
       </view>
@@ -114,21 +79,124 @@
 
     <!-- Bottom Action Bar -->
     <view class="bottom-action-bar">
-      <button class="submit-btn">
+      <button class="submit-btn" @click="submit" :disabled="submitting">
         <text class="material-symbols-outlined label-fill-icon">send</text>
-        <text class="submit-btn-text">提交反馈报告</text>
+        <text class="submit-btn-text">{{ submitting ? '提交中...' : '提交反馈报告' }}</text>
       </button>
-      <text class="action-hint">您的反馈将实时同步至文明生产管理后台</text>
+      <text class="action-hint">提交即触发原子锁，避免并发踩踏</text>
     </view>
     
-    <my-tab-bar :current="3"></my-tab-bar>
   </view>
 </template>
 
 <script>
+// 引入 exif-js 用于提取原图参数
+import EXIF from 'exif-js';
+
 export default {
   data() {
-    return {}
+    return {
+       pointName: '',
+       feedbackId: '',
+       mainImage: '',
+       content: '',
+       shootTime: '',
+       deviceModel: '',
+       userInfo: {},
+       submitting: false
+    }
+  },
+  onLoad(options) {
+     this.pointName = options.name || '';
+     this.feedbackId = options.id || '';
+     // 拿本地用户信息
+     const uinfo = uni.getStorageSync('uni_id_user_info') || {};
+     this.userInfo = uinfo;
+  },
+  methods: {
+    uploadImage() {
+       uni.chooseImage({
+          count: 1,
+          sizeType: ['original'], // 必须要有原图，否则拿不到 exif
+          success: (res) => {
+             const tempFilePaths = res.tempFilePaths;
+             const file = res.tempFiles[0];
+             const filePath = tempFilePaths[0];
+
+             // 1. 先进行文件 EXIF 识别提取
+             try {
+                 const fsm = uni.getFileSystemManager();
+                 fsm.readFile({
+                     filePath: filePath,
+                     success: (fsmRes) => {
+                         const arrayBuffer = fsmRes.data;
+                         const exifData = EXIF.readFromBinaryFile(arrayBuffer);
+                         
+                         if(exifData) {
+                            this.shootTime = exifData.DateTimeOriginal || exifData.DateTime || '未知(或图片被压缩丢失)';
+                            // Apple 等设备型号
+                            this.deviceModel = exifData.Model || uni.getSystemInfoSync().model;
+                         } else {
+                            this.deviceModel = uni.getSystemInfoSync().model;
+                            this.shootTime = '未能获取图片EXIF信息';
+                         }
+                     },
+                     fail: () => {
+                        this.deviceModel = uni.getSystemInfoSync().model;
+                     }
+                 });
+             } catch(e) {
+                 this.deviceModel = uni.getSystemInfoSync().model;
+             }
+
+             // 2. 调用标准云上传
+             uni.vk.callFunctionUtil.uploadFile({
+                 title: "图传解析中",
+                 filePath,
+                 fileType: "image",
+                 success: (uploadRes) => {
+                     this.mainImage = uploadRes.url;
+                 }
+             });
+          }
+       });
+    },
+    async submit() {
+       if(!this.feedbackId) {
+          uni.vk.toast("丢失订单关联基底！");
+          return;
+       }
+       if(!this.mainImage) {
+          uni.vk.toast("务必拍摄并上传现场核心勘测图！");
+          return;
+       }
+
+       this.submitting = true;
+       try {
+          let res = await uni.vk.callFunction({
+             url: 'client/feedback/kh/submitFeedback',
+             data: {
+                 feedback_id: this.feedbackId,
+                 main_image: this.mainImage,
+                 feedback_content: this.content || '',
+                 photo_shoot_time: this.shootTime || '',
+                 device_model: this.deviceModel || ''
+             }
+          });
+          if(res.code === 0) {
+             uni.vk.toast("反馈已确认并挂牌！", "success", 1000);
+             setTimeout(()=>{
+                 uni.navigateBack();
+             }, 1000);
+          } else {
+             uni.vk.toast(res.msg || "无法完成挂牌，可能是系统或并发问题。");
+          }
+       } catch (err) {
+          uni.vk.toast(err.msg || "提交异常，或单已处于流拍与抢报期外");
+       } finally {
+          this.submitting = false;
+       }
+    }
   }
 }
 </script>
@@ -159,7 +227,6 @@ export default {
   background-attachment: fixed;
   min-height: 100vh;
   position: relative;
-  /* Leave space for bottom bar and tab bar */
 }
 
 .industrial-grid {
@@ -167,34 +234,25 @@ export default {
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
   background-image: radial-gradient(circle, #0050cb 2rpx, transparent 2rpx);
-  background-size: 48rpx 48rpx; /* 24px */
+  background-size: 48rpx 48rpx;
   opacity: 0.03;
 }
 
 .main-content {
   position: relative;
   z-index: 1;
-  padding: 64rpx 32rpx 256rpx 32rpx; /* pt-8 pb-32 px-4 */
-  max-width: 1344rpx; /* max-w-2xl */
+  padding: 64rpx 32rpx 256rpx 32rpx;
+  max-width: 1344rpx;
   margin: 0 auto;
 }
 
-.header-wrap {
-  margin-bottom: 48rpx; /* mb-6 */
-}
+.header-wrap { margin-bottom: 48rpx; }
 .page-title {
   font-family: 'Manrope', sans-serif;
-  font-size: 48rpx; /* text-2xl */
-  font-weight: 700;
-  color: #191c1e;
-  letter-spacing: -0.025em;
-  display: block;
-  margin-bottom: 8rpx; /* mb-1 */
+  font-size: 48rpx; font-weight: 700;
+  color: #191c1e; letter-spacing: -0.025em; display: block; margin-bottom: 8rpx;
 }
-.page-subtitle {
-  font-size: 28rpx; /* text-sm */
-  color: #424656;
-}
+.page-subtitle { font-size: 28rpx; color: #424656; }
 
 .glass-card {
   background: rgba(255, 255, 255, 0.25);
@@ -202,299 +260,84 @@ export default {
   -webkit-backdrop-filter: blur(40rpx);
   border: 2rpx solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08); /* 0 8px 32px 0 */
-  border-radius: 24rpx; /* rounded-xl */
-  padding: 32rpx; /* p-4 */
+  border-radius: 24rpx; padding: 32rpx;
 }
-.mb-24 { margin-bottom: 48rpx; /* mb-6 */ }
+.mb-24 { margin-bottom: 48rpx; }
 .mb-40 { margin-bottom: 80rpx; }
 
 .location-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 32rpx; /* mb-4 */
+  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32rpx;
 }
 .tag-label {
-  font-size: 20rpx; /* text-[10px] */
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #0050cb;
-  font-weight: 700;
-  background-color: rgba(0, 80, 203, 0.1);
-  padding: 4rpx 16rpx; /* px-2 py-0.5 */
-  border-radius: 9999rpx; /* rounded-full */
-  margin-bottom: 16rpx; /* mb-2 */
-  display: inline-block;
+  font-size: 20rpx; text-transform: uppercase; letter-spacing: 0.05em; color: #0050cb;
+  font-weight: 700; background-color: rgba(0, 80, 203, 0.1); padding: 4rpx 16rpx;
+  border-radius: 9999rpx; margin-bottom: 16rpx; display: inline-block;
 }
 .target-location {
-  font-family: 'Manrope', sans-serif;
-  font-size: 36rpx; /* text-lg */
-  font-weight: 600;
-  color: #191c1e;
-  display: block;
+  font-family: 'Manrope', sans-serif; font-size: 36rpx; font-weight: 600; color: #191c1e; display: block;
 }
 .text-primary { color: #0050cb; }
 
 .info-grid {
-  display: flex;
-  justify-content: space-between;
-  border-top: 2rpx solid rgba(255, 255, 255, 0.2); /* border-t border-white/20 */
-  padding-top: 32rpx; /* pt-4 */
+  display: flex; justify-content: space-between; border-top: 2rpx solid rgba(255, 255, 255, 0.2); padding-top: 32rpx;
 }
-.info-item {
-  flex: 1;
-}
-.info-label {
-  font-size: 20rpx; /* text-[10px] */
-  color: #424656;
-  margin-bottom: 4rpx; /* mb-0.5 */
-  display: block;
-}
-.info-value {
-  font-size: 28rpx; /* text-sm */
-  font-weight: 500;
-  color: #191c1e;
-}
+.info-item { flex: 1; }
+.info-label { font-size: 20rpx; color: #424656; margin-bottom: 4rpx; display: block; }
+.info-value { font-size: 28rpx; font-weight: 500; color: #191c1e; }
 
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.standard-btn {
-  width: 40%; /* w-[40%] */
-  background-color: #ba1a1a; /* bg-error */
-  padding: 20rpx 0; /* py-2.5 */
-  border-radius: 16rpx; /* rounded-lg */
-  box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 0, 0, 0.1); /* shadow-lg */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12rpx; /* gap-1.5 */
-  transition: transform 0.2s;
-  margin: 0 auto; /* mx-auto */
-}
-.standard-btn:active {
-  transform: scale(0.95);
-}
-.standard-btn-text {
-  color: #ffffff;
-  font-size: 24rpx; /* text-xs */
-  font-weight: 700;
-}
-.icon-small { font-size: 32rpx; /* text-[16px] */ color: #ffffff; }
-
-.section-wrap {
-  margin-bottom: 48rpx; /* mb-6 */
-}
+.section-wrap { margin-bottom: 48rpx; }
 .section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24rpx; /* mb-3 */
-  padding: 0 8rpx; /* px-1 */
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 24rpx; padding: 0 8rpx;
 }
-.section-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8rpx; /* gap-1 */
-  color: #191c1e;
-}
-.section-title {
-  font-size: 28rpx; /* text-sm */
-  font-weight: 700;
-}
-.section-title-wrap .material-symbols-outlined {
-  font-size: 36rpx; /* text-[18px] */
-}
-.section-hint {
-  font-size: 20rpx; /* text-[10px] */
-  color: #424656;
-}
+.section-title-wrap { display: flex; align-items: center; gap: 8rpx; color: #191c1e; }
+.section-title { font-size: 28rpx; font-weight: 700; }
+.section-title-wrap .material-symbols-outlined { font-size: 36rpx; }
+.section-hint { font-size: 20rpx; color: #424656; }
 
-.flex-col-gap16 {
-  display: flex;
-  flex-direction: column;
-  gap: 32rpx; /* gap-4 */
-}
+.flex-col-gap16 { display: flex; flex-direction: column; gap: 32rpx; }
 
 .upload-mainbox {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9; /* aspect-video */
-  border-radius: 16rpx; /* rounded-lg */
-  border: 4rpx dashed rgba(194, 198, 216, 1); /* border-2 border-outline-variant */
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 16rpx;
+  border: 4rpx dashed rgba(194, 198, 216, 1); background-color: rgba(255, 255, 255, 0.1);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
   transition: background-color 0.3s;
 }
-.upload-mainbox:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.icon-large { font-size: 72rpx; /* text-4xl */ }
+.upload-mainbox:hover { background-color: rgba(255, 255, 255, 0.2); }
+.icon-large { font-size: 72rpx; }
 .text-primary-40 { color: rgba(0, 80, 203, 0.4); }
-.upload-main-text {
-  margin-top: 16rpx; /* mt-2 */
-  font-size: 28rpx; /* text-sm */
-  font-weight: 500;
-  color: #424656;
-}
-.upload-sub-text {
-  font-size: 20rpx; /* text-[10px] */
-  color: rgba(66, 70, 86, 0.6);
-}
-
-.scroll-view-horizontal {
-  width: 100%;
-  white-space: nowrap;
-}
-.thumb-list {
-  display: flex;
-  gap: 16rpx; /* gap-2 */
-  padding-bottom: 16rpx; /* pb-2 */
-}
-.thumb-add, .thumb-item, .thumb-placeholder {
-  display: inline-flex;
-  flex-shrink: 0;
-  width: 160rpx; /* w-20 */
-  height: 160rpx; /* h-20 */
-  border-radius: 16rpx; /* rounded-lg */
-  position: relative;
-}
-.thumb-add {
-  border: 2rpx solid rgba(255, 255, 255, 0.3); /* border */
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.thumb-add:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.text-primary-50 {
-  color: rgba(0, 80, 203, 0.5);
-  font-size: 48rpx;
-}
-.thumb-item {
-  overflow: hidden;
-  border: 2rpx solid rgba(255, 255, 255, 0.3);
-}
-.thumb-img {
-  width: 100%;
-  height: 100%;
-}
-.delete-btn {
-  position: absolute;
-  top: 8rpx; /* top-1 bg-error/80 */
-  right: 8rpx; /* right-1 */
-  background-color: rgba(186, 26, 26, 0.8);
-  border-radius: 50%;
-  width: 36rpx; 
-  height: 36rpx;
-}
-.icon-xs {
-  font-size: 28rpx; /* text-[14px] */
-  color: #fff;
-}
-.thumb-placeholder {
-  border: 4rpx dashed rgba(194, 198, 216, 0.5);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-.text-outline-variant {
-  color: #c2c6d8;
-  font-size: 40rpx;
+.upload-main-text { margin-top: 16rpx; font-size: 28rpx; font-weight: 500; color: #424656; }
+.upload-sub-text { font-size: 20rpx; color: rgba(66, 70, 86, 0.6); }
+.reupload-layer {
+   position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); padding: 10rpx 0; text-align: center;
 }
 
 .editor-wrap {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(40rpx);
-  -webkit-backdrop-filter: blur(40rpx);
-  border: 2rpx solid rgba(255, 255, 255, 0.2);
-  border-radius: 24rpx; /* rounded-xl */
-  overflow: hidden;
-}
-.editor-toolbar-scroll {
-  background-color: rgba(255, 255, 255, 0.4);
-  border-bottom: 2rpx solid rgba(255, 255, 255, 0.2);
-}
-.editor-toolbar {
-  display: flex;
-  gap: 32rpx; /* gap-4 */
-  padding: 16rpx;
-}
-.tool-btn {
-  padding: 8rpx;
-  color: #424656;
-  border-radius: 8rpx;
-}
-.tool-pull-right {
-  margin-left: auto;
+  background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(40rpx); -webkit-backdrop-filter: blur(40rpx);
+  border: 2rpx solid rgba(255, 255, 255, 0.2); border-radius: 24rpx; overflow: hidden;
 }
 
-.editor-content {
-  padding: 32rpx; /* p-4 */
-  background-color: rgba(255, 255, 255, 0.1);
-  min-height: 360rpx;
-}
+.editor-content { padding: 32rpx; background-color: rgba(255, 255, 255, 0.1); min-height: 260rpx; }
 .textarea-input {
-  width: 100%;
-  height: 320rpx; /* min-h-[320rpx] */
-  background: transparent;
-  border: none;
-  font-size: 28rpx; /* text-sm */
-  color: #191c1e;
-  line-height: 1.6;
+  width: 100%; height: 220rpx; background: transparent; border: none;
+  font-size: 28rpx; color: #191c1e; line-height: 1.6;
 }
-.placeholder-style {
-  color: rgba(66, 70, 86, 0.6);
-}
+.placeholder-style { color: rgba(66, 70, 86, 0.6); }
 
 .h-32 { height: 64rpx; }
 
 .bottom-action-bar {
-  position: fixed;
-  bottom: 0; 
-  /* It is recommended to use padding-bottom calculated with safe-area-inset-bottom */
-  padding-bottom: 160rpx; /* 160rpx to push it exactly over my-tab-bar */
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(80rpx);
-  -webkit-backdrop-filter: blur(80rpx);
-  border-top: 2rpx solid rgba(255, 255, 255, 0.2);
-  padding: 32rpx 48rpx 160rpx; /* p-4 px-6 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: fixed; bottom: 0; padding-bottom: 20rpx; left: 0; right: 0; z-index: 50;
+  background-color: rgba(255, 255, 255, 0.4); backdrop-filter: blur(80rpx); -webkit-backdrop-filter: blur(80rpx);
+  border-top: 2rpx solid rgba(255, 255, 255, 0.2); padding: 32rpx 48rpx 50rpx;
+  display: flex; flex-direction: column; align-items: center;
 }
 .submit-btn {
-  width: 100%;
-  max-width: 1344rpx; /* max-w-2xl */
-  background-color: #0066ff; /* primary-container */
-  padding: 32rpx 0; /* py-4 */
-  border-radius: 24rpx; /* rounded-xl */
-  box-shadow: 0 16rpx 64rpx rgba(0, 80, 203, 0.3); /* shadow-2xl */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16rpx; /* gap-2 */
-  border: none;
-  line-height: 1;
+  width: 100%; max-width: 1344rpx; background-color: #0066ff; padding: 22rpx 0;
+  border-radius: 24rpx; box-shadow: 0 16rpx 64rpx rgba(0, 80, 203, 0.3);
+  display: flex; align-items: center; justify-content: center; gap: 16rpx; border: none; line-height: 1;
 }
-.submit-btn::after {
-  border: none;
-}
-.submit-btn-text {
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 32rpx; /* text-base */
-}
-.action-hint {
-  margin-top: 16rpx; /* mt-2 */
-  font-size: 20rpx; /* text-[10px] */
-  color: rgba(66, 70, 86, 0.6);
-  font-weight: 500;
-}
+.submit-btn::after { border: none; }
+.submit-btn-text { color: #ffffff; font-weight: 700; font-size: 32rpx; }
+.submit-btn[disabled] { background-color: #999; color: #fff;}
+.action-hint { margin-top: 16rpx; font-size: 20rpx; color: rgba(66, 70, 86, 0.6); font-weight: 500; }
 </style>

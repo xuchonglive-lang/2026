@@ -1,0 +1,13 @@
+[
+  {
+    "IndexName": "unique_config_date_shift",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "config_id", "Direction": "1" },
+        { "Name": "shift_date", "Direction": "1" },
+        { "Name": "shift_type", "Direction": "1" }
+      ],
+      "MgoIsUnique": true
+    }
+  }
+]

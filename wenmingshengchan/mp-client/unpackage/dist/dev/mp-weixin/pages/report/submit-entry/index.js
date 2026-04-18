@@ -99,10 +99,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uInput: function () {
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-input/u-input.vue */ 471))
+    },
+    uSelect: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 457))
+    },
+    robinEditor: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/robin-editor/components/robin-editor/robin-editor */ "uni_modules/robin-editor/components/robin-editor/robin-editor").then(__webpack_require__.bind(null, /*! @/uni_modules/robin-editor/components/robin-editor/robin-editor.vue */ 479))
+    },
+    uSwitch: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-switch/u-switch */ "uni_modules/vk-uview-ui/components/u-switch/u-switch").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-switch/u-switch.vue */ 486))
+    },
+    myTabBar: function () {
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 464))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.showLocationSelect = true
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -136,22 +176,303 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var vk = uni.vk;
 var _default = {
   data: function data() {
-    return {};
+    return {
+      form: {
+        title: '',
+        desc: '',
+        anonymous: true,
+        urgency: false,
+        area_id: '',
+        point_id: ''
+      },
+      locationName: '',
+      locationTree: [],
+      showLocationSelect: false,
+      inputStyle: {
+        backgroundColor: '#f2f3f5',
+        borderRadius: '16rpx',
+        padding: '24rpx 32rpx',
+        fontSize: '30rpx',
+        color: '#1a1d2e',
+        height: 'auto',
+        minHeight: '88rpx'
+      }
+    };
+  },
+  onLoad: function onLoad() {
+    vk = uni.vk;
+    this.getLocationTree();
+  },
+  onReady: function onReady() {
+    // Set custom image uploader for robin-editor
+    if (this.$refs.editor) {
+      this.$refs.editor.setImageUploader(this.uploadEditorImage);
+    }
+  },
+  methods: {
+    getLocationTree: function getLocationTree() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return vk.callFunction({
+                  url: 'client/report/kh/getAreaPointTree'
+                });
+              case 2:
+                res = _context.sent;
+                if (res.tree) {
+                  _this.locationTree = res.tree;
+                }
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    onLocationConfirm: function onLocationConfirm(arr) {
+      var area = arr[0];
+      var point = arr[1];
+      if (!point || !point.value) {
+        vk.toast('该区域下暂无可选点位');
+        return;
+      }
+      this.locationName = "".concat(area.label, " / ").concat(point.label);
+      this.form.area_id = area.value;
+      this.form.point_id = point.value;
+    },
+    uploadEditorImage: function uploadEditorImage(path, callback) {
+      // upload single image
+      uni.compressImage({
+        src: path,
+        quality: 80,
+        success: function () {
+          var _success = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(compressRes) {
+            var fileRes;
+            return _regenerator.default.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    uni.showLoading({
+                      title: '上传中...'
+                    });
+                    _context2.next = 3;
+                    return vk.callFunctionUtil.uploadFile({
+                      filePath: compressRes.tempFilePath,
+                      fileType: "image"
+                    });
+                  case 3:
+                    fileRes = _context2.sent;
+                    uni.hideLoading();
+                    if (fileRes && fileRes.url) {
+                      callback(fileRes.url);
+                    } else {
+                      vk.toast('图片上传失败');
+                    }
+                  case 6:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2);
+          }));
+          function success(_x) {
+            return _success.apply(this, arguments);
+          }
+          return success;
+        }(),
+        fail: function fail() {
+          vk.toast('图片压缩失败');
+        }
+      });
+    },
+    submit: function submit() {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var _this2$form, title, anonymous, urgency, area_id, point_id;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this2$form = _this2.form, title = _this2$form.title, anonymous = _this2$form.anonymous, urgency = _this2$form.urgency, area_id = _this2$form.area_id, point_id = _this2$form.point_id;
+                if (title) {
+                  _context3.next = 3;
+                  break;
+                }
+                return _context3.abrupt("return", vk.toast('请输入问题标题'));
+              case 3:
+                if (!(!area_id || !point_id)) {
+                  _context3.next = 5;
+                  break;
+                }
+                return _context3.abrupt("return", vk.toast('请选择区域与点位'));
+              case 5:
+                // 手动获取 robin-editor 内置 editorCtx 的内容
+                _this2.$refs.editor.editorCtx.getContents({
+                  success: function success(res) {
+                    var desc = res.html;
+
+                    // 过滤初始空标签
+                    if (!res.text.trim() && !desc.includes('<img')) {
+                      desc = '';
+                    }
+                    if (!desc) return vk.toast('描述不能为空');
+                    vk.callFunction({
+                      url: 'client/report/kh/submitIssue',
+                      title: '提交中...',
+                      data: {
+                        title: title,
+                        content: desc,
+                        is_anonymous: anonymous,
+                        urgency: urgency ? 1 : 0,
+                        area_id: area_id,
+                        point_id: point_id,
+                        images: []
+                      },
+                      success: function success(data) {
+                        vk.toast('报备成功');
+                        setTimeout(function () {
+                          vk.reLaunch({
+                            url: '/pages/report/public-board/index'
+                          });
+                        }, 1500);
+                      }
+                    });
+                  }
+                });
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

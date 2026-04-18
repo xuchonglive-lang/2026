@@ -1,0 +1,43 @@
+{
+  "bsonType": "object",
+  "required": ["project_id", "type"],
+  "permission": {
+    "read": "true",
+    "create": "true",
+    "update": "true",
+    "delete": "true"
+  },
+  "properties": {
+    "_id": {
+      "description": "ID",
+      "bsonType": "string"
+    },
+    "project_id": {
+      "description": "归属哪头大宗项目关联标记",
+      "bsonType": "string"
+    },
+    "type": {
+      "description": "类型：1正常过渡汇报，2申请闭卷，3驳回指令",
+      "bsonType": "int"
+    },
+    "desc_content": {
+      "description": "富文本叙说当前情况与进度 / 或者驳回责备情况",
+      "bsonType": "string"
+    },
+    "attachment_imgs": {
+      "description": "照片列",
+      "bsonType": "array",
+      "items": {
+        "bsonType": "object"
+      }
+    },
+    "operate_uid": {
+      "description": "环节创造者的ID指涉",
+      "bsonType": "string"
+    },
+    "create_time": {
+      "description": "节点插入钟摆日历",
+      "bsonType": "timestamp"
+    }
+  }
+}

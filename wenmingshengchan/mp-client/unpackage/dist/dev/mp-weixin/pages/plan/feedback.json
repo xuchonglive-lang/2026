@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-html": "/components/mp-html/mp-html",
+    "u-popup": "/uni_modules/vk-uview-ui/components/u-popup/u-popup",
+    "robin-editor": "/uni_modules/robin-editor/components/robin-editor/robin-editor"
+  }
 }

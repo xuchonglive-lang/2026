@@ -13,7 +13,8 @@
 				<view class="flex avatar-box bottom_link">
 					<text class="label font-inter">头像</text>
 					<view class="flex_1 flex">
-						<image class="avatar" mode="aspectFill" :src="avatar || '/static/default-avatar.png'" />
+						<image v-if="avatar" class="avatar" mode="aspectFill" :src="avatar" />
+						<view v-else class="avatar"></view>
 					</view>
 					<button class="author-btn" open-type="chooseAvatar" @chooseavatar="chooseavatar" />
 				</view>
@@ -22,7 +23,7 @@
 					<text class="label font-inter">昵称</text>
 					<input
 						v-model="nickname"
-						class="flex_1 font-inter"
+						class="flex_1 font-inter form-input"
 						:disabled="!nicknameFocus"
 						:focus="nicknameFocus"
 						:maxlength="16"
@@ -114,11 +115,6 @@ export default {
 	.bold { font-weight: bold; }
 	.center { text-align: center; }
 
-	view {
-		box-sizing: border-box;
-		font-size: 28rpx;
-	}
-	
 	.remark {
 		position: fixed;
 		top: 0; left: 0; width: 100%; height: 100%;
@@ -128,6 +124,8 @@ export default {
 	}
 	
 	.dialog {
+		box-sizing: border-box;
+		font-size: 28rpx;
 		border-radius: 40rpx 40rpx 0 0;
 		background: rgba(255, 255, 255, 0.95);
 		backdrop-filter: blur(20px);
@@ -149,6 +147,7 @@ export default {
 	}
 	
 	.dialog-content {
+		box-sizing: border-box;
 		padding: 50rpx;
 		.subtitle {
 			font-size: 34rpx;
@@ -172,7 +171,7 @@ export default {
 		
 		.form-item {
 			position: relative; height: 120rpx; margin-bottom: 60rpx;
-			input { padding: 0; font-size: 30rpx; color: #191c1e;}
+			.form-input { padding: 0; font-size: 30rpx; color: #191c1e;}
 		}
 		
 		.action-box {

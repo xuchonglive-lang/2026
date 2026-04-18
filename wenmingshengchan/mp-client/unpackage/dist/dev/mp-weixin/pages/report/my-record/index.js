@@ -99,10 +99,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uParse: function () {
+      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-parse/u-parse.vue */ 493))
+    },
+    myTabBar: function () {
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 464))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.dataList, function (item, index) {
+    var $orig = _vm.__get_orig(item)
+    var m0 = _vm.formatTime(item._add_time)
+    return {
+      $orig: $orig,
+      m0: m0,
+    }
+  })
+  var g0 = !_vm.hasMore && _vm.dataList.length > 0
+  var g1 = _vm.dataList.length
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0,
+        g0: g0,
+        g1: g1,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -136,22 +182,152 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var vk = uni.vk;
 var _default = {
   data: function data() {
-    return {};
+    return {
+      dataList: [],
+      pageIndex: 1,
+      pageSize: 10,
+      hasMore: true
+    };
+  },
+  onLoad: function onLoad() {
+    vk = uni.vk;
+    this.getList(1);
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.getList(1);
+    setTimeout(function () {
+      uni.stopPullDownRefresh();
+    }, 1000);
+  },
+  onReachBottom: function onReachBottom() {
+    if (this.hasMore) {
+      this.getList(this.pageIndex + 1);
+    }
+  },
+  methods: {
+    getList: function getList() {
+      var _arguments = arguments,
+        _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var pageIndex, res, list;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                pageIndex = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 1;
+                if (pageIndex === 1) {
+                  _this.dataList = [];
+                }
+                _this.pageIndex = pageIndex;
+                _context.next = 5;
+                return vk.callFunction({
+                  url: 'client/report/kh/getMyIssues',
+                  data: {
+                    pageIndex: _this.pageIndex,
+                    pageSize: _this.pageSize
+                  }
+                });
+              case 5:
+                res = _context.sent;
+                list = res.rows || [];
+                _this.dataList = _this.dataList.concat(list);
+                _this.hasMore = list.length >= _this.pageSize;
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    formatTime: function formatTime(timeStr) {
+      if (!timeStr) return '';
+      return vk.pubfn.timeFormat(timeStr, 'yyyy-MM-dd hh:mm');
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

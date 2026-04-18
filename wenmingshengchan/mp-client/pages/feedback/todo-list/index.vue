@@ -13,7 +13,7 @@
         <view class="summary-info">
           <text class="status-label">状态概览</text>
           <view class="status-value-wrap">
-            <text class="status-count">5</text>
+            <text class="status-count">{{ listData.length }}</text>
             <text class="status-suffix">项待处理</text>
           </view>
         </view>
@@ -24,175 +24,43 @@
 
       <!-- Point Cards Area -->
       <view class="cards-container">
-        <!-- Point Card 1 -->
-        <view class="point-card glass-card">
+        <!-- 动态渲染真实数据 -->
+        <view 
+          class="point-card glass-card" 
+          v-for="item in listData" 
+          :key="item._id"
+        >
           <view class="card-top">
             <view class="icon-box">
               <text class="material-symbols-outlined icon-location">location_on</text>
             </view>
             <view class="card-info">
               <view class="card-title-row">
-                <text class="card-title">锅炉房1号点</text>
-                <view class="status-badge"><text class="badge-text">未反馈</text></view>
+                <text class="card-title">{{ item.point_info && item.point_info[0] ? item.point_info[0].name : "未知重控点" }}</text>
+                <view class="status-badge"><text class="badge-text" style="color: #ea580c">紧急待办</text></view>
               </view>
               <view class="card-subtitle-row">
                 <text class="material-symbols-outlined icon-domain">domain</text>
-                <text class="card-subtitle">一车间 · 动力区</text>
+                <text class="card-subtitle">{{ item.area_info && item.area_info[0] ? item.area_info[0].name : "" }}</text>
               </view>
             </view>
           </view>
           <view class="card-bottom">
             <view class="time-info-wrap">
-              <view class="user-avatars">
-                <image class="avatar-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1faYZbhS_jZBdmg1Aw_pae9gmWZsbLjBFZioTOYjMop2Dxm8ZnsayMQ98fOdt2lC-zFAVls5S2khR0--FIAT49K_Flq_WEN5kH89mz7m-htqsxrCGKsNVeAIxyeb3WDOgk2Z_PrB9iLsVA4UjUI5yEkgx5z6z-aS9uilmyDnVJYmQ8zcrkDG533ifej8fkaiCn3ECzDC56u0wYFKzZ6-SlF4qQc59JlrVsnea1sX3PsbDutlFsuIp1URBNadGRRN-wDSlYmnVek" mode="aspectFill"></image>
-                <view class="avatar-count"><text class="count-text">+2</text></view>
-              </view>
               <view class="time-range">
                 <text class="material-symbols-outlined icon-schedule">schedule</text>
-                <text class="time-text">可反馈时间区间：09:00 - 18:00</text>
+                <text class="time-text">班次定点快照：{{ item.shift_date || '' }} ({{ item.shift_type === 'day' ? '白班' : '夜班' }})</text>
               </view>
             </view>
-            <view class="action-btn" @click="goTo('/pages/feedback/submit/index')">
+            <view class="action-btn" @click="goSubmit(item)">
               <text class="action-btn-text">开始反馈</text>
               <text class="material-symbols-outlined icon-arrow">arrow_forward_ios</text>
             </view>
           </view>
         </view>
-
-        <!-- Point Card 2 -->
-        <view class="point-card glass-card">
-          <view class="card-top">
-            <view class="icon-box">
-              <text class="material-symbols-outlined icon-location">location_on</text>
-            </view>
-            <view class="card-info">
-              <view class="card-title-row">
-                <text class="card-title">冲压线检修口</text>
-                <view class="status-badge"><text class="badge-text">未反馈</text></view>
-              </view>
-              <view class="card-subtitle-row">
-                <text class="material-symbols-outlined icon-domain">domain</text>
-                <text class="card-subtitle">二车间 · 生产线</text>
-              </view>
-            </view>
-          </view>
-          <view class="card-bottom">
-            <view class="time-info-wrap">
-              <view class="user-avatars">
-                <image class="avatar-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1faYZbhS_jZBdmg1Aw_pae9gmWZsbLjBFZioTOYjMop2Dxm8ZnsayMQ98fOdt2lC-zFAVls5S2khR0--FIAT49K_Flq_WEN5kH89mz7m-htqsxrCGKsNVeAIxyeb3WDOgk2Z_PrB9iLsVA4UjUI5yEkgx5z6z-aS9uilmyDnVJYmQ8zcrkDG533ifej8fkaiCn3ECzDC56u0wYFKzZ6-SlF4qQc59JlrVsnea1sX3PsbDutlFsuIp1URBNadGRRN-wDSlYmnVek" mode="aspectFill"></image>
-              </view>
-              <view class="time-range">
-                <text class="material-symbols-outlined icon-schedule">schedule</text>
-                <text class="time-text">可反馈时间区间：09:00 - 18:00</text>
-              </view>
-            </view>
-            <view class="action-btn" @click="goTo('/pages/feedback/submit/index')">
-              <text class="action-btn-text">开始反馈</text>
-              <text class="material-symbols-outlined icon-arrow">arrow_forward_ios</text>
-            </view>
-          </view>
-        </view>
-
-        <!-- Point Card 3 -->
-        <view class="point-card glass-card">
-          <view class="card-top">
-            <view class="icon-box">
-              <text class="material-symbols-outlined icon-location">location_on</text>
-            </view>
-            <view class="card-info">
-              <view class="card-title-row">
-                <text class="card-title">成品仓库B区</text>
-                <view class="status-badge"><text class="badge-text">未反馈</text></view>
-              </view>
-              <view class="card-subtitle-row">
-                <text class="material-symbols-outlined icon-domain">domain</text>
-                <text class="card-subtitle">物流中心</text>
-              </view>
-            </view>
-          </view>
-          <view class="card-bottom">
-            <view class="time-info-wrap">
-              <view class="user-avatars">
-                <image class="avatar-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1faYZbhS_jZBdmg1Aw_pae9gmWZsbLjBFZioTOYjMop2Dxm8ZnsayMQ98fOdt2lC-zFAVls5S2khR0--FIAT49K_Flq_WEN5kH89mz7m-htqsxrCGKsNVeAIxyeb3WDOgk2Z_PrB9iLsVA4UjUI5yEkgx5z6z-aS9uilmyDnVJYmQ8zcrkDG533ifej8fkaiCn3ECzDC56u0wYFKzZ6-SlF4qQc59JlrVsnea1sX3PsbDutlFsuIp1URBNadGRRN-wDSlYmnVek" mode="aspectFill"></image>
-              </view>
-              <view class="time-range">
-                <text class="material-symbols-outlined icon-schedule text-tertiary">assignment_late</text>
-                <text class="time-text text-tertiary">可反馈时间区间：08:30 - 09:00</text>
-              </view>
-            </view>
-            <view class="action-btn" @click="goTo('/pages/feedback/submit/index')">
-              <text class="action-btn-text">开始反馈</text>
-              <text class="material-symbols-outlined icon-arrow">arrow_forward_ios</text>
-            </view>
-          </view>
-        </view>
-
-        <!-- Point Card 4 -->
-        <view class="point-card glass-card">
-          <view class="card-top">
-            <view class="icon-box">
-              <text class="material-symbols-outlined icon-location">location_on</text>
-            </view>
-            <view class="card-info">
-              <view class="card-title-row">
-                <text class="card-title">变压器房</text>
-                <view class="status-badge"><text class="badge-text">未反馈</text></view>
-              </view>
-              <view class="card-subtitle-row">
-                <text class="material-symbols-outlined icon-domain">domain</text>
-                <text class="card-subtitle">配电中心</text>
-              </view>
-            </view>
-          </view>
-          <view class="card-bottom">
-            <view class="time-info-wrap">
-              <view class="user-avatars">
-                <image class="avatar-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1faYZbhS_jZBdmg1Aw_pae9gmWZsbLjBFZioTOYjMop2Dxm8ZnsayMQ98fOdt2lC-zFAVls5S2khR0--FIAT49K_Flq_WEN5kH89mz7m-htqsxrCGKsNVeAIxyeb3WDOgk2Z_PrB9iLsVA4UjUI5yEkgx5z6z-aS9uilmyDnVJYmQ8zcrkDG533ifej8fkaiCn3ECzDC56u0wYFKzZ6-SlF4qQc59JlrVsnea1sX3PsbDutlFsuIp1URBNadGRRN-wDSlYmnVek" mode="aspectFill"></image>
-              </view>
-              <view class="time-range">
-                <text class="material-symbols-outlined icon-schedule">schedule</text>
-                <text class="time-text">可反馈时间区间：09:00 - 17:30</text>
-              </view>
-            </view>
-            <view class="action-btn" @click="goTo('/pages/feedback/submit/index')">
-              <text class="action-btn-text">开始反馈</text>
-              <text class="material-symbols-outlined icon-arrow">arrow_forward_ios</text>
-            </view>
-          </view>
-        </view>
-
-        <!-- Point Card 5 -->
-        <view class="point-card glass-card">
-          <view class="card-top">
-            <view class="icon-box">
-              <text class="material-symbols-outlined icon-location">location_on</text>
-            </view>
-            <view class="card-info">
-              <view class="card-title-row">
-                <text class="card-title">污水处理池</text>
-                <view class="status-badge"><text class="badge-text">未反馈</text></view>
-              </view>
-              <view class="card-subtitle-row">
-                <text class="material-symbols-outlined icon-domain">domain</text>
-                <text class="card-subtitle">环保监测站</text>
-              </view>
-            </view>
-          </view>
-          <view class="card-bottom">
-            <view class="time-info-wrap">
-              <view class="user-avatars">
-                <image class="avatar-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1faYZbhS_jZBdmg1Aw_pae9gmWZsbLjBFZioTOYjMop2Dxm8ZnsayMQ98fOdt2lC-zFAVls5S2khR0--FIAT49K_Flq_WEN5kH89mz7m-htqsxrCGKsNVeAIxyeb3WDOgk2Z_PrB9iLsVA4UjUI5yEkgx5z6z-aS9uilmyDnVJYmQ8zcrkDG533ifej8fkaiCn3ECzDC56u0wYFKzZ6-SlF4qQc59JlrVsnea1sX3PsbDutlFsuIp1URBNadGRRN-wDSlYmnVek" mode="aspectFill"></image>
-              </view>
-              <view class="time-range">
-                <text class="material-symbols-outlined icon-schedule">schedule</text>
-                <text class="time-text">可反馈时间区间：08:00 - 20:00</text>
-              </view>
-            </view>
-            <view class="action-btn" @click="goTo('/pages/feedback/submit/index')">
-              <text class="action-btn-text">开始反馈</text>
-              <text class="material-symbols-outlined icon-arrow">arrow_forward_ios</text>
-            </view>
-          </view>
+        
+        <view v-if="!loading && listData.length === 0" style="text-align: center; margin-top: 100rpx; color: #666;">
+           暂无需要处理的巡检任务
         </view>
       </view>
     </view>
@@ -204,20 +72,50 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      listData: [],
+      loading: true
+    }
+  },
+  onShow() {
+    this.fetchData();
+  },
+  onPullDownRefresh() {
+    this.fetchData().then(() => {
+	   uni.stopPullDownRefresh();
+	});
   },
   methods: {
     goTo(url) {
+      uni.navigateTo({ url });
+    },
+    goSubmit(item) {
+      // 传递必要信息到提交页
       uni.navigateTo({
-        url: url
+         url: `/pages/feedback/submit/index?id=${item._id}&name=${item.point_info && item.point_info[0] ? item.point_info[0].name : ''}`
       });
+    },
+    async fetchData() {
+      this.loading = true;
+      try {
+        let res = await uni.vk.callFunction({
+          url: 'client/feedback/kh/getTodoList',
+          data: {}
+        });
+        if (res.code === 0 && res.rows) {
+          this.listData = res.rows;
+        }
+      } catch (err) {
+         uni.vk.toast("获取待办列表失败");
+      } finally {
+        this.loading = false;
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
@@ -243,7 +141,6 @@ export default {
   background-attachment: fixed;
   min-height: 100vh;
   position: relative;
-  /* Let my-tab-bar float over the extra padding */
 }
 
 .industrial-grid {
@@ -259,17 +156,15 @@ export default {
 .main-content {
   position: relative;
   z-index: 1;
-  /* pt-8 pb-24 px-4 */
   padding: 64rpx 32rpx 192rpx 32rpx;
-  max-width: 896rpx; /* max-w-md */
+  max-width: 896rpx;
   margin: 0 auto;
 }
 
 .page-title-wrap {
-  margin-bottom: 48rpx; /* mb-6 */
+  margin-bottom: 48rpx;
 }
 .page-title {
-  /* text-3xl */
   font-family: 'Manrope', sans-serif;
   font-size: 60rpx;
   font-weight: 800;
@@ -278,20 +173,19 @@ export default {
 }
 
 .summary-header {
-  padding: 32rpx 0; /* py-4 */
+  padding: 32rpx 0;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 }
 .status-label {
   display: block;
-  font-size: 24rpx; /* text-xs */
+  font-size: 24rpx;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #1d4ed8;
-  margin-bottom: 8rpx; /* mb-1 */
-  font-family: 'Inter', sans-serif;
+  margin-bottom: 8rpx;
 }
 .status-value-wrap {
   display: flex;
@@ -299,24 +193,22 @@ export default {
 }
 .status-count {
   font-family: 'Manrope', sans-serif;
-  font-size: 60rpx; /* text-3xl */
+  font-size: 60rpx;
   font-weight: 800;
   color: #191c1e;
-  letter-spacing: -0.025em;
   margin-right: 12rpx;
 }
 .status-suffix {
-  font-size: 36rpx; /* text-lg */
+  font-size: 36rpx;
   font-weight: 500;
   color: #424656;
 }
 
 .preview-btn {
-  /* px-4 py-2.5 */
   padding: 20rpx 32rpx;
   background-color: #0050cb;
-  border-radius: 24rpx; /* rounded-xl */
-  box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 80, 203, 0.2); /* shadow-lg */
+  border-radius: 24rpx;
+  box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 80, 203, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -327,7 +219,7 @@ export default {
 }
 .preview-btn-text {
   color: #ffffff;
-  font-size: 24rpx; /* text-xs */
+  font-size: 24rpx;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -337,7 +229,7 @@ export default {
 .cards-container {
   display: flex;
   flex-direction: column;
-  gap: 32rpx; /* space-y-4 */
+  gap: 32rpx;
 }
 
 .glass-card {
@@ -345,9 +237,9 @@ export default {
   backdrop-filter: blur(40rpx);
   -webkit-backdrop-filter: blur(40rpx);
   border: 2rpx solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08); /* 0 8px 32px 0 */
-  border-radius: 24rpx; /* rounded-xl */
-  padding: 40rpx; /* p-5 */
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+  border-radius: 24rpx;
+  padding: 40rpx;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .glass-card:active {
@@ -356,15 +248,15 @@ export default {
 
 .card-top {
   display: flex;
-  gap: 32rpx; /* gap-4 */
-  margin-bottom: 32rpx; /* mb-4 */
+  gap: 32rpx;
+  margin-bottom: 32rpx;
 }
 
 .icon-box {
-  width: 96rpx; /* w-12 */
-  height: 96rpx; /* h-12 */
+  width: 96rpx;
+  height: 96rpx;
   flex-shrink: 0;
-  border-radius: 24rpx; /* rounded-xl */
+  border-radius: 24rpx;
   background-color: rgba(0, 80, 203, 0.1);
   display: flex;
   align-items: center;
@@ -372,7 +264,7 @@ export default {
 }
 .icon-location {
   color: #0050cb;
-  font-size: 48rpx; /* text-2xl */
+  font-size: 48rpx;
 }
 
 .card-info {
@@ -386,7 +278,7 @@ export default {
 }
 .card-title {
   font-family: 'Manrope', sans-serif;
-  font-size: 32rpx; /* text-base */
+  font-size: 32rpx;
   font-weight: 700;
   color: #191c1e;
   overflow: hidden;
@@ -395,31 +287,29 @@ export default {
 }
 .status-badge {
   flex-shrink: 0;
-  padding: 4rpx 16rpx; /* py-0.5 px-2 */
-  background-color: #e0e3e5;
-  border-radius: 16rpx; /* rounded-lg */
+  padding: 4rpx 16rpx;
+  background-color: #fef08a;
+  border-radius: 16rpx;
   margin-left: 16rpx;
 }
 .badge-text {
-  color: #424656;
-  font-size: 20rpx; /* text-[10px] */
+  font-size: 20rpx;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .card-subtitle-row {
   display: flex;
   align-items: center;
-  gap: 8rpx; /* gap-1 */
-  margin-top: 4rpx; /* mt-0.5 */
+  gap: 8rpx;
+  margin-top: 4rpx;
 }
 .icon-domain {
-  font-size: 28rpx; /* text-[14px] */
+  font-size: 28rpx;
   color: #424656;
 }
 .card-subtitle {
-  font-size: 24rpx; /* text-xs */
+  font-size: 24rpx;
   font-weight: 500;
   color: #424656;
 }
@@ -428,70 +318,38 @@ export default {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding-top: 32rpx; /* pt-4 */
-  border-top: 2rpx solid rgba(255, 255, 255, 0.1); /* border-white/10 */
+  padding-top: 32rpx;
+  border-top: 2rpx solid rgba(255, 255, 255, 0.1);
 }
 
 .time-info-wrap {
   display: flex;
   flex-direction: column;
-  gap: 16rpx; /* gap-2 */
-}
-
-.user-avatars {
-  display: flex;
-  align-items: center;
-}
-.avatar-img {
-  width: 48rpx; /* w-6 */
-  height: 48rpx; /* h-6 */
-  border-radius: 50%;
-  border: 4rpx solid #ffffff; /* border-2 */
-  background-color: #e2e8f0;
-}
-.avatar-count {
-  width: 48rpx; /* w-6 */
-  height: 48rpx; /* h-6 */
-  border-radius: 50%;
-  border: 4rpx solid #ffffff; /* border-2 */
-  background-color: #cbd5e1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -16rpx; /* -space-x-2 */
-}
-.count-text {
-  font-size: 16rpx; /* text-[8px] */
-  font-weight: 700;
-  color: #191c1e;
+  gap: 16rpx;
 }
 
 .time-range {
   display: flex;
   align-items: center;
-  gap: 12rpx; /* gap-1.5 */
+  gap: 12rpx;
 }
 .icon-schedule {
-  font-size: 28rpx; /* text-[14px] */
+  font-size: 28rpx;
   color: #424656;
 }
 .time-text {
-  font-size: 20rpx; /* text-[10px] */
+  font-size: 20rpx;
   font-weight: 500;
   color: #424656;
-}
-.text-tertiary {
-  color: #a33200 !important;
-  font-weight: 700 !important;
 }
 
 .action-btn {
   display: flex;
   align-items: center;
-  gap: 16rpx; /* gap-2 */
-  padding: 16rpx 32rpx; /* px-4 py-2 */
-  background-color: rgba(0, 80, 203, 0.05); /* bg-primary/5 */
-  border-radius: 24rpx; /* rounded-xl */
+  gap: 16rpx;
+  padding: 16rpx 32rpx;
+  background-color: rgba(0, 80, 203, 0.05);
+  border-radius: 24rpx;
   transition: background-color 0.3s;
 }
 .action-btn:active {
@@ -500,13 +358,11 @@ export default {
 .action-btn-text {
   color: #0050cb;
   font-weight: 700;
-  font-size: 24rpx; /* text-xs */
+  font-size: 24rpx;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 .icon-arrow {
   color: #0050cb;
-  font-size: 28rpx; /* text-sm */
+  font-size: 28rpx;
 }
-
 </style>

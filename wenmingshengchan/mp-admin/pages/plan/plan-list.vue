@@ -32,16 +32,59 @@
       :action="table1.action"
       :columns="table1.columns"
       :query-form-param="queryForm1"
-      :right-btns="['detail_auto', 'update', 'delete']"
+      :right-btns="['detail', 'update', 'delete']"
       :selection="true"
       :row-no="true"
       :pagination="true"
+      @detail="onDetail"
       @update="updateBtn"
       @delete="deleteBtn"
       @current-change="currentChange"
       @selection-change="selectionChange"
     ></vk-data-table>
     <!-- 万能表格组件结束 -->
+
+    <!-- 自定义计划执行详情弹窗开始 -->
+    <el-dialog
+      title="计划执行详情与过程跟踪"
+      :visible.sync="detailDialog.show"
+      width="800px"
+      append-to-body
+    >
+      <div v-loading="detailDialog.loading">
+        <h3 style="margin-bottom: 10px;">基本信息</h3>
+        <p style="margin-bottom: 5px;"><strong>计划标题：</strong>{{ detailDialog.data.title }}</p>
+        <p style="margin-bottom: 5px;"><strong>创建时间：</strong>{{ detailDialog.data.create_time ? vk.pubfn.timeFormat(detailDialog.data.create_time) : '' }}</p>
+        <p style="margin-bottom: 5px;"><strong>任务要求：</strong></p>
+        <div v-html="detailDialog.data.content" style="padding: 10px; background: #f8f9fa; border-radius: 4px; margin-bottom: 20px; overflow-x: auto;"></div>
+
+        <h3 style="margin-bottom: 15px;">流转记录</h3>
+        <div v-if="!detailDialog.feedbacks || detailDialog.feedbacks.length === 0" style="color: #999; text-align: center; margin: 20px 0;">该计划暂无反馈跟踪记录</div>
+        <el-timeline v-else>
+          <!-- 循环 feedbacks -->
+          <el-timeline-item
+            v-for="(fb, idx) in detailDialog.feedbacks"
+            :key="idx"
+            :timestamp="vk.pubfn.timeFormat(fb.time)"
+            :type="fb.type === 'audit' && fb.audit_result === 'reject' ? 'danger' : 'primary'"
+          >
+            <p v-if="fb.type === 'submit'">
+              <strong>{{ fb.user ? fb.user.real_name : '执行反馈提交' }}:</strong><br>
+              <span v-html="fb.content" style="display: block; margin-top: 10px;"></span>
+            </p>
+            <p v-else-if="fb.type === 'audit'">
+              <strong>主管批示 ({{ fb.audit_result === 'pass' ? '通过' : '驳回' }}):</strong><br>
+              <span v-html="fb.content" style="display: block; margin-top: 10px; color: #E6A23C;" v-if="fb.content"></span>
+              <span v-else style="color: #999;">（无附加说明）</span>
+            </p>
+            <p v-else>
+              <strong>变更:</strong> {{ fb.type }}
+            </p>
+          </el-timeline-item>
+        </el-timeline>
+      </div>
+    </el-dialog>
+    <!-- 自定义计划执行详情弹窗结束 -->
 
     <!-- 添加或编辑的弹窗开始 -->
     <!-- 使用弹窗包裹万能表单，提升后台操作体验 -->
@@ -82,6 +125,14 @@ export default {
       // 页面是否请求中或加载中
       loading: false,
       
+      // 自定义详情和过程弹窗参数
+      detailDialog: {
+        show: false,
+        loading: false,
+        data: {},
+        feedbacks: []
+      },
+      
       // 表格相关开始 -----------------------------------------------------------
       table1: {
         // 请求后台云函数的路由地址（支持函数重写完成复合条件查询）
@@ -114,9 +165,9 @@ export default {
           { 
             key: "status", 
             title: "流转状态", 
-            type: "dict", 
+            type: "tag", 
             width: 100, 
-            dictData: [
+            data: [
               { label: "执行中", value: 0, tagType: "info" },
               { label: "已提交", value: 1, tagType: "primary" },
               { label: "已完成", value: 2, tagType: "success" },
@@ -298,6 +349,28 @@ export default {
      */
     selectionChange(list) {
       that.table1.multipleSelection = list;
+    },
+
+    /**
+     * 点击表格详情按钮：呼出并请求完整的流转记录
+     */
+    onDetail({ item }) {
+      that.detailDialog.show = true;
+      that.detailDialog.loading = true;
+      
+      // 可以直接复用 C端的 getDetail 接口获取最新的带有用户名回写的复合反馈结构
+      vk.callFunction({
+        url: "client/plan/sys/getDetail",
+        data: { plan_id: item._id },
+        success: (res) => {
+          that.detailDialog.data = res.item || item;
+          // C端接口输出的反馈记录，按照倒序排列使最新的在最上面
+          that.detailDialog.feedbacks = res.item && res.item.feedbacks ? res.item.feedbacks.reverse() : [];
+        },
+        complete: () => {
+          that.detailDialog.loading = false;
+        }
+      });
     },
 
     /**

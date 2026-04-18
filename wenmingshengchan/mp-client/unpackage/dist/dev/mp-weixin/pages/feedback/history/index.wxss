@@ -41,13 +41,10 @@
 .feedback-history-page.data-v-e49d9074 {
   font-family: "Inter", sans-serif;
   background-color: #f7f9fb;
-  /* surface */
   min-height: 100vh;
   position: relative;
-  /* account for my-tab-bar and pb-24 */
   padding-bottom: 320rpx;
 }
-/* Industrial Grid explicitly redefined to match UI3 css for history */
 .industrial-grid.data-v-e49d9074 {
   position: absolute;
   top: 0;
@@ -57,49 +54,38 @@
   pointer-events: none;
   background-image: linear-gradient(rgba(0, 80, 203, 0.03) 2rpx, transparent 2rpx), linear-gradient(90deg, rgba(0, 80, 203, 0.03) 2rpx, transparent 2rpx);
   background-size: 40rpx 40rpx;
-  /* approx 20px */
 }
 .main-content.data-v-e49d9074 {
   position: relative;
   z-index: 1;
   padding: 64rpx 32rpx;
-  /* pt-8 px-4 */
   max-width: 1344rpx;
-  /* max-w-2xl equivalent */
   margin: 0 auto;
 }
 .header-wrap.data-v-e49d9074 {
   padding: 0 16rpx;
-  /* px-2 */
   margin-bottom: 48rpx;
-  /* mb-6 equivalent */
 }
 .page-title.data-v-e49d9074 {
   font-family: "Manrope", sans-serif;
   font-size: 60rpx;
-  /* text-3xl */
   font-weight: 800;
   color: #191c1e;
   letter-spacing: -0.05em;
-  /* tracking-tighter */
   display: block;
 }
 .page-subtitle.data-v-e49d9074 {
   font-size: 20rpx;
-  /* text-[10px] */
   font-weight: 700;
   color: #0050cb;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  /* tracking-[0.2em] */
   margin-top: 8rpx;
-  /* mt-1 */
   opacity: 0.8;
   display: block;
 }
 .mb-24.data-v-e49d9074 {
   margin-bottom: 32rpx;
-  /* space-y-4 usually, but 32rpx is good */
 }
 .glass-panel.data-v-e49d9074 {
   background: rgba(255, 255, 255, 0.25);
@@ -109,50 +95,39 @@
 }
 .search-panel.data-v-e49d9074 {
   border-radius: 24rpx;
-  /* rounded-xl */
   padding: 32rpx;
-  /* p-4 */
   box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
-  /* 0 8px 32px 0 */
 }
 .filter-row.data-v-e49d9074 {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24rpx;
-  /* gap-3 */
 }
 .filter-item.data-v-e49d9074 {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8rpx;
-  /* space-y-1 */
 }
 .filter-label.data-v-e49d9074 {
   font-size: 20rpx;
-  /* text-[10px] */
   font-weight: 700;
   color: #0050cb;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  /* tracking-widest */
   font-family: "Manrope", sans-serif;
 }
 .filter-input-box.data-v-e49d9074 {
   background-color: rgba(224, 227, 229, 0.5);
-  /* surface-container-highest */
   border-radius: 16rpx;
-  /* rounded-lg */
   padding: 16rpx 24rpx;
-  /* px-3 py-2 */
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .filter-value.data-v-e49d9074 {
   font-size: 28rpx;
-  /* text-sm */
   font-weight: 500;
   color: #191c1e;
 }
@@ -161,27 +136,21 @@
 }
 .icon-xs.data-v-e49d9074 {
   font-size: 24rpx;
-  /* text-xs */
 }
 .search-btn-wrap.data-v-e49d9074 {
   display: flex;
   justify-content: flex-end;
   margin-top: 32rpx;
-  /* mt-4 */
 }
 .search-btn.data-v-e49d9074 {
   display: flex;
   align-items: center;
   gap: 16rpx;
-  /* gap-2 */
   background-color: #0050cb;
   color: #ffffff;
   padding: 16rpx 48rpx;
-  /* px-6 py-2 */
   border-radius: 16rpx;
-  /* rounded-lg */
   box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 80, 203, 0.2);
-  /* shadow-lg */
   margin: 0;
   line-height: normal;
   transition: -webkit-transform 0.2s;
@@ -199,28 +168,21 @@
   font-family: "Manrope", sans-serif;
   font-weight: 700;
   font-size: 28rpx;
-  /* text-sm */
 }
 .cards-list.data-v-e49d9074 {
   display: flex;
   flex-direction: column;
   gap: 32rpx;
-  /* space-y-4 */
 }
 .history-card.data-v-e49d9074 {
   border-radius: 24rpx;
-  /* rounded-xl */
   overflow: hidden;
   box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.05);
-  /* shadow-0_8px_32px_0 */
   border: 2rpx solid rgba(255, 255, 255, 0.3);
-  /* border-white/30 */
 }
 .card-header.data-v-e49d9074 {
   padding: 32rpx;
-  /* p-4 */
   border-bottom: 2rpx solid rgba(255, 255, 255, 0.1);
-  /* border-white/10 */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -231,34 +193,24 @@
 .card-title.data-v-e49d9074 {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  /* font-extrabold */
   font-size: 32rpx;
-  /* text-base implicit */
   color: #191c1e;
   letter-spacing: -0.025em;
-  /* tracking-tight */
 }
 .status-badge.data-v-e49d9074 {
   padding: 4rpx 16rpx;
-  /* py-0.5 px-2 */
   border-radius: 9999rpx;
-  /* rounded-full */
 }
 .status-running.data-v-e49d9074 {
   background-color: rgba(155, 180, 254, 0.3);
-  /* secondary-container/30 */
 }
 .text-running.data-v-e49d9074 {
   color: #294487;
-  /* on-secondary-container */
   font-size: 20rpx;
-  /* text-[10px] */
   font-weight: 700;
-  /* font-bold */
 }
 .status-error.data-v-e49d9074 {
   background-color: rgba(186, 26, 26, 0.1);
-  /* error/10 */
   border: 2rpx solid rgba(186, 26, 26, 0.2);
 }
 .text-error.data-v-e49d9074 {
@@ -266,19 +218,24 @@
   font-size: 20rpx;
   font-weight: 700;
 }
+.status-pending.data-v-e49d9074 {
+  background-color: rgba(254, 240, 138, 0.3);
+  border: 2rpx solid rgba(254, 240, 138, 0.5);
+}
+.text-pending.data-v-e49d9074 {
+  color: #a16207;
+  font-size: 20rpx;
+  font-weight: 700;
+}
 .card-user-info.data-v-e49d9074 {
   padding: 32rpx;
-  /* p-4 */
   display: flex;
   align-items: center;
   gap: 24rpx;
-  /* gap-3 */
 }
 .user-avatar-wrap.data-v-e49d9074 {
   width: 80rpx;
-  /* w-10 */
   height: 80rpx;
-  /* h-10 */
   border-radius: 50%;
   overflow: hidden;
   border: 2rpx solid rgba(0, 80, 203, 0.2);
@@ -294,30 +251,24 @@
   display: flex;
   align-items: baseline;
   gap: 16rpx;
-  /* gap-2 */
 }
 .user-name.data-v-e49d9074 {
   font-size: 28rpx;
-  /* text-sm */
   font-weight: 700;
   color: #191c1e;
 }
 .user-dept.data-v-e49d9074 {
   font-size: 20rpx;
-  /* text-[10px] */
   color: #424656;
 }
 .time-row.data-v-e49d9074 {
   display: flex;
   align-items: center;
   gap: 8rpx;
-  /* gap-1 */
   margin-top: 4rpx;
-  /* mt-0.5 */
 }
 .icon-12.data-v-e49d9074 {
   font-size: 20rpx;
-  /* text-[10px] */
 }
 .text-outline.data-v-e49d9074 {
   color: #727687;
@@ -333,18 +284,14 @@
 .photo-list.data-v-e49d9074 {
   display: flex;
   gap: 24rpx;
-  /* space-x-3 */
   padding: 0 32rpx 32rpx;
 }
 .photo-item.data-v-e49d9074 {
   display: inline-flex;
   flex-shrink: 0;
   width: 384rpx;
-  /* w-48 */
   height: 256rpx;
-  /* h-32 */
   border-radius: 16rpx;
-  /* rounded-lg */
   overflow: hidden;
   box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 0, 0, 0.1);
 }
@@ -357,78 +304,17 @@
 }
 .desc-box.data-v-e49d9074 {
   margin: 0 32rpx 32rpx;
-  /* mx-4 mb-4 */
   padding: 24rpx;
-  /* p-3 */
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 16rpx;
-  /* rounded-lg */
   border: 2rpx solid rgba(255, 255, 255, 0.1);
 }
 .desc-text.data-v-e49d9074 {
   font-size: 24rpx;
-  /* text-xs */
   color: #424656;
   line-height: 1.6;
   font-family: "Inter", sans-serif;
   white-space: normal;
-}
-.error-info-section.data-v-e49d9074 {
-  padding: 32rpx;
-  display: flex;
-  flex-direction: column;
-  gap: 32rpx;
-}
-.error-label.data-v-e49d9074 {
-  font-size: 20rpx;
-  font-weight: 700;
-  color: #0050cb;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: "Manrope", sans-serif;
-}
-.error-person-list.data-v-e49d9074 {
-  display: flex;
-  flex-direction: column;
-  gap: 24rpx;
-}
-.error-person-item.data-v-e49d9074 {
-  display: flex;
-  align-items: center;
-  gap: 24rpx;
-}
-.person-avatar.data-v-e49d9074 {
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2rpx solid rgba(0, 80, 203, 0.1);
-}
-.person-avatar-placeholder.data-v-e49d9074 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e0e3e5;
-}
-.avatar-sm.data-v-e49d9074 {
-  width: 100%;
-  height: 100%;
-}
-.icon-sm.data-v-e49d9074 {
-  font-size: 28rpx;
-}
-.person-details.data-v-e49d9074 {
-  display: flex;
-  flex-direction: column;
-}
-.person-name.data-v-e49d9074 {
-  font-size: 24rpx;
-  font-weight: 700;
-  color: #191c1e;
-}
-.person-dept.data-v-e49d9074 {
-  font-size: 20rpx;
-  color: #424656;
 }
 .empty-state.data-v-e49d9074 {
   display: flex;

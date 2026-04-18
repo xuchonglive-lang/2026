@@ -1,0 +1,87 @@
+{
+  "bsonType": "object",
+  "required": [
+    "title",
+    "content",
+    "area_id",
+    "point_id",
+    "manager_dept_id",
+    "status"
+  ],
+  "permission": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "title": {
+      "bsonType": "string",
+      "description": "隐患标题"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "问题详细描述"
+    },
+    "images": {
+      "bsonType": "array",
+      "description": "现场图片压缩后链接，最大3张",
+      "items": { "bsonType": "string" }
+    },
+    "urgency": {
+      "bsonType": "int",
+      "description": "0:常规, 1:紧急",
+      "defaultValue": 0
+    },
+    "is_anonymous": {
+      "bsonType": "bool",
+      "description": "是否匿名（控制前台）",
+      "defaultValue": true
+    },
+    "area_id": {
+      "bsonType": "string",
+      "description": "关联base-area"
+    },
+    "point_id": {
+      "bsonType": "string",
+      "description": "关联base-point"
+    },
+    "manager_dept_id": {
+      "bsonType": "string",
+      "description": "自动推导或人工转派的权责部门ID，B端隔离基石"
+    },
+    "status": {
+      "bsonType": "int",
+      "description": "0:待受理, 1:处理中, 2:已办结, 3:驳回/下架",
+      "defaultValue": 0
+    },
+    "create_uid": {
+      "bsonType": "string",
+      "description": "提报人UID"
+    },
+    "create_time": {
+      "bsonType": "timestamp",
+      "description": "提报时间戳"
+    },
+    "reply_content": {
+      "bsonType": "string",
+      "description": "官方结案回复内容"
+    },
+    "reply_images": {
+      "bsonType": "array",
+      "description": "结案举证照片",
+      "items": { "bsonType": "string" }
+    },
+    "reply_uid": {
+      "bsonType": "string",
+      "description": "回复人员ID"
+    },
+    "reply_time": {
+      "bsonType": "timestamp",
+      "description": "结案打卡时间戳"
+    }
+  }
+}

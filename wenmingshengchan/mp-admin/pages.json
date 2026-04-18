@@ -35,10 +35,38 @@
 			"style": {
 				"navigationBarTitleText": "信息内容管理"
 			}
-		},{
+		}, {
 			"path": "pages/plan/plan-list",
 			"style": {
 				"navigationBarTitleText": "日计划管理"
+			}
+		},
+		{
+			"path": "pages/feedback/cron-config",
+			"style": {
+				"navigationBarTitleText": "定时任务配置"
+			}
+		},
+		{
+			"path": "pages/feedback/point-config",
+			"style": {
+				"navigationBarTitleText": "反馈点位配置"
+			}
+		},
+		{
+			"path": "pages/feedback/feedback-list",
+			"style": {
+				"navigationBarTitleText": "反馈信息配置"
+			}
+		},{
+			"path": "pages/report/report-list",
+			"style": {
+				"navigationBarTitleText": "反馈信息配置"
+			}
+		},{
+			"path": "pages/keywork/project-list",
+			"style": {
+				"navigationBarTitleText": "重点工作管理"
 			}
 		},
 		{

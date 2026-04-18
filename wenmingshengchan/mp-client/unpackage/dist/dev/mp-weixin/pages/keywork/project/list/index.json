@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "u-empty": "/uni_modules/vk-uview-ui/components/u-empty/u-empty",
     "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
   }
 }

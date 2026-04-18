@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "u-toast": "/uni_modules/vk-uview-ui/components/u-toast/u-toast"
+  }
 }

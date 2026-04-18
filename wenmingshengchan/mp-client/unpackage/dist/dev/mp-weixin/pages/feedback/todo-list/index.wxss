@@ -45,7 +45,6 @@
   background-attachment: fixed;
   min-height: 100vh;
   position: relative;
-  /* Let my-tab-bar float over the extra padding */
 }
 .industrial-grid.data-v-7e17f412 {
   position: absolute;
@@ -61,18 +60,14 @@
 .main-content.data-v-7e17f412 {
   position: relative;
   z-index: 1;
-  /* pt-8 pb-24 px-4 */
   padding: 64rpx 32rpx 192rpx 32rpx;
   max-width: 896rpx;
-  /* max-w-md */
   margin: 0 auto;
 }
 .page-title-wrap.data-v-7e17f412 {
   margin-bottom: 48rpx;
-  /* mb-6 */
 }
 .page-title.data-v-7e17f412 {
-  /* text-3xl */
   font-family: "Manrope", sans-serif;
   font-size: 60rpx;
   font-weight: 800;
@@ -81,7 +76,6 @@
 }
 .summary-header.data-v-7e17f412 {
   padding: 32rpx 0;
-  /* py-4 */
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -89,14 +83,11 @@
 .status-label.data-v-7e17f412 {
   display: block;
   font-size: 24rpx;
-  /* text-xs */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #1d4ed8;
   margin-bottom: 8rpx;
-  /* mb-1 */
-  font-family: "Inter", sans-serif;
 }
 .status-value-wrap.data-v-7e17f412 {
   display: flex;
@@ -105,26 +96,20 @@
 .status-count.data-v-7e17f412 {
   font-family: "Manrope", sans-serif;
   font-size: 60rpx;
-  /* text-3xl */
   font-weight: 800;
   color: #191c1e;
-  letter-spacing: -0.025em;
   margin-right: 12rpx;
 }
 .status-suffix.data-v-7e17f412 {
   font-size: 36rpx;
-  /* text-lg */
   font-weight: 500;
   color: #424656;
 }
 .preview-btn.data-v-7e17f412 {
-  /* px-4 py-2.5 */
   padding: 20rpx 32rpx;
   background-color: #0050cb;
   border-radius: 24rpx;
-  /* rounded-xl */
   box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 80, 203, 0.2);
-  /* shadow-lg */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +124,6 @@
 .preview-btn-text.data-v-7e17f412 {
   color: #ffffff;
   font-size: 24rpx;
-  /* text-xs */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -149,7 +133,6 @@
   display: flex;
   flex-direction: column;
   gap: 32rpx;
-  /* space-y-4 */
 }
 .glass-card.data-v-7e17f412 {
   background: rgba(255, 255, 255, 0.25);
@@ -157,11 +140,8 @@
   -webkit-backdrop-filter: blur(40rpx);
   border: 2rpx solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
-  /* 0 8px 32px 0 */
   border-radius: 24rpx;
-  /* rounded-xl */
   padding: 40rpx;
-  /* p-5 */
   transition: -webkit-transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), -webkit-transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -173,18 +153,13 @@
 .card-top.data-v-7e17f412 {
   display: flex;
   gap: 32rpx;
-  /* gap-4 */
   margin-bottom: 32rpx;
-  /* mb-4 */
 }
 .icon-box.data-v-7e17f412 {
   width: 96rpx;
-  /* w-12 */
   height: 96rpx;
-  /* h-12 */
   flex-shrink: 0;
   border-radius: 24rpx;
-  /* rounded-xl */
   background-color: rgba(0, 80, 203, 0.1);
   display: flex;
   align-items: center;
@@ -193,7 +168,6 @@
 .icon-location.data-v-7e17f412 {
   color: #0050cb;
   font-size: 48rpx;
-  /* text-2xl */
 }
 .card-info.data-v-7e17f412 {
   flex: 1;
@@ -207,7 +181,6 @@
 .card-title.data-v-7e17f412 {
   font-family: "Manrope", sans-serif;
   font-size: 32rpx;
-  /* text-base */
   font-weight: 700;
   color: #191c1e;
   overflow: hidden;
@@ -217,36 +190,27 @@
 .status-badge.data-v-7e17f412 {
   flex-shrink: 0;
   padding: 4rpx 16rpx;
-  /* py-0.5 px-2 */
-  background-color: #e0e3e5;
+  background-color: #fef08a;
   border-radius: 16rpx;
-  /* rounded-lg */
   margin-left: 16rpx;
 }
 .badge-text.data-v-7e17f412 {
-  color: #424656;
   font-size: 20rpx;
-  /* text-[10px] */
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 .card-subtitle-row.data-v-7e17f412 {
   display: flex;
   align-items: center;
   gap: 8rpx;
-  /* gap-1 */
   margin-top: 4rpx;
-  /* mt-0.5 */
 }
 .icon-domain.data-v-7e17f412 {
   font-size: 28rpx;
-  /* text-[14px] */
   color: #424656;
 }
 .card-subtitle.data-v-7e17f412 {
   font-size: 24rpx;
-  /* text-xs */
   font-weight: 500;
   color: #424656;
 }
@@ -255,83 +219,34 @@
   align-items: flex-end;
   justify-content: space-between;
   padding-top: 32rpx;
-  /* pt-4 */
   border-top: 2rpx solid rgba(255, 255, 255, 0.1);
-  /* border-white/10 */
 }
 .time-info-wrap.data-v-7e17f412 {
   display: flex;
   flex-direction: column;
   gap: 16rpx;
-  /* gap-2 */
-}
-.user-avatars.data-v-7e17f412 {
-  display: flex;
-  align-items: center;
-}
-.avatar-img.data-v-7e17f412 {
-  width: 48rpx;
-  /* w-6 */
-  height: 48rpx;
-  /* h-6 */
-  border-radius: 50%;
-  border: 4rpx solid #ffffff;
-  /* border-2 */
-  background-color: #e2e8f0;
-}
-.avatar-count.data-v-7e17f412 {
-  width: 48rpx;
-  /* w-6 */
-  height: 48rpx;
-  /* h-6 */
-  border-radius: 50%;
-  border: 4rpx solid #ffffff;
-  /* border-2 */
-  background-color: #cbd5e1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -16rpx;
-  /* -space-x-2 */
-}
-.count-text.data-v-7e17f412 {
-  font-size: 16rpx;
-  /* text-[8px] */
-  font-weight: 700;
-  color: #191c1e;
 }
 .time-range.data-v-7e17f412 {
   display: flex;
   align-items: center;
   gap: 12rpx;
-  /* gap-1.5 */
 }
 .icon-schedule.data-v-7e17f412 {
   font-size: 28rpx;
-  /* text-[14px] */
   color: #424656;
 }
 .time-text.data-v-7e17f412 {
   font-size: 20rpx;
-  /* text-[10px] */
   font-weight: 500;
   color: #424656;
-}
-.text-tertiary.data-v-7e17f412 {
-  color: #a33200 !important;
-  font-weight: 700 !important;
 }
 .action-btn.data-v-7e17f412 {
   display: flex;
   align-items: center;
   gap: 16rpx;
-  /* gap-2 */
   padding: 16rpx 32rpx;
-  /* px-4 py-2 */
   background-color: rgba(0, 80, 203, 0.05);
-  /* bg-primary/5 */
   border-radius: 24rpx;
-  /* rounded-xl */
   transition: background-color 0.3s;
 }
 .action-btn.data-v-7e17f412:active {
@@ -341,12 +256,9 @@
   color: #0050cb;
   font-weight: 700;
   font-size: 24rpx;
-  /* text-xs */
   text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 .icon-arrow.data-v-7e17f412 {
   color: #0050cb;
   font-size: 28rpx;
-  /* text-sm */
 }

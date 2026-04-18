@@ -1,0 +1,59 @@
+{
+  "bsonType": "object",
+  "required": ["title", "status"],
+  "permission": {
+    "read": "true",
+    "create": "true",
+    "update": "true",
+    "delete": "true"
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，自动生成",
+      "bsonType": "string"
+    },
+    "title": {
+      "description": "工程名称/标题",
+      "bsonType": "string"
+    },
+    "area_id": {
+      "description": "挂靠物理位置：作业区域",
+      "bsonType": "string"
+    },
+    "point_id": {
+      "description": "挂靠物理位置：作业点位",
+      "bsonType": "string"
+    },
+    "standard_desc": {
+      "description": "判别达标的文字基准或依据",
+      "bsonType": "string"
+    },
+    "deadline": {
+      "description": "规章上给定的必须闭卷时刻",
+      "bsonType": "timestamp"
+    },
+    "assignee_uids": {
+      "description": "负责主导落实这批整改目标的用户们的 ID 集合",
+      "bsonType": "array",
+      "items": {
+        "bsonType": "string"
+      }
+    },
+    "status": {
+      "description": "状态：0(进行中), 1(待验收), 2(已完成), 3(驳回后进行中)",
+      "bsonType": "int"
+    },
+    "create_uid": {
+      "description": "立项人的身份指征",
+      "bsonType": "string"
+    },
+    "audit_remark": {
+      "description": "最后一个终局管理者批示的话",
+      "bsonType": "string"
+    },
+    "_add_time": {
+      "description": "创建时间",
+      "bsonType": "timestamp"
+    }
+  }
+}

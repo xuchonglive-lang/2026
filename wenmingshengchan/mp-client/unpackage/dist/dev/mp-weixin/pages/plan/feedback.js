@@ -99,6 +99,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    mpHtml: function () {
+      return Promise.all(/*! import() | components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/components/mp-html/mp-html.vue */ 531))
+    },
+    uPopup: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-popup/u-popup */ "uni_modules/vk-uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-popup/u-popup.vue */ 541))
+    },
+    robinEditor: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/robin-editor/components/robin-editor/robin-editor */ "uni_modules/robin-editor/components/robin-editor/robin-editor").then(__webpack_require__.bind(null, /*! @/uni_modules/robin-editor/components/robin-editor/robin-editor.vue */ 479))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -121,8 +150,6 @@ var render = function () {
             ? _vm.$fn.timeFormat(item.time, "yyyy-MM-dd hh:mm")
             : null
         var g9 =
-          item.type === "submit" ? item.images && item.images.length > 0 : null
-        var g10 =
           item.type === "audit"
             ? _vm.$fn.timeFormat(item.time, "yyyy-MM-dd hh:mm")
             : null
@@ -130,7 +157,6 @@ var render = function () {
           $orig: $orig,
           g8: g8,
           g9: g9,
-          g10: g10,
         }
       })
     : null
@@ -317,6 +343,56 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var vk = uni.vk; // 获取 uni.vk 核心实例对象
 var _default = {
@@ -337,8 +413,23 @@ var _default = {
         feedbacks: []
       },
       // 若当前用户的头像或数据库未返回，使用的缺省兜底头像地址
-      defaultAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+      defaultAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+      showFeedbackPopup: false,
+      feedbackContent: '',
+      showAuditPopup: false,
+      auditContent: '',
+      // sp-editor 自定义工具栏：直接使用白名单 keys，避开 excludeKeys 的 Optional Chaining 编译兼容问题
+      spToolbarConfig: {
+        keys: ['header', 'bold', 'italic', 'underline', 'align', 'color', 'backgroundColor', 'listOrdered', 'listBullet', 'divider', 'image', 'undo', 'redo', 'clear'],
+        iconSize: '20px',
+        iconColumns: 7
+      }
     };
+  },
+  // 以下存放不应该被 Vue 设置为响应式的对象（如巨大的富文本实例），防止栈溢出或组件状态死锁
+  created: function created() {
+    this._feedbackEditorCtx = null;
+    this._auditEditorCtx = null;
   },
   // 监听 - 页面滚动，实时映射高度数据
   onPageScroll: function onPageScroll(e) {
@@ -447,18 +538,224 @@ var _default = {
       return map[status] || '未知状态';
     },
     handleExecute: function handleExecute() {
-      // 携带计划 ID 等前置信息跳转到正式填写反馈的表单页
-      // vk.navigateTo({ url: `/pages/plan/submit-feedback?id=${this.plan_id}` })
-      uni.showToast({
-        title: '暂未对接提交反馈界面',
-        icon: 'none'
+      var _this2 = this;
+      // 唤起用于添加执行反馈的底部弹窗
+      this.showFeedbackPopup = true;
+      this.$nextTick(function () {
+        if (_this2.$refs.feedbackEditorRef && _this2.$refs.feedbackEditorRef.setImageUploader) {
+          _this2.$refs.feedbackEditorRef.setImageUploader(_this2.uploadImageForRobin);
+        }
       });
     },
     handleAudit: function handleAudit() {
-      uni.showToast({
-        title: '暂未对接主管验收界面',
-        icon: 'none'
+      var _this3 = this;
+      // 唤起主管验收弹窗
+      this.showAuditPopup = true;
+      this.$nextTick(function () {
+        if (_this3.$refs.auditEditorRef && _this3.$refs.auditEditorRef.setImageUploader) {
+          _this3.$refs.auditEditorRef.setImageUploader(_this3.uploadImageForRobin);
+        }
       });
+    },
+    /**
+     * 获取编辑器内容（适配提交时的验证逻辑）
+     */
+    getEditorContent: function getEditorContent(refName) {
+      var _this4 = this;
+      return new Promise(function (resolve) {
+        var editorRef = refName === 'feedbackEditor' ? _this4.$refs.feedbackEditorRef : _this4.$refs.auditEditorRef;
+        var fallbackContent = refName === 'feedbackEditor' ? _this4.feedbackContent : _this4.auditContent;
+        if (!editorRef || !editorRef.editorCtx) {
+          resolve(fallbackContent || '');
+          return;
+        }
+        editorRef.editorCtx.getContents({
+          success: function success(res) {
+            return resolve(res.html);
+          },
+          fail: function fail() {
+            return resolve(fallbackContent || '');
+          }
+        });
+      });
+    },
+    /**
+     * 清空内容并在编辑器中反馈
+     */
+    clearEditor: function clearEditor(refName) {
+      if (refName === 'feedbackEditor') {
+        this.feedbackContent = '';
+        if (this.$refs.feedbackEditorRef && this.$refs.feedbackEditorRef.editorCtx) this.$refs.feedbackEditorRef.editorCtx.clear();
+      } else {
+        this.auditContent = '';
+        if (this.$refs.auditEditorRef && this.$refs.auditEditorRef.editorCtx) this.$refs.auditEditorRef.editorCtx.clear();
+      }
+    },
+    /**
+     * 专属 robin-editor 设置图片上传函数的回调
+     */
+    uploadImageForRobin: function uploadImageForRobin(img, callback) {
+      var vkObj = uni.vk || vk || getApp().globalData.vk;
+      vkObj.callFunctionUtil.uploadFile({
+        title: "上传中...",
+        filePath: img,
+        suffix: "png",
+        // fallback suffix
+        provider: "unicloud",
+        success: function success(res) {
+          // 上传成功后调用 callback 传入图片 URL 以供编辑器插入图片
+          callback ? callback(res.fileID || res.url) : null;
+        }
+      });
+    },
+    submitFeedback: function submitFeedback() {
+      var _this5 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var html, rawText, extractedImages, imageMatch, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this5.getEditorContent('feedbackEditor');
+              case 2:
+                html = _context2.sent;
+                // 去除HTML标签检查是否为空
+                rawText = html.replace(/<[^>]+>/g, '').trim();
+                if (!(!rawText && !html.includes('<img'))) {
+                  _context2.next = 6;
+                  break;
+                }
+                return _context2.abrupt("return", uni.showToast({
+                  title: '请输入反馈内容',
+                  icon: 'none'
+                }));
+              case 6:
+                // Extract image URLs from HTML for the backend images array
+                extractedImages = [];
+                imageMatch = html.match(/<img[^>]+src="([^">]+)"/g);
+                if (imageMatch) {
+                  imageMatch.forEach(function (imgTag) {
+                    var match = imgTag.match(/src="([^">]+)"/);
+                    if (match && match[1]) {
+                      extractedImages.push(match[1]);
+                    }
+                  });
+                }
+                uni.showLoading({
+                  title: '提交中',
+                  mask: true
+                });
+                _context2.prev = 10;
+                _context2.next = 13;
+                return vk.callFunction({
+                  url: 'client/plan/kh/submitFeedback',
+                  data: {
+                    plan_id: _this5.plan_id,
+                    content: html,
+                    images: extractedImages
+                  }
+                });
+              case 13:
+                res = _context2.sent;
+                uni.hideLoading();
+                if (res && res.code === 0) {
+                  uni.showToast({
+                    title: '反馈提交成功',
+                    icon: 'success'
+                  });
+                  _this5.showFeedbackPopup = false;
+                  _this5.clearEditor('feedbackEditor');
+                  _this5.loadData();
+                }
+                _context2.next = 22;
+                break;
+              case 18:
+                _context2.prev = 18;
+                _context2.t0 = _context2["catch"](10);
+                uni.hideLoading();
+                console.error('提交执行反馈异常', _context2.t0);
+              case 22:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[10, 18]]);
+      }))();
+    },
+    submitAudit: function submitAudit(auditResult) {
+      var _this6 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var html, rawText, extractedImages, imageMatch, res;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this6.getEditorContent('auditEditor');
+              case 2:
+                html = _context3.sent;
+                rawText = html.replace(/<[^>]+>/g, '').trim();
+                if (!(!rawText && !html.includes('<img'))) {
+                  _context3.next = 6;
+                  break;
+                }
+                return _context3.abrupt("return", uni.showToast({
+                  title: '请填写审核意见',
+                  icon: 'none'
+                }));
+              case 6:
+                extractedImages = [];
+                imageMatch = html.match(/<img[^>]+src="([^">]+)"/g);
+                if (imageMatch) {
+                  imageMatch.forEach(function (imgTag) {
+                    var match = imgTag.match(/src="([^">]+)"/);
+                    if (match && match[1]) {
+                      extractedImages.push(match[1]);
+                    }
+                  });
+                }
+                uni.showLoading({
+                  title: '处理验收中',
+                  mask: true
+                });
+                _context3.prev = 10;
+                _context3.next = 13;
+                return vk.callFunction({
+                  url: 'client/plan/kh/auditPlan',
+                  data: {
+                    plan_id: _this6.plan_id,
+                    content: html,
+                    images: extractedImages,
+                    audit_result: auditResult
+                  }
+                });
+              case 13:
+                res = _context3.sent;
+                uni.hideLoading();
+                if (res && res.code === 0) {
+                  uni.showToast({
+                    title: res.msg || '审计操作成功',
+                    icon: 'success'
+                  });
+                  _this6.showAuditPopup = false;
+                  _this6.clearEditor('auditEditor');
+                  _this6.loadData();
+                }
+                _context3.next = 22;
+                break;
+              case 18:
+                _context3.prev = 18;
+                _context3.t0 = _context3["catch"](10);
+                uni.hideLoading();
+                console.error('验收处理异常', _context3.t0);
+              case 22:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[10, 18]]);
+      }))();
     }
   },
   // 侦听器映射结构

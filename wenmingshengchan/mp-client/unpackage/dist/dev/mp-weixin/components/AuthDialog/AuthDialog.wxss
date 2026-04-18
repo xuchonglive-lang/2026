@@ -37,10 +37,6 @@
 .center.data-v-31d6d5c4 {
   text-align: center;
 }
-view.data-v-31d6d5c4 {
-  box-sizing: border-box;
-  font-size: 28rpx;
-}
 .remark.data-v-31d6d5c4 {
   position: fixed;
   top: 0;
@@ -53,6 +49,8 @@ view.data-v-31d6d5c4 {
   z-index: 202401;
 }
 .dialog.data-v-31d6d5c4 {
+  box-sizing: border-box;
+  font-size: 28rpx;
   border-radius: 40rpx 40rpx 0 0;
   background: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: blur(20px);
@@ -78,6 +76,7 @@ view.data-v-31d6d5c4 {
           transform: translateY(0);
 }
 .dialog-content.data-v-31d6d5c4 {
+  box-sizing: border-box;
   padding: 50rpx;
 }
 .dialog-content .subtitle.data-v-31d6d5c4 {
@@ -135,7 +134,7 @@ view.data-v-31d6d5c4 {
   height: 120rpx;
   margin-bottom: 60rpx;
 }
-.dialog-content .form-item input.data-v-31d6d5c4 {
+.dialog-content .form-item .form-input.data-v-31d6d5c4 {
   padding: 0;
   font-size: 30rpx;
   color: #191c1e;

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>报备提交 - 工业管理系统</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbd0",
+                    "secondary-container": "#9bb4fe",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary": "#0050cb",
+                    "background": "#f7f9fb",
+                    "outline-variant": "#c2c6d8",
+                    "on-secondary-fixed-variant": "#284386",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#a33200",
+                    "on-primary-fixed": "#001849",
+                    "on-tertiary-fixed": "#390c00",
+                    "secondary": "#425ca0",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb59d",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-container": "#fff6f4",
+                    "primary-fixed": "#dae1ff",
+                    "on-primary-container": "#f8f7ff",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#b3c5ff",
+                    "inverse-primary": "#b3c5ff",
+                    "on-secondary-fixed": "#001849",
+                    "on-background": "#191c1e",
+                    "on-surface-variant": "#424656",
+                    "tertiary-container": "#cc4204",
+                    "primary-container": "#0066ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-tertiary-fixed-variant": "#832600",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#dae1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#191c1e",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#294487",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "surface-bright": "#f7f9fb",
+                    "outline": "#727687",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.08);
+        }
+        .industrial-grid {
+            background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<style>
+    body {
+      min-height: 100dvh;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface industrial-grid min-h-screen pb-24">
+<main class="pt-12 px-6 max-w-2xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8">
+<h2 class="text-2xl font-headline font-extrabold text-on-surface tracking-tight">现场问题报备</h2>
+<p class="text-on-surface-variant text-sm mt-1">现场问题反馈，共创美好环境</p>
+</div>
+<form class="space-y-6">
+<!-- Issue Title Input -->
+<div class="glass-card rounded-xl p-6">
+<label class="block text-xs font-label font-medium uppercase tracking-[0.05em] text-on-surface-variant mb-3">问题标题</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none rounded-sm px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all outline-none" placeholder="简述异常核心点 (如：3号泵压异常)" type="text"/>
+</div>
+</div>
+<!-- Detailed Description (Rich-ish Text Area) -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-end mb-3">
+<label class="block text-xs font-label font-medium uppercase tracking-[0.05em] text-on-surface-variant">详细描述</label>
+<div class="flex gap-2">
+<button class="p-1.5 rounded-lg hover:bg-white/40 text-on-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[1.25rem]" data-icon="attachment">attachment</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-white/40 text-on-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[1.25rem]" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+</div>
+<textarea class="w-full bg-surface-container-highest border-none rounded-sm px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all outline-none resize-none" placeholder="请详细描述问题现场、发生时间及可能造成的影响..." rows="6"></textarea>
+</div>
+<!-- Anonymous Toggle Section -->
+<div class="glass-card rounded-xl p-6 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="visibility_off">visibility_off</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">匿名提交</p>
+<p class="text-[0.7rem] text-on-surface-variant tracking-wide uppercase">Identity Protected</p>
+</div>
+</div>
+<!-- Toggle Switch UI -->
+<button class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary-container transition-colors focus:outline-none" type="button">
+<span class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+</button>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full py-4 bg-primary-container text-on-primary font-headline font-bold rounded-xl shadow-[0_8px_32px_0_rgba(0,80,203,0.15)] hover:shadow-primary-container/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+                    立即提交报备
+                </button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-3 bg-white/30 backdrop-blur-2xl border-t border-white/20 shadow-[0_-8px_32px_0_rgba(0,80,203,0.05)] rounded-t-[2rem]">
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">首页</span>
+</div>
+<!-- Active Tab: 现场反馈 (Issue Report) -->
+<div class="flex flex-col items-center justify-center text-blue-700 bg-blue-50/50 rounded-2xl px-3 py-1">
+<span class="material-symbols-outlined" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">现场反馈</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">重点项目</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">计划执行</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[0.75rem] font-medium tracking-wide font-['Inter']">我的</span>
+</div>
+</nav>
+</body></html>

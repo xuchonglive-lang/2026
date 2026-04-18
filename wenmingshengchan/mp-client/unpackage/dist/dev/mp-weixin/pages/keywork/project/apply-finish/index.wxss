@@ -26,4 +26,34 @@
 /* 文章场景相关 */
 .page-container.data-v-7f2d287a {
   min-height: 100vh;
+  background: #fff;
+}
+.form-wrapper.data-v-7f2d287a {
+  padding: 32rpx;
+}
+.tips-box.data-v-7f2d287a {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  margin-bottom: 32rpx;
+}
+.tips-box text.data-v-7f2d287a {
+  font-size: 26rpx;
+  color: #4f46e5;
+  line-height: 1.5;
+}
+.tips-box .material-symbols-outlined.data-v-7f2d287a {
+  font-size: 32rpx;
+  margin-top: 2rpx;
+}
+.textarea-box.data-v-7f2d287a {
+  width: 100%;
+}
+.submit-btn-box.data-v-7f2d287a {
+  margin-top: 64rpx;
+  padding-bottom: 64rpx;
 }

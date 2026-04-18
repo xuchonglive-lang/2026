@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "u-parse": "/uni_modules/vk-uview-ui/components/u-parse/u-parse",
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
+  }
 }

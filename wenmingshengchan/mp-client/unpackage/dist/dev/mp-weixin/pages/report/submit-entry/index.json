@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "u-input": "/uni_modules/vk-uview-ui/components/u-input/u-input",
+    "u-select": "/uni_modules/vk-uview-ui/components/u-select/u-select",
+    "robin-editor": "/uni_modules/robin-editor/components/robin-editor/robin-editor",
+    "u-switch": "/uni_modules/vk-uview-ui/components/u-switch/u-switch",
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
+  }
 }
