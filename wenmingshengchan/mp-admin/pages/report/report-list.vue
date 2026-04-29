@@ -67,10 +67,11 @@
     <el-dialog
       title="工单处理详情"
       :visible.sync="detailDialog.show"
-      width="700px"
+      width="1200px"
+      top="5vh"
       :close-on-click-modal="false"
     >
-      <div v-if="detailDialog.data">
+      <div v-if="detailDialog.data" style="max-height: 75vh; overflow-y: auto; overflow-x: hidden; padding-right: 10px;">
         <h3 style="margin-bottom: 15px; color: #1f2937; border-left: 4px solid #3b82f6; padding-left: 10px;">基本信息</h3>
         <div style="background: #f3f4f6; border-radius: 8px; padding: 15px 20px 5px 20px; margin-bottom: 20px; font-size: 14px; color: #374151;">
           <el-row :gutter="20">
@@ -115,7 +116,7 @@
         
         <div style="margin-bottom: 30px; padding: 20px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">
           <div style="margin-bottom: 12px; font-weight: bold; color: #4b5563; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">报备内容与图片：</div>
-          <div v-html="detailDialog.data.content" style="line-height: 1.8; color: #374151; overflow: hidden; width: 100%;"></div>
+          <div v-html="detailDialog.data.content" class="rich-text-content" style="line-height: 1.8; color: #374151; overflow: hidden; width: 100%;"></div>
         </div>
 
         <div style="font-weight: bold; margin-bottom: 20px; color: #4b5563; font-size: 16px;">处理时间轴：</div>
@@ -328,5 +329,12 @@ export default {
 
 <style lang="scss" scoped>
 .page-body {
+}
+
+/* 限制富文本内部图片宽度，防止被撑爆 */
+::v-deep .rich-text-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 </style>

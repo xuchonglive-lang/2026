@@ -10,6 +10,10 @@ module.exports = {
     
     let { real_name, mobile, department_id, department_name } = data;
     
+    // 解析级联数组 [dept_id, group_id]
+    let deptId = Array.isArray(department_id) ? department_id[0] : department_id;
+    let groupId = (Array.isArray(department_id) && department_id.length > 1) ? department_id[department_id.length - 1] : "";
+
     if(!real_name || !mobile) {
       return { code: -1, msg: '缺少必填参数' }
     }
@@ -18,7 +22,8 @@ module.exports = {
     let updateData = {
       real_name,
       mobile,
-      department_id,
+      department_id: deptId,
+      group_id: groupId,
       department_name,
       audit_status: 1
     };

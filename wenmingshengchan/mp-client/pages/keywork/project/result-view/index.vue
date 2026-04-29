@@ -1,5 +1,11 @@
 ﻿<template>
-  <view class='page-container'></view>
+  <view class='page-container'>
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">成果查看</block>
+    </cu-custom>
+    
+    </view>
 </template>
 
 <script>

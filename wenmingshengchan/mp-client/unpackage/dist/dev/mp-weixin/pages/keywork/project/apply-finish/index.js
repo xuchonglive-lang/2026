@@ -101,23 +101,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uNavbar: function () {
-      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-navbar/u-navbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-navbar/u-navbar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-navbar/u-navbar.vue */ 781))
+    cuCustom: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/cu-custom/components/cu-custom/cu-custom */ "uni_modules/cu-custom/components/cu-custom/cu-custom").then(__webpack_require__.bind(null, /*! @/uni_modules/cu-custom/components/cu-custom/cu-custom.vue */ 464))
     },
     uForm: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-form/u-form */ "uni_modules/vk-uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form/u-form.vue */ 612))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-form/u-form */ "uni_modules/vk-uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form/u-form.vue */ 607))
     },
-    uFormItem: function () {
-      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-form-item/u-form-item.vue */ 619))
-    },
-    uInput: function () {
-      return Promise.all(/*! import() | uni_modules/vk-uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/vk-uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-input/u-input.vue */ 471))
-    },
-    uButton: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-button/u-button */ "uni_modules/vk-uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-button/u-button.vue */ 629))
+    robinEditor: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/robin-editor/components/robin-editor/robin-editor */ "uni_modules/robin-editor/components/robin-editor/robin-editor").then(__webpack_require__.bind(null, /*! @/uni_modules/robin-editor/components/robin-editor/robin-editor.vue */ 507))
     },
     uToast: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-toast/u-toast */ "uni_modules/vk-uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-toast/u-toast.vue */ 788))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-toast/u-toast */ "uni_modules/vk-uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-toast/u-toast.vue */ 600))
     },
   }
 } catch (e) {
@@ -141,6 +135,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.form.attachment_imgs.length
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -176,10 +179,69 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -240,54 +302,167 @@ var _default = {
     this.projectId = options.id;
     this.mode = options.mode || 'feedback';
   },
+  onReady: function onReady() {
+    if (this.$refs.editor) {
+      this.$refs.editor.setImageUploader(this.uploadEditorImage);
+    }
+  },
   methods: {
-    uploadSuccess: function uploadSuccess(e) {
-      // 获取上传后的云端 URL，此处取决于 uni-file-picker 的返回
-      var urls = e.tempFilePaths || [];
-      if (e.tempFiles && e.tempFiles.length > 0) {
-        urls = e.tempFiles.map(function (f) {
-          return f.url || f.path;
-        });
-      }
-      this.form.attachment_imgs = this.form.attachment_imgs.concat(urls);
+    goBack: function goBack() {
+      uni.navigateBack();
     },
-    uploadDelete: function uploadDelete(e) {
-      var index = this.form.attachment_imgs.findIndex(function (url) {
-        return url === e.tempFilePath || url === e.tempFile.url;
+    uploadEditorImage: function uploadEditorImage(path, callback) {
+      var _this = this;
+      uni.compressImage({
+        src: path,
+        quality: 80,
+        success: function () {
+          var _success = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(compressRes) {
+            var fileRes;
+            return _regenerator.default.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    uni.showLoading({
+                      title: '上传中...'
+                    });
+                    _context.next = 3;
+                    return _this.vk.callFunctionUtil.uploadFile({
+                      filePath: compressRes.tempFilePath,
+                      fileType: "image"
+                    });
+                  case 3:
+                    fileRes = _context.sent;
+                    uni.hideLoading();
+                    if (fileRes && fileRes.url) {
+                      callback(fileRes.url);
+                    } else {
+                      _this.vk.toast('图片上传失败');
+                    }
+                  case 6:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+          function success(_x) {
+            return _success.apply(this, arguments);
+          }
+          return success;
+        }(),
+        fail: function fail() {
+          _this.vk.toast('图片压缩失败');
+        }
       });
-      if (index > -1) {
-        this.form.attachment_imgs.splice(index, 1);
-      }
+    },
+    chooseImage: function chooseImage() {
+      var _this2 = this;
+      uni.chooseImage({
+        count: 4 - this.form.attachment_imgs.length,
+        sizeType: ['compressed'],
+        sourceType: ['album', 'camera'],
+        success: function () {
+          var _success2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(res) {
+            var i, fileRes;
+            return _regenerator.default.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    uni.showLoading({
+                      title: '上传中...',
+                      mask: true
+                    });
+                    i = 0;
+                  case 2:
+                    if (!(i < res.tempFilePaths.length)) {
+                      _context2.next = 17;
+                      break;
+                    }
+                    _context2.prev = 3;
+                    _context2.next = 6;
+                    return _this2.vk.callFunctionUtil.uploadFile({
+                      filePath: res.tempFilePaths[i],
+                      fileType: "image"
+                    });
+                  case 6:
+                    fileRes = _context2.sent;
+                    if (fileRes && fileRes.url) {
+                      _this2.form.attachment_imgs.push(fileRes.url);
+                    }
+                    _context2.next = 14;
+                    break;
+                  case 10:
+                    _context2.prev = 10;
+                    _context2.t0 = _context2["catch"](3);
+                    console.error(_context2.t0);
+                    _this2.vk.toast('部分图片上传失败');
+                  case 14:
+                    i++;
+                    _context2.next = 2;
+                    break;
+                  case 17:
+                    uni.hideLoading();
+                  case 18:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, null, [[3, 10]]);
+          }));
+          function success(_x2) {
+            return _success2.apply(this, arguments);
+          }
+          return success;
+        }()
+      });
+    },
+    deleteImage: function deleteImage(idx) {
+      this.form.attachment_imgs.splice(idx, 1);
+    },
+    previewImage: function previewImage(idx) {
+      uni.previewImage({
+        current: idx,
+        urls: this.form.attachment_imgs
+      });
     },
     submit: function submit() {
-      var _this = this;
-      if (!this.form.desc_content.trim()) {
-        this.$refs.uToast.show({
-          title: '请填写情况描述',
-          type: 'warning'
-        });
-        return;
-      }
-      this.loading = true;
-      var url = this.mode === 'close' ? 'client/keywork/kh/applyProjectClose' : 'client/keywork/kh/addProcessRecord';
-      this.vk.callFunction({
-        url: url,
-        data: {
-          project_id: this.projectId,
-          desc_content: this.form.desc_content,
-          attachment_imgs: this.form.attachment_imgs
-        },
+      var _this3 = this;
+      this.$refs.editor.editorCtx.getContents({
         success: function success(res) {
-          _this.$refs.uToast.show({
-            title: '提交成功',
-            type: 'success'
+          var desc = res.html;
+          if (!res.text.trim() && !desc.includes('<img')) {
+            desc = '';
+          }
+          if (!desc) {
+            _this3.$refs.uToast.show({
+              title: '请填写情况描述',
+              type: 'warning'
+            });
+            return;
+          }
+          _this3.loading = true;
+          var url = _this3.mode === 'close' ? 'client/keywork/kh/applyProjectClose' : 'client/keywork/kh/addProcessRecord';
+          _this3.vk.callFunction({
+            url: url,
+            data: {
+              project_id: _this3.projectId,
+              desc_content: desc,
+              attachment_imgs: _this3.form.attachment_imgs
+            },
+            success: function success(data) {
+              _this3.$refs.uToast.show({
+                title: '提交成功',
+                type: 'success'
+              });
+              setTimeout(function () {
+                uni.navigateBack();
+              }, 1500);
+            },
+            complete: function complete() {
+              _this3.loading = false;
+            }
           });
-          setTimeout(function () {
-            uni.navigateBack();
-          }, 1500);
-        },
-        complete: function complete() {
-          _this.loading = false;
         }
       });
     }

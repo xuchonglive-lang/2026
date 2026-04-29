@@ -45,43 +45,130 @@
     <!-- 万能表格组件结束 -->
 
     <!-- 自定义计划执行详情弹窗开始 -->
-    <el-dialog
-      title="计划执行详情与过程跟踪"
-      :visible.sync="detailDialog.show"
-      width="800px"
-      append-to-body
-    >
-      <div v-loading="detailDialog.loading">
-        <h3 style="margin-bottom: 10px;">基本信息</h3>
-        <p style="margin-bottom: 5px;"><strong>计划标题：</strong>{{ detailDialog.data.title }}</p>
-        <p style="margin-bottom: 5px;"><strong>创建时间：</strong>{{ detailDialog.data.create_time ? vk.pubfn.timeFormat(detailDialog.data.create_time) : '' }}</p>
-        <p style="margin-bottom: 5px;"><strong>任务要求：</strong></p>
-        <div v-html="detailDialog.data.content" style="padding: 10px; background: #f8f9fa; border-radius: 4px; margin-bottom: 20px; overflow-x: auto;"></div>
+    <el-dialog title="日计划执行详情与过程跟踪" :visible.sync="detailDialog.show" width="1200px" top="5vh" append-to-body>
+      <div v-loading="detailDialog.loading" v-if="detailDialog.data"
+        style="max-height: 75vh; overflow-y: auto; overflow-x: hidden; padding-right: 10px;">
 
-        <h3 style="margin-bottom: 15px;">流转记录</h3>
-        <div v-if="!detailDialog.feedbacks || detailDialog.feedbacks.length === 0" style="color: #999; text-align: center; margin: 20px 0;">该计划暂无反馈跟踪记录</div>
-        <el-timeline v-else>
-          <!-- 循环 feedbacks -->
+        <!-- 进度条可视化区域 -->
+        <div
+          style="margin-bottom: 25px; padding: 25px 20px; background: #fff; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+          <el-steps
+            :active="detailDialog.data.status === 0 ? 1 : (detailDialog.data.status === 1 ? 2 : (detailDialog.data.status === 2 ? 4 : 2))"
+            align-center :process-status="(detailDialog.data.status === 3 || detailDialog.data.status === 4 || detailDialog.data.status === 5) ? 'error' : 'process'">
+            <el-step title="计划下达" description="创建并指派执行人"></el-step>
+            <el-step title="执行提交" description="执行人提交作业佐证"></el-step>
+            <el-step title="主管验收" :description="detailDialog.data.status === 3 ? '验收被驳回' : '审核提交材料'"></el-step>
+            <el-step title="结案闭环" description="任务已达标归档"></el-step>
+          </el-steps>
+        </div>
+
+        <h3 style="margin-bottom: 15px; color: #1f2937; border-left: 4px solid #3b82f6; padding-left: 10px;">基本信息</h3>
+        <div
+          style="background: #f3f4f6; border-radius: 8px; padding: 15px 20px 5px 20px; margin-bottom: 20px; font-size: 14px; color: #374151;">
+          <el-row :gutter="20">
+            <el-col :span="24" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">计划标题:</span>
+              <span style="font-weight: bold; font-size: 16px; color: #111827;">{{ detailDialog.data.title }}</span>
+            </el-col>
+            <el-col :span="12" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">当前状态:</span>
+              <el-tag size="mini"
+                :type="detailDialog.data.status === 0 ? 'info' : (detailDialog.data.status === 1 ? 'warning' : (detailDialog.data.status === 2 ? 'success' : 'danger'))">
+                {{ detailDialog.data.status === 0 ? '执行中' : (detailDialog.data.status === 1 ? '已提交' :
+                  (detailDialog.data.status === 2 ? '已完成' : (detailDialog.data.status === 3 ? '未达标' : '已逾期'))) }}
+              </el-tag>
+            </el-col>
+            <el-col :span="12" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">下达人:</span>
+              <span style="color: #111827;">{{ (detailDialog.data.issuer_info && detailDialog.data.issuer_info[0]) ?
+                (detailDialog.data.issuer_info[0].real_name || detailDialog.data.issuer_info[0].nickname ||
+                  detailDialog.data.issuer_info[0].username) : '管理员' }}</span>
+            </el-col>
+            <el-col :span="12" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">下达时间:</span>
+              <span style="color: #111827;">{{ detailDialog.data._add_time ? vk.pubfn.timeFormat(detailDialog.data._add_time, 'yyyy-MM-dd hh:mm:ss') : '' }}</span>
+            </el-col>
+            <el-col :span="12" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">完成时限:</span>
+              <span style="color: #111827;">{{ detailDialog.data.deadline_time ?
+                vk.pubfn.timeFormat(detailDialog.data.deadline_time,
+                  'yyyy-MM-dd hh:mm:ss') : '无限制' }}</span>
+            </el-col>
+            <el-col :span="12" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">归属区域:</span>
+              <span style="color: #111827;">{{ (detailDialog.data.area_info && detailDialog.data.area_info[0]) ? detailDialog.data.area_info[0].name : '全部区域' }}</span>
+            </el-col>
+            <el-col :span="12" style="margin-bottom: 10px;">
+              <span style="color: #6b7280; margin-right: 8px;">执行部门:</span>
+              <span style="color: #111827;">{{ (detailDialog.data.dept_info && detailDialog.data.dept_info[0]) ? detailDialog.data.dept_info[0].name : '未设置' }}</span>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div
+          style="margin-bottom: 30px; padding: 20px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <div
+            style="margin-bottom: 12px; font-weight: bold; color: #4b5563; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">
+            任务标准及要求：</div>
+          <div v-html="detailDialog.data.content || '暂无内容'" class="rich-text-content"
+            style="line-height: 1.8; color: #374151; overflow: hidden; width: 100%;"></div>
+        </div>
+
+        <div style="font-weight: bold; margin-bottom: 20px; color: #4b5563; font-size: 16px;">处理时间轴：</div>
+        <el-timeline>
+          <!-- 兼容历史数据兜底首条 -->
           <el-timeline-item
-            v-for="(fb, idx) in detailDialog.feedbacks"
-            :key="idx"
-            :timestamp="vk.pubfn.timeFormat(fb.time)"
-            :type="fb.type === 'audit' && fb.audit_result === 'reject' ? 'danger' : 'primary'"
-          >
-            <p v-if="fb.type === 'submit'">
-              <strong>{{ fb.user ? fb.user.real_name : '执行反馈提交' }}:</strong><br>
-              <span v-html="fb.content" style="display: block; margin-top: 10px;"></span>
-            </p>
-            <p v-else-if="fb.type === 'audit'">
-              <strong>主管批示 ({{ fb.audit_result === 'pass' ? '通过' : '驳回' }}):</strong><br>
-              <span v-html="fb.content" style="display: block; margin-top: 10px; color: #E6A23C;" v-if="fb.content"></span>
-              <span v-else style="color: #999;">（无附加说明）</span>
-            </p>
-            <p v-else>
-              <strong>变更:</strong> {{ fb.type }}
-            </p>
+            v-if="!detailDialog.feedbacks.some(fb => fb.type === 'create' || (fb.content && fb.content.includes('计划已下达')))"
+            :timestamp="detailDialog.data._add_time ? vk.pubfn.timeFormat(detailDialog.data._add_time, 'yyyy-MM-dd hh:mm:ss') : ''" placement="top"
+            type="primary">
+            <div style="display: flex; align-items: flex-start; gap: 10px;">
+              <el-avatar :size="32"
+                :src="(detailDialog.data.issuer_info && detailDialog.data.issuer_info[0]) ? detailDialog.data.issuer_info[0].avatar : ''"
+                icon="el-icon-user-solid"></el-avatar>
+              <div style="flex: 1;">
+                <p style="margin: 0;"><strong>{{ (detailDialog.data.issuer_info && detailDialog.data.issuer_info[0]) ?
+                  (detailDialog.data.issuer_info[0].real_name || detailDialog.data.issuer_info[0].nickname ||
+                  detailDialog.data.issuer_info[0].username) : '管理员' }}:</strong></p>
+                <div style="margin-top: 8px; padding: 12px; background: #f3f4f6; border-radius: 6px; color: #374151;">
+                  日计划已下达，状态变为：执行中
+                </div>
+              </div>
+            </div>
+          </el-timeline-item>
+
+          <el-timeline-item v-for="(fb, idx) in detailDialog.feedbacks" :key="idx"
+            :timestamp="vk.pubfn.timeFormat(fb.time, 'yyyy-MM-dd hh:mm:ss')"
+            :type="fb.type === 'audit' && fb.audit_result === 'reject' ? 'danger' : (fb.type === 'audit' ? 'success' : 'primary')">
+            <div style="display: flex; align-items: flex-start; gap: 10px;">
+              <el-avatar :size="32" :src="fb.avatar" icon="el-icon-user-solid"></el-avatar>
+              <div style="flex: 1;">
+                <p style="margin: 0; display: flex; align-items: center; justify-content: space-between;">
+                  <strong>{{ fb.nickname || '执行人员' }}</strong>
+                  <el-tag size="mini" :type="fb.type === 'audit' && fb.audit_result === 'reject' ? 'danger' : (fb.type === 'audit' ? 'success' : 'info')">
+                    {{ fb.type === 'audit' ? (fb.audit_result === 'pass' ? '主管审核通过' : '主管打回整改') : '执行人员提交' }}
+                  </el-tag>
+                </p>
+                <div
+                  class="rich-text-content"
+                  style="margin-top: 8px; padding: 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #f1f5f9; color: #334155;">
+                  <div v-html="fb.content || '（无附加文字说明）'" style="line-height: 1.6; font-size: 14px;"></div>
+                  
+                  <div v-if="fb.images && fb.images.length > 0" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+                    <el-image 
+                      v-for="(img, i) in fb.images" 
+                      :key="i"
+                      style="width: 80px; height: 80px; border-radius: 4px; border: 1px solid #e2e8f0;"
+                      :src="img" 
+                      :preview-src-list="fb.images"
+                      fit="cover">
+                    </el-image>
+                  </div>
+                </div>
+              </div>
+            </div>
           </el-timeline-item>
         </el-timeline>
+
       </div>
     </el-dialog>
     <!-- 自定义计划执行详情弹窗结束 -->
@@ -244,8 +331,8 @@ export default {
                 placeholder: "展开面板搜索系统职工",
                 multiple: true, // 支持指派多人
                 action: "admin/plan/sys/getAssigneeList", // 调用同组筛选专属云函数
-                searchColumns: [
-                     { key: "department_id", title: "选择小组", type: "cascader", action: "admin/base-dept/sys/getTree", props: { value: "_id", label: "name", children: "children", checkStrictly: true } },
+                queryColumns: [
+                     { key: "tree_node_id", title: "选择部门/小组", type: "cascader", action: "admin/base-dept/sys/getTree", props: { value: "_id", label: "name", children: "children", checkStrictly: true, emitPath: false } },
                      { key: "real_name", title: "姓名", type: "text", mode: "%%" }
                 ],
                 columns: [
@@ -358,9 +445,9 @@ export default {
       that.detailDialog.show = true;
       that.detailDialog.loading = true;
       
-      // 可以直接复用 C端的 getDetail 接口获取最新的带有用户名回写的复合反馈结构
+      // 调用专属 Admin 端的 getDetail 接口获取详情
       vk.callFunction({
-        url: "client/plan/sys/getDetail",
+        url: "admin/plan/sys/getDetail",
         data: { plan_id: item._id },
         success: (res) => {
           that.detailDialog.data = res.item || item;
@@ -420,5 +507,12 @@ export default {
 <style lang="scss" scoped>
 .page-body {
   padding: 20rpx;
+}
+
+/* 限制富文本内部图片宽度，防止被撑爆 */
+::v-deep .rich-text-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 </style>

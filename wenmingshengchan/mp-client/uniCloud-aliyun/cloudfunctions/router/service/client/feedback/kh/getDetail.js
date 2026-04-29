@@ -7,7 +7,7 @@ module.exports = {
 	main: async (event) => {
 		let { data = {}, userInfo, util, originalParam } = event;
 		let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-		let { uid } = userInfo;
+		let uid = userInfo ? userInfo._id : null;
 		let res = { code: 0, msg: "" };
 
 		let { _id } = data;
@@ -15,9 +15,9 @@ module.exports = {
 
 		// 业务逻辑开始-----------------------------------------------------------
 
-		let selectRes = await vk.baseDao.findById({
+		let selectRes = await vk.baseDao.selects({
 			dbName: "key-point-feedback",
-			id: _id,
+			whereJson: { _id: _id },
 			foreignDB: [
 				{
 					dbName: "base-point",
@@ -41,6 +41,13 @@ module.exports = {
 					limit: 1
 				},
 				{
+					dbName: "base-dept",
+					localKey: "dept_id",
+					foreignKey: "_id",
+					as: "dept_info",
+					limit: 1
+				},
+				{
 					dbName: "uni-id-users",
 					localKey: "submit_uid",
 					foreignKey: "_id",
@@ -57,7 +64,7 @@ module.exports = {
 			]
 		});
 
-		res.data = selectRes;
+		res.data = selectRes.rows && selectRes.rows.length > 0 ? selectRes.rows[0] : null;
 		// 业务逻辑结束-----------------------------------------------------------
 		return res;
 	}

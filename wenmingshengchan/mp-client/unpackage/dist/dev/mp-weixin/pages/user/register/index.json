@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
     "u-select": "/uni_modules/vk-uview-ui/components/u-select/u-select"
   }
 }

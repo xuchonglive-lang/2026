@@ -10,7 +10,7 @@
   - `status: 1` (已反馈)
   - `status: 2` (已逾期)
 - **惰性感知更新 (Lazy Status Update)**:
-  - C端 (`getTodoList`, `getHistoryList`) 和 B端 (`getFeedbackList`) 在查询时，云函数基于单据属性和当前时间，动态判断是否已过“每班结束后2小时内”的窗口期。如果已过，返回数据时将 `status` 动态伪装/替换为 `2`。
+  - C端 (`getTodoList`, `getHistoryList`) 和 B端 (`getFeedbackList`) 在查询时，云函数基于单据属性和当前时间，动态判断未逾期的记录是否已过“每班结束后2小时内”的窗口期。如果已过，返回数据时将 `status` 动态更新为 `2`。
   - 配置独立的兜底定时脚本（如每日凌晨），将数据库中遗留过期且未反馈的 `status: 0` 物理更新为 `status: 2`。
 - **并发控制机制 (抢答)**:
   - C端提交反馈时，完全弃用“先查后改”，严格执行无锁抢答：`await vk.baseDao.update({ where: { _id: id, status: 0 }, data: { status: 1, ... } })`。

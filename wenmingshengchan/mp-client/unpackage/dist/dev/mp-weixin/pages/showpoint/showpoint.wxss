@@ -1,0 +1,317 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.page-container.data-v-48a92024 {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+  padding-bottom: 60rpx;
+}
+.industrial-grid.data-v-48a92024 {
+  background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+  background-size: 40rpx 40rpx;
+}
+.main-content.data-v-48a92024 {
+  padding: 32rpx;
+}
+.tabs-container.data-v-48a92024 {
+  margin-bottom: 32rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8rpx 24rpx rgba(0, 80, 203, 0.05);
+  overflow: hidden;
+}
+/* Glass Panel */
+.glass-panel.data-v-48a92024 {
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+  border-radius: 24rpx;
+}
+/* Controls Card */
+.controls-card.data-v-48a92024 {
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-bottom: 48rpx;
+}
+.control-row.data-v-48a92024 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rpx 0;
+}
+.control-row .label.data-v-48a92024 {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #191c1e;
+  white-space: nowrap;
+}
+.control-row .flex-1.data-v-48a92024 {
+  flex: 1;
+  margin-left: 32rpx;
+}
+.control-box.data-v-48a92024 {
+  display: flex;
+  align-items: center;
+  background-color: #e0e3e5;
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  border: 1px solid rgba(194, 198, 216, 0.3);
+}
+.control-box .flex.data-v-48a92024 {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.control-box .icon-primary.data-v-48a92024 {
+  font-size: 32rpx;
+  color: #0050cb;
+}
+.control-box .value-text.data-v-48a92024 {
+  font-size: 24rpx;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #191c1e;
+  font-family: "Manrope", sans-serif;
+}
+.control-box .icon-secondary.data-v-48a92024 {
+  font-size: 32rpx;
+  color: #424656;
+}
+/* Shift Toggle */
+.shift-toggle.data-v-48a92024 {
+  display: flex;
+  background-color: #f2f4f6;
+  padding: 8rpx;
+  border-radius: 8rpx;
+  border: 1px solid rgba(194, 198, 216, 0.2);
+}
+.shift-toggle .toggle-btn.data-v-48a92024 {
+  flex: 1;
+  text-align: center;
+  padding: 8rpx 0;
+  font-size: 22rpx;
+  border-radius: 8rpx;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.shift-toggle .toggle-btn.active.data-v-48a92024 {
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0050cb;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+.shift-toggle .toggle-btn.inactive.data-v-48a92024 {
+  font-weight: 500;
+  color: #424656;
+}
+/* View Mode Toggle */
+.view-mode-toggle.data-v-48a92024 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16rpx;
+}
+.view-mode-toggle .mode-btn.data-v-48a92024 {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.view-mode-toggle .mode-btn.active.data-v-48a92024 {
+  background-color: #ffffff;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 80, 203, 0.2);
+  color: #0050cb;
+}
+.view-mode-toggle .mode-btn.active text.data-v-48a92024 {
+  font-size: 22rpx;
+  font-weight: 700;
+}
+.view-mode-toggle .mode-btn.active .material-symbols-outlined.data-v-48a92024 {
+  font-size: 35rpx;
+}
+.view-mode-toggle .mode-btn.inactive.data-v-48a92024 {
+  color: #424656;
+}
+.view-mode-toggle .mode-btn.inactive text.data-v-48a92024 {
+  font-size: 22rpx;
+  font-weight: 500;
+}
+.view-mode-toggle .mode-btn.inactive .material-symbols-outlined.data-v-48a92024 {
+  font-size: 35rpx;
+}
+/* Action Row */
+.action-row.data-v-48a92024 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24rpx;
+  margin-top: 16rpx;
+  padding-top: 24rpx;
+  border-top: 1px dashed rgba(194, 198, 216, 0.4);
+}
+.action-btn.data-v-48a92024 {
+  margin: 0;
+  padding: 0 48rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.action-btn.data-v-48a92024::after {
+  border: none;
+}
+.action-btn.btn-clear.data-v-48a92024 {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #424656;
+  border: 1px solid rgba(194, 198, 216, 0.6);
+}
+.action-btn.btn-query.data-v-48a92024 {
+  background-color: #0050cb;
+  color: #ffffff;
+  box-shadow: 0 4rpx 12rpx rgba(0, 80, 203, 0.3);
+}
+.action-btn.data-v-48a92024:active {
+  -webkit-transform: scale(0.96);
+          transform: scale(0.96);
+  opacity: 0.8;
+}
+/* Photo Section */
+.photo-section.data-v-48a92024 {
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+}
+.area-group.data-v-48a92024 {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+.area-title.data-v-48a92024 {
+  font-family: "Manrope", sans-serif;
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #191c1e;
+  border-bottom: 4rpx solid rgba(0, 80, 203, 0.3);
+  padding-bottom: 16rpx;
+  display: inline-block;
+  align-self: flex-start;
+}
+.point-card.data-v-48a92024 {
+  background-color: #f2f4f6;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+.mt-4.data-v-48a92024 {
+  margin-top: 32rpx;
+}
+.point-header.data-v-48a92024 {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.point-header .icon-fill.data-v-48a92024 {
+  font-size: 40rpx;
+  color: #0050cb;
+  font-variation-settings: "FILL" 1;
+}
+.point-header .point-name.data-v-48a92024 {
+  font-family: "Inter", sans-serif;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0050cb;
+}
+/* Photo Grid */
+.photo-grid-3.data-v-48a92024 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24rpx;
+}
+.photo-item.data-v-48a92024 {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.photo-item .photo-wrapper.data-v-48a92024 {
+  aspect-ratio: 1/1;
+  border-radius: 24rpx;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8rpx 24rpx rgba(0, 80, 203, 0.05);
+  position: relative;
+}
+.photo-item .photo-wrapper image.data-v-48a92024 {
+  width: 100%;
+  height: 100%;
+}
+.photo-item .photo-wrapper-full.data-v-48a92024 {
+  width: 100%;
+  height: 384rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8rpx 24rpx rgba(0, 80, 203, 0.05);
+  position: relative;
+}
+.photo-item .photo-wrapper-full image.data-v-48a92024 {
+  width: 100%;
+  height: 100%;
+}
+.photo-item .photo-meta.data-v-48a92024 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+  margin-top: 8rpx;
+}
+.photo-item .photo-meta .meta-title.data-v-48a92024 {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #0050cb;
+  text-align: center;
+}
+.photo-item .photo-meta .meta-time.data-v-48a92024 {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #424656;
+  letter-spacing: 0.05em;
+}
+.icon-fill.data-v-48a92024 {
+  font-variation-settings: "FILL" 1;
+}

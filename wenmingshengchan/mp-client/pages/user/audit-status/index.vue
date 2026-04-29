@@ -1,5 +1,11 @@
 <template>
   <view class="page-audit">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">审核状态</block>
+    </cu-custom>
+    
+    
     <!-- Industrial Grid Background -->
     <view class="grid-floor"></view>
 

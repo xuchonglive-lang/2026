@@ -101,8 +101,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    cuCustom: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/cu-custom/components/cu-custom/cu-custom */ "uni_modules/cu-custom/components/cu-custom/cu-custom").then(__webpack_require__.bind(null, /*! @/uni_modules/cu-custom/components/cu-custom/cu-custom.vue */ 464))
+    },
     uSelect: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 457))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 471))
     },
   }
 } catch (e) {
@@ -168,6 +171,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -324,9 +333,15 @@ var _default = {
     onDeptConfirm: function onDeptConfirm(e) {
       if (!e || e.length === 0) return;
       var lastNode = e[e.length - 1];
-      if (lastNode && lastNode.value) {
-        this.formData.department_id = lastNode.value;
-        this.formData.department_name = e.map(function (item) {
+      if (lastNode && lastNode.value !== undefined) {
+        // 过滤空值（例如“无分组”等补齐用的假节点）
+        var validNodes = e.filter(function (item) {
+          return item.value;
+        });
+        this.formData.department_id = validNodes.map(function (item) {
+          return item.value;
+        });
+        this.formData.department_name = validNodes.map(function (item) {
           return item.label;
         }).join(' - ');
       } else {

@@ -1,18 +1,22 @@
 <template>
   <view class="page-body">
-    <!-- 仅显示列表查询，本模块一般不支持自定义添加和删除，底层预埋了白班/夜班 -->
-    
+    <view>
+      <el-row class="vk-table-button-box">
+        <el-button type="success" size="small" icon="el-icon-circle-plus-outline" @click="addBtn">新增班次配置</el-button>
+      </el-row>
+    </view>
     <vk-data-table
       ref="table1"
       size="small"
       :action="table1.action"
       :columns="table1.columns"
       :query-form-param="queryForm1"
-      :right-btns="['update']"
+      :right-btns="['update', 'delete']"
       :selection="false"
       :row-no="true"
       :pagination="true"
       @update="updateBtn"
+      @delete="deleteBtn"
     ></vk-data-table>
 
     <!-- 编辑卡点时间的弹窗 -->
@@ -53,50 +57,61 @@ export default {
         columns: []
       },
       table1: {
-        // 由于没有针对这个表的独立 getList，但是其查询极为简单，这里临时利用基底查询。
-        // （或者也可以手写，不过通常使用 vk.baseDao.selects 相关的自带通用口）
-        // 若没有，暂时填一个通用路由请求。假设有 client 通用查询，这里填云函数的直连
-        action: "admin/feedback/cron/setCronConfig", // 此为 update，列表我们依靠前端直查
+        action: "admin/feedback/sys/getCronConfigList",
         columns: [
           { key: "_id", title: "配置索引", type: "text", width: 220 },
           { key: "shift_type", title: "班次类型", type: "text", width: 150 },
           { key: "trigger_time", title: "每日触发卡点(HH:mm)", type: "text", width: 200 },
+          { key: "feedback_start", title: "反馈开始时间", type: "text", width: 150 },
+          { key: "feedback_end", title: "反馈截止时间", type: "text", width: 150 },
           { key: "update_time", title: "最近调整时间", type: "time", width: 200, valueFormat: "yyyy-MM-dd hh:mm:ss" }
-        ],
-        // 因这是一个特殊的设置表，我们重写其 action 加载方式
-        action: (obj = {}) => {
-            let { success, fail, complete } = obj;
-            // 直接透传到底层抓取数据
-            vk.callFunction({
-                url: 'client/plugs/kh/getWeixinInfo', // 这里仅作示例，应当调用专门的查询功能
-                name: 'vk-fun',
-                data: {
-                  action: "selects",
-                  dbName: "key-point-cron-config"
-                },
-                success: (res) => {
-					//由于防死亡转圈机制，严格遵守这里的回调！
-					if (typeof success === "function") success({ rows: res.rows || [], total: res.rows ? res.rows.length : 0 });
-                },
-                fail: (err) => {
-                    if (typeof fail === "function") fail(err);
-                },
-                complete: () => {
-                    if (typeof complete === "function") complete();
-                }
-            });
-        }
+        ]
       },
       form1: {
         data: {},
         props: {
-          action: "admin/feedback/cron/setCronConfig",
+          action: "admin/feedback/sys/updateCronConfig",
           columns: [
-            { key: "shift_type", title: "班次", type: "text", disabled: true },
-            { key: "trigger_time", title: "派发时点", type: "text", placeholder: "格式: HH:mm" }
+            { 
+              key: "shift_type", 
+              title: "班次", 
+              type: "select", 
+              data: [
+                { value: "day", label: "白班 (day)" },
+                { value: "night", label: "夜班 (night)" }
+              ],
+              placeholder: "请选择班次"
+            },
+            { 
+              key: "trigger_time", 
+              title: "派发时点", 
+              type: "time", 
+              format: "HH:mm",
+              valueFormat: "HH:mm",
+              placeholder: "请选择派发时点" 
+            },
+            { 
+              key: "feedback_start", 
+              title: "反馈开始时间", 
+              type: "time", 
+              format: "HH:mm",
+              valueFormat: "HH:mm",
+              placeholder: "请选择开始时间" 
+            },
+            { 
+              key: "feedback_end", 
+              title: "反馈截止时间", 
+              type: "time", 
+              format: "HH:mm",
+              valueFormat: "HH:mm",
+              placeholder: "请选择截止时间" 
+            }
           ],
           rules: {
-            trigger_time: [{ required: true, message: "时点不能为空", trigger: "blur" }]
+            shift_type: [{ required: true, message: "请选择班次", trigger: "change" }],
+            trigger_time: [{ required: true, message: "时点不能为空", trigger: "change" }],
+            feedback_start: [{ required: true, message: "开始时间不能为空", trigger: "change" }],
+            feedback_end: [{ required: true, message: "截止时间不能为空", trigger: "change" }]
           },
           formType: "update",
           show: false,
@@ -120,10 +135,31 @@ export default {
     refresh() {
       that.$refs.table1.refresh();
     },
+    addBtn() {
+      that.resetForm();
+      that.form1.props.action = "admin/feedback/sys/addCronConfig"; 
+      that.form1.props.formType = "add";
+      that.form1.props.title = "新增自动派发时点";
+      // 对于新增，我们允许输入班次标识
+      that.form1.props.columns[0].disabled = false;
+      that.form1.props.show = true;
+    },
     updateBtn({ item }) {
       // 打开弹窗前硬注入防穿透
+      that.form1.props.action = "admin/feedback/sys/updateCronConfig";
+      that.form1.props.formType = "update";
+      that.form1.props.title = "调整自动派发时点";
       that.form1.data = vk.pubfn.copyObject(item);
+      // 编辑时禁用班次标识的修改
+      that.form1.props.columns[0].disabled = true;
       that.form1.props.show = true;
+    },
+    deleteBtn({ item }) {
+      vk.callFunction({
+          url: "admin/feedback/sys/deleteCronConfig",
+          data: { _id: item._id },
+          success: (res) => { that.refresh(); vk.toast("删除成功"); }
+      });
     }
   }
 };

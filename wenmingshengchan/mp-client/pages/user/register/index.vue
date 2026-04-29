@@ -1,5 +1,11 @@
 <template>
   <view class="page-register">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">注册</block>
+    </cu-custom>
+    
+    
     <!-- Industrial Grid Background -->
     <view class="grid-floor"></view>
 
@@ -126,9 +132,11 @@ export default {
     onDeptConfirm(e) {
       if (!e || e.length === 0) return;
       let lastNode = e[e.length - 1];
-      if (lastNode && lastNode.value) {
-        this.formData.department_id = lastNode.value;
-        this.formData.department_name = e.map(item => item.label).join(' - ');
+      if (lastNode && lastNode.value !== undefined) {
+        // 过滤空值（例如“无分组”等补齐用的假节点）
+        let validNodes = e.filter(item => item.value);
+        this.formData.department_id = validNodes.map(item => item.value);
+        this.formData.department_name = validNodes.map(item => item.label).join(' - ');
       } else {
         uni.showToast({ title: '层级选择异常', icon: 'none' });
       }

@@ -1,11 +1,13 @@
 {
   "bsonType": "object",
-  "required": ["shift_type", "trigger_time"],
+  "required": ["shift_type", "trigger_time", "feedback_start", "feedback_end"],
   "permission": { "read": "true", "create": "false", "update": "false", "delete": "false" },
   "properties": {
     "_id": { "description": "ID，系统自动生成" },
     "shift_type": { "bsonType": "string", "description": "day (白班) 或 night (夜班)" },
     "trigger_time": { "bsonType": "string", "description": "设定的触发卡点，如 07:30 或 19:30" },
+    "feedback_start": { "bsonType": "string", "description": "反馈窗口开始时间(HH:mm)" },
+    "feedback_end": { "bsonType": "string", "description": "反馈窗口结束时间(HH:mm)" },
     "updator_uid": { "bsonType": "string", "description": "最后做此设置修改的管理员ID" },
     "update_time": { "bsonType": "timestamp", "description": "设置留档时间戳" }
   }

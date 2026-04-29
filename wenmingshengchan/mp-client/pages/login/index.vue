@@ -1,5 +1,7 @@
 <template>
   <view class="precision-page min-h-screen relative overflow-hidden flex items-center justify-center p-6">
+
+    
     <!-- Level 0 (Floor): Grid Texture Background -->
     <view class="absolute inset-0 z-0 industrial-grid pointer-events-none"></view>
     

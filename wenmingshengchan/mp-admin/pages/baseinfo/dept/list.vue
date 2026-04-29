@@ -26,35 +26,45 @@
         <el-card shadow="never" style="min-height: calc(100vh - 100px);">
           <template v-if="selectedDept">
             <div slot="header" style="display: flex; justify-content: space-between; align-items: center;">
-              <span>【{{ selectedDept.name }}】 下属小组管理</span>
-              <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteDeptBtn">删除当前部门</el-button>
+              <span>【{{ selectedDept.name }}】 {{ selectedDept._id === '' ? '下属部门管理' : '下属小组管理' }}</span>
+              <el-button v-if="selectedDept._id !== ''" type="danger" size="mini" icon="el-icon-delete" @click="deleteDeptBtn">删除当前节点</el-button>
             </div>
             
-            <!-- 表格搜索组件 -->
-            <vk-data-table-query
-              v-model="queryForm1.formData"
-              :columns="queryForm1.columns"
-              @search="search"
-            ></vk-data-table-query>
+            <!-- 如果是第二级（小组层级，存在非空的 parent_id），则不允许往下添加 -->
+            <template v-if="selectedDept.parent_id">
+              <div style="text-align: center; color: #999; margin-top: 100px;">
+                <i class="el-icon-warning-outline" style="font-size: 48px; color: #E6A23C;"></i>
+                <p style="margin-top: 10px;">当前为第二层级（小组），系统强制限制最多两级架构，不可继续添加下属层级。</p>
+              </div>
+            </template>
+            <!-- 根节点或一级部门 -->
+            <template v-else>
+              <!-- 表格搜索组件 -->
+              <vk-data-table-query
+                v-model="queryForm1.formData"
+                :columns="queryForm1.columns"
+                @search="search"
+              ></vk-data-table-query>
 
-            <!-- 按钮区域 -->
-            <view class="vk-table-button-box">
-              <el-button type="primary" size="small" icon="el-icon-plus" @click="addGroupBtn">新增属下小组</el-button>
-            </view>
+              <!-- 按钮区域 -->
+              <view class="vk-table-button-box">
+                <el-button type="primary" size="small" icon="el-icon-plus" @click="addGroupBtn">{{ selectedDept._id === '' ? '新增部门' : '新增下属小组' }}</el-button>
+              </view>
 
-            <!-- 表格组件 -->
-            <vk-data-table
-              ref="table1"
-              :action="table1.action"
-              :columns="table1.columns"
-              :query-form-param="queryForm1"
-              :right-btns="['detail_auto', 'update', 'delete']"
-              :selection="true"
-              :row-no="true"
-              :pagination="true"
-              @update="updateBtn"
-              @delete="deleteBtn"
-            ></vk-data-table>
+              <!-- 表格组件 -->
+              <vk-data-table
+                ref="table1"
+                :action="table1.action"
+                :columns="table1.columns"
+                :query-form-param="queryForm1"
+                :right-btns="['detail_auto', 'update', 'delete']"
+                :selection="true"
+                :row-no="true"
+                :pagination="true"
+                @update="updateBtn"
+                @delete="deleteBtn"
+              ></vk-data-table>
+            </template>
           </template>
           
           <template v-else>
@@ -225,11 +235,11 @@ export default {
       that.form1.props.show = true;
     },
     addGroupBtn() {
-      // 在右侧点新增，属于向选中节点添加小组
+      // 在右侧点新增，属于向选中节点添加节点
       vk.pubfn.resetForm(originalForms, that);
       that.form1.props.action = "admin/base-dept/sys/add";
       that.form1.props.formType = "add";
-      that.form1.props.title = "新增下属小组";
+      that.form1.props.title = (that.selectedDept && that.selectedDept._id === '') ? "新增部门" : "新增下属小组";
       if (that.selectedDept) {
         that.form1.data.parent_id = that.selectedDept._id;
       }

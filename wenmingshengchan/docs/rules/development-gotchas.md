@@ -2,6 +2,26 @@
 
 本指南总结了在开发“文明生产管理系统” B端基础数据模块时遇到的核心坑点及完整解决方案。本项目的后续开发**必须**将此文件作为红线校验单，以防同类错误阻碍研发流程。
 
+## 0. 最高危安全红线 (Critical Security Gotchas)
+
+### 0.1 【最高危漏洞】`userInfo` 错误解构导致 MongoDB 鉴权穿透（越权全表扫描）
+*   **现象**：非某点位的责任人（或无关账号）登录系统后，却能越权查看到全公司所有人名下的反馈记录或待办工单。
+*   **产生原因**：
+    1. 开发者习惯性地使用了 `let { uid } = userInfo;`。但 `uni-id` 和 `vk-unicloud-router` 框架下 `userInfo` 的用户主键是 `_id`，因此取出的 `uid` 实际上是 `undefined`。
+    2. 当拿着这个 `undefined` 去进行云数据库查询时（例如 `whereJson: { assignee_ids: uid }`），**MongoDB 的原生解析器会直接忽略/丢弃值为 `undefined` 的查询键**。
+    3. 于是数据权限围栏瞬间土崩瓦解（`assignee_ids` 过滤条件失效），数据库直接放行执行全表扫描，造成极其严重的数据越权泄露！
+*   **正解**：
+    永远不要单方面解构 `uid`！在一切需要将 `uid` 作为数据隔离与越权防御过滤条件的地方，**必须**使用以下标准写法进行提取，并在数据库调用前进行判空拦截：
+    ```javascript
+    // 规范提取
+    let uid = userInfo ? userInfo._id : null;
+    
+    // 【防线】如果该参数是查询/更新的核心凭证，必须阻断！绝不能把空值放给数据库
+    if (!uid) return { code: 403, msg: "安全阻断：无法提取有效的用户身份标识" };
+    ```
+
+---
+
 ## 1. 视图层渲染与生命周期陷阱
 
 ### 1.1 `vk-data-table` 缺失 action 导致前端白屏死锁
@@ -61,6 +81,15 @@
     let { vk, db, _ } = util; // "_" 就是 db.command 的简写
     // 后续业务直接拿 _ 通行
     whereJson: { is_del: _.neq(1) }
+    ```
+
+### 2.5 云函数获取当前用户 ID 的致命陷阱 (userInfo.uid vs userInfo._id)
+*   **现象**：在云函数中执行新增操作时，业务代码似乎正常写入了操作人字段（如 `operate_uid`），但随后在详情页或列表中发现该字段丢失，导致关联查询（`foreignDB`）无法匹配到用户信息，界面显示兜底内容（如“系统”）。
+*   **产生原因**：开发者习惯性地解构 `let { uid } = userInfo;` 来获取当前登录用户的 ID。但是在 uniCloud 和 VK 框架的底层标准中，用户表的真实主键字段名是 `_id`。这导致解构出来的 `uid` 实际上是 `undefined`（空值），从而把 `operate_uid: undefined` 传入了 `vk.baseDao.add`，被数据库底层驱动直接过滤未存入。
+*   **正解**：永远不要单方面只去解构 `uid`，必须严格采用如下标准后备方案进行用户 ID 的安全提取，以兼容多端登录及底层框架的差异：
+    ```javascript
+    let uid = userInfo._id || userInfo.uid || event.uid;
+    if (!uid) return { code: -1, msg: "系统内部错误：无法获取当前登录用户的uid" };
     ```
 
 ---

@@ -1,297 +1,236 @@
 <template>
-  <view class="page-container dot-bg pb-32">
-    <!-- Section: 日计划内容 -->
-    <view class="px-5 pt-12 mb-8">
-      <view class="section-header mb-6">
-        <text class="section-title">日计划内容</text>
-      </view>
-
-      <view class="card-panel p-5">
-        <view class="mb-6">
-          <text class="label-grey display-block mb-1" style="font-size: 26rpx; color: #64748b;">计划标题</text>
-          <text class="title-main display-block" style="font-size: 32rpx;">{{ planInfo.title || '加载中...' }}</text>
-        </view>
-
-        <view class="grid-2 gap-4 mb-6">
-          <view>
-            <text class="label-grey display-block mb-2">执行区域</text>
-            <view class="flex items-center gap-2">
-              <view class="flex center" style="width: 40rpx; height: 40rpx;">
-                <text class="material-symbols-outlined text-primary" style="font-size: 40rpx;">location_on</text>
-              </view>
-              <text class="info-text font-bold" style="font-size: 28rpx;">{{ (planInfo.area_info && planInfo.area_info.length > 0) ? planInfo.area_info[0].name : '全部区域' }}</text>
-            </view>
-          </view>
-          <view>
-            <text class="label-grey display-block mb-2">计划下达人</text>
-            <view class="flex items-center gap-2">
-              <image class="avatar-sm" :src="(planInfo.issuer_info && planInfo.issuer_info[0].avatar) ? planInfo.issuer_info[0].avatar : defaultAvatar" mode="aspectFill" style="width: 40rpx; height: 40rpx; border-radius: 50%;"></image>
-              <text class="info-text font-bold" style="font-size: 28rpx;">{{ (planInfo.issuer_info && planInfo.issuer_info.length > 0) ? planInfo.issuer_info[0].nickname : '管理员' }}</text>
-            </view>
-          </view>
-        </view>
-
-        <view class="mb-6">
-          <text class="label-grey display-block mb-3">详细要求</text>
-          <view class="content-text space-y-1">
-            <mp-html :content="planInfo.content || '无详细内容要求'" />
-          </view>
-        </view>
-
-        <view class="executor-box flex justify-between items-center p-3 pl-4">
-          <view class="flex items-center gap-3">
-            <view class="avatar-stack flex" v-if="planInfo.assignee_list && planInfo.assignee_list.length > 0">
-              <image class="avatar-md" :src="planInfo.assignee_list[0].avatar || defaultAvatar" mode="aspectFill"></image>
-              <view class="avatar-more-md flex center text-primary font-bold" v-if="planInfo.assignee_list.length > 1">
-                <text>+{{ planInfo.assignee_list.length - 1 }}</text>
-              </view>
-            </view>
-            <view>
-              <text class="label-grey display-block mb-1" style="font-size:20rpx">执行人</text>
-              <text class="info-text font-bold" v-if="planInfo.assignee_list && planInfo.assignee_list.length > 0">
-                {{ planInfo.assignee_list[0].nickname }} 等{{ planInfo.assignee_list.length }}人
-              </text>
-              <text class="info-text font-bold" v-else>待定</text>
-            </view>
-          </view>
-          <view class="status-btn flex center mr-1" :style="{ backgroundColor: getStatusColor(planInfo.status) }">
-            <text>{{ getStatusText(planInfo.status) }}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <!-- Section: 历史流转 (Timeline) -->
-    <view class="px-5 mb-8" v-if="planInfo.feedbacks && planInfo.feedbacks.length > 0">
-      <view class="section-header mb-6">
-        <text class="section-title">反馈与批示记录</text>
-      </view>
-
-      <view v-for="(item, index) in planInfo.feedbacks" :key="index" class="mb-6">
-        <!-- 劳工作业反馈 (Submit) -->
-        <view v-if="item.type === 'submit'" class="card-panel p-5">
-          <view class="flex justify-between items-center mb-4">
-            <view class="flex items-center gap-3">
-              <image class="avatar-md no-border" :src="item.avatar || defaultAvatar" mode="aspectFill"></image>
-              <text class="info-text font-bold">反馈人: {{ item.nickname }}</text>
-            </view>
-            <text class="time-text">{{ $fn.timeFormat(item.time, 'yyyy-MM-dd hh:mm') }}</text>
-          </view>
-
-          <view class="feedback-box p-4">
-            <mp-html :content="item.content || ''" />
-          </view>
-        </view>
-
-        <!-- 主管验收批示 (Audit) -->
-        <view v-if="item.type === 'audit'" class="card-panel p-5">
-          <view class="flex justify-between items-center mb-3">
-            <text class="info-text font-bold display-block">
-              {{ item.audit_result === 'pass' ? '验收通过批示' : '驳回整改批示' }}
-            </text>
-            <text class="time-text">{{ $fn.timeFormat(item.time, 'yyyy-MM-dd hh:mm') }}</text>
-          </view>
-          
-          <view class="feedback-box p-4" :style="item.audit_result === 'reject' ? 'background-color: #fef2f2;' : 'background-color: #f0fdf4;'">
-            <mp-html :content="item.content || ''" />
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <!-- Bottom Action Button -->
-    <view class="fixed bottom-0 left-0 w-full z-50 p-5 pb-safe action-footer" v-if="planInfo.status === 0">
-      <view class="primary-btn-lg flex center w-full" @click="handleExecute">
-        <text class="material-symbols-outlined mr-2" style="font-size:44rpx">task_alt</text>
-        <text>添加执行反馈</text>
-      </view>
-    </view>
+  <view class="page-container industrial-bg industrial-grid pb-32">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">计划反馈</block>
+    </cu-custom>
     
-    <view class="fixed bottom-0 left-0 w-full z-50 p-5 pb-safe action-footer" v-if="planInfo.status === 1">
-      <view class="primary-btn-lg flex center w-full" style="background-color: #f59e0b;" @click="handleAudit(planInfo)">
-        <text class="material-symbols-outlined mr-2" style="font-size:44rpx">fact_check</text>
-        <text>进行主管验收</text>
+    
+    <view class="main-content" v-if="planInfo">
+      <!-- 1. 页面标题 -->
+      <view class="header-row" style="align-items: flex-start;">
+        <view class="section-title-wrap" style="margin-left: 12rpx;">
+          <text class="page-title">日计划执行明细</text>
+          <text class="page-subtitle">DAILY PLAN DETAIL</text>
+        </view>
       </view>
+
+      <!-- 2. 日计划内容板块 -->
+      <view class="section">
+        <view class="section-header">
+          <text class="section-title font-headline font-extrabold heavy-underline">日计划内容</text>
+        </view>
+        <view class="glass-card standard-card">
+          <view class="title-wrap-ui4">
+            <view class="project-title-row">
+              <view class="title-slider-bar" style="height: 32rpx; margin-top: 8rpx; flex-shrink: 0;"></view>
+              <text class="project-id font-bold text-industrial-primary">标题：{{ planInfo.title || '加载中...' }}</text>
+              <u-tag :text="getStatusText(planInfo.status)" :type="getStatusTagType(planInfo.status)" mode="light"
+                shape="circle" size="mini" class="status-u-tag" />
+            </view>
+
+            <!-- 3. 执行区域、单位、下达人 -->
+            <view class="info-grid-row">
+              <view class="info-item">
+                <text class="label-grey display-block mb-1">执行区域</text>
+                <view class="flex items-center gap-1">
+                  <text class="material-symbols-outlined location-icon" style="font-size: 28rpx;">location_on</text>
+                  <text class="info-text font-bold">{{ (planInfo.area_info && planInfo.area_info.length > 0) ? planInfo.area_info[0].name : '全部区域' }}</text>
+                </view>
+              </view>
+              <view class="info-item">
+                <text class="label-grey display-block mb-1">计划下达单位</text>
+                <view class="flex items-center gap-1">
+                  <text class="material-symbols-outlined location-icon" style="font-size: 28rpx;">corporate_fare</text>
+                  <text class="info-text font-bold" style="color: #0066ff;">{{ (planInfo.dept_info && planInfo.dept_info.length > 0) ? planInfo.dept_info[0].name : '未设置单位' }}</text>
+                </view>
+              </view>
+              <view class="info-item">
+                <text class="label-grey display-block mb-1">计划下达人</text>
+                <view class="flex items-center gap-1">
+                  <image class="avatar-mini" :src="(planInfo.issuer_info && planInfo.issuer_info[0] && planInfo.issuer_info[0].avatar) ? planInfo.issuer_info[0].avatar : defaultAvatar" mode="aspectFill"></image>
+                  <text class="info-text font-bold">{{ getIssuerName(planInfo.issuer_info) }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="standard-desc">
+            <text class="label-grey display-block mb-2" style="font-size: 20rpx; font-weight: 800;">详细要求</text>
+            <view v-if="!planInfo.content" style="color: #94a3b8; font-size: 24rpx; padding: 20rpx 0;">暂无详细内容要求</view>
+            <mp-html v-else :content="planInfo.content"></mp-html>
+          </view>
+
+          <!-- 执行人堆叠 -->
+          <view class="roles-grid-ui4">
+            <view class="role-col-ui4">
+              <text class="role-label-ui4">执行人：</text>
+              <view class="role-value-row-ui4">
+                <view class="avatar-stack" v-if="planInfo.assignee_list && planInfo.assignee_list.length > 0">
+                  <image class="stack-avatar" v-for="(user, idx) in planInfo.assignee_list.slice(0, 3)" :key="idx"
+                    :src="user.avatar || defaultAvatar" mode="aspectFill"></image>
+                  <view class="stack-more" v-if="planInfo.assignee_list.length > 3">
+                    +{{ planInfo.assignee_list.length - 3 }}
+                  </view>
+                </view>
+                <view v-else class="default-avatar-ui4"></view>
+                <text class="role-text-ui4 assignee-names-truncate"
+                  :class="{ 'bold-text': planInfo.assignee_list && planInfo.assignee_list.length > 0 }">{{
+                    getAssigneeNames(planInfo.assignee_list) }}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 5. 反馈与批示记录 (时间轴) -->
+      <view class="section">
+        <view class="section-header">
+          <text class="section-title font-headline font-extrabold heavy-underline">反馈与批示记录</text>
+        </view>
+        <view class="timeline-container" v-if="planInfo.feedbacks && planInfo.feedbacks.length > 0">
+          <view class="timeline-track"></view>
+
+          <view class="timeline-item" v-for="(item, index) in planInfo.feedbacks" :key="index">
+            <view class="timeline-dot" :class="index === 0 ? 'active' : 'inactive'"></view>
+            <view class="glass-card feedback-card" :class="{ 'rejection-card': item.audit_result === 'reject' }">
+              <view class="feedback-header">
+                <view class="user-info">
+                  <image class="avatar-sm" :src="item.avatar || defaultAvatar"></image>
+                  <text class="username">{{ item.nickname }}</text>
+                  <text class="type-badge" :class="item.type === 'audit' ? (item.audit_result === 'pass' ? 'primary' : 'tertiary') : 'secondary'">{{ item.type === 'audit' ? (item.audit_result === 'pass' ? '验收通过' : '打回整改') : '进度反馈' }}</text>
+                </view>
+                <text class="time-stamp">{{ $fn.timeFormat(item.time, 'MM-dd hh:mm') }}</text>
+              </view>
+              <view :class="item.type === 'audit' ? 'feedback-content-box' : 'feedback-content-default'">
+                <view class="feedback-text" :class="{ 'rejection-text': item.audit_result === 'reject' }">
+                  <mp-html :content="item.content || ''"></mp-html>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view v-else class="glass-card p-5" style="text-align: center; border-radius: 24rpx;">
+          <text class="label-grey">暂无流转反馈记录</text>
+        </view>
+      </view>
+
+      <!-- 6. 底部缩小版按钮 -->
+      <view class="fab-bar bg-glass-blur" v-if="planInfo.status === 0 || planInfo.status === 1">
+        <view class="fab-container">
+          <view class="fab-btn-sm primary active-press" @click="handleExecute" v-if="planInfo.status === 0">
+            <text class="material-symbols-outlined" style="font-size: 32rpx;">task_alt</text>
+            <text>添加执行反馈</text>
+          </view>
+          <view class="fab-btn-sm warning active-press" @click="handleAudit" v-if="planInfo.status === 1">
+            <text class="material-symbols-outlined" style="font-size: 32rpx;">fact_check</text>
+            <text>进行主管验收</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Popups -->
+      <u-popup v-model="showFeedbackPopup" mode="bottom" border-radius="24" :closeable="true">
+        <view class="p-5" style="padding-bottom: 80rpx; min-height: 50vh;">
+          <view class="font-bold text-xl mb-4" style="color: #0f172a;">添加执行反馈</view>
+          <view class="editor-container mb-6">
+            <robin-editor ref="feedbackEditorRef" v-model="feedbackContent" :header="false" :height="270"
+              :muiltImage="true"
+              :tools="['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'remove', 'font', 'image', 'clear']"></robin-editor>
+          </view>
+          <view class="primary-btn-lg flex center w-full" @click="submitFeedback">
+            <text>提交执行反馈</text>
+          </view>
+        </view>
+      </u-popup>
+
+      <u-popup v-model="showAuditPopup" mode="bottom" border-radius="24" :closeable="true">
+        <view class="p-5" style="padding-bottom: 80rpx; min-height: 50vh;">
+          <view class="font-bold text-xl mb-4" style="color: #0f172a;">进行主管验收</view>
+          <text class="label-grey display-block mb-2">审核批示意见</text>
+          <view class="editor-container mb-6">
+            <robin-editor ref="auditEditorRef" v-model="auditContent" :header="false" :height="270" :muiltImage="true"
+              :tools="['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'remove', 'font', 'image', 'clear']"></robin-editor>
+          </view>
+          <view class="grid-2 gap-4">
+            <view class="primary-btn-lg flex center" style="background-color: #ef4444;" @click="submitAudit('reject')">
+              <text>打回整改</text>
+            </view>
+            <view class="primary-btn-lg flex center" style="background-color: #10b981;" @click="submitAudit('pass')">
+              <text>验收合格</text>
+            </view>
+          </view>
+        </view>
+      </u-popup>
     </view>
-
-    <!-- Popup for Adding Feedback -->
-    <u-popup v-model="showFeedbackPopup" mode="bottom" border-radius="24" :closeable="true">
-      <view class="p-5" style="padding-bottom: space-between; min-height: 50vh;">
-        <view class="flex justify-between items-center mb-4" style="padding-right: 48rpx;">
-          <view class="font-bold text-xl" style="color: #0f172a;">添加执行反馈</view>
-        </view>
-        
-        <view class="editor-container mb-6">
-          <robin-editor 
-            ref="feedbackEditorRef"
-            v-model="feedbackContent"
-            :header="false"
-            :height="270"
-            :muiltImage="true"
-            :tools="['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'remove', 'font', 'image', 'clear']"
-          ></robin-editor>
-        </view>
-
-        <view class="primary-btn-lg flex center w-full mb-4" style="height: 96rpx; border-radius: 48rpx; box-shadow: none;" @click="submitFeedback">
-          <text>提交执行反馈</text>
-        </view>
-      </view>
-    </u-popup>
-
-    <!-- Popup for Supervisor Audit -->
-    <u-popup v-model="showAuditPopup" mode="bottom" border-radius="24" :closeable="true">
-      <view class="p-5" style="padding-bottom: space-between; min-height: 50vh;">
-        <view class="flex justify-between items-center mb-4" style="padding-right: 48rpx;">
-          <view class="font-bold text-xl" style="color: #0f172a;">进行主管验收</view>
-        </view>
-        
-        <text class="label-grey display-block mb-2">审核批示意见</text>
-        <view class="editor-container mb-6">
-          <robin-editor 
-            ref="auditEditorRef"
-            v-model="auditContent"
-            :header="false"
-            :height="270"
-            :muiltImage="true"
-            :tools="['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'remove', 'font', 'image', 'clear']"
-          ></robin-editor>
-        </view>
-
-        <view class="grid-2 gap-4 mb-4">
-          <view class="primary-btn-lg flex center w-full" style="height: 96rpx; border-radius: 48rpx; background-color: #ef4444; box-shadow: none;" @click="submitAudit('reject')">
-            <text>打回整改</text>
-          </view>
-          <view class="primary-btn-lg flex center w-full" style="height: 96rpx; border-radius: 48rpx; background-color: #10b981; box-shadow: none;" @click="submitAudit('pass')">
-            <text>验收合格</text>
-          </view>
-        </view>
-      </view>
-    </u-popup>
-
   </view>
 </template>
 
 <script>
-let vk = uni.vk; // 获取 uni.vk 核心实例对象
+let vk = uni.vk;
 export default {
   data() {
-    // 页面数据变量声明区域
     return {
-      scrollTop: 0, // 页面滚动高度记录
-      form1: {}, // 预留的标准表单对象容器
-      data: {}, // 全局列表或基础数据对象
-      
-      // 当前被加载的具体计划单据 ID
+      scrollTop: 0,
       plan_id: '',
       // 主体响应式数据结构：包含表头内容、执行信息以及混合 feedbacks (执行记录和验收批复)
       planInfo: {
-        feedbacks: []
+        title: '',
+        status: 0,
+        content: '',
+        feedbacks: [],
+        issuer_info: [],
+        assignee_list: [],
+        area_info: [],
+        dept_info: []
       },
-      // 若当前用户的头像或数据库未返回，使用的缺省兜底头像地址
-      defaultAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
-      
+      defaultAvatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png',
       showFeedbackPopup: false,
       feedbackContent: '',
-      
       showAuditPopup: false,
-      auditContent: '',
-
-      // sp-editor 自定义工具栏：直接使用白名单 keys，避开 excludeKeys 的 Optional Chaining 编译兼容问题
-      spToolbarConfig: {
-        keys: ['header', 'bold', 'italic', 'underline', 'align', 'color', 'backgroundColor', 'listOrdered', 'listBullet', 'divider', 'image', 'undo', 'redo', 'clear'],
-        iconSize: '20px',
-        iconColumns: 7
-      }
+      auditContent: ''
     };
   },
-  // 以下存放不应该被 Vue 设置为响应式的对象（如巨大的富文本实例），防止栈溢出或组件状态死锁
-  created() {
-    this._feedbackEditorCtx = null;
-    this._auditEditorCtx = null;
+  onLoad(options = {}) {
+    vk = uni.vk;
+    this.plan_id = options.id || '';
+    if (this.plan_id) this.loadData();
   },
-  // 监听 - 页面滚动，实时映射高度数据
   onPageScroll(e) {
     this.scrollTop = e.scrollTop;
   },
-  // 监听 - 页面每次【加载时】执行 (获取路由参数等)
-  onLoad(options = {}) {
-    vk = uni.vk;
-    this.options = options;
-    // 从路由中抓取 plan_id (单据 ID)
-    this.plan_id = options.id || '';
-    this.init(options);
-  },
-  // 监听 - 页面【首次渲染完成时】
-  onReady() {},
-  // 监听 - 页面每次【显示时】执行 (如后退返回可自动重新获取最新据)
-  onShow() {},
-  // 监听 - 页面每次【隐藏时】
-  onHide() {},
-  // 监听 - 页面每次【卸载时】
-  onUnload() {},
-  // 监听 - 用下拉交互进行刷新，1秒后关闭动画效果
-  onPullDownRefresh() {
-    setTimeout(() => {
-        uni.stopPullDownRefresh();
-    }, 1000);
-  },
-  /**
-    * 监听 - 点击右上角分享/转发触发
-    */
-  onShareAppMessage(options) {},
-  // 页面响应的所有的行为方法
   methods: {
-    /**
-     * 统一规范初始化函数
-     */
-    init(options = {}) {
-      // 存在 ID 时直接在初始化调起数据加载并映射到本页面模型
-      if (this.plan_id) {
-        this.loadData();
-      }
-    },
-    /**
-     * 请求具体计划的详细核心数据
-     * 涉及跨表联查发布人 (issuer)，并在云函数层面处理了 feedbacks 数组的人员映射
-     */
     async loadData() {
-      // 建议均使用 async await 规范并接收返回值
       let res = await vk.callFunction({
-        url: 'client/plan/sys/getDetail',
+        url: 'client/plan/kh/getDetail',
         data: { plan_id: this.plan_id }
       });
-      // 将拉取到的包含多态流转记录的 item 填充至本地响应态数据
-      this.planInfo = res.item || { feedbacks: [] };
+      if (res && res.item) {
+        // 使用对象扩展，避免后端缺失某些字段覆盖初始数组骨架
+        this.planInfo = { ...this.planInfo, ...res.item };
+      }
     },
-    
-    // 工具: 通过状态枚举解析具体颜色
-    getStatusColor(status) {
-      const map = {
-        0: '#0066ff', // 蓝色:待处理/执行中
-        1: '#f59e0b', // 橙色:待验收
-        2: '#10b981', // 绿色:已完成
-        3: '#ef4444', // 红色:终止
-        4: '#64748b', // 灰色:已逾期
-        5: '#64748b'  // 灰色:超时未验收
-      };
-      return map[status] || '#94a3b8';
+    getAssigneeNames(list) {
+      if (!list || list.length === 0) return '待定';
+      let name = list[0].real_name || list[0].nickname || list[0].username || '匿名';
+      return list.length > 1 ? name + ' 等' + list.length + '人' : name;
     },
-
-    // 工具: 解析展示文字
+    getIssuerName(info) {
+      if (!info || info.length === 0) return '管理员';
+      let u = info[0];
+      return u.real_name || u.nickname || u.username || '管理员';
+    },
     getStatusText(status) {
-      const map = {
-        0: '执行中', 
-        1: '待验收', 
-        2: '已完成',
-        3: '已终止',
-        4: '已逾期',
-        5: '超时未验收'
-      };
-      return map[status] || '未知状态';
+      if (status === null || status === undefined) return '执行中';
+      const map = ['执行中', '待验收', '已完成', '已终止', '已逾期', '超时未验收'];
+      return map[status] || '执行中';
     },
-
+    getStatusTagType(status) {
+      if (status === null || status === undefined) return 'primary';
+      const map = ['primary', 'warning', 'success', 'error', 'info', 'info'];
+      return map[status] || 'primary';
+    },
     handleExecute() {
-      // 唤起用于添加执行反馈的底部弹窗
       this.showFeedbackPopup = true;
       this.$nextTick(() => {
         if (this.$refs.feedbackEditorRef && this.$refs.feedbackEditorRef.setImageUploader) {
@@ -299,9 +238,7 @@ export default {
         }
       });
     },
-    
     handleAudit() {
-      // 唤起主管验收弹窗
       this.showAuditPopup = true;
       this.$nextTick(() => {
         if (this.$refs.auditEditorRef && this.$refs.auditEditorRef.setImageUploader) {
@@ -309,376 +246,463 @@ export default {
         }
       });
     },
-
-    /**
-     * 获取编辑器内容（适配提交时的验证逻辑）
-     */
-    getEditorContent(refName) {
-      return new Promise((resolve) => {
-        let editorRef = refName === 'feedbackEditor' ? this.$refs.feedbackEditorRef : this.$refs.auditEditorRef;
-        let fallbackContent = refName === 'feedbackEditor' ? this.feedbackContent : this.auditContent;
-        if (!editorRef || !editorRef.editorCtx) {
-           resolve(fallbackContent || '');
-           return;
-        }
-        editorRef.editorCtx.getContents({
-          success: (res) => resolve(res.html),
-          fail: () => resolve(fallbackContent || '')
-        });
-      });
-    },
-
-    /**
-     * 清空内容并在编辑器中反馈
-     */
-    clearEditor(refName) {
-      if (refName === 'feedbackEditor') {
-        this.feedbackContent = '';
-        if (this.$refs.feedbackEditorRef && this.$refs.feedbackEditorRef.editorCtx) this.$refs.feedbackEditorRef.editorCtx.clear();
-      } else {
-        this.auditContent = '';
-        if (this.$refs.auditEditorRef && this.$refs.auditEditorRef.editorCtx) this.$refs.auditEditorRef.editorCtx.clear();
-      }
-    },
-
-    /**
-     * 专属 robin-editor 设置图片上传函数的回调
-     */
     uploadImageForRobin(img, callback) {
-      let vkObj = uni.vk || vk || getApp().globalData.vk;
-      vkObj.callFunctionUtil.uploadFile({
+      vk.callFunctionUtil.uploadFile({
         title: "上传中...",
         filePath: img,
-        suffix: "png", // fallback suffix
+        suffix: "png",
         provider: "unicloud",
         success(res) {
-          // 上传成功后调用 callback 传入图片 URL 以供编辑器插入图片
           callback ? callback(res.fileID || res.url) : null;
         }
       });
     },
-
+    async getEditorContent(refName) {
+      return new Promise((resolve) => {
+        let editorRef = refName === 'feedbackEditor' ? this.$refs.feedbackEditorRef : this.$refs.auditEditorRef;
+        if (!editorRef || !editorRef.editorCtx) {
+          resolve('');
+          return;
+        }
+        editorRef.editorCtx.getContents({
+          success: (res) => resolve(res.html),
+          fail: () => resolve('')
+        });
+      });
+    },
     async submitFeedback() {
       let html = await this.getEditorContent('feedbackEditor');
-      // 去除HTML标签检查是否为空
-      let rawText = html.replace(/<[^>]+>/g, '').trim();
-      if (!rawText && !html.includes('<img')) {
+      if (!html.replace(/<[^>]+>/g, '').trim() && !html.includes('<img')) {
         return uni.showToast({ title: '请输入反馈内容', icon: 'none' });
       }
-      
-      // Extract image URLs from HTML for the backend images array
-      let extractedImages = [];
-      let imageMatch = html.match(/<img[^>]+src="([^">]+)"/g);
-      if (imageMatch) {
-        imageMatch.forEach(imgTag => {
-          let match = imgTag.match(/src="([^">]+)"/);
-          if (match && match[1]) {
-            extractedImages.push(match[1]);
-          }
-        });
-      }
-
       uni.showLoading({ title: '提交中', mask: true });
-      try {
-        let res = await vk.callFunction({
-          url: 'client/plan/kh/submitFeedback',
-          data: {
-            plan_id: this.plan_id,
-            content: html,
-            images: extractedImages
-          }
-        });
-        uni.hideLoading();
-        if (res && res.code === 0) {
-          uni.showToast({ title: '反馈提交成功', icon: 'success' });
-          this.showFeedbackPopup = false;
-          this.clearEditor('feedbackEditor');
-          this.loadData();
-        }
-      } catch (err) {
-        uni.hideLoading();
-        console.error('提交执行反馈异常', err);
+      let res = await vk.callFunction({
+        url: 'client/plan/kh/submitFeedback',
+        data: { plan_id: this.plan_id, content: html }
+      });
+      uni.hideLoading();
+      if (res.code === 0) {
+        uni.showToast({ title: '反馈成功' });
+        this.showFeedbackPopup = false;
+        this.loadData();
       }
     },
-    
     async submitAudit(auditResult) {
       let html = await this.getEditorContent('auditEditor');
-      let rawText = html.replace(/<[^>]+>/g, '').trim();
-      if (!rawText && !html.includes('<img')) {
+      if (!html.replace(/<[^>]+>/g, '').trim() && !html.includes('<img')) {
         return uni.showToast({ title: '请填写审核意见', icon: 'none' });
       }
-      
-      let extractedImages = [];
-      let imageMatch = html.match(/<img[^>]+src="([^">]+)"/g);
-      if (imageMatch) {
-        imageMatch.forEach(imgTag => {
-          let match = imgTag.match(/src="([^">]+)"/);
-          if (match && match[1]) {
-            extractedImages.push(match[1]);
-          }
-        });
-      }
-
-      uni.showLoading({ title: '处理验收中', mask: true });
-      try {
-        let res = await vk.callFunction({
-          url: 'client/plan/kh/auditPlan',
-          data: {
-            plan_id: this.plan_id,
-            content: html,
-            images: extractedImages,
-            audit_result: auditResult
-          }
-        });
-        uni.hideLoading();
-        if (res && res.code === 0) {
-          uni.showToast({ title: res.msg || '审计操作成功', icon: 'success' });
-          this.showAuditPopup = false;
-          this.clearEditor('auditEditor');
-          this.loadData();
-        }
-      } catch (err) {
-        uni.hideLoading();
-        console.error('验收处理异常', err);
+      uni.showLoading({ title: '处理中', mask: true });
+      let res = await vk.callFunction({
+        url: 'client/plan/kh/auditPlan',
+        data: { plan_id: this.plan_id, content: html, audit_result: auditResult }
+      });
+      uni.hideLoading();
+      if (res.code === 0) {
+        uni.showToast({ title: '验收成功' });
+        this.showAuditPopup = false;
+        this.loadData();
       }
     }
-  },
-  // 侦听器映射结构
-  watch: {},
-  // 计算属性集
-  computed: {}
+  }
 };
 </script>
 
-<style scoped>
-/* Base Styles */
+<style scoped lang="scss">
+$primary: #0050cb;
+$secondary: #425ca0;
+$tertiary: #a33200;
+$error: #ba1a1a;
+$on-surface: #191c1e;
+$on-surface-variant: #424656;
+$outline: #727687;
+
 .page-container {
   min-height: 100vh;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-  background-color: #f8fafc;
 }
 
-.dot-bg {
-  background-image: radial-gradient(#cbd5e1 2rpx, transparent 2rpx);
-  background-size: 32rpx 32rpx;
+.main-content {
+  padding: 40rpx 32rpx;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Typography & Layout */
-.font-bold { font-weight: 700; }
-.text-xs { font-size: 24rpx; }
-.text-xl { font-size: 40rpx; }
-.text-primary { color: #0066ff; }
-.display-block { display: block; }
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.center { align-items: center; justify-content: center; }
-.w-full { width: 100%; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
-.relative { position: relative; }
-.absolute { position: absolute; }
-.fixed { position: fixed; }
-.bottom-0 { bottom: 0; }
-.left-0 { left: 0; }
-.z-50 { z-index: 50; }
-.space-y-1 > view, .space-y-1 > text { margin-bottom: 8rpx; }
-.space-y-1 > view:last-child, .space-y-1 > text:last-child { margin-bottom: 0; }
-.space-y-2 > view, .space-y-2 > text { margin-bottom: 16rpx; }
-.space-y-2 > view:last-child, .space-y-2 > text:last-child { margin-bottom: 0; }
-
-/* Spacing */
-.px-5 { padding-left: 40rpx; padding-right: 40rpx; }
-.p-5 { padding: 40rpx; }
-.p-4 { padding: 32rpx; }
-.p-3 { padding: 24rpx; }
-.pl-4 { padding-left: 32rpx; }
-.pr-4 { padding-right: 32rpx; }
-.pt-12 { padding-top: 96rpx; }
-.pb-32 { padding-bottom: 256rpx; }
-.mb-1 { margin-bottom: 8rpx; }
-.mb-2 { margin-bottom: 16rpx; }
-.mb-3 { margin-bottom: 24rpx; }
-.mb-4 { margin-bottom: 32rpx; }
-.mb-6 { margin-bottom: 48rpx; }
-.mb-8 { margin-bottom: 64rpx; }
-.mr-1 { margin-right: 8rpx; }
-.mr-2 { margin-right: 16rpx; }
-.gap-2 { gap: 16rpx; }
-.gap-3 { gap: 24rpx; }
-.gap-4 { gap: 32rpx; }
-.bottom-2 { bottom: 16rpx; }
-.left-2 { left: 16rpx; }
-
-/* Section Headers */
-.section-header {
-  display: inline-block;
-  border-bottom: 6rpx solid #0066ff;
-  padding-bottom: 12rpx;
-}
-.section-title {
-  font-size: 36rpx;
-  font-weight: 800;
-  color: #0f172a;
-  letter-spacing: 2rpx;
+.header-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
 }
 
-/* Cards & Containers */
-.card-panel {
-  background-color: #ffffff;
-  border-radius: 24rpx;
-  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.03);
-}
-.feedback-box {
-  background-color: #f8fafc;
-  border-radius: 24rpx;
-}
-.executor-box {
-  background-color: #f4f8ff;
-  border-radius: 48rpx;
-}
-
-/* Text Styles */
-.label-blue {
-  color: #0066ff;
-  font-size: 20rpx;
-  font-weight: 700;
-  letter-spacing: 2rpx;
-}
-.label-grey {
-  color: #94a3b8;
-  font-size: 22rpx;
-  font-weight: 600;
-}
-.title-main {
+.page-title {
+  display: block;
   font-size: 40rpx;
   font-weight: 800;
-  color: #0f172a;
-  line-height: 1.4;
-}
-.info-text {
-  font-size: 28rpx;
-  color: #0f172a;
-}
-.content-text {
-  font-size: 28rpx;
-  color: #334155;
-  line-height: 1.8;
-}
-.time-text {
-  font-size: 24rpx;
-  color: #94a3b8;
-  font-family: monospace;
-}
-.bullet-item::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #64748b;
-  font-size: 28rpx;
+  color: $on-surface;
+  margin-bottom: 4rpx;
 }
 
-/* Avatars & Images */
+.page-subtitle {
+  display: block;
+  font-size: 20rpx;
+  color: $on-surface-variant;
+  font-weight: 500;
+  letter-spacing: 4rpx;
+  text-transform: uppercase;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-bottom: 48rpx;
+}
+
+.section-header {
+  margin-bottom: 8rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  color: $on-surface;
+  position: relative;
+  display: inline-block;
+}
+
+.heavy-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -8rpx;
+  left: 0;
+  width: 100%;
+  height: 8rpx;
+  background: #004dc0; // 更加浓郁的深蓝色
+  border-radius: 4rpx;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  // 加重阴影以突出块的范围
+  box-shadow: 0 16rpx 48rpx rgba(0, 32, 90, 0.12), inset 0 2rpx 0 rgba(255, 255, 255, 0.9);
+}
+
+.standard-card {
+  padding: 40rpx;
+  border-radius: 28rpx;
+}
+
+.project-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.project-id {
+  font-size: 34rpx;
+  font-weight: 900;
+  color: #1a1a1a;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.title-slider-bar {
+  width: 10rpx;
+  background: $primary;
+  border-radius: 6rpx;
+}
+
+.info-grid-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 16rpx;
+  margin-top: 24rpx;
+  padding: 24rpx 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.location-icon {
+  font-size: 32rpx;
+  color: $primary;
+}
+
+.info-text {
+  font-size: 24rpx;
+  color: #1a1a1a;
+}
+
+.avatar-mini {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+}
+
+.standard-desc {
+  background: rgba(242, 244, 246, 0.6);
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin: 16rpx 0;
+  font-size: 26rpx;
+  color: $on-surface-variant;
+}
+
+.roles-grid-ui4 {
+  margin-top: 32rpx;
+  padding-top: 24rpx;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.role-col-ui4 {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.role-label-ui4 {
+  font-size: 22rpx;
+  font-weight: 800;
+  color: #8c939d;
+}
+
+.role-value-row-ui4 {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.role-text-ui4 {
+  font-size: 26rpx;
+  color: #5c6370;
+}
+
+.role-text-ui4.bold-text {
+  font-weight: 700;
+  color: #111;
+}
+
+.assignee-names-truncate {
+  max-width: 300rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.default-avatar-ui4 {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: #f2f3f5;
+  flex-shrink: 0;
+}
+
+.single-avatar-ui4 {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.stack-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+  margin-left: -16rpx;
+}
+
+.stack-avatar:first-child { margin-left: 0; }
+
+.stack-more {
+  background: rgba(0, 80, 203, 0.1);
+  color: $primary;
+  font-weight: 700;
+  font-size: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+  margin-left: -16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: 48rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+
+.timeline-track {
+  position: absolute;
+  left: 22rpx;
+  top: 16rpx;
+  bottom: 16rpx;
+  width: 4rpx;
+  background: rgba(194, 198, 216, 0.3);
+}
+
+.timeline-item { position: relative; }
+
+.timeline-dot {
+  position: absolute;
+  left: -38rpx;
+  top: 12rpx;
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  border: 6rpx solid #fff;
+  z-index: 2;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.timeline-dot.active { background: $primary; }
+.timeline-dot.inactive { background: #cbd5e1; }
+
+.feedback-card {
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  border-radius: 20rpx;
+  border: 1px solid rgba(0, 80, 203, 0.08);
+}
+
+.rejection-card {
+  background: linear-gradient(145deg, rgba(254, 242, 242, 0.95), rgba(254, 226, 226, 0.8));
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
 .avatar-sm {
   width: 48rpx;
   height: 48rpx;
   border-radius: 50%;
 }
-.avatar-md {
-  width: 72rpx;
-  height: 72rpx;
-  border-radius: 50%;
-  border: 4rpx solid #ffffff;
-}
-.avatar-md.no-border {
-  border: none;
-}
-.avatar-more-md {
-  width: 72rpx;
-  height: 72rpx;
-  border-radius: 50%;
-  border: 4rpx solid #ffffff;
-  background-color: #dbeafe;
-  margin-left: -24rpx;
+
+.username {
   font-size: 24rpx;
+  font-weight: 800;
+  color: $on-surface;
 }
-.avatar-stack {
-  margin-right: 8rpx;
-}
-.img-wrapper {
-  aspect-ratio: 16/9;
-  border-radius: 16rpx;
-  overflow: hidden;
-}
-.feedback-img {
-  width: 100%;
-  height: 100%;
-}
-.img-tag {
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
+
+.type-badge {
   font-size: 20rpx;
   padding: 4rpx 16rpx;
   border-radius: 8rpx;
-}
-
-/* Buttons */
-.status-btn {
-  background-color: #0066ff;
-  color: #ffffff;
-  font-size: 24rpx;
-  font-weight: 700;
-  padding: 12rpx 32rpx;
-  border-radius: 32rpx;
-}
-.primary-btn-lg {
-  background-color: #0066ff;
-  color: #ffffff;
   font-weight: 800;
-  font-size: 36rpx;
-  height: 112rpx;
-  border-radius: 56rpx;
-  box-shadow: 0 16rpx 48rpx rgba(0, 102, 255, 0.2);
-}
-.action-footer {
-  background: linear-gradient(to top, #f8fafc 60%, rgba(248, 250, 252, 0));
 }
 
-/* Editor Toolbar tags */
-.tool-tag {
-  font-size: 26rpx;
-  color: #475569;
-  background: #f1f5f9;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
+.type-badge.primary { background: rgba(0, 80, 203, 0.1); color: $primary; }
+.type-badge.secondary { background: rgba(66, 92, 160, 0.1); color: $secondary; }
+.type-badge.tertiary { background: #fee2e2; color: #b91c1c; }
+
+.time-stamp { font-size: 20rpx; color: $outline; }
+
+.feedback-content-box {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12rpx;
+  padding: 24rpx;
+}
+
+.rejection-text { color: #991b1b; }
+
+.feedback-text {
+  font-size: 28rpx;
+  color: $on-surface-variant;
+  line-height: 1.6;
+}
+
+/* 6. 缩小版操作按钮 */
+.fab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32rpx 40rpx calc(32rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.bg-glass-blur {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.fab-container {
+  display: flex;
+  gap: 24rpx;
+}
+
+.fab-btn-sm {
+  flex: 1;
+  height: 84rpx; // 缩小尺寸
+  border-radius: 42rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  gap: 12rpx;
+  color: #fff;
+  font-weight: 700;
+  font-size: 26rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
 }
-.tool-tag:active { background: #e2e8f0; }
-.tool-tag.primary {
-  color: #0066ff;
-  background: #eff6ff;
-  font-weight: 600;
-}
-.divider {
-  width: 2rpx;
-  height: 32rpx;
-  background: #cbd5e1;
-  margin: 0 4rpx;
-}
-.ml-3 { margin-left: 24rpx; }
-.mt-4 { margin-top: 32rpx; }
-.text-red-500 { color: #ef4444; }
 
-/* sp-editor 外部容器，给足明确的高度，避免微信小程序由于 flex: 1 导致整个盒子计算塌陷高度为 0 */
+.fab-btn-sm.primary { background: $primary; }
+.fab-btn-sm.warning { background: #f59e0b; }
+
 .editor-container {
-  min-height: 540rpx;
-  background-color: #ffffff;
-  border-radius: 16rpx;
+  min-height: 400rpx;
   border: 1px solid #e2e8f0;
-  display: block;
-  overflow: visible;
+  border-radius: 16rpx;
+  overflow: hidden;
 }
+
+.primary-btn-lg {
+  height: 96rpx;
+  background: $primary;
+  color: #fff;
+  border-radius: 48rpx;
+  font-weight: 700;
+}
+
+.label-grey { color: #94a3b8; font-size: 22rpx; }
+.text-xl { font-size: 36rpx; }
+.mb-1 { margin-bottom: 8rpx; }
+.mb-2 { margin-bottom: 16rpx; }
+.mb-4 { margin-bottom: 32rpx; }
+.p-5 { padding: 40rpx; }
+.flex { display: flex; }
+.center { align-items: center; justify-content: center; }
+.w-full { width: 100%; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
+.gap-4 { gap: 32rpx; }
 </style>

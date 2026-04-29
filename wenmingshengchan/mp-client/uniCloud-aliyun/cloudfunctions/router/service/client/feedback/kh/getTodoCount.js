@@ -7,15 +7,15 @@ module.exports = {
 	main: async (event) => {
 		let { data = {}, userInfo, util, filterResponse, originalParam } = event;
 		let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-		let { uid } = userInfo;
+		let uid = userInfo ? userInfo._id : null;
 		let res = { code: 0, msg: "", count: 0 };
 
 		// 业务逻辑开始-----------------------------------------------------------
 		let countRes = await vk.baseDao.count({
 			dbName: "key-point-feedback",
 			whereJson: {
-				assignee_ids: _.in([uid]),
-				status: 0, // 等待抢单反馈
+				assignee_ids: uid, // MongoDB原生支持：当字段为数组时，直接传值即可匹配包含该值的记录
+				status: 0,
 				is_del: _.neq(1)
 			}
 		});

@@ -47,6 +47,22 @@ module.exports = {
           as: 'appList',
           limit: 500,
         },
+        {
+          dbName: "base-dept",
+          localKey: "department_id",
+          foreignKey: "_id",
+          as: "dept_info",
+          limit: 1,
+          fieldJson: { name: true }
+        },
+        {
+          dbName: "base-dept",
+          localKey: "group_id",
+          foreignKey: "_id",
+          as: "group_info",
+          limit: 1,
+          fieldJson: { name: true }
+        }
       ],
     });
     // 业务逻辑结束-----------------------------------------------------------

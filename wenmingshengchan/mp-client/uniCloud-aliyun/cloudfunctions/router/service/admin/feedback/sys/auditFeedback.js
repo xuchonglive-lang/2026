@@ -1,38 +1,38 @@
-'use strict';
 module.exports = {
-	/**
-	 * 管理员对收上来的现场反馈进行违章追责或核查留痕
-	 * @url admin/feedback/sys/auditFeedback
-	 */
-	main: async (event) => {
-		let { data = {}, userInfo, util, originalParam } = event;
-		let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-		let { uid } = data; // 登录人的uid
-		let res = { code: 0, msg: "流转批示成功" };
+  /**
+   * 审核/督查反馈记录
+   * @url admin/feedback/sys/auditFeedback
+   */
+  main: async (event) => {
+    let { data = {}, userInfo, util } = event;
+    let { vk } = util;
+    let res = { code: 0, msg: '' };
 
-		let { _id, audit_mark } = data; // 必传要审核哪条记录，以及批示意见
+    if (!data._id) return { code: -1, msg: "缺少记录_id" };
 
-		if (!_id) return { code: -1, msg: "记录标定ID缺失" };
+    let _id = data._id;
+    let audit_mark = data.audit_mark;
+    
+    // 获取审核人ID
+    let uid = userInfo._id || userInfo.uid || event.uid;
 
-		// 业务逻辑开始-----------------------------------------------------------
-		// 采用 vk.baseDao.update 进行轻量化留痕操作。不改变单据所属状态(依然是已反馈状态)
-		// 旨在提供后期定责溯源，不进入回退闭环（无交班缓冲的一刀切原则）
-		
-		let updateRes = await vk.baseDao.updateById({
-			dbName: "key-point-feedback",
-			id: _id,
-			dataJson: {
-				audit_uid: uid,
-				audit_mark: audit_mark,
-				audit_time: new Date().getTime() // 注入查实时间
-			}
-		});
+    let num = await vk.baseDao.update({
+      dbName: "key-point-feedback",
+      whereJson: { _id: _id },
+      dataJson: {
+        audit_mark: audit_mark,
+        audit_uid: uid,
+        audit_time: Date.now()
+      }
+    });
 
-		if (updateRes <= 0) {
-			return { code: -1, msg: "批示落地失败" };
-		}
-		
-		// 业务逻辑结束-----------------------------------------------------------
-		return res;
-	}
-}
+    if (num > 0) {
+      res.msg = "督查留痕成功";
+    } else {
+      res.code = -1;
+      res.msg = "操作失败，可能记录已被删除";
+    }
+
+    return res;
+  }
+};

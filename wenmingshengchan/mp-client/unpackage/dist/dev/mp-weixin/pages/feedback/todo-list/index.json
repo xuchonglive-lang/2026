@@ -1,5 +1,8 @@
 {
   "usingComponents": {
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
+    "u-tag": "/uni_modules/vk-uview-ui/components/u-tag/u-tag",
+    "u-empty": "/uni_modules/vk-uview-ui/components/u-empty/u-empty",
     "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
   }
 }

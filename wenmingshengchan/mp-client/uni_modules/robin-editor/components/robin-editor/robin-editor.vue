@@ -107,20 +107,7 @@
           @change="fontSize"
           ><view class="icon-fontsize"></view
         ></picker>
-        <view
-          v-if="t == 'color'"
-          :style="fontColor != '#FFFFFF' ? 'color:' + formats.color : ''"
-          class="iconfont icon-text_color"
-          data-name="color"
-          @tap.stop="openColor"
-        ></view>
-        <view
-          v-if="t == 'backgroundColor'"
-          :style="bgColor ? 'color:' + formats.backgroundColor : ''"
-          class="iconfont icon-fontbgcolor"
-          data-name="backgroundColor"
-          @tap.stop="openColor"
-        ></view>
+
         <view
           v-if="t == 'image'"
           class="iconfont icon-charutupian"
@@ -266,12 +253,7 @@
       ></editor>
     </view>
 
-    <uni-popup type="bottom" ref="color" v-if="tools.includes('color') || tools.includes('backgroundColor')"
-      ><robin-color-picker
-        :color="color"
-        @confirm="colorChanged"
-      ></robin-color-picker
-    ></uni-popup>
+
     <view class="preview" v-show="showPreview"
       ><rich-text :nodes="htmlData" class="previewNodes"></rich-text
     ></view>
@@ -324,8 +306,6 @@ export default {
           "align-right",
           "remove",
           "font",
-          "color",
-          "backgroundColor",
           "image",
           "clear"
         ];

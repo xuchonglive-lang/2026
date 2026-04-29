@@ -101,8 +101,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    cuCustom: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/cu-custom/components/cu-custom/cu-custom */ "uni_modules/cu-custom/components/cu-custom/cu-custom").then(__webpack_require__.bind(null, /*! @/uni_modules/cu-custom/components/cu-custom/cu-custom.vue */ 464))
+    },
+    uPopup: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-popup/u-popup */ "uni_modules/vk-uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-popup/u-popup.vue */ 478))
+    },
+    uIcon: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-icon/u-icon */ "uni_modules/vk-uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue */ 485))
+    },
     myTabBar: function () {
-      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 464))
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 492))
     },
   }
 } catch (e) {
@@ -126,9 +135,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.userInfo._id
-    ? _vm.userInfo._id.substring(0, 8).toUpperCase()
-    : null
+  var g0 = _vm.currentRecordList.length
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.showPopup = false
+    }
+  }
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -289,18 +301,55 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      userInfo: {}
+      userInfo: {},
+      statData: {
+        pointCount: 0,
+        projectCount: 0,
+        planCount: 0
+      },
+      showPopup: false,
+      popupTitle: '',
+      popupType: '',
+      currentRecordList: []
     };
   },
   onShow: function onShow() {
     this.userInfo = this.vk.getVuex('$user.userInfo') || {};
     this.refreshUserInfo();
+    this.fetchStatData();
   },
   onPullDownRefresh: function onPullDownRefresh() {
     this.refreshUserInfo();
+    this.fetchStatData();
   },
   methods: {
     refreshUserInfo: function refreshUserInfo() {
@@ -337,6 +386,119 @@ var _default = {
         }, _callee, null, [[0, 8]]);
       }))();
     },
+    fetchStatData: function fetchStatData() {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                // 模拟获取待反馈数据
+                _this2.statData = {
+                  pointCount: 0,
+                  projectCount: 0,
+                  planCount: 0
+                };
+                _context2.prev = 1;
+                _context2.next = 4;
+                return uni.vk.callFunction({
+                  url: 'client/feedback/kh/getTodoCount',
+                  data: {}
+                });
+              case 4:
+                res = _context2.sent;
+                if (res.code === 0) {
+                  _this2.statData.pointCount = res.count || 0;
+                }
+                _context2.next = 10;
+                break;
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[1, 8]]);
+      }))();
+    },
+    navToTodo: function navToTodo() {
+      uni.switchTab({
+        url: '/pages/feedback/todo-list/index'
+      });
+    },
+    navToProjectTodo: function navToProjectTodo() {
+      uni.setStorageSync('projectListFilter', 'needMyFeedback');
+      uni.switchTab({
+        url: '/pages/keywork/project/list/index'
+      });
+    },
+    navToPlanTodo: function navToPlanTodo() {
+      uni.setStorageSync('planListFilter', 'needMyExecute');
+      uni.switchTab({
+        url: '/pages/plan/list'
+      });
+    },
+    openRecordPopup: function openRecordPopup(type) {
+      this.popupType = type;
+      if (type === 'point') {
+        this.popupTitle = '现场反馈信息明细';
+        this.currentRecordList = [{
+          id: 1,
+          title: '主厂房设备巡检记录',
+          time: '2023-10-27 10:00'
+        }, {
+          id: 2,
+          title: '传送带A区维护反馈',
+          time: '2023-10-26 14:30'
+        }];
+      } else if (type === 'project') {
+        this.popupTitle = '重点工作记录明细';
+        this.currentRecordList = [{
+          id: 3,
+          title: '二期工程进度汇报',
+          time: '2023-10-25 09:15'
+        }];
+      } else if (type === 'plan') {
+        this.popupTitle = '计划执行历史明细';
+        this.currentRecordList = [{
+          id: 4,
+          title: '10月份设备大修执行情况',
+          time: '2023-10-20 08:00'
+        }];
+      } else if (type === 'issue') {
+        this.popupTitle = '问题报备记录明细';
+        this.currentRecordList = [{
+          id: 5,
+          title: '水泵异常噪音报备',
+          time: '2023-10-21 16:45'
+        }];
+      }
+      this.showPopup = true;
+    },
+    handleEditRecord: function handleEditRecord(item) {
+      uni.showToast({
+        title: '修改功能待接入接口',
+        icon: 'none'
+      });
+    },
+    handleDeleteRecord: function handleDeleteRecord(item, index) {
+      var _this3 = this;
+      uni.showModal({
+        title: '提示',
+        content: "\u786E\u5B9A\u8981\u5220\u9664 \"".concat(item.title, "\" \u5417\uFF1F"),
+        success: function success(res) {
+          if (res.confirm) {
+            _this3.currentRecordList.splice(index, 1);
+            uni.showToast({
+              title: '已删除'
+            });
+          }
+        }
+      });
+    },
     handleNavigate: function handleNavigate(url) {
       uni.showToast({
         title: '模块尚未上线',
@@ -344,29 +506,29 @@ var _default = {
       });
     },
     logout: function logout() {
-      var _this2 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        return _regenerator.default.wrap(function _callee2$(_context2) {
+      var _this4 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.prev = 0;
+                _context3.prev = 0;
                 uni.showLoading({
                   title: '正在退出...'
                 });
-                _context2.next = 4;
+                _context3.next = 4;
                 return uni.vk.callFunction({
                   url: 'client/user/pub/loginByWeixin'
                 });
               case 4:
-                _context2.next = 8;
+                _context3.next = 8;
                 break;
               case 6:
-                _context2.prev = 6;
-                _context2.t0 = _context2["catch"](0);
+                _context3.prev = 6;
+                _context3.t0 = _context3["catch"](0);
               case 8:
                 uni.hideLoading();
-                _this2.vk.setVuex('$user.userInfo', {});
+                _this4.vk.setVuex('$user.userInfo', {});
                 uni.removeStorageSync('uni_id_token');
                 uni.removeStorageSync('uni_id_token_expired');
                 uni.reLaunch({
@@ -374,10 +536,10 @@ var _default = {
                 });
               case 13:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, null, [[0, 6]]);
+        }, _callee3, null, [[0, 6]]);
       }))();
     }
   }

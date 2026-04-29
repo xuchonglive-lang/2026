@@ -7,12 +7,46 @@ module.exports = {
 	main: async (event) => {
 		let { data = {}, userInfo, util, originalParam } = event;
 		let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-		let { uid } = userInfo;
+		let uid = userInfo ? userInfo._id : null;
 		let res = { code: 0, msg: "安检信息上报成功！" };
 
-		let { _id, main_image, sub_images, photo_shoot_time, device_model, content } = data;
+		let { _id, images, content } = data;
 
-		if (!_id || !main_image) return { code: -1, msg: "目标单据或核心照片缺失" };
+		if (!_id || !images || images.length === 0) return { code: -1, msg: "目标单据或核心照片缺失" };
+
+		// 统一处理兼容：确保所有的图像项均为 { title, url } 对象快照
+		let formattedImages = images.map(img => {
+			if (typeof img === 'string') {
+				return { title: '现场照片', url: img };
+			}
+			return img;
+		});
+
+		// ---- 反馈时间窗口校验 ----
+		// 先查询任务获取 shift_type
+		let taskInfo = await vk.baseDao.findById({
+			dbName: "key-point-feedback",
+			id: _id
+		});
+		if (!taskInfo || taskInfo.status !== 0) return { code: -1, msg: "任务不存在或状态异常" };
+
+		let configList = await vk.baseDao.selects({
+			dbName: "key-point-cron-config",
+			whereJson: { shift_type: taskInfo.shift_type }
+		});
+		if (configList.rows && configList.rows.length > 0) {
+			let conf = configList.rows[0];
+			if (conf.feedback_start && conf.feedback_end) {
+				let now = new Date();
+				let currentTimeStr = (now.getHours() < 10 ? '0' : '') + now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+				if (currentTimeStr < conf.feedback_start) {
+					return { code: -1, msg: `未到反馈时间，请在 ${conf.feedback_start} 之后提交` };
+				}
+				if (currentTimeStr > conf.feedback_end) {
+					return { code: -1, msg: "反馈窗口已关闭，任务已逾期" };
+				}
+			}
+		}
 
 		// 业务逻辑开始-----------------------------------------------------------
 		
@@ -30,10 +64,7 @@ module.exports = {
 				status: 1, // 状态推演到：已完满反馈
 				submit_uid: uid,
 				submit_time: new Date().getTime(),
-				main_image: main_image,
-				sub_images: sub_images || [],
-				photo_shoot_time: photo_shoot_time || "EXIF缺失",
-				device_model: device_model || "未识别型号",
+				images: formattedImages,
 				content: content || ""
 			}
 		});
@@ -49,3 +80,4 @@ module.exports = {
 		return res;
 	}
 }
+

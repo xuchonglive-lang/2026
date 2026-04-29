@@ -1,5 +1,10 @@
 <template>
   <view class="app">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">页面未找到</block>
+    </cu-custom>
+    
     <!-- 页面内容开始 -->
 
     这里是404页面

@@ -98,10 +98,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var render = function () {}
-var staticRenderFns = []
-var recyclableRender
 var components
+try {
+  components = {
+    cuCustom: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/cu-custom/components/cu-custom/cu-custom */ "uni_modules/cu-custom/components/cu-custom/cu-custom").then(__webpack_require__.bind(null, /*! @/uni_modules/cu-custom/components/cu-custom/cu-custom.vue */ 464))
+    },
+    zPaging: function () {
+      return Promise.all(/*! import() | node-modules/z-paging/components/z-paging/z-paging */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/z-paging/components/z-paging/z-paging")]).then(__webpack_require__.bind(null, /*! z-paging/components/z-paging/z-paging.vue */ 569))
+    },
+    uTag: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-tag/u-tag */ "uni_modules/vk-uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-tag/u-tag.vue */ 552))
+    },
+    myTabBar: function () {
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 492))
+    },
+    uSelect: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 471))
+    },
+    uCalendar: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-calendar/u-calendar */ "uni_modules/vk-uview-ui/components/u-calendar/u-calendar").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-calendar/u-calendar.vue */ 545))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  var l1 = _vm.__map(_vm.dataList, function (item, index) {
+    var $orig = _vm.__get_orig(item)
+    var m0 = _vm.getAssigneeNames(item.assignee_info)
+    var g0 = item.assignee_info && item.assignee_info.length > 0
+    var l0 = g0 ? item.assignee_info.slice(0, 2) : null
+    var g1 = g0 ? item.assignee_info.length : null
+    var g2 = g0 && g1 > 2 ? item.assignee_info.length : null
+    var m1 = _vm.getVerifierName(item.create_user_info)
+    var m2 = _vm.getVerifierAvatar(item.create_user_info)
+    var g3 = item.deadline
+      ? _vm.vk.pubfn.timeFormat(item.deadline, "yyyy.MM.dd")
+      : null
+    return {
+      $orig: $orig,
+      m0: m0,
+      g0: g0,
+      l0: l0,
+      g1: g1,
+      g2: g2,
+      m1: m1,
+      m2: m2,
+      g3: g3,
+    }
+  })
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.showLocationSelect = true
+    }
+    _vm.e1 = function ($event) {
+      _vm.showCalendar = true
+    }
+  }
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l1: l1,
+      },
+    }
+  )
+}
+var recyclableRender = false
+var staticRenderFns = []
+render._withStripped = true
 
 
 
@@ -133,10 +216,49 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 35));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -259,57 +381,139 @@ var _default = {
     return {
       vk: uni.vk,
       dataList: [],
-      pageIndex: 1,
-      hasMore: true,
-      loading: false
+      currentStatus: 0,
+      currentAreaId: '',
+      currentPointId: '',
+      locationTree: [],
+      showLocationSelect: false,
+      locationName: '全部区域',
+      showCalendar: false,
+      startDate: '',
+      endDate: '',
+      needMyFeedback: false
     };
   },
   onLoad: function onLoad() {
-    this.getList(true);
+    this.getLocationTree();
   },
-  onPullDownRefresh: function onPullDownRefresh() {
-    this.getList(true).then(function () {
-      return uni.stopPullDownRefresh();
-    });
-  },
-  onReachBottom: function onReachBottom() {
-    if (this.hasMore) {
-      this.getList(false);
+  onShow: function onShow() {
+    var filter = uni.getStorageSync('projectListFilter');
+    if (filter === 'needMyFeedback') {
+      this.needMyFeedback = true;
+      uni.removeStorageSync('projectListFilter');
+      if (this.$refs.paging) {
+        this.doSearch();
+      }
     }
   },
   methods: {
-    getList: function getList() {
-      var _this = this;
-      var isRefresh = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      if (isRefresh) {
-        this.pageIndex = 1;
-        this.hasMore = true;
-        this.dataList = [];
+    doSearch: function doSearch() {
+      if (this.$refs.paging) {
+        this.$refs.paging.reload();
       }
-      this.loading = true;
-      return new Promise(function (resolve) {
-        _this.vk.callFunction({
-          url: 'client/keywork/kh/getProjectList',
-          data: {
-            pageIndex: _this.pageIndex,
-            pageSize: 10
-          },
-          success: function success(res) {
-            if (res.rows.length < 10) _this.hasMore = false;
-            _this.dataList = _this.dataList.concat(res.rows);
-            _this.pageIndex++;
-          },
-          complete: function complete() {
-            _this.loading = false;
-            resolve();
-          }
-        });
+    },
+    toggleMyFeedback: function toggleMyFeedback() {
+      this.needMyFeedback = !this.needMyFeedback;
+      this.doSearch();
+    },
+    queryList: function queryList(pageNo, pageSize) {
+      var _this = this;
+      var startTime = undefined;
+      var endTime = undefined;
+      if (this.startDate) {
+        startTime = new Date(this.startDate + ' 00:00:00').getTime();
+      }
+      if (this.endDate) {
+        endTime = new Date(this.endDate + ' 23:59:59').getTime();
+      }
+      this.vk.callFunction({
+        url: 'client/keywork/kh/getProjectList',
+        data: {
+          pageIndex: pageNo,
+          pageSize: pageSize,
+          status: this.currentStatus === 0 ? [0, 3] : this.currentStatus,
+          area_id: this.currentAreaId || undefined,
+          point_id: this.currentPointId || undefined,
+          startTime: startTime,
+          endTime: endTime,
+          needMyFeedback: this.needMyFeedback
+        },
+        success: function success(res) {
+          var rows = res.rows.map(function (item) {
+            item._statusName = _this.getStatusName(item.status);
+            item._tagType = _this.getTagType(item.status);
+            item._isDelay = _this.isDelay(item.deadline, item.status);
+            item._delayText = _this.getDelayText(item.deadline, item.status);
+            item._delayClass = _this.getDelayClass(item.deadline, item.status);
+            return item;
+          });
+          _this.$refs.paging.complete(rows);
+        },
+        fail: function fail() {
+          _this.$refs.paging.complete(false);
+        }
       });
     },
     goToDetail: function goToDetail(id) {
       uni.navigateTo({
         url: '/pages/keywork/project/process-feed/index?id=' + id
       });
+    },
+    changeStatus: function changeStatus(status) {
+      if (this.currentStatus === status) return;
+      this.currentStatus = status;
+      this.doSearch();
+    },
+    changeArea: function changeArea(areaId, areaName) {
+      if (this.currentAreaId === areaId) return;
+      this.currentAreaId = areaId;
+      this.currentPointId = '';
+      this.locationName = areaName || '全部区域';
+      this.doSearch();
+    },
+    onDateChange: function onDateChange(e) {
+      this.startDate = e.startDate;
+      this.endDate = e.endDate;
+      this.doSearch();
+    },
+    getLocationTree: function getLocationTree() {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this2.vk.callFunction({
+                  url: 'client/report/kh/getAreaPointTree'
+                });
+              case 2:
+                res = _context.sent;
+                if (res.tree) {
+                  _this2.locationTree = res.tree;
+                }
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    onLocationConfirm: function onLocationConfirm(arr) {
+      var area = arr[0];
+      var point = arr[1];
+      if (area && area.value) {
+        this.currentAreaId = area.value;
+        this.currentPointId = point && point.value ? point.value : '';
+        this.locationName = point && point.value ? "".concat(area.label, " / ").concat(point.label) : area.label;
+      } else {
+        this.currentAreaId = '';
+        this.currentPointId = '';
+        this.locationName = '全部区域';
+      }
+      this.doSearch();
     },
     getStatusName: function getStatusName(status) {
       var map = {
@@ -320,10 +524,11 @@ var _default = {
       };
       return map[status] || '未知';
     },
-    getStatusClass: function getStatusClass(status) {
-      if (status === 2) return 'safe';
-      if (status === 3) return 'delay';
-      return 'in-progress';
+    getTagType: function getTagType(status) {
+      if (status === 2) return 'success';
+      if (status === 3) return 'error';
+      if (status === 1) return 'warning';
+      return 'primary';
     },
     isDelay: function isDelay(deadline, status) {
       if (!deadline || status === 2) return false;
@@ -338,6 +543,30 @@ var _default = {
       if (status === 2) return 'safe';
       if (this.isDelay(deadline, status)) return 'delay';
       return 'safe';
+    },
+    getAssigneeNames: function getAssigneeNames(info) {
+      if (!info || info.length === 0) return '未指派';
+      var names = info.map(function (u) {
+        return u.real_name || u.nickname || '用户';
+      });
+      var str = names.join('、');
+      if (str.length > 7) {
+        return str.substring(0, 6) + '...';
+      }
+      return str;
+    },
+    getVerifierName: function getVerifierName(info) {
+      if (!info) return '管理员';
+      var user = Array.isArray(info) ? info[0] : info;
+      if (!user) return '管理员';
+      return user.real_name || user.nickname || '管理员';
+    },
+    getVerifierAvatar: function getVerifierAvatar(info) {
+      var defaultAvatar = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png';
+      if (!info) return defaultAvatar;
+      var user = Array.isArray(info) ? info[0] : info;
+      if (!user) return defaultAvatar;
+      return user.avatar || defaultAvatar;
     }
   }
 };

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "u-subsection": "/uni_modules/vk-uview-ui/components/u-subsection/u-subsection",
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
     "u-empty": "/uni_modules/vk-uview-ui/components/u-empty/u-empty",
     "u-loadmore": "/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore",
     "my-tab-bar": "/components/my-tab-bar/my-tab-bar",

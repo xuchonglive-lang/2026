@@ -1,5 +1,11 @@
 <template>
   <view class="feedback-history-page">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">反馈历史</block>
+    </cu-custom>
+    
+    
     <view class="industrial-grid pointer-events-none"></view>
     
     <view class="main-content">

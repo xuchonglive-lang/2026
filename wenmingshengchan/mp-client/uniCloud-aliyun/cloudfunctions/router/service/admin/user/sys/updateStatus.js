@@ -31,6 +31,8 @@ module.exports = {
         delete data.role;
         // 同样他也无权篡改别人的归属部门关系网，同样抹去篡改请求
         delete data.department_id;
+        delete data.group_id;
+        delete data.dept_group_path;
         // 也无权决定【全服开关/拉黑态】，同样封杀篡改企图
         delete data.status;
       }
@@ -46,6 +48,14 @@ module.exports = {
       if (data.role !== undefined) updateData.role = data.role;
       // 只要传来的要求中明确带有想要将其调换往的部门 ID department_id，同理采纳
       if (data.department_id !== undefined) updateData.department_id = data.department_id;
+      // 同理采纳其调换往的小组 ID group_id
+      if (data.group_id !== undefined) updateData.group_id = data.group_id;
+      
+      // 如果前端为了便捷传递了级联虚拟路径，则服务端智能解包
+      if (data.dept_group_path && Array.isArray(data.dept_group_path)) {
+        updateData.department_id = data.dept_group_path[0] || "";
+        updateData.group_id = data.dept_group_path.length > 1 ? data.dept_group_path[data.dept_group_path.length - 1] : "";
+      }
       // 如果管理员人为修正其前台资料（昵称、头像），同样予以防失真采纳
       if (data.nickname !== undefined) updateData.nickname = data.nickname;
       if (data.avatar !== undefined) updateData.avatar = data.avatar;

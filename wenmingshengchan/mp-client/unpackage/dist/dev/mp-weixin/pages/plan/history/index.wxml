@@ -1,1 +1,1 @@
-<view class="container data-v-e4fb222c"><text class="data-v-e4fb222c">页面待开发</text></view>
+<view class="container data-v-e4fb222c"><cu-custom vue-id="22cbef5c-1" bgColor="bg-gradual-blue" isCustom="{{true}}" class="data-v-e4fb222c" bind:__l="__l" vue-slots="{{['backText','content']}}"><view slot="backText" class="data-v-e4fb222c"></view><view slot="content" class="data-v-e4fb222c">历史计划</view></cu-custom><text class="data-v-e4fb222c">页面待开发</text></view>

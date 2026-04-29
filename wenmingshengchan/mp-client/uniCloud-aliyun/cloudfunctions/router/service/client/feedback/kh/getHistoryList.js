@@ -7,7 +7,7 @@ module.exports = {
 	main: async (event) => {
 		let { data = {}, userInfo, util, originalParam } = event;
 		let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-		let { uid } = userInfo;
+		let uid = userInfo ? userInfo._id : null;
 		let res = { code: 0, msg: "" };
 
 		// 业务逻辑开始-----------------------------------------------------------
@@ -16,7 +16,7 @@ module.exports = {
 			dbName: "key-point-feedback",
 			data: data,
 			whereJson: {
-				assignee_ids: _.in([uid]),
+				assignee_ids: uid,
 				status: _.neq(0), // 只要不在挂起待办池中（无论是已完成=1 还是逾期=2）都拉进历史列表追溯
 				is_del: _.neq(1)
 			},

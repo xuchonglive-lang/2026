@@ -7,7 +7,7 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util } = event;
     let { vk, db, _ } = util;
-    let { uid } = userInfo;
+    let uid = userInfo._id || userInfo.uid || event.uid;
     
     let { project_id, desc_content, attachment_imgs } = data;
     
@@ -37,6 +37,6 @@ module.exports = {
       }
     });
 
-    return res;
+    return { code: 0, msg: "汇报成功", id: res };
   }
 };

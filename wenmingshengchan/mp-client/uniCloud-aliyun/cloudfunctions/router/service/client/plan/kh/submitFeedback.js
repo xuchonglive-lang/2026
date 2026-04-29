@@ -8,7 +8,7 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util } = event;
     let { vk, db, _ } = util;
-    let { uid } = userInfo; // 提取授权校验通过后的客户端UID
+    let uid = userInfo ? userInfo._id : null; // 提取授权校验通过后的客户端UID (vk-unicloud-router中为_id)
     let { plan_id, content, images } = data; // 接收富文本以及图片集列表
 
     // 缺少必要结构支撑径直挂起拦截响应

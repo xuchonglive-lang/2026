@@ -8,7 +8,7 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util } = event;
     let { vk } = util;
-    let { uid } = userInfo; // 获取当前登录的管理员真实UID
+    let uid = userInfo ? userInfo._id : null; // 获取当前登录的管理员真实UID
 
     // 组装将要存入数据库的对象
     // 合并前端传入的核心结构，并在此基础上做系统级覆写防御

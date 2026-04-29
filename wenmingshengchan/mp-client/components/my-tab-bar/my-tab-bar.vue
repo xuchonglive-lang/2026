@@ -1,21 +1,13 @@
 <template>
   <view class="custom-tab-bar">
     <view class="tab-bg glass-card ambient-glow"></view>
-    
+
     <view class="tab-content">
-      <view 
-        class="tab-item" 
-        v-for="(item, index) in list" 
-        :key="index" 
-        @click="switchTab(item, index)"
-      >
+      <view class="tab-item" v-for="(item, index) in list" :key="index" @click="switchTab(item, index)">
         <view class="icon-box active-press" :class="{ 'active-box': current === index }">
-          <u-icon 
-            :name="item.icon" 
-            :size="current === index ? 48 : 44" 
-            :color="current === index ? '#0050cb' : '#64748b'"
-          ></u-icon>
-          <text class="tab-text font-inter" :class="{ 'active-text': current === index }">{{item.text}}</text>
+          <u-icon :name="item.icon" :size="current === index ? 48 : 44"
+            :color="current === index ? '#0050cb' : '#64748b'"></u-icon>
+          <text class="tab-text font-inter" :class="{ 'active-text': current === index }">{{ item.text }}</text>
         </view>
       </view>
     </view>
@@ -59,7 +51,7 @@ export default {
           icon: "calendar"
         },
         {
-          pagePath: "/pages/feedback/todo-list/index",
+          pagePath: "/pages/user/mine/index",
           text: "我的",
           icon: "account"
         }
@@ -89,9 +81,10 @@ export default {
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 160rpx; /* 80px + padding for iphones */
+  height: 160rpx;
+  /* 80px + padding for iphones */
   z-index: 999;
-  
+
   /* Use absolute div for background to prevent blur inheritance issues */
   .tab-bg {
     position: absolute;

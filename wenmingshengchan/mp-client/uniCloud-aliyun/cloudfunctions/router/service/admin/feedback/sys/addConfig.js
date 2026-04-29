@@ -1,0 +1,45 @@
+module.exports = {
+  /**
+   * 新增重控点位配置
+   * @url admin/feedback/sys/addConfig
+   */
+  main: async (event) => {
+    let { data = {}, userInfo, util } = event;
+    let { vk } = util;
+    let uid = userInfo._id || userInfo.uid || event.uid;
+    if (!uid) return { code: -1, msg: "系统内部错误：无法获取当前登录用户的uid" };
+
+    let res = { code: 0, msg: '' };
+
+    // 补充默认字段
+    data.issuer_uid = uid;
+    data.status = 1;
+
+    // 支持级联选择器传值 [area_id, point_id]
+    if (data.area_point_ids && data.area_point_ids.length >= 2) {
+      data.area_id = data.area_point_ids[0];
+      data.point_id = data.area_point_ids[1];
+      delete data.area_point_ids;
+    }
+
+    // 如果不是admin，部门由当前人锁定，不能做修改
+    let isAdmin = userInfo.role && (userInfo.role.includes('admin') || userInfo.role.includes('super_admin'));
+    if (!isAdmin && userInfo.department_id) {
+       let deptIdArray = Array.isArray(userInfo.department_id) ? userInfo.department_id : [userInfo.department_id];
+       data.dept_id = deptIdArray[0];
+    }
+    // 移除废弃字段并规整数组
+    delete data.required_photo_count;
+    if (data.photo_requirements && !Array.isArray(data.photo_requirements)) {
+      data.photo_requirements = [data.photo_requirements];
+    }
+
+    // 执行数据库新增
+    res.id = await vk.baseDao.add({
+      dbName: "key-point-config",
+      dataJson: data
+    });
+
+    return res;
+  }
+};

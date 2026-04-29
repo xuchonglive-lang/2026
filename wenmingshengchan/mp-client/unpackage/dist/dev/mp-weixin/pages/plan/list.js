@@ -101,23 +101,23 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uSubsection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-subsection/u-subsection */ "uni_modules/vk-uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-subsection/u-subsection.vue */ 503))
+    cuCustom: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/cu-custom/components/cu-custom/cu-custom */ "uni_modules/cu-custom/components/cu-custom/cu-custom").then(__webpack_require__.bind(null, /*! @/uni_modules/cu-custom/components/cu-custom/cu-custom.vue */ 464))
     },
     uEmpty: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-empty/u-empty */ "uni_modules/vk-uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-empty/u-empty.vue */ 510))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-empty/u-empty */ "uni_modules/vk-uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-empty/u-empty.vue */ 531))
     },
     uLoadmore: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore */ "uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore.vue */ 517))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore */ "uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore.vue */ 538))
     },
     myTabBar: function () {
-      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 464))
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 492))
     },
     uCalendar: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-calendar/u-calendar */ "uni_modules/vk-uview-ui/components/u-calendar/u-calendar").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-calendar/u-calendar.vue */ 524))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-calendar/u-calendar */ "uni_modules/vk-uview-ui/components/u-calendar/u-calendar").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-calendar/u-calendar.vue */ 545))
     },
     uSelect: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 457))
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-select/u-select */ "uni_modules/vk-uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-select/u-select.vue */ 471))
     },
   }
 } catch (e) {
@@ -142,7 +142,15 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   var g0 = !_vm.loading && _vm.planList.length === 0
-  var g1 = _vm.planList.length
+  var l0 = _vm.__map(_vm.groupedPlanList, function (group, gIndex) {
+    var $orig = _vm.__get_orig(group)
+    var g1 = group.list.length
+    return {
+      $orig: $orig,
+      g1: g1,
+    }
+  })
+  var g2 = _vm.planList.length
   if (!_vm._isMounted) {
     _vm.e0 = function ($event) {
       _vm.showCalendar = true
@@ -156,7 +164,8 @@ var render = function () {
     {
       $root: {
         g0: g0,
-        g1: g1,
+        l0: l0,
+        g2: g2,
       },
     }
   )
@@ -296,6 +305,48 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var vk = uni.vk;
 var _default = {
@@ -310,9 +361,8 @@ var _default = {
       searchForm: {
         date: '所有日期',
         dateTimestamp: null,
-        // milliseconds to match start of that day
-        areaName: '所有区域',
-        areaId: ''
+        areaId: '',
+        areaName: '所有区域'
       },
       // -- Tabs --
       tabList: [{
@@ -339,6 +389,27 @@ var _default = {
       loadStatus: 'loadmore'
     };
   },
+  computed: {
+    groupedPlanList: function groupedPlanList() {
+      var groupsMap = {};
+      var result = [];
+      this.planList.forEach(function (item) {
+        var areaId = item.area_id || 'unknown';
+        var areaName = item._areaNameText || '未分配区域';
+        if (!groupsMap[areaId]) {
+          var newGroup = {
+            areaId: areaId,
+            areaName: areaName,
+            list: []
+          };
+          groupsMap[areaId] = newGroup;
+          result.push(newGroup);
+        }
+        groupsMap[areaId].list.push(item);
+      });
+      return result;
+    }
+  },
   onPageScroll: function onPageScroll(e) {
     this.scrollTop = e.scrollTop;
   },
@@ -347,6 +418,14 @@ var _default = {
     vk = uni.vk;
     this.options = options;
     this.init(options);
+  },
+  onShow: function onShow() {
+    var filter = uni.getStorageSync('planListFilter');
+    if (filter === 'needMyExecute') {
+      this.currentTab = 1; // 需我执行
+      uni.removeStorageSync('planListFilter');
+      this.onSearch();
+    }
   },
   onReachBottom: function onReachBottom() {
     if (this.loadStatus === 'nomore' || this.loadStatus === 'loading') return;
@@ -376,13 +455,12 @@ var _default = {
                 _context.prev = 1;
                 _context.next = 4;
                 return vk.callFunction({
-                  url: 'client/plan/sys/getAreaList',
+                  url: 'client/plan/kh/getAreaList',
                   data: {}
                 });
               case 4:
                 areaRes = _context.sent;
                 if (areaRes.code === 0 && areaRes.rows) {
-                  // 装载"重置"选项
                   _this.areaList = [{
                     _id: '',
                     name: '所有区域'
@@ -395,7 +473,6 @@ var _default = {
                 _context.t0 = _context["catch"](1);
                 console.error('Failed to load area list', _context.t0);
               case 11:
-                // 拉取初始列表
                 _this.loadData();
               case 12:
               case "end":
@@ -405,15 +482,13 @@ var _default = {
         }, _callee, null, [[1, 8]]);
       }))();
     },
-    // --- UI Interactions ---
     tabChange: function tabChange(index) {
       if (this.currentTab === index) return;
       this.currentTab = index;
-      this.onSearch(); // Switch tab should reset data
+      this.onSearch();
     },
     onDateChange: function onDateChange(e) {
       this.searchForm.date = e.result;
-      // 转换为该日期的0点时间戳
       this.searchForm.dateTimestamp = new Date(e.result.replace(/-/g, '/')).getTime();
     },
     onAreaConfirm: function onAreaConfirm(e) {
@@ -430,7 +505,6 @@ var _default = {
       this.planList = [];
       this.loadStatus = 'loading';
     },
-    // --- Backend API Fetch ---
     loadData: function loadData() {
       var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
@@ -442,34 +516,27 @@ var _default = {
                 _this2.loading = true;
                 _this2.loadStatus = 'loading';
                 vk = _this2.vk;
-                whereJson = {}; // 1. 构建区域过滤
+                whereJson = {};
                 if (_this2.searchForm.areaId) {
                   whereJson.area_id = _this2.searchForm.areaId;
                 }
-
-                // 3. 构建标签栏角色过滤
                 tabValue = _this2.tabList[_this2.currentTab].value;
                 myUid = vk.getVuex('$user.userInfo._id');
                 if (tabValue === 'todo') {
-                  // 需我执行: 我在 assignees 中
                   if (myUid) whereJson.assignee_ids = myUid;
                 } else if (tabValue === 'audit') {
-                  // 需我验收: 我是发布人且状态为待审(1)
                   if (myUid) {
-                    whereJson.issuer_uid = myUid;
+                    whereJson.uid = myUid;
                     whereJson.status = 1;
                   }
                 }
-
-                // 调用专属云端查询服务
                 _context2.next = 10;
                 return vk.callFunction({
-                  url: 'client/plan/sys/getList',
+                  url: 'client/plan/kh/getList',
                   data: {
                     pageIndex: _this2.page.pageIndex,
                     pageSize: _this2.page.pageSize,
                     searchTimestamp: _this2.searchForm.dateTimestamp || null,
-                    // 传给后端云函数解析
                     whereJson: whereJson
                   }
                 });
@@ -485,6 +552,10 @@ var _default = {
                     item._deadlineShow = item.deadline_time ? vk.pubfn.timeFormat(item.deadline_time, 'yyyy-MM-dd') : '';
                     item._areaNameText = _this2.getAreaName(item.area_id);
                     item._issuerName = _this2.getIssuerName(item);
+                    item._issuerAvatar = _this2.getIssuerAvatar(item);
+                    item._executorName = _this2.getExecutorName(item);
+                    item._executorAvatar = _this2.getExecutorAvatar(item);
+                    item._deptName = _this2.getDeptName(item);
                     return item;
                   });
                   if (_this2.page.pageIndex === 1) {
@@ -508,7 +579,6 @@ var _default = {
         }, _callee2);
       }))();
     },
-    // --- Data Rendering Parsers ---
     getAreaName: function getAreaName(areaId) {
       if (!areaId) return '';
       var match = this.areaList.find(function (x) {
@@ -517,13 +587,43 @@ var _default = {
       return match ? match.name : '未知';
     },
     getIssuerName: function getIssuerName(item) {
-      if (item.issuer_info && item.issuer_info.length > 0) {
-        return item.issuer_info[0].nickname || '管理员';
+      if (item.issuer_info) {
+        var info = Array.isArray(item.issuer_info) ? item.issuer_info[0] : item.issuer_info;
+        if (info) return info.real_name || info.nickname || '管理员';
       }
       return '管理员';
     },
+    getIssuerAvatar: function getIssuerAvatar(item) {
+      var defaultAvatar = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png';
+      if (item.issuer_info) {
+        var info = Array.isArray(item.issuer_info) ? item.issuer_info[0] : item.issuer_info;
+        if (info && info.avatar) return info.avatar;
+      }
+      return defaultAvatar;
+    },
+    getExecutorName: function getExecutorName(item) {
+      if (item.assignee_info) {
+        var info = Array.isArray(item.assignee_info) ? item.assignee_info[0] : item.assignee_info;
+        if (info) return info.real_name || info.nickname || '未分配';
+      }
+      return '未分配';
+    },
+    getExecutorAvatar: function getExecutorAvatar(item) {
+      var defaultAvatar = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png';
+      if (item.assignee_info) {
+        var info = Array.isArray(item.assignee_info) ? item.assignee_info[0] : item.assignee_info;
+        if (info && info.avatar) return info.avatar;
+      }
+      return defaultAvatar;
+    },
+    getDeptName: function getDeptName(item) {
+      if (item.dept_info) {
+        var info = Array.isArray(item.dept_info) ? item.dept_info[0] : item.dept_info;
+        if (info && info.name) return info.name;
+      }
+      return '未分配部门';
+    },
     getStatusClass: function getStatusClass(status) {
-      // 0:执行中 1:已提交 2:已完成 3:未达标 4:已逾期 5:超时未验收
       var dict = {
         0: 'tag-blue',
         1: 'tag-blue',
@@ -538,8 +638,14 @@ var _default = {
       var texts = ['执行中', '已待验', '已完成', '未达标', '已逾期', '超时未验收'];
       return texts[status] || '解析中';
     },
-    goToFeedback: function goToFeedback(item) {
-      console.log('Clicked feedback link for id: ', item._id);
+    goToFeedback: function goToFeedback(gIndex, index) {
+      var item = this.groupedPlanList[gIndex].list[index];
+      if (!item || !item._id) {
+        return uni.showToast({
+          title: '无法获取单据ID',
+          icon: 'none'
+        });
+      }
       uni.navigateTo({
         url: '/pages/plan/feedback?id=' + item._id
       });

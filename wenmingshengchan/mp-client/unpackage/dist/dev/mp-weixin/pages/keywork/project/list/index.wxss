@@ -25,13 +25,24 @@
 /* 透明度 */
 /* 文章场景相关 */
 .page-container.data-v-5a82e78f {
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
   font-family: Inter, sans-serif;
-  padding-bottom: 96rpx;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
 }
-.main-content.data-v-5a82e78f {
-  padding: 32rpx 16rpx;
+.industrial-grid.data-v-5a82e78f {
+  background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px) !important;
+  background-size: 40rpx 40rpx !important;
+}
+.top-content.data-v-5a82e78f {
+  padding: 10rpx 30rpx 0;
+  max-width: 896rpx;
+  margin: 0 auto;
+}
+.list-content.data-v-5a82e78f {
+  padding: 0 16rpx 16rpx;
   max-width: 896rpx;
   margin: 0 auto;
 }
@@ -61,11 +72,28 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 8rpx;
-  margin-bottom: 48rpx;
+  margin-bottom: 16rpx;
+}
+.section-title-wrap.data-v-5a82e78f {
+  display: flex;
+  flex-direction: column;
 }
 .page-title.data-v-5a82e78f {
-  font-size: 48rpx;
-  letter-spacing: -0.02em;
+  display: block;
+  font-family: Manrope, sans-serif;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #191c1e;
+  margin-bottom: 8rpx;
+  letter-spacing: -1rpx;
+}
+.page-subtitle.data-v-5a82e78f {
+  display: block;
+  font-size: 20rpx;
+  color: #424656;
+  font-weight: 500;
+  letter-spacing: 4rpx;
+  text-transform: uppercase;
 }
 .notif-btn.data-v-5a82e78f {
   width: 80rpx;
@@ -124,26 +152,27 @@
   background: rgba(255, 255, 255, 0.7);
   -webkit-backdrop-filter: blur(24px);
           backdrop-filter: blur(24px);
-  border-radius: 0 32rpx 32rpx 32rpx;
-  padding: 32rpx;
+  border-radius: 0 24rpx 24rpx 24rpx;
+  padding: 24rpx;
   border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 24rpx 80rpx -24rpx rgba(0, 80, 203, 0.12);
-  display: flex;
-  flex-direction: column;
-  gap: 24rpx;
-}
-.form-group-1.data-v-5a82e78f {
+  box-shadow: 0 16rpx 48rpx -16rpx rgba(0, 80, 203, 0.12);
   display: flex;
   flex-direction: column;
   gap: 16rpx;
 }
-.select-wrapper.data-v-5a82e78f, .date-wrapper.data-v-5a82e78f {
+.form-group-1.data-v-5a82e78f {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.select-wrapper.data-v-5a82e78f,
+.date-wrapper.data-v-5a82e78f {
   position: relative;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 24rpx;
-  padding: 16rpx 24rpx;
-  font-size: 28rpx;
+  border-radius: 16rpx;
+  padding: 12rpx 20rpx;
+  font-size: 26rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -151,27 +180,37 @@
 .date-pickers.data-v-5a82e78f {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16rpx;
+  gap: 12rpx;
+}
+.date-text.placeholder.data-v-5a82e78f {
+  color: #9ca3af;
 }
 .btn-group.data-v-5a82e78f {
   display: flex;
-  gap: 16rpx;
+  gap: 12rpx;
 }
-.btn-feedback.data-v-5a82e78f, .btn-primary.data-v-5a82e78f {
+.btn-feedback.data-v-5a82e78f,
+.btn-primary.data-v-5a82e78f {
   flex: 1;
-  padding: 20rpx 24rpx;
-  border-radius: 24rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8rpx;
-  font-size: 24rpx;
+  font-size: 26rpx;
   font-weight: 700;
+  height: 64rpx;
+  transition: all 0.3s ease;
 }
 .btn-feedback.data-v-5a82e78f {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 80, 203, 0.2);
   color: #0050cb;
+}
+.btn-feedback.active-filter.data-v-5a82e78f {
+  background: rgba(0, 80, 203, 0.1);
+  border-color: #0050cb;
 }
 .btn-primary.data-v-5a82e78f {
   background: #0050cb;
@@ -224,71 +263,77 @@
 .card-header.data-v-5a82e78f {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  gap: 16rpx;
 }
 .card-title.data-v-5a82e78f {
   font-weight: 700;
   font-size: 32rpx;
   line-height: 1.4;
-  padding-right: 32rpx;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.status-chip.data-v-5a82e78f {
-  flex-shrink: 0;
-  padding: 4rpx 20rpx;
-  border-radius: 999rpx;
-  font-size: 20rpx;
-  font-weight: 700;
-}
-.status-chip.in-progress.data-v-5a82e78f {
-  background: #eff6ff;
-  color: #0050cb;
-  border: 1px solid rgba(0, 80, 203, 0.1);
-}
-.card-roles.data-v-5a82e78f {
+.roles-row.data-v-5a82e78f {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  font-size: 24rpx;
+  padding: 16rpx 0;
 }
-.role-group.data-v-5a82e78f {
+.role-executors.data-v-5a82e78f,
+.role-verifier.data-v-5a82e78f {
   display: flex;
   align-items: center;
-  gap: 16rpx;
 }
 .role-label.data-v-5a82e78f {
+  font-size: 26rpx;
+  color: #727687;
+}
+.role-names.data-v-5a82e78f {
+  font-size: 26rpx;
   color: #424656;
-  font-weight: 500;
+  margin-right: 12rpx;
+  max-width: 140rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.avatars.data-v-5a82e78f {
+.avatar-stack.data-v-5a82e78f {
   display: flex;
-  margin-left: 16rpx;
+  align-items: center;
 }
-.avatar.data-v-5a82e78f {
-  width: 48rpx;
-  height: 48rpx;
+.stack-avatar.data-v-5a82e78f {
+  width: 44rpx;
+  height: 44rpx;
   border-radius: 50%;
-  border: 4rpx solid #fff;
-  margin-left: -16rpx;
+  border: 2rpx solid #fff;
+  margin-left: -12rpx;
+  background-color: #f3f4f6;
 }
-.avatar.data-v-5a82e78f:first-child {
+.stack-avatar.data-v-5a82e78f:first-child {
   margin-left: 0;
 }
-.avatar.plain.data-v-5a82e78f {
-  border: 1px solid rgba(0, 80, 203, 0.2);
-  margin-left: 0;
-}
-.avatar-more.data-v-5a82e78f {
-  width: 48rpx;
-  height: 48rpx;
+.stack-more.data-v-5a82e78f {
+  width: 44rpx;
+  height: 44rpx;
   border-radius: 50%;
-  background: #f7f9fb;
-  border: 4rpx solid #fff;
+  background: #e5e7eb;
+  border: 2rpx solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16rpx;
+  font-size: 20rpx;
   font-weight: 700;
-  margin-left: -16rpx;
+  margin-left: -12rpx;
+  color: #4b5563;
+}
+.verifier-avatar.data-v-5a82e78f {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  border: 2rpx solid #fff;
 }
 .card-footer.data-v-5a82e78f {
   padding-top: 24rpx;

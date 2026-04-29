@@ -1,5 +1,10 @@
 <template>
   <view class="app app-bg">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">模板列表</block>
+    </cu-custom>
+    
     <!-- 页面内容开始 -->
     <view class="list-page">
       <!--头部开始 -->

@@ -19,7 +19,8 @@
     "pages/feedback/history/index",
     "pages/info/index",
     "pages/info/detail/index",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/showpoint/showpoint"
   ],
   "subPackages": [
     {
@@ -50,6 +51,7 @@
     }
   ],
   "window": {
+    "navigationStyle": "custom",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#F8F8F8",
@@ -79,7 +81,7 @@
         "text": "计划执行"
       },
       {
-        "pagePath": "pages/feedback/todo-list/index",
+        "pagePath": "pages/user/mine/index",
         "text": "我的"
       }
     ]

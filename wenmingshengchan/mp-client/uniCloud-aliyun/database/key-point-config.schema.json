@@ -41,6 +41,11 @@
       "bsonType": "string",
       "description": "配置下达人ID"
     },
+    "required_photo_count": {
+      "bsonType": "int",
+      "description": "要求照片数量(1-3张)",
+      "defaultValue": 1
+    },
     "status": {
       "bsonType": "int",
       "description": "系统启停控制：1为启用；0为禁用",

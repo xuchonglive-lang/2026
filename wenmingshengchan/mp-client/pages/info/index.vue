@@ -3,6 +3,10 @@
 		<z-paging ref="paging" v-model="dataList" @query="getList" :fixed="true">
 			<!-- 顶部固定区域 -->
 			<template #top>
+				<cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+					<block slot="backText"></block>
+					<block slot="content">信息中心</block>
+				</cu-custom>
 				<view class="main-content">
 					<!-- Section Header -->
 					<view class="section-title-wrap">

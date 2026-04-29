@@ -1,6 +1,10 @@
 {
   "usingComponents": {
-    "u-empty": "/uni_modules/vk-uview-ui/components/u-empty/u-empty",
-    "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
+    "z-paging": "/node-modules/z-paging/components/z-paging/z-paging",
+    "u-tag": "/uni_modules/vk-uview-ui/components/u-tag/u-tag",
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar",
+    "u-select": "/uni_modules/vk-uview-ui/components/u-select/u-select",
+    "u-calendar": "/uni_modules/vk-uview-ui/components/u-calendar/u-calendar"
   }
 }

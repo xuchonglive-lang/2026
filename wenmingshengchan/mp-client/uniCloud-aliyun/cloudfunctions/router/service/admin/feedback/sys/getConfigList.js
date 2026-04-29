@@ -1,52 +1,60 @@
-'use strict';
 module.exports = {
-	/**
-	 * 获取重控点位监控配置列表
-	 * @url admin/feedback/sys/getConfigList
-	 */
-	main: async (event) => {
-		let { data = {}, userInfo, util, filterResponse, originalParam } = event;
-		let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-		let { uid } = data;
-		let res = { code: 0, msg: "" };
+  /**
+   * 获取配置列表
+   * @url admin/feedback/sys/getConfigList
+   */
+  main: async (event) => {
+    let { data = {}, userInfo, util } = event;
+    let { vk, db, _ } = util;
+    let res = { code: 0, msg: '' };
 
-		// 业务逻辑开始-----------------------------------------------------------
-		// 1. 获取部门树状下钻数据做权限隔离
-		// userInfo 里会有权限标识或部门挂靠信息等，这里示例：
-		// 如果需要可以补充: whereJson['dept_id'] = _.in(userDeptTreeArr)
+    let whereJson = {};
 
-		let selectRes = await vk.baseDao.getTableData({
-			dbName: "key-point-config",
-			data: data,
-			whereJson: {
-				is_del: _.neq(1) // 根据防踩坑指南，严格拦截软删除数据
-			},
-			foreignDB: [
-				{
-					dbName: "base-point",
-					localKey: "point_id",
-					foreignKey: "_id",
-					as: "point_info",
-					limit: 1
-				},
-				{
-					dbName: "base-area",
-					localKey: "area_id",
-					foreignKey: "_id",
-					as: "area_info",
-					limit: 1
-				},
-				{
-					dbName: "base-dept",
-					localKey: "dept_id",
-					foreignKey: "_id",
-					as: "dept_info",
-					limit: 1
-				}
-			]
-		});
+    // 部门管理员过滤：只看本部门相关的
+    // 假设 dept_admin 角色限制 (根据您的实际角色名判断)
+    let isDeptAdmin = userInfo.role && userInfo.role.includes("dept_admin");
+    if (isDeptAdmin && userInfo.department_id) {
+      // 若存在多级部门，应使用前端传来的树形列表查in，这里做简单适配
+      whereJson.dept_id = userInfo.department_id;
+    }
 
-		// 业务逻辑结束-----------------------------------------------------------
-		return selectRes;
-	}
-}
+    if (data.point_id) {
+      whereJson.point_id = data.point_id;
+    }
+    
+    if (data.status !== undefined && data.status !== "") {
+      whereJson.status = data.status;
+    }
+
+    res = await vk.baseDao.getTableData({
+      dbName: "key-point-config",
+      data: data,
+      whereJson: whereJson,
+      foreignDB: [
+        {
+          dbName: "base-area",
+          localKey: "area_id",
+          foreignKey: "_id",
+          as: "area_info",
+          limit: 1
+        },
+        {
+          dbName: "base-point",
+          localKey: "point_id",
+          foreignKey: "_id",
+          as: "point_info",
+          limit: 1
+        },
+        {
+          dbName: "base-dept",
+          localKey: "dept_id",
+          foreignKey: "_id",
+          as: "dept_info",
+          limit: 1
+        }
+      ]
+    });
+
+    return res;
+  }
+};

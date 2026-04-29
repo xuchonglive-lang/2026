@@ -8,7 +8,7 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util } = event;
     let { vk, db, _ } = util;
-    let { uid } = userInfo; // 操作管理端账号UID
+    let uid = userInfo ? userInfo._id : null; // 操作管理端账号UID (vk-unicloud-router中为_id)
     let { plan_id, content, images, audit_result } = data; // 从交互接收动作定论：pass 通过，reject 打回
 
     if (!plan_id) return { code: -1, msg: '确实被审查单据实体标识' };

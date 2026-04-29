@@ -1,5 +1,11 @@
 <template>
 	<view class="app page-container industrial-grid">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">信息详情</block>
+    </cu-custom>
+    
+    
 		<view class="main-content" v-if="detail">
 			<!-- Header Section -->
 			<view class="header-section">

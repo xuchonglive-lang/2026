@@ -1,5 +1,11 @@
 <template>
 	<view class="page-container">
+    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+      <block slot="backText"></block>
+      <block slot="content">报表提交</block>
+    </cu-custom>
+    
+    
 		<view class="main-content">
 			<!-- Header -->
 			<view class="header-section">

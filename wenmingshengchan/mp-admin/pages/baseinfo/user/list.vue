@@ -108,7 +108,8 @@ export default {
           { key: "nickname", title: "昵称", type: "text", width: 120 },
           { key: "real_name", title: "真实姓名", type: "text", width: 100 },
           { key: "mobile", title: "手机号码", type: "text", width: 120 },
-          { key: "dept_info.name", title: "直属架构", type: "text", width: 160, defaultValue: "暂无组织" },
+          { key: "dept_info.name", title: "所属部门", type: "text", width: 140, defaultValue: "暂无部门" },
+          { key: "group_info.name", title: "所属小组", type: "text", width: 140, defaultValue: "暂无小组" },
           { 
             key: "role", 
             title: "系统角色", 
@@ -146,10 +147,10 @@ export default {
       },
       queryForm1: {
         formData: {
-          department_id: ""
+          tree_node_id: ""
         },
         columns: [
-          { key: "department_id", title: "隐性过滤", type: "text", mode: "=", hidden: true },
+          { key: "tree_node_id", title: "隐性过滤", type: "text", mode: "=", hidden: true },
           { key: "real_name", title: "真实姓名搜", type: "text", mode: "%%", width: 160 },
           { key: "mobile", title: "手机号查询", type: "text", mode: "%%", width: 160 }
         ]
@@ -164,11 +165,11 @@ export default {
           columns: [
             { key: "real_name", title: "真名背书", type: "text", disabled: true },
             { 
-              key: "department_id", 
+              key: "dept_group_path", 
               title: "归属组织", 
               type: "cascader", 
               action: "admin/base-dept/sys/getTree",
-              props: { value: "_id", label: "name", children: "children", checkStrictly: true, emitPath: false },
+              props: { value: "_id", label: "name", children: "children", checkStrictly: true, emitPath: true },
               disabled: true
             },
             { 
@@ -223,8 +224,8 @@ export default {
     },
     handleNodeClick(data) {
       that.selectedDept = data;
-      // 隐形塞入 queryForm1 的提交载荷，因为指定了 mode="="，vk-data-table 会自动组装精密的等于查询
-      that.queryForm1.formData.department_id = data._id;
+      // 隐形塞入 queryForm1 的提交载荷，改为 tree_node_id 供后端同时查询 department_id 和 group_id
+      that.queryForm1.formData.tree_node_id = data._id;
       that.$nextTick(() => {
         that.$refs.table1.search();
       });
@@ -246,13 +247,20 @@ export default {
       };
       
       setDisabled("role", !isSuper);
-      setDisabled("department_id", !isSuper);
+      setDisabled("dept_group_path", !isSuper);
       setDisabled("status", !isSuper); // 非全盘总管不能随意拉黑
       
       that.form1.props.action = "admin/user/sys/updateStatus";
       that.form1.props.formType = "update";
       that.form1.props.title = isSuper ? "超管控制台(全开)" : "基层管事台(仅审)";
-      that.form1.data = vk.pubfn.copyObject(item);
+      
+      let itemCopy = vk.pubfn.copyObject(item);
+      // 将底层的双字段，逆向拼接回一个级联数组供组件显示
+      itemCopy.dept_group_path = [];
+      if(itemCopy.department_id) itemCopy.dept_group_path.push(itemCopy.department_id);
+      if(itemCopy.group_id) itemCopy.dept_group_path.push(itemCopy.group_id);
+      
+      that.form1.data = itemCopy;
       that.form1.props.show = true;
     },
     onFormSuccess() {

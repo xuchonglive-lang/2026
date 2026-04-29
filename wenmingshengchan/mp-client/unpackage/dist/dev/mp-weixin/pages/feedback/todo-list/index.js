@@ -101,8 +101,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    cuCustom: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/cu-custom/components/cu-custom/cu-custom */ "uni_modules/cu-custom/components/cu-custom/cu-custom").then(__webpack_require__.bind(null, /*! @/uni_modules/cu-custom/components/cu-custom/cu-custom.vue */ 464))
+    },
+    uTag: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-tag/u-tag */ "uni_modules/vk-uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-tag/u-tag.vue */ 552))
+    },
+    uEmpty: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/vk-uview-ui/components/u-empty/u-empty */ "uni_modules/vk-uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/uni_modules/vk-uview-ui/components/u-empty/u-empty.vue */ 531))
+    },
     myTabBar: function () {
-      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 464))
+      return __webpack_require__.e(/*! import() | components/my-tab-bar/my-tab-bar */ "components/my-tab-bar/my-tab-bar").then(__webpack_require__.bind(null, /*! @/components/my-tab-bar/my-tab-bar.vue */ 492))
     },
   }
 } catch (e) {
@@ -127,13 +136,49 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   var g0 = _vm.listData.length
-  var g1 = !_vm.loading && _vm.listData.length === 0
+  var l0 = _vm.__map(_vm.listData, function (item, __i0__) {
+    var $orig = _vm.__get_orig(item)
+    var m0 = _vm.getPointName(item)
+    var m1 = _vm.getDeptName(item)
+    var m2 = _vm.getAreaName(item)
+    var m3 = _vm.getAssigneeNames(item)
+    var g1 = item.assignee_info && item.assignee_info.length > 0
+    var m4 = g1 ? _vm.getAvatar(item.assignee_info, 0) : null
+    var g2 = g1 ? item.assignee_info.length : null
+    var g3 = g1 && g2 > 1 ? item.assignee_info.length : null
+    var m5 = _vm.getTimeRange(item)
+    return {
+      $orig: $orig,
+      m0: m0,
+      m1: m1,
+      m2: m2,
+      m3: m3,
+      g1: g1,
+      m4: m4,
+      g2: g2,
+      g3: g3,
+      m5: m5,
+    }
+  })
+  var g4 = !_vm.loading && _vm.listData.length === 0
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event, item) {
+      var _temp = arguments[arguments.length - 1].currentTarget.dataset,
+        _temp2 = _temp.eventParams || _temp["event-params"],
+        item = _temp2.item
+      var _temp, _temp2
+      item._feedback_status && item._feedback_status !== "active"
+        ? null
+        : _vm.goSubmit(item)
+    }
+  }
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
         g0: g0,
-        g1: g1,
+        l0: l0,
+        g4: g4,
       },
     }
   )
@@ -250,6 +295,27 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -274,7 +340,7 @@ var _default = {
     goSubmit: function goSubmit(item) {
       // 传递必要信息到提交页
       uni.navigateTo({
-        url: "/pages/feedback/submit/index?id=".concat(item._id, "&name=").concat(item.point_info && item.point_info[0] ? item.point_info[0].name : '')
+        url: "/pages/feedback/submit/index?id=".concat(item._id, "&name=").concat(item.point_info && item.point_info[0] ? item.point_info[0].name : '', "&status=").concat(item._feedback_status || 'active')
       });
     },
     fetchData: function fetchData() {
@@ -314,6 +380,47 @@ var _default = {
           }
         }, _callee, null, [[1, 8, 11, 14]]);
       }))();
+    },
+    getAssigneeNames: function getAssigneeNames(item) {
+      if (!item.assignee_info || item.assignee_info.length === 0) return '未分配';
+      return item.assignee_info.map(function (u) {
+        return u.real_name || u.nickname || '未知';
+      }).join('、');
+    },
+    getDeptName: function getDeptName(item) {
+      if (item.dept_info) {
+        var info = Array.isArray(item.dept_info) ? item.dept_info[0] : item.dept_info;
+        if (info && info.name) return info.name;
+      }
+      return "未知部门";
+    },
+    getAreaName: function getAreaName(item) {
+      if (item.area_info) {
+        var info = Array.isArray(item.area_info) ? item.area_info[0] : item.area_info;
+        if (info && info.name) return info.name;
+      }
+      return "未知区域";
+    },
+    getPointName: function getPointName(item) {
+      if (item.point_info) {
+        var info = Array.isArray(item.point_info) ? item.point_info[0] : item.point_info;
+        if (info && info.name) return info.name;
+      }
+      return "未知重控点";
+    },
+    getAvatar: function getAvatar(assignees, index) {
+      if (assignees && assignees[index] && assignees[index].avatar) {
+        return assignees[index].avatar;
+      }
+      return "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png";
+    },
+    getTimeRange: function getTimeRange(item) {
+      if (item._feedback_start && item._feedback_end) {
+        return "".concat(item._feedback_start, " - ").concat(item._feedback_end);
+      }
+      if (item.shift_type === 'day') return "08:00 - 18:00";
+      if (item.shift_type === 'night') return "20:00 - 06:00";
+      return "00:00 - 23:59";
     }
   }
 };

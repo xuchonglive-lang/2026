@@ -7,7 +7,10 @@ module.exports = {
 		let { data = {}, userInfo, util, filterResponse, originalParam } = event;
 		let { customUtil, uniID, config, pubObj, request, plugin, vk, db, _ } = util;
 		let res = { code: 0, msg: '' };
-		let whereJson = {};
+		// 基础过滤网：根据需求，没有部门的孤立用户数据不获取
+		let whereJson = {
+			department_id: _.and(_.exists(true), _.neq(""))
+		};
 
 		try {
 			// ==================【鉴权与隔离拦截】==================
@@ -42,14 +45,36 @@ module.exports = {
 				whereJson.department_id = _.in(myDeptIds);
 			}
 
+			// 如果前端左侧树点击了任何一个节点（无论是部门还是小组），传来了 tree_node_id
+			if (data.formData && data.formData.tree_node_id) {
+				// 采用纯对象 $or 语法，确保 whereJson 始终是普通 Object，
+				// 避免变成 Command 对象后被 vk-base-dao 的深度合并机制（Object.assign）破坏，
+				// 从而保证真实姓名 (real_name)、手机号等 formData 搜索条件能完美共存生效。
+				whereJson.$or = [
+					{ department_id: data.formData.tree_node_id },
+					{ group_id: data.formData.tree_node_id }
+				];
+				// 阅后即焚，防止 vk-base-dao 拿着 tree_node_id 去匹配底层真实数据字段
+				delete data.formData.tree_node_id;
+			}
+
 			// ==================【执行外键提取与响应】==================
-			let foreignDB = [{
-				dbName: "base-dept",
-				localKey: "department_id",
-				foreignKey: "_id",
-				as: "dept_info",
-				limit: 1
-			}];
+			let foreignDB = [
+				{
+					dbName: "base-dept",
+					localKey: "department_id",
+					foreignKey: "_id",
+					as: "dept_info",
+					limit: 1
+				},
+				{
+					dbName: "base-dept",
+					localKey: "group_id",
+					foreignKey: "_id",
+					as: "group_info",
+					limit: 1
+				}
+			];
 			
 			res = await vk.baseDao.getTableData({
 				dbName: "uni-id-users",

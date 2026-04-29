@@ -1,10 +1,8 @@
 {
   "usingComponents": {
-    "u-navbar": "/uni_modules/vk-uview-ui/components/u-navbar/u-navbar",
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
     "u-form": "/uni_modules/vk-uview-ui/components/u-form/u-form",
-    "u-form-item": "/uni_modules/vk-uview-ui/components/u-form-item/u-form-item",
-    "u-input": "/uni_modules/vk-uview-ui/components/u-input/u-input",
-    "u-button": "/uni_modules/vk-uview-ui/components/u-button/u-button",
+    "robin-editor": "/uni_modules/robin-editor/components/robin-editor/robin-editor",
     "u-toast": "/uni_modules/vk-uview-ui/components/u-toast/u-toast"
   }
 }

@@ -44,6 +44,10 @@
       "bsonType": "string",
       "description": "穿透权限核查的部门源头ID"
     },
+    "issuer_uid": {
+      "bsonType": "string",
+      "description": "配置该任务的管理员UID"
+    },
     "shift_date": {
       "bsonType": "string",
       "description": "本周期所属签到日期 (格式 YYYY-MM-DD)"
@@ -65,22 +69,10 @@
       "bsonType": "timestamp",
       "description": "汇报查证时间戳"
     },
-    "main_image": {
-      "bsonType": "string",
-      "description": "核心主图反馈凭证(图床地址)"
-    },
-    "sub_images": {
+    "images": {
       "bsonType": "array",
-      "description": "辅助照片集",
+      "description": "现场拍摄照片列表",
       "items": { "bsonType": "string" }
-    },
-    "photo_shoot_time": {
-      "bsonType": "string",
-      "description": "从照片EXIF元数据抓取的实际拍摄时间"
-    },
-    "device_model": {
-      "bsonType": "string",
-      "description": "从照片EXIF提取的拍摄设备型号"
     },
     "content": {
       "bsonType": "string",

@@ -1,10 +1,14 @@
 [
   {
     "shift_type": "day",
-    "trigger_time": "08:00"
+    "trigger_time": "14:00",
+    "feedback_start": "19:00",
+    "feedback_end": "21:00"
   },
   {
     "shift_type": "night",
-    "trigger_time": "20:00"
+    "trigger_time": "05:00",
+    "feedback_start": "07:00",
+    "feedback_end": "09:00"
   }
 ]

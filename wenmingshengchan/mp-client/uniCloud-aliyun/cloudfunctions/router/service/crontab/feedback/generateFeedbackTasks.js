@@ -1,104 +1,92 @@
-'use strict';
-module.exports = {
+'use strict'; // 开启严格模式
+module.exports = { // 导出模块逻辑
 	/**
-	 * 定时卡点派发重控点位巡回任务
+	 * 定时任务：卡点派发重控点位巡回反馈任务
 	 * @url crontab/feedback/generateFeedbackTasks
-	 * @description 高频空转，触发时比对 key-point-cron-config 的时间设置发放当班次快照。
+	 * @description 该函数由定时器高频触发（如每分钟），根据配置的时间点发放当班次的反馈任务快照。
 	 */
-	main: async (event) => {
-		let { data = {}, userInfo, util, originalParam } = event;
-		let { customUtil, config, pubFun, vk, db, _ } = util;
-		let res = { code: 0, msg: "执行完成" };
+	main: async (event) => { // 主入口函数
+		let { util } = event; // 从事件中解构工具类
+		let { pubFun, vk, _ } = util; // 提取常用工具函数、数据库操作类及查询操作符
+		let res = { code: 0, msg: "执行完成" }; // 初始化返回结果
 
-		// 1. 获取当前系统时间 (东八区补齐)
-		let now = new Date();
-		// 将其格式化为 HH:mm 用于时间配置比对
-		let current_time_str = pubFun.timeFormat(now, "hh:mm");
-		let current_date_str = pubFun.timeFormat(now, "yyyy-MM-dd");
+		// 1. 获取并格式化当前系统时间
+		let now = new Date(); // 创建当前时间对象
+		let current_time_str = pubFun.timeFormat(now, "hh:mm"); // 格式化当前时分为 "HH:mm"，用于与触发配置比对
+		let current_date_str = pubFun.timeFormat(now, "yyyy-MM-dd"); // 格式化当前日期为 "YYYY-MM-DD"
 		
-		// 允许的容错分钟偏移量：由于可能由单点或延迟导致，适当给 5 分钟的判定容差
-		// 由于这在生产中建议采用精确匹配（或者在 5 分内均可命中，因为索引有 unique 安全锁）
-		
-		let cronConfigs = await vk.baseDao.selects({
-			dbName: "key-point-cron-config"
+		// 2. 获取所有的定时发放配置
+		let cronConfigs = await vk.baseDao.selects({ // 从数据库查询 Cron 配置表
+			dbName: "key-point-cron-config" // 表名：重控点位 Cron 触发配置
 		});
 		
-		if (!cronConfigs.rows || cronConfigs.rows.length === 0) {
-			return { code: 0, msg: "暂无Cron发送配置定点" };
+		if (!cronConfigs.rows || cronConfigs.rows.length === 0) { // 如果没有配置项
+			return { code: 0, msg: "暂无Cron发送配置定点" }; // 直接返回，无需执行后续逻辑
 		}
 		
-		// 2. 判定当前处于哪个班次的触发窗口
-		let matchedShifts = [];
-		for (let conf of cronConfigs.rows) {
-			// 如果当前系统时分（HH:mm）等于 trigger_time
-			// 这里严格使用等于，要求触发器至少保持该精度的执行(如 00,05,10)并对齐表内配置
-			// 或者简单起见，只要判断当前时间落在 trigger_time 之后一小段时间内
-			let triggerTime = conf.trigger_time;
-			// 粗略判断字符串相等（要求配置如 07:30，真实机器在 07:30 唤起）
-			// 实际工业应用中为了防空，通常是获取偏移并确保每天只发一次。由于数据库配置了唯一复合索引
-			// { config_id, shift_date, shift_type } = unique，
-			// 所以就算由于高频死循环一分钟命中一次，它最多也只能成功落库一份。因此此处可放宽判定。
-			if (current_time_str === triggerTime || true) { 
-				// NOTE: “|| true” 为调试兼绝对触发手段：这完全仰赖底层复合索引去阻止脏数据！
-				// 由于我们无法获知阿里服务器具体的轮询状态，利用唯一索引强顶是最稳妥的。
-				// 实际可改回 `current_time_str === triggerTime` 。暂且做时间匹配。
-				if (current_time_str === triggerTime) {
-				    matchedShifts.push(conf);
-				}
+		// 3. 筛选当前时间点命中的班次
+		let matchedShifts = []; // 用于存储匹配到的班次配置
+		for (let conf of cronConfigs.rows) { // 遍历所有配置项
+			let triggerTime = conf.trigger_time; // 获取配置的触发时间点（如 "07:30"）
+			// 严格比对当前时间字符串是否等于配置的时间点
+			if (current_time_str === triggerTime) { // 如果时间点精准命中
+				matchedShifts.push(conf); // 将该班次配置加入待执行队列
 			}
 		}
 		
-		if (matchedShifts.length === 0) {
-			return { code: 0, msg: "当下未命中任何发单时间点" };
+		if (matchedShifts.length === 0) { // 如果当前时间没有命中任何触发点
+			return { code: 0, msg: "当下未命中任何发单时间点" }; // 正常结束流程
 		}
 
-		for (let shiftConf of matchedShifts) {
-			let shift_type = shiftConf.shift_type;
-			// - **归属延迟结算设定**：强制规定所有夜班归卷的数据账单 shift_date，都以下班跨越的次日日期为统一落定值。
-			let shift_date = current_date_str;
-			if (shift_type === 'night') {
-				let tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-				shift_date = pubFun.timeFormat(tomorrow, "yyyy-MM-dd");
+		// 4. 为命中的班次生成并派发任务
+		for (let shiftConf of matchedShifts) { // 遍历所有命中的班次
+			let shift_type = shiftConf.shift_type; // 获取班次类型（day/night）
+			// 处理日期逻辑：为了方便结算，夜班的任务通常挂载到下班时的次日日期上
+			let shift_date = current_date_str; // 默认使用当天日期
+			if (shift_type === 'night') { // 如果是夜班
+				let tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 计算明天的时间对象
+				shift_date = pubFun.timeFormat(tomorrow, "yyyy-MM-dd"); // 将日期设为明天
 			}
 
-			// 3. 抓取该班次启用的全量 Config 映射模板
-			let configRes = await vk.baseDao.selects({
-				dbName: "key-point-config",
-				whereJson: {
-					status: 1,
-					require_shifts: _.in([shift_type])
+			// 5. 拉取该班次下所有处于启用状态的任务模板
+			let configRes = await vk.baseDao.selects({ // 查询任务配置表
+				dbName: "key-point-config", // 表名：重控点位任务配置模板
+				whereJson: { // 查询条件
+					status: 1, // 必须是启用状态
+					require_shifts: _.in([shift_type]) // 必须包含当前匹配的班次类型
 				}
 			});
 			
-			if (configRes.rows && configRes.rows.length > 0) {
-				let payloadArr = configRes.rows.map(item => {
+			if (configRes.rows && configRes.rows.length > 0) { // 如果找到了任务模板
+				let payloadArr = configRes.rows.map(item => { // 将模板转换为待落库的任务实录
 					return {
-						config_id: item._id,
-						point_id: item.point_id,
-						point_name: "", // 需要在后面联表补齐或作为外键读取。实际应当先做联表。为了极简，此处可省略或用 ForeignDB 拉好。
-						area_id: item.area_id,
-						area_name: "",
-						dept_id: item.dept_id,
-						shift_date: shift_date,
-						shift_type: shift_type,
-						assignee_ids: item.assignee_ids,
-						status: 0
+						config_id: item._id, // 关联的配置模板 ID
+						point_id: item.point_id, // 关联的点位 ID
+						point_name: item.point_name || "", // 点位名称快照（防止模板修改后历史数据失真）
+						area_id: item.area_id, // 关联的区域 ID
+						area_name: item.area_name || "", // 区域名称快照
+						dept_id: item.dept_id, // 归属部门 ID
+						shift_date: shift_date, // 归属班次日期
+						shift_type: shift_type, // 班次类型
+						assignee_ids: item.assignee_ids, // 冗余执行人列表
+						status: 0 // 任务状态初始设为 0：待执行
 					}
 				});
 				
-				// 4. 发起批量推送
+				// 6. 批量插入任务实录表
 				try {
-					await vk.baseDao.adds({
-						dbName: "key-point-feedback",
-						dataJson: payloadArr
+					await vk.baseDao.adds({ // 批量新增操作
+						dbName: "key-point-feedback", // 表名：重控点位反馈实录表
+						dataJson: payloadArr // 待插入的数据数组
 					});
 				} catch (e) {
-					// Duplicate errors 会在这里被吃掉，这就是最高级别的并发控制！
-					console.log("拦截到多重发放异常，忽略脏数据：", e.message);
+					// 此处利用数据库的复合唯一索引（config_id + shift_date + shift_type）来防止重复发单
+					// 如果触发器在一分钟内多次运行，后续的插入会抛出唯一键冲突异常，直接忽略即可
+					console.log("拦截到重复派单，已自动跳过：", e.message);
 				}
 			}
 		}
 
-		return res;
+		return res; // 返回成功响应
 	}
 }
