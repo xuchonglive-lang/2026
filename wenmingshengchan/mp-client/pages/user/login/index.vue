@@ -51,8 +51,10 @@ export default {
         if (loginErr || !loginRes.code) throw new Error('微信通信链路异常');
 
         // 仅登录，若用户不存在则直接报错，不自动建档
+        // needAlert: false 禁止 vk 框架自动弹出错误弹窗，由我们自己处理
         let res = await uni.vk.callFunction({
           url: 'client/user/pub/loginByWeixin',
+          needAlert: false,
           data: {
             code: loginRes.code,
             type: 'login'
