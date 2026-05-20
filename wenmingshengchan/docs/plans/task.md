@@ -25,6 +25,9 @@
 | 21 | [第二轮头脑风暴] 展示多空间切换方案详细设计 | completed | 详细展示了 app.config.js 配置、主控数据库、B 端管理交互与前端 AOP 请求挂起拦截器设计 |
 | 22 | [第二轮头脑风暴] 编写并保存第二轮设计文档 | completed | 已将设计文档保存至 `docs/plans/2026-05-20-wechat-three-space-switch-design.md` |
 | 23 | [第二轮头脑风暴] 转换至实施规划阶段 | completed | 已保存三云空间动态切换方案，本咨询任务至此圆满结束，无需进一步的实施编码阶段 |
-
-
-
+| 24 | [第三轮头脑风暴] 针对多空间切换的可行性与性能痛点进行风暴 | completed | 分析了双空间方案中 auto-login 和冷启动性能，提出了本地缓存过审状态优化方案，用户确认选择方案 1 |
+| 25 | [第三轮头脑风暴] 形成双空间动态路由切换设计与实施文档 | completed | 编写并保存了最新的设计和实施计划文件，准备进入单流实施阶段 |
+| 26 | [实施阶段] 任务1：空间 A 数据库初始化 | completed | 创建 sys_config schema 文件并手动录入 app_audit_config 配置记录 |
+| 27 | [实施阶段] 任务2：创建 checkAuditStatus 云函数 | completed | 部署 client/pub/checkAuditStatus 到空间 A 以检测版本过审状态 |
+| 28 | [实施阶段] 任务3：客户端 app.config.js 配置更新 | completed | 在 app.config.js 中配置 envs，将 default 指向空间 A，prod 指向空间 B |
+| 29 | [实施阶段] 任务4：客户端 AOP 拦截器与缓存层实现 | completed | 实现 main.js 中的 AOP 拦截器和本地缓存逻辑，并全局 Mixin 注入 currentEnv 变量 |
