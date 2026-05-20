@@ -170,4 +170,21 @@ export default {
     // 	// 上方代码可自己修改，写成你自己的逻辑处理。
     // },
   },
+  // 服务空间多环境配置
+  uniCloud: {
+    envs: {
+      // 默认空间：对应空间 A（微信审核空间），打包时默认请求此空间。请根据需要替换为实际的审核空间参数。
+      "default": {
+        "provider": "aliyun",
+        "spaceId": "audit-space-id-xxxxxx",
+        "clientSecret": "audit-client-secret-yyyyyy"
+      },
+      // 正式空间：对应空间 B（正式生产空间），审核通过后动态切换至此。
+      "prod": {
+        "provider": "aliyun",
+        "spaceId": "mp-f5dec8e2-6434-4681-934d-fc46f8267fea",
+        "clientSecret": "bj1QzvYuni9rWUEMHQYIwg=="
+      }
+    }
+  }
 };
