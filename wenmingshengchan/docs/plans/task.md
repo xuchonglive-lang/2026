@@ -31,3 +31,6 @@
 | 27 | [实施阶段] 任务2：创建 checkAuditStatus 云函数 | completed | 部署 client/pub/checkAuditStatus 到空间 A 以检测版本过审状态 |
 | 28 | [实施阶段] 任务3：客户端 app.config.js 配置更新 | completed | 在 app.config.js 中配置 envs，将 default 指向空间 A，prod 指向空间 B |
 | 29 | [实施阶段] 任务4：客户端 AOP 拦截器与缓存层实现 | completed | 实现 main.js 中的 AOP 拦截器和本地缓存逻辑，并全局 Mixin 注入 currentEnv 变量 |
+| 30 | [实施阶段] 任务5：main.js Vue2 全局拦截 Mixin 实现 | pending | 在 main.js 中为 Vue2 环境的全局 Mixin 添加 onShow 页面审计拦截 |
+| 31 | [实施阶段] 任务6：main.js Vue3 全局拦截 Mixin 实现 | pending | 在 main.js 中为 Vue3 环境的全局 Mixin 添加 onShow 页面审计拦截 |
+| 32 | [实施阶段] 任务7：login/index.vue 授权流程控制优化 | pending | 在登录页 handleWechatAuth 和 onAuthAccept 中分离 login 与 register 请求逻辑 |
