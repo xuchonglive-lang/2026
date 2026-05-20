@@ -94,11 +94,38 @@ Vue.use(vk, config);
 // 执行环境路由劫持
 initEnvRouter();
 
-// 全局计算属性注入 currentEnv
+// 全局计算属性与 onShow 路由守卫注入 Vue2
 Vue.mixin({
   computed: {
     currentEnv() {
       return uni.$app.currentEnv || 'default';
+    }
+  },
+  onShow() {
+    const pages = getCurrentPages();
+    if (pages.length === 0) return;
+    const currentPage = pages[pages.length - 1];
+    const route = currentPage.route;
+    // 白名单页面直接放行
+    const whitelist = [
+      'pages/user/login/index',
+      'pages/user/register/index',
+      'pages/user/audit-status/index',
+      'pages/user/mine/index',
+      'pages/index/visitor'
+    ];
+    if (whitelist.indexOf(route) > -1) return;
+    // 拦截非通过状态的已登录用户
+    const userInfo = (uni.vk && uni.vk.getVuex && uni.vk.getVuex('$user.userInfo')) || {};
+    if (userInfo && userInfo._id) {
+      const status = userInfo.audit_status;
+      if (status !== 3) {
+        if (status === 0 || status === undefined) {
+          uni.reLaunch({ url: '/pages/user/register/index' });
+        } else if (status === 1 || status === 2) {
+          uni.reLaunch({ url: '/pages/user/audit-status/index' });
+        }
+      }
     }
   }
 });
@@ -133,11 +160,38 @@ export function createApp() {
   // 执行环境路由劫持
   initEnvRouter();
 
-  // 全局计算属性注入 currentEnv
+  // 全局计算属性与 onShow 路由守卫注入 Vue3
   app.mixin({
     computed: {
       currentEnv() {
         return uni.$app.currentEnv || 'default';
+      }
+    },
+    onShow() {
+      const pages = getCurrentPages();
+      if (pages.length === 0) return;
+      const currentPage = pages[pages.length - 1];
+      const route = currentPage.route;
+      // 白名单页面直接放行
+      const whitelist = [
+        'pages/user/login/index',
+        'pages/user/register/index',
+        'pages/user/audit-status/index',
+        'pages/user/mine/index',
+        'pages/index/visitor'
+      ];
+      if (whitelist.indexOf(route) > -1) return;
+      // 拦截非通过状态的已登录用户
+      const userInfo = (uni.vk && uni.vk.getVuex && uni.vk.getVuex('$user.userInfo')) || {};
+      if (userInfo && userInfo._id) {
+        const status = userInfo.audit_status;
+        if (status !== 3) {
+          if (status === 0 || status === undefined) {
+            uni.reLaunch({ url: '/pages/user/register/index' });
+          } else if (status === 1 || status === 2) {
+            uni.reLaunch({ url: '/pages/user/audit-status/index' });
+          }
+        }
       }
     }
   });
