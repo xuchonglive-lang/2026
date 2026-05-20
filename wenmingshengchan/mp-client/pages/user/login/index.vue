@@ -43,42 +43,52 @@ export default {
   },
   methods: {
     async handleWechatAuth() {
-      // 第一阶段：先行发起不带用户资料的纯代码静默通讯
+      // 第一阶段：发起 type: 'login' 的纯静默通讯，不自动注册
       uni.showLoading({ title: '安全信道建立中...' });
 
       try {
         const [loginErr, loginRes] = await uni.login({ provider: 'weixin' });
         if (loginErr || !loginRes.code) throw new Error('微信通信链路异常');
 
-        // 发起纯粹的底层静默登录验证
+        // 仅登录，若用户不存在则直接报错，不自动建档
         let res = await uni.vk.callFunction({
           url: 'client/user/pub/loginByWeixin',
           data: {
-            code: loginRes.code
-            // 此时不传 userInfo，仅仅摸底
+            code: loginRes.code,
+            type: 'login'
           }
         });
 
         uni.hideLoading();
 
         if (res.code === 0) {
-          if(res.userInfo) {
+          if (res.userInfo) {
             this.vk.setVuex('$user.userInfo', res.userInfo);
           }
 
-          // 核心拦截判断：这名用户的核心资料库里，是否有过我们为其填充的微信昵称与头像？
+          // 核心拦截：已存在用户是否有头像和昵称？
           let hasAvatarAndNickname = res.userInfo && res.userInfo.nickname && res.userInfo.avatar;
 
           if (!hasAvatarAndNickname) {
-            // 是新用户，或者以前直接强退了没有走完资料，唤醒头像昵称授权组件！
+            // 已建档但信息缺失，唤醒授权组件补充信息
             this.$refs.authDialog.show();
-            return; // 阻断流程，等待对话框给出 accept 信号
+            return;
           }
 
-          // 不管是不是今天注册的，只要他拥有头像和昵称，第二次以后点进来一律走全自动路由跳转分发
+          // 信息完整，直接路由分发
           this.routeUser(res.userInfo);
         } else {
-          uni.showToast({ title: res.msg || '鉴权被系统拒绝', icon: 'none' });
+          // 判断是否为新用户未注册错误
+          const unregisteredCodes = [10001, 90001, 30201, 30202, 30203, 30204];
+          const isUnregistered = unregisteredCodes.indexOf(res.code) > -1 ||
+            (res.msg && (res.msg.indexOf('未注册') > -1 || res.msg.indexOf('不存在') > -1 || res.msg.indexOf('未绑定') > -1));
+
+          if (isUnregistered) {
+            // 新用户：数据库无任何记录，直接拉起头像昵称授权框
+            this.$refs.authDialog.show();
+          } else {
+            uni.showToast({ title: res.msg || '鉴权被系统拒绝', icon: 'none' });
+          }
         }
       } catch (e) {
         uni.hideLoading();
@@ -120,15 +130,16 @@ export default {
           }
         }
 
-        // 因为之前那个 code 已经被消耗掉了，马上为本次满级提交再取一枚新 code！
+        // 之前那个 code 已被消耗，重新申请一枚新 code 用于正式建档
         const [loginErr, loginRes] = await uni.login({ provider: 'weixin' });
         if (loginErr || !loginRes.code) throw new Error('通信链路异常');
 
-        // 第二阶段：携带着上传好的真身实体与新 code 再次发起降维打击（覆盖信息）
+        // 第二阶段：确认授权后才正式建档，传入 type: 'register'
         let res = await uni.vk.callFunction({
           url: 'client/user/pub/loginByWeixin',
           data: {
             code: loginRes.code,
+            type: 'register',
             userInfo: {
               avatar: finalAvatar,
               nickname: finalNickname
@@ -139,7 +150,7 @@ export default {
         uni.hideLoading();
 
         if (res.code === 0) {
-          if(res.userInfo) {
+          if (res.userInfo) {
             this.vk.setVuex('$user.userInfo', res.userInfo);
           }
           this.$refs.authDialog.hide();
