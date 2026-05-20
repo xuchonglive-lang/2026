@@ -12,5 +12,5 @@
 | 8 | Create Dedicated getAreaList Cloud Function | completed | Created plan/kh/getAreaList cloud function under plan kh folder with standard code 0 return formatting |
 | 9 | Fix `getAreaList` Lifecycle Trigger Bug | completed | Fixed async login race condition by implementing double-insurance triggers in `created` and `queryList(1)` |
 | 10 | Optimize plan list default avatars | completed | Replaced broken 404 remote avatar link with a premium offline Base64 SVG silhouette and defensive error fallbacks |
-| 11 | 优化反馈任务逾期清算与数据获取顺序 | in_progress | 将 getTodoList 调整为先做逾期状态判定并更新数据库，再进行列表数据查询，确保数量与状态最新 |
+| 11 | 优化反馈任务逾期清算与数据获取顺序 | completed | 将 getTodoList 调整为先做逾期状态判定并更新数据库，再进行列表数据查询，确保数量与状态最新 |
 
