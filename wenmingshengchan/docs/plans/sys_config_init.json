@@ -1,11 +1,1 @@
-[
-  {
-    "_id": "app_audit_config",
-    "key": "app_audit_config",
-    "value": {
-      "audit_versions": ["1.0.0"],
-      "is_global_audit": false
-    },
-    "description": "微信小程序版本审核状态配置"
-  }
-]
+{"_id":"app_audit_config","key":"app_audit_config","value":{"audit_versions":["1.0.0"],"is_global_audit":false},"description":"微信小程序版本审核状态配置"}
