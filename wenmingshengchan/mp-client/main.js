@@ -14,8 +14,8 @@ const initEnvRouter = () => {
   uni.$app = uni.$app || {};
 
   // 1. 获取小程序版本信息
-  const accountInfo = uni.getAccountInfoSync();
-  const currentVersion = accountInfo.miniProgram.version || 'develop';
+  const accountInfo = uni.getAccountInfoSync ? uni.getAccountInfoSync() : null;
+  const currentVersion = (accountInfo && accountInfo.miniProgram && accountInfo.miniProgram.version) || 'develop';
   const cachedPassedVersion = uni.getStorageSync('app_env_passed_version');
 
   // 2. 本地缓存优先判定，过审版本实现零延迟启动
