@@ -411,6 +411,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Base Styles */
 .page-container.data-v-1cb1d99b {
   min-height: 100vh;
@@ -557,57 +570,75 @@
 .search-panel.data-v-1cb1d99b {
   position: relative;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(24px);
-          backdrop-filter: blur(24px);
-  border-radius: 0 24rpx 24rpx 24rpx;
+  background: #ffffff;
+  border-radius: 0 0 32rpx 32rpx; /* 左上角和右上角均为直角 */
   padding: 32rpx;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow:
-    0 8rpx 24rpx -8rpx rgba(0, 80, 203, 0.12),
-    0 24rpx 64rpx -12rpx rgba(0, 80, 203, 0.20),
-    inset 0 2rpx 0 rgba(255, 255, 255, 1);
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 /* Status Tabs System */
 .tab-system.data-v-1cb1d99b {
   display: flex;
   flex-direction: column;
+  margin-top: 48rpx; /* 大幅增加上方留白 */
 }
 .status-tabs.data-v-1cb1d99b {
   display: flex;
   align-items: flex-end;
   padding: 0;
-  margin-bottom: -1px;
+  margin-bottom: -2rpx; /* 往下压 2rpx，刚好盖住下方 search-panel 的 top border */
+  position: relative;
+  z-index: 50;
 }
 .tab.data-v-1cb1d99b {
   position: relative;
-  padding: 20rpx 48rpx;
+  padding: 24rpx 48rpx;
   font-size: 28rpx;
-  border-radius: 24rpx 24rpx 0 0;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-bottom: none;
-  margin-right: -16rpx;
+  border-radius: 32rpx 32rpx 0 0; /* 增大圆角凸显弧形 */
+  border: none;
+  margin-right: 0rpx; /* 移除之前的负边距，因为没有边框不需要重叠 */
   text-align: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .tab.active-tab.data-v-1cb1d99b {
-  z-index: 30;
-  background: #fff;
+  z-index: 50;
+  background: #ffffff;
   color: #0050cb;
   font-weight: 700;
-  box-shadow:
-    0 -12rpx 32rpx -8rpx rgba(0, 80, 203, 0.15),
-    inset 0 2rpx 0 rgba(255, 255, 255, 1);
+  /* 移除这里的 shadow 和 clip-path，转交伪元素处理 */
+}
+/* 提供顶部/左右的阴影，并在底部精准裁切 */
+.tab.active-tab.data-v-1cb1d99b::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  z-index: -1;
+  -webkit-clip-path: inset(-20px -20px 0px -20px);
+          clip-path: inset(-20px -20px 0px -20px);
+}
+/* 强力遮盖桥梁：物理覆盖下方 panel 的 top-border */
+.tab.active-tab.data-v-1cb1d99b::after {
+  content: '';
+  position: absolute;
+  bottom: -4rpx; /* 向下延伸盖住边框 */
+  left: 0;
+  right: 0;
+  height: 8rpx;
+  background: #ffffff;
+  z-index: 10;
 }
 .tab.glass-tab.data-v-1cb1d99b {
   z-index: 20;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
   -webkit-backdrop-filter: blur(12px);
           backdrop-filter: blur(12px);
   color: #64748b;
   font-weight: 500;
-  opacity: 0.8;
-  border-color: rgba(255, 255, 255, 0.4);
+  /* 没选中的不覆盖边框，让 search-panel 的边框显露 */
 }
 .input-label.data-v-1cb1d99b {
   font-size: 24rpx;
@@ -650,40 +681,63 @@
   padding: 16rpx 20rpx;
   transition: all 0.3s ease;
 }
-/* Area Group Header */
+/* Area Group Header - 大标题（与首页 sub-title 一致） */
 .area-group.data-v-1cb1d99b {
   margin-bottom: 20rpx;
 }
 .area-group-header.data-v-1cb1d99b {
   padding: 10rpx 20rpx 20rpx;
 }
-.area-group-line.data-v-1cb1d99b {
-  width: 6rpx;
-  height: 28rpx;
-  background: #0050cb;
+.action.sub-title.data-v-1cb1d99b {
+  position: relative;
+  display: inline-block;
+  margin-left: 0;
+}
+.action.sub-title .text-lg.data-v-1cb1d99b {
+  position: relative;
+  z-index: 1;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #1a1d20 !important;
+  letter-spacing: -0.5rpx;
+}
+.action.sub-title .bg-blue.data-v-1cb1d99b {
+  position: absolute;
+  display: inline-block;
+  bottom: 0rpx;
   border-radius: 4rpx;
-  margin-right: 12rpx;
+  width: 100%;
+  height: 12rpx;
+  left: 12rpx;
+  opacity: 0.4;
+  z-index: 0;
+  background-color: #0062ff !important;
 }
-.area-group-title.data-v-1cb1d99b {
-  font-size: 30rpx;
-  font-weight: 700;
-  color: #1e293b;
-  margin-right: 8rpx;
+/* 卡片小标题 - 与 info 页 title-row 风格一致 */
+.title-row-plan.data-v-1cb1d99b {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  overflow: hidden;
+  margin-right: 16rpx;
 }
-.area-group-count.data-v-1cb1d99b {
-  font-size: 26rpx;
-  color: #64748b;
+.blue-block-plan.data-v-1cb1d99b {
+  width: 8rpx;
+  height: 28rpx;
+  background-color: #0050cb;
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+  margin-top: 6rpx;
+  flex-shrink: 0;
 }
-/* Card Elements */
 .card-title.data-v-1cb1d99b {
   font-size: 30rpx;
   color: #0f172a;
   flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-right: 16rpx;
   display: block;
+}
+.flex-shrink.data-v-1cb1d99b {
+  flex-shrink: 0;
 }
 .border-right.data-v-1cb1d99b {
   border-right: 2rpx solid #e2e8f0;
@@ -714,31 +768,71 @@
   border-radius: 12rpx;
   padding: 16rpx 24rpx;
 }
-.role-executors.data-v-1cb1d99b, .role-verifier.data-v-1cb1d99b {
+.role-executors.data-v-1cb1d99b {
   display: flex;
   align-items: center;
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .role-verifier.data-v-1cb1d99b {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
   justify-content: flex-end;
 }
 .role-label.data-v-1cb1d99b {
-  font-size: 26rpx;
+  font-size: 20rpx;
   color: #94a3b8;
-  margin-right: 8rpx;
+  margin-right: 6rpx;
+  flex-shrink: 0;
 }
 .role-names.data-v-1cb1d99b {
-  font-size: 26rpx;
+  font-size: 20rpx;
   color: #334155;
   font-weight: 500;
-  margin-right: 16rpx;
+  margin-right: 12rpx;
+  white-space: nowrap;
 }
 .verifier-avatar.data-v-1cb1d99b {
-  width: 44rpx;
-  height: 44rpx;
+  width: 36rpx;
+  height: 36rpx;
   border-radius: 50%;
   border: 2rpx solid #ffffff;
   box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.06);
+}
+.avatar-stack.data-v-1cb1d99b {
+  display: flex;
+  align-items: center;
+  margin-right: 8rpx;
+}
+.stack-avatar.data-v-1cb1d99b {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #ffffff;
+  margin-left: -20rpx;
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.1);
+}
+.stack-avatar.data-v-1cb1d99b:first-child {
+  margin-left: 0;
+}
+.stack-more.data-v-1cb1d99b {
+  background: rgba(0, 80, 203, 0.1);
+  color: #0050cb;
+  font-weight: 700;
+  font-size: 16rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #ffffff;
+  margin-left: -20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 /* Actions Small */
 .card-action.data-v-1cb1d99b {

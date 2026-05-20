@@ -1,265 +1,626 @@
 <template>
-  <view class="feedback-history-page">
-    <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
-      <block slot="backText"></block>
-      <block slot="content">反馈历史</block>
-    </cu-custom>
-    
-    
-    <view class="industrial-grid pointer-events-none"></view>
-    
-    <view class="main-content">
-      <!-- Title Section -->
-      <view class="header-wrap">
-        <text class="page-title">现场反馈流水台账</text>
-        <text class="page-subtitle">Industrial Ether Systems</text>
-      </view>
+	<view class="page-container industrial-grid">
+		<z-paging ref="paging" v-model="listData" @query="getList" :fixed="true" bg-color="transparent">
+			<template #top>
+				<cu-custom bgColor="bg-gradual-blue" :isCustom="true">
+					<block slot="backText"></block>
+					<block slot="content">反馈历史</block>
+				</cu-custom>
 
-      <!-- Filter Section (Placeholder, mock functionality) -->
-      <view class="glass-panel search-panel mb-24">
-        <view class="filter-row">
-          <view class="filter-item">
-            <text class="filter-label">数据状态</text>
-            <view class="filter-input-box">
-              <text class="filter-value">近30天</text>
-              <text class="material-symbols-outlined icon-xs text-on-surface-variant">expand_more</text>
-            </view>
-          </view>
-        </view>
-        <view class="search-btn-wrap">
-          <button class="search-btn" @click="fetchData">
-            <text class="material-symbols-outlined icon-sm">search</text>
-            <text class="search-btn-text">点击刷新</text>
-          </button>
-        </view>
-      </view>
+				<view class="main-content" style="padding-bottom: 0;">
+					<view class="top-content">
+						<!-- Status Tabs Component -->
+						<view class="tab-system">
+							<view class="status-tabs">
+								<view class="tab" :class="currentStatus === -1 ? 'active-tab bg-white' : 'glass-tab'"
+									@click="changeStatus(-1)">全部</view>
+								<view class="tab" :class="currentStatus === 1 ? 'active-tab bg-white' : 'glass-tab'"
+									@click="changeStatus(1)">已完成</view>
+								<view class="tab" :class="currentStatus === 2 ? 'active-tab bg-white' : 'glass-tab'"
+									@click="changeStatus(2)">已逾期</view>
+							</view>
 
-      <!-- History Cards List -->
-      <view class="cards-list">
-        
-        <view class="history-card glass-panel" v-for="item in listData" :key="item._id">
-          <view class="card-header" :class="{'border-b-none': item.status === 2 || item.status === 0}">
-            <text class="card-title">{{ item.point_info && item.point_info[0] ? item.point_info[0].name : "未知重控点" }}</text>
-            <view class="status-badge" :class="item.status === 1 ? 'status-running' : (item.status === 2 ? 'status-error' : 'status-pending')">
-              <text class="status-text" :class="item.status === 1 ? 'text-running' : (item.status === 2 ? 'text-error' : 'text-pending')">
-                 {{ item.status === 1 ? '已合规上报' : (item.status === 2 ? '流拍/逾期异常' : '竞案抢答中') }}
-              </text>
-            </view>
-          </view>
-          
-          <view v-if="item.status === 1" class="card-user-info">
-            <view class="user-avatar-wrap">
-              <image class="avatar-img" :src="item.submit_user_info && item.submit_user_info[0] && item.submit_user_info[0].avatar ? item.submit_user_info[0].avatar : 'https://lh3.googleusercontent.com/aida-public/AB6AXuD1zZ7moh6O98tLsTwYzKKxlJDiaV6cwryc6c2s32o0tq18fKxLrMzRG5q5YBEYYJw7ueLdnLJRhlAFqf45q8yPihSom7SiWHvr4UNB6xdI2cYD6X_vmFP0wArtJNAlW2bsC7gpGUC6we5_Yj79Bt3UHh-b5UDSfg7aFgfNSlWiBgRFH2_EmzmRfMxZAm8AeYbKyW0LLOFr6KMOBBxN1mtMANaCS_bstZS7B8TpAGJ4LAbmw_cp7_it7zScJJbMts-BYxyCmr46Fec'" mode="aspectFill"></image>
-            </view>
-            <view class="user-details">
-              <view class="user-name-row">
-                <text class="user-name">{{ item.submit_user_info && item.submit_user_info[0] ? item.submit_user_info[0].nickname : "匿名者" }}</text>
-                <text class="user-dept">{{ item.device_model || '标准制成件' }}</text>
-              </view>
-              <view class="time-row">
-                <text class="material-symbols-outlined icon-12 text-outline">schedule</text>
-                <text class="time-text">{{ item.photo_shoot_time || item.update_date || '' }} (相机EXIF)</text>
-              </view>
-            </view>
-          </view>
-          
-          <scroll-view v-if="item.status === 1 && item.main_image" scroll-x="true" class="photo-scroll">
-             <view class="photo-list">
-               <view class="photo-item border-highlight" @click="previewImg(item.main_image)">
-                 <image class="photo-img" :src="item.main_image" mode="aspectFill"></image>
-               </view>
-             </view>
-          </scroll-view>
-          
-          <view class="desc-box" v-if="item.status === 1 && item.feedback_content">
-            <text class="desc-text">{{ item.feedback_content }}</text>
-          </view>
+							<!-- Search Panel -->
+							<view class="search-panel">
+								<view class="form-group-1">
+									<view class="select-wrapper" @click="showLocationSelect = true">
+										<text class="select-text">{{ locationName }}</text>
+										<u-icon name="arrow-down" size="24" color="#727687"></u-icon>
+									</view>
+									<view class="date-pickers" @click="showCalendar = true">
+										<view class="date-wrapper">
+											<text class="date-text" :class="{ 'placeholder': !startDate }">{{ startDate
+												|| '开始日期' }}</text>
+										</view>
+										<view class="date-wrapper">
+											<text class="date-text" :class="{ 'placeholder': !endDate }">{{ endDate ||
+												'结束日期' }}</text>
+										</view>
+									</view>
+								</view>
 
-          <!-- 若为异常/未反馈的情况容错 -->
-          <view v-if="item.status === 2" class="empty-state">
-            <view class="empty-icon-wrap">
-              <text class="material-symbols-outlined icon-xl text-outline-variant">inventory_2</text>
-            </view>
-            <text class="empty-text">该班次因工期已逾规，流拍收栈</text>
-          </view>
+								<view class="btn-group">
+									<view class="btn-primary active-press" @click="doSearch">
+										<u-icon name="search" size="28" color="#ffffff"></u-icon>
+										<text style="margin-left: 8rpx;">点击查询</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</template>
 
-          <!-- 督查结果展示 -->
-          <view v-if="item.audit_mark" style="margin: 0 32rpx 32rpx; padding: 20rpx; background: rgba(186,26,26,0.1); border-radius: 12rpx;">
-             <text style="color: #ba1a1a; font-size: 24rpx; font-weight: bold;">[违章督查]</text>
-             <text style="color: #333; font-size: 24rpx;"> {{ item.audit_mark }}</text>
-          </view>
+			<view class="main-content" style="padding-top: 0; padding-bottom: 40rpx;">
+				<!-- Point Cards Area -->
+				<view class="cards-container">
+					<view class="point-card glass-card" v-for="item in listData" :key="item._id">
+						<view class="card-top">
+							<view class="card-info">
+								<view class="card-title-row">
+									<view class="title-left">
+										<view class="blue-block"></view>
+										<text class="card-title">{{ getPointName(item) }}</text>
+									</view>
+									<view class="right-tags">
+										<u-tag v-if="item.status === 1" text="已完成" type="success" mode="light"
+											size="mini" />
+										<u-tag v-else-if="item.status === 2" text="已逾期" type="error" mode="dark"
+											size="mini" />
+									</view>
+								</view>
+								<view class="card-subtitle-row">
+									<u-icon name="home-fill" size="28" color="#64748b"></u-icon>
+									<text class="card-subtitle" style="margin-left: 8rpx;">{{ getAreaName(item)
+										}}</text>
+								</view>
+							</view>
+						</view>
 
-        </view>
-        
-        <view v-if="!loading && listData.length === 0" style="text-align: center; margin-top: 100rpx; color: #666;">
-           暂无流水台账
-        </view>
-      </view>
-      
-      <!-- bottom padding for nav -->
-      <view class="h-32"></view>
-    </view>
+						<!-- Roles Row (反馈人员) -->
+						<view class="roles-row mb-3" v-if="item.status === 1">
+							<view class="role-executors">
+								<text class="role-label">实际反馈人：</text>
+								<text class="role-names">{{ getSubmitUserName(item) }}</text>
+							</view>
+							<view class="avatar-group" v-if="item.submit_user_info">
+								<image class="avatar" :src="getAvatar(item.submit_user_info, 0)" mode="aspectFill">
+								</image>
+								<view v-if="Array.isArray(item.submit_user_info) && item.submit_user_info.length > 1"
+									class="avatar-more">+{{ item.submit_user_info.length - 1 }}</view>
+							</view>
+						</view>
 
-    <my-tab-bar :current="3"></my-tab-bar>
-  </view>
+						<!-- 若为异常/未反馈的情况容错 -->
+						<view v-if="item.status === 2" class="empty-state">
+							<text class="empty-text">该班次逾期未反馈</text>
+						</view>
+
+						<view class="card-bottom">
+							<view class="time-info-wrap">
+								<!-- Time Range -->
+								<view class="time-range">
+									<u-icon name="clock-fill" size="28" color="#475569"></u-icon>
+									<text class="time-text" style="margin-left: 8rpx;">{{ item.status === 1 ? '反馈时间' :
+										'记录生成时间' }}：{{ formatTime(item._add_time) }}</text>
+								</view>
+							</view>
+
+							<view class="action-btn" @click="goDetail(item)">
+								<text class="action-btn-text">点击详情</text>
+								<u-icon name="arrow-right" size="32" color="#0050cb"></u-icon>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</z-paging>
+
+		<!-- Pickers -->
+		<u-select v-model="showLocationSelect" :list="locationTree" mode="mutil-column-auto"
+			@confirm="onLocationConfirm"></u-select>
+		<u-calendar v-model="showCalendar" mode="range" @change="onDateChange" active-bg-color="#0050cb"></u-calendar>
+	</view>
 </template>
 
 <script>
+let vk = uni.vk;
 export default {
-  data() {
-    return {
-      listData: [],
-      loading: true
-    }
-  },
-  onShow() {
-    this.fetchData();
-  },
-  onPullDownRefresh() {
-    this.fetchData().then(() => {
-	   uni.stopPullDownRefresh();
-	});
-  },
-  methods: {
-    async fetchData() {
-      this.loading = true;
-      try {
-        let res = await uni.vk.callFunction({
-          url: 'client/feedback/kh/getHistoryList',
-          data: {}
-        });
-        if (res.code === 0 && res.rows) {
-          this.listData = res.rows;
-        }
-      } catch (err) {
-         uni.vk.toast("获取台账列表失败");
-      } finally {
-        this.loading = false;
-      }
-    },
-    previewImg(url) {
-       if(!url) return;
-       uni.previewImage({ urls: [url] });
-    }
-  }
+	data() {
+		return {
+			listData: [],
+			currentStatus: -1,
+			currentAreaId: '',
+			currentPointId: '',
+			locationTree: [],
+			showLocationSelect: false,
+			locationName: '全部区域',
+			showCalendar: false,
+			startDate: '',
+			endDate: ''
+		};
+	},
+	onLoad() {
+		vk = uni.vk;
+		this.getLocationTree();
+	},
+	methods: {
+		async getList(pageNo, pageSize) {
+			try {
+				let res = await vk.callFunction({
+					url: 'client/feedback/kh/getHistoryList',
+					data: {
+						pageIndex: pageNo,
+						pageSize: pageSize,
+						status: this.currentStatus,
+						area_id: this.currentAreaId || undefined,
+						point_id: this.currentPointId || undefined,
+						startTime: this.startDate ? new Date(this.startDate.replace(/-/g, '/') + ' 00:00:00').getTime() : undefined,
+						endTime: this.endDate ? new Date(this.endDate.replace(/-/g, '/') + ' 23:59:59').getTime() : undefined
+					}
+				});
+				let list = res.rows || [];
+				this.$refs.paging.complete(list);
+			} catch (e) {
+				this.$refs.paging.complete(false);
+			}
+		},
+		doSearch() {
+			this.$refs.paging.reload();
+		},
+		changeStatus(status) {
+			if (this.currentStatus === status) return;
+			this.currentStatus = status;
+			this.doSearch();
+		},
+		onDateChange(e) {
+			this.startDate = e.startDate;
+			this.endDate = e.endDate;
+			this.doSearch();
+		},
+		async getLocationTree() {
+			try {
+				// Reuse the tree from report API as they generally point to the same area/point tree 
+				// or we can use admin/base-point/sys/getTree equivalent if needed
+				let res = await vk.callFunction({ url: 'client/report/kh/getAreaPointTree' });
+				if (res.tree) {
+					this.locationTree = res.tree;
+				}
+			} catch (e) { }
+		},
+		onLocationConfirm(arr) {
+			let area = arr[0];
+			let point = arr[1];
+			if (area && area.value) {
+				this.currentAreaId = area.value;
+				this.currentPointId = point && point.value ? point.value : '';
+				this.locationName = (point && point.value) ? `${area.label} / ${point.label}` : area.label;
+			} else {
+				this.currentAreaId = '';
+				this.currentPointId = '';
+				this.locationName = '全部区域';
+			}
+			this.doSearch();
+		},
+		formatTime(timeStr) {
+			if (!timeStr) return '';
+			return vk.pubfn.timeFormat(timeStr, 'yyyy-MM-dd hh:mm');
+		},
+		goDetail(item) {
+			let pointInfo = item.point_info;
+			if (Array.isArray(pointInfo)) {
+				pointInfo = pointInfo[0];
+			}
+			let pointName = pointInfo ? pointInfo.name : '';
+			uni.navigateTo({
+				url: `/pages/feedback/submit/index?id=${item._id}&name=${pointName}&status=${item.status === 1 ? 'completed' : 'expired'}`
+			});
+		},
+		getSubmitUserName(item) {
+			let info = item.submit_user_info;
+			if (!info) return '未知';
+			if (Array.isArray(info)) {
+				if (info.length === 0) return '未知';
+				return info.map(u => u.real_name || u.nickname || '未知').join('、');
+			}
+			return info.real_name || info.nickname || '未知';
+		},
+		getAreaName(item) {
+			if (item.area_info) {
+				let info = Array.isArray(item.area_info) ? item.area_info[0] : item.area_info;
+				if (info && info.name) return info.name;
+			}
+			return "未知区域";
+		},
+		getPointName(item) {
+			if (item.point_info) {
+				let info = Array.isArray(item.point_info) ? item.point_info[0] : item.point_info;
+				if (info && info.name) return info.name;
+			}
+			return "未知重控点";
+		},
+		getAvatar(users, index) {
+			let user = users;
+			if (Array.isArray(users)) {
+				user = users[index];
+			}
+			if (user && user.avatar) {
+				return typeof user.avatar === 'string' ? user.avatar : (user.avatar.url || user.avatar);
+			}
+			return "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png";
+		}
+	}
 }
 </script>
 
 <style lang="scss" scoped>
+/* Color Palette */
+$surface: #f7f9fb;
+$on-surface: #191c1e;
+$on-surface-variant: #424656;
+$outline: #727687;
+$primary: #0050cb;
 
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
-.feedback-history-page {
-  font-family: 'Inter', sans-serif;
-  background-color: #f7f9fb;
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 320rpx; 
+.page-container {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+	color: $on-surface;
+	font-family: 'Inter', sans-serif;
+	box-sizing: border-box;
 }
 
 .industrial-grid {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;
-  background-image: 
-    linear-gradient(rgba(0, 80, 203, 0.03) 2rpx, transparent 2rpx),
-    linear-gradient(90deg, rgba(0, 80, 203, 0.03) 2rpx, transparent 2rpx);
-  background-size: 40rpx 40rpx;
+	background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px);
+	background-size: 48rpx 48rpx;
 }
 
 .main-content {
-  position: relative; z-index: 1; padding: 64rpx 32rpx; max-width: 1344rpx; margin: 0 auto;
+	padding-top: 32rpx;
+	padding-left: 24rpx;
+	padding-right: 24rpx;
+	max-width: 1344rpx;
+	margin: 0 auto;
 }
 
-.header-wrap { padding: 0 16rpx; margin-bottom: 48rpx; }
-.page-title {
-  font-family: 'Manrope', sans-serif; font-size: 60rpx; font-weight: 800;
-  color: #191c1e; letter-spacing: -0.05em; display: block;
-}
-.page-subtitle {
-  font-size: 20rpx; font-weight: 700; color: #0050cb; text-transform: uppercase;
-  letter-spacing: 0.2em; margin-top: 8rpx; opacity: 0.8; display: block;
+.top-content {
+	max-width: 896rpx;
+	margin: 0 auto;
 }
 
-.mb-24 { margin-bottom: 32rpx; }
-
-.glass-panel {
-  background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(40rpx);
-  -webkit-backdrop-filter: blur(40rpx); border: 2rpx solid rgba(255, 255, 255, 0.2);
+.tab-system {
+	margin-bottom: 32rpx;
 }
 
-.search-panel { border-radius: 24rpx; padding: 32rpx; box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08); }
-.filter-row { display: flex; align-items: center; justify-content: space-between; gap: 24rpx; }
-.filter-item { flex: 1; display: flex; flex-direction: column; gap: 8rpx; }
-.filter-label { font-size: 20rpx; font-weight: 700; color: #0050cb; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Manrope', sans-serif; }
-.filter-input-box { background-color: rgba(224, 227, 229, 0.5); border-radius: 16rpx; padding: 16rpx 24rpx; display: flex; align-items: center; justify-content: space-between; }
-.filter-value { font-size: 28rpx; font-weight: 500; color: #191c1e; }
-.text-on-surface-variant { color: #424656; }
-.icon-xs { font-size: 24rpx; }
-
-.search-btn-wrap { display: flex; justify-content: flex-end; margin-top: 32rpx; }
-.search-btn {
-  display: flex; align-items: center; gap: 16rpx; background-color: #0050cb; color: #ffffff;
-  padding: 16rpx 48rpx; border-radius: 16rpx; box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 80, 203, 0.2);
-  margin: 0; line-height: normal; transition: transform 0.2s;
+.status-tabs {
+	display: flex;
+	align-items: flex-end;
+	padding: 0 8rpx;
+	margin-bottom: -1px;
 }
-.search-btn::after { border: none; }
-.search-btn:active { transform: scale(0.95); }
-.search-btn-text { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 28rpx; }
 
-.cards-list { display: flex; flex-direction: column; gap: 32rpx; }
+.tab {
+	position: relative;
+	padding: 20rpx 40rpx;
+	font-size: 28rpx;
+	border-radius: 24rpx 24rpx 0 0;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-bottom: none;
+	margin-right: -16rpx;
+}
 
-.history-card { border-radius: 24rpx; overflow: hidden; box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.05); border: 2rpx solid rgba(255, 255, 255, 0.3); }
+.tab.active-tab {
+	z-index: 30;
+	background: #fff;
+	color: $primary;
+	font-weight: 700;
+	box-shadow: 0 -8rpx 24rpx -4rpx rgba(0, 80, 203, 0.08);
+}
 
-.card-header { padding: 32rpx; border-bottom: 2rpx solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: flex-start; }
-.border-b-none { border-bottom: none; }
-.card-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 32rpx; color: #191c1e; letter-spacing: -0.025em; }
+.tab.glass-tab {
+	z-index: 20;
+	background: rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(12px);
+	color: $outline;
+	font-weight: 500;
+	opacity: 0.8;
+	border-color: rgba(255, 255, 255, 0.4);
+}
 
-.status-badge { padding: 4rpx 16rpx; border-radius: 9999rpx; }
-.status-running { background-color: rgba(155, 180, 254, 0.3); }
-.text-running { color: #294487; font-size: 20rpx; font-weight: 700; }
-.status-error { background-color: rgba(186, 26, 26, 0.1); border: 2rpx solid rgba(186, 26, 26, 0.2); }
-.text-error { color: #ba1a1a; font-size: 20rpx; font-weight: 700; }
-.status-pending { background-color: rgba(254, 240, 138, 0.3); border: 2rpx solid rgba(254, 240, 138, 0.5); }
-.text-pending { color: #a16207; font-size: 20rpx; font-weight: 700; }
+.tab:nth-child(3) {
+	z-index: 15;
+}
 
-.card-user-info { padding: 32rpx; display: flex; align-items: center; gap: 24rpx; }
-.user-avatar-wrap { width: 80rpx; height: 80rpx; border-radius: 50%; overflow: hidden; border: 2rpx solid rgba(0, 80, 203, 0.2); }
-.avatar-img { width: 100%; height: 100%; }
-.user-details { flex: 1; }
-.user-name-row { display: flex; align-items: baseline; gap: 16rpx; }
-.user-name { font-size: 28rpx; font-weight: 700; color: #191c1e; }
-.user-dept { font-size: 20rpx; color: #424656; }
-.time-row { display: flex; align-items: center; gap: 8rpx; margin-top: 4rpx; }
-.icon-12 { font-size: 20rpx; }
-.text-outline { color: #727687; }
-.time-text { font-size: 20rpx; color: #727687; }
+.search-panel {
+	position: relative;
+	z-index: 40;
+	background: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(24px);
+	border-radius: 0 24rpx 24rpx 24rpx;
+	padding: 24rpx;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	box-shadow: 0 16rpx 48rpx -16rpx rgba(0, 80, 203, 0.12);
+	display: flex;
+	flex-direction: column;
+	gap: 16rpx;
+}
 
-.photo-scroll { width: 100%; white-space: nowrap; }
-.photo-list { display: flex; gap: 24rpx; padding: 0 32rpx 32rpx; }
-.photo-item { display: inline-flex; flex-shrink: 0; width: 384rpx; height: 256rpx; border-radius: 16rpx; overflow: hidden; box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 0, 0, 0.1); }
-.border-highlight { border: 2rpx solid rgba(255, 255, 255, 0.2); }
-.photo-img { width: 100%; height: 100%; }
+.form-group-1 {
+	display: flex;
+	flex-direction: column;
+	gap: 12rpx;
+}
 
-.desc-box { margin: 0 32rpx 32rpx; padding: 24rpx; background-color: rgba(255, 255, 255, 0.4); border-radius: 16rpx; border: 2rpx solid rgba(255, 255, 255, 0.1); }
-.desc-text { font-size: 24rpx; color: #424656; line-height: 1.6; font-family: 'Inter', sans-serif; white-space: normal; }
+.select-wrapper,
+.date-wrapper {
+	position: relative;
+	background: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 16rpx;
+	padding: 12rpx 20rpx;
+	font-size: 26rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
-.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48rpx 0; opacity: 0.4; gap: 16rpx; }
-.empty-icon-wrap { width: 96rpx; height: 96rpx; border-radius: 50%; background-color: #e0e3e5; display: flex; align-items: center; justify-content: center; }
-.icon-xl { font-size: 48rpx; }
-.text-outline-variant { color: #c2c6d8; }
-.empty-text { font-size: 24rpx; font-weight: 500; color: #424656; letter-spacing: 0.05em; }
+.date-pickers {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12rpx;
+}
 
-.h-32 { height: 64rpx; }
+.date-text,
+.select-text {
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.date-text.placeholder {
+	color: #9ca3af;
+	font-weight: 400;
+}
+
+.btn-group {
+	display: flex;
+	gap: 12rpx;
+}
+
+.btn-primary {
+	flex: 1;
+	padding: 16rpx 20rpx;
+	border-radius: 16rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8rpx;
+	font-size: 26rpx;
+	font-weight: 700;
+	height: 64rpx;
+	background: $primary;
+	color: #fff;
+	box-shadow: 0 8rpx 16rpx rgba(0, 80, 203, 0.2);
+	transition: all 0.3s ease;
+}
+
+.btn-primary:active {
+	transform: scale(0.98);
+}
+
+/* Cards style from todo-list */
+.cards-container {
+	display: flex;
+	flex-direction: column;
+	gap: 32rpx;
+	max-width: 896rpx;
+	margin: 0 auto;
+}
+
+.glass-card {
+	background: #ffffff;
+	border: 1px solid rgba(0, 80, 203, 0.05);
+	box-shadow: 0 8rpx 32rpx rgba(0, 80, 203, 0.04);
+	border-radius: 24rpx;
+	padding: 32rpx;
+	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-card:active {
+	transform: scale(0.99);
+}
+
+.card-top {
+	display: flex;
+	gap: 24rpx;
+	margin-bottom: 24rpx;
+}
+
+.card-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.card-title-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 8rpx;
+	gap: 16rpx;
+}
+
+.right-tags {
+	flex-shrink: 0;
+}
+
+.card-title {
+	font-family: 'Manrope', sans-serif;
+	font-size: 34rpx;
+	font-weight: 800;
+	color: #1e293b;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	flex: 1;
+}
+
+.title-left {
+	display: flex;
+	align-items: flex-start;
+	flex: 1;
+	overflow: hidden;
+}
+
+.blue-block {
+	width: 8rpx;
+	height: 32rpx;
+	background-color: #0050cb;
+	border-radius: 4rpx;
+	margin-right: 16rpx;
+	margin-top: 6rpx;
+	flex-shrink: 0;
+}
+
+.card-subtitle-row {
+	display: flex;
+	align-items: center;
+	gap: 8rpx;
+	margin-top: 4rpx;
+}
+
+.icon-domain {
+	font-size: 28rpx;
+	color: #64748b;
+}
+
+.card-subtitle {
+	font-size: 24rpx;
+	font-weight: 500;
+	color: #64748b;
+}
+
+.card-bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 24rpx;
+	border-top: 1px dashed #e2e8f0;
+	margin-top: 16rpx;
+}
+
+.time-info-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 16rpx;
+}
+
+.roles-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f8fafc;
+	border-radius: 12rpx;
+	padding: 16rpx 24rpx;
+	margin-bottom: 24rpx;
+}
+
+.role-executors {
+	display: flex;
+	align-items: center;
+	flex: 1;
+}
+
+.role-label {
+	font-size: 26rpx;
+	color: #94a3b8;
+	margin-right: 8rpx;
+}
+
+.role-names {
+	font-size: 26rpx;
+	color: #334155;
+	font-weight: 700;
+	margin-right: 16rpx;
+}
+
+.avatar-group {
+	display: flex;
+	align-items: center;
+}
+
+.avatar {
+	width: 48rpx;
+	height: 48rpx;
+	border-radius: 50%;
+	border: 2px solid #ffffff;
+	background-color: #f1f5f9;
+}
+
+.avatar-more {
+	width: 48rpx;
+	height: 48rpx;
+	border-radius: 50%;
+	background-color: #e2e8f0;
+	color: #475569;
+	font-size: 20rpx;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid #ffffff;
+	margin-left: -16rpx;
+}
+
+.time-range {
+	display: flex;
+	align-items: center;
+	gap: 8rpx;
+}
+
+.icon-schedule {
+	font-size: 28rpx;
+	color: #475569;
+}
+
+.time-text {
+	font-size: 22rpx;
+	font-weight: 500;
+	color: #475569;
+}
+
+.action-btn {
+	display: flex;
+	align-items: center;
+	gap: 8rpx;
+	padding: 16rpx 28rpx;
+	background-color: #f0f5fa;
+	border-radius: 16rpx;
+	transition: background-color 0.3s;
+}
+
+.action-btn:active {
+	background-color: #e2eaf4;
+}
+
+.action-btn-text {
+	color: #0050cb;
+	font-weight: 700;
+	font-size: 26rpx;
+}
+
+.icon-arrow {
+	color: #0050cb;
+	font-size: 32rpx;
+}
+
+.empty-state {
+	padding: 16rpx 0;
+	opacity: 0.8;
+}
+
+.empty-text {
+	font-size: 24rpx;
+	font-weight: 500;
+	color: #ba1a1a;
+}
 </style>
+

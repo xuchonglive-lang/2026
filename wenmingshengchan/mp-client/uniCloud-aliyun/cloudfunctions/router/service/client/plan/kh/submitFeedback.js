@@ -27,6 +27,7 @@ module.exports = {
         dataJson: {
           // 直接牵引主单据头顶标位更改，向上挂起等候审查人员验收 (状态改为: 已提交待审批)
           status: 1, 
+          update_time: Date.now(),
           // 采用文档内嵌型流式增长追加手段（防并发死锁且支持跨机器隔离操作）
           feedbacks: _.push({
             type: 'submit', // 多态标记点：执行人员正面回复动作

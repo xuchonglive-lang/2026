@@ -3,7 +3,9 @@
   "usingComponents": {
     "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
     "u-tabs": "/uni_modules/vk-uview-ui/components/u-tabs/u-tabs",
+    "u-icon": "/uni_modules/vk-uview-ui/components/u-icon/u-icon",
     "live-status-carousel": "/components/live-status-carousel/live-status-carousel",
+    "z-paging": "/node-modules/z-paging/components/z-paging/z-paging",
     "u-select": "/uni_modules/vk-uview-ui/components/u-select/u-select",
     "u-calendar": "/uni_modules/vk-uview-ui/components/u-calendar/u-calendar"
   }

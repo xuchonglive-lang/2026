@@ -139,8 +139,7 @@
               <el-avatar :size="32" :src="fb._user_avatar" icon="el-icon-user-solid"></el-avatar>
               <div style="flex: 1;">
                 <p style="margin: 0;"><strong>{{ fb._user_name }}:</strong></p>
-                <div
-                  class="rich-text-content"
+                <div class="rich-text-content"
                   style="margin-top: 8px; padding: 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; color: #374151; line-height: 1.6;"
                   v-html="fb.desc_content || '无文字描述'"></div>
                 <div style="margin-top: 10px;" v-if="fb.attachment_imgs && fb.attachment_imgs.length > 0">
@@ -174,7 +173,7 @@ export default {
       table1: {
         action: "admin/keywork/sys/getAdminProjectList",
         columns: [
-          { key: "title", title: "项目名称", type: "text", width: 160 },
+          { key: "title", title: "项目名称", type: "text", width: 300 },
           { key: "area_info.name", title: "归属区域", type: "text", width: 120 },
           { key: "point_info.name", title: "涉及点位", type: "text", width: 120 },
           {
@@ -290,8 +289,7 @@ export default {
                 { value: false, label: "❌ 不达标打回 (发回重做)" }
               ]
             },
-            { key: "audit_remark", title: "审核意见描述", type: "textarea", autosize: { minRows: 5, maxRows: 15 }, maxlength: 2000, placeholder: "在此输入验收批语、指导意见，或驳回需要整改的具体原因" },
-            { key: "attachment_imgs", title: "上传佐证/截图", type: "image", limit: 6, tips: "可选：上传验收结果截图或文件照片作为归档佐证" }
+            { key: "audit_remark", title: "审核意见描述", type: "editor", placeholder: "在此输入验收批语、指导意见，或驳回需要整改的具体原因" }
           ]
         }
       },
@@ -344,8 +342,7 @@ export default {
       this.form2.data = {
         _id: row._id,
         is_pass: true,
-        audit_remark: '',
-        attachment_imgs: []
+        audit_remark: ''
       };
       this.form2.props.show = true;
     },

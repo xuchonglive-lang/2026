@@ -114,7 +114,7 @@ export default {
     async fetchDeptTree() {
       try {
         let res = await uni.vk.callFunction({
-          url: 'client/user/pub/getDeptList'
+          url: 'client/user/kh/getDeptList'
         });
         if (res.code === 0 && res.deptList) {
           this.deptList = res.deptList;

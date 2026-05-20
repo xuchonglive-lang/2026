@@ -22,6 +22,21 @@ module.exports = {
     });
 
     if (itemDoc) {
+      // -------------------------------------------------------------
+      // 执行点：被动式（惰性）死线过期自动更新判定
+      // -------------------------------------------------------------
+      if (itemDoc.is_del !== 1 && (itemDoc.status === 0 || itemDoc.status === 1)) {
+        const now = Date.now();
+        if (itemDoc.deadline_time && itemDoc.deadline_time < now) {
+          let newStatus = itemDoc.status === 0 ? 4 : 5;
+          await vk.baseDao.updateById({
+            dbName: "daily-plan",
+            id: plan_id,
+            dataJson: { status: newStatus }
+          });
+          itemDoc.status = newStatus; // 同步内存状态
+        }
+      }
       // 1. 手动关联下达人 (兼容部分旧数据记录为 uid 字段，新数据记录为 issuer_uid)
       let currentIssuerUid = itemDoc.issuer_uid || itemDoc.uid;
       if (currentIssuerUid) {

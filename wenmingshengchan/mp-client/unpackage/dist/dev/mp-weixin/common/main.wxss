@@ -3309,7 +3309,8 @@ textarea {
   background-size: 48rpx 48rpx;
 }
 /* 浮动层与卡片 (glass-card) */
-.glass-card, .glass-panel {
+.glass-card,
+.glass-panel {
   /* bg-white/25 backdrop-blur-[20px] border border-white/20 */
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(20px);
@@ -3400,4 +3401,45 @@ textarea {
   height: 8rpx;
   background-color: #0050cb;
   border-radius: 4rpx;
+}
+/* ====== 标题规范 ====== */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8rpx;
+  margin-top: 16rpx;
+  margin-bottom: -16rpx;
+  /* 抵消 main-content 的 gap */
+}
+/* 针对 bento/grid 内部无 flex gap 的情况 */
+.bento-grid .list-header,
+.news-grid .list-header {
+  margin-top: 0;
+  margin-bottom: 16rpx;
+}
+.action.sub-title {
+  position: relative;
+  display: inline-block;
+  margin-left: 0;
+}
+.action.sub-title .text-lg {
+  position: relative;
+  z-index: 1;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #1a1d20 !important;
+  letter-spacing: -0.5rpx;
+}
+.action.sub-title .bg-blue {
+  position: absolute;
+  display: inline-block;
+  bottom: 0rpx;
+  border-radius: 4rpx;
+  width: 100%;
+  height: 12rpx;
+  left: 12rpx;
+  opacity: 0.4;
+  z-index: 0;
+  background-color: #0062ff !important;
 }

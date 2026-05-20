@@ -6,8 +6,15 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util, originalParam } = event;
     let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    let { uid } = data;
+    let uid = userInfo ? (userInfo._id || userInfo.uid) : null;
     
+    if (!uid) {
+      return {
+        code: -1,
+        msg: '未获取到登录态'
+      };
+    }
+
     // 获取最新数据
     let newUserInfo = await vk.baseDao.findById({
       dbName: "uni-id-users",

@@ -20,6 +20,12 @@
 		},
 		{
 			"path": "lunbotu"
+		},
+		{
+			"path": "ColorUI-GA-master"
+		},
+		{
+			"path": "ColorUI-UniApp"
 		}
 	],
 	"settings": {

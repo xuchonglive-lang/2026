@@ -2,7 +2,7 @@
   <view class="page-container industrial-grid">
     <cu-custom bgColor="bg-gradual-blue" :isCustom="true">
       <block slot="backText"></block>
-      <block slot="content">待反馈点位</block>
+      <block slot="content">本班需参与现场反馈任务</block>
     </cu-custom>
     
     
@@ -10,21 +10,22 @@
     <view class="main-content">
       <!-- Title -->
       <view class="page-title-wrap">
-        <text class="page-title">待反馈点位</text>
+        <view class="action sub-title">
+          <text class="text-lg text-bold text-black">本班需参与现场反馈任务</text>
+          <text class="bg-blue"></text>
+        </view>
       </view>
       
       <!-- Summary Header -->
-      <view class="summary-header mb-4">
-        <view class="summary-info">
-          <text class="status-label">待处理数量</text>
-          <view class="status-value-wrap">
-            <text class="status-count">{{ listData.length }}</text>
-            <text class="status-suffix">项</text>
-          </view>
+      <view class="summary-header-inline mb-4">
+        <view class="summary-info-inline">
+          <text class="status-label-inline">需参与（负责）数量 </text>
+          <text class="status-count-inline">{{ listData.length }}</text>
+          <text class="status-suffix-inline"> 项</text>
         </view>
-        <view class="preview-btn" @click="goTo('/pages/feedback/history/index')">
-          <text class="material-symbols-outlined" style="margin-right: 8rpx; font-size: 32rpx; color: #0050cb;">history</text>
-          <text class="preview-btn-text">历史足迹</text>
+        <view class="preview-link" @click="goTo('/pages/feedback/history/index')">
+          <text class="preview-link-text">我负责的反馈任务历史</text>
+          <u-icon name="arrow-right" size="24" color="#0050cb"></u-icon>
         </view>
       </view>
 
@@ -37,18 +38,20 @@
           :key="item._id"
         >
           <view class="card-top">
-            <view class="icon-box">
-              <text class="material-symbols-outlined icon-location">location_on</text>
-            </view>
             <view class="card-info">
               <view class="card-title-row">
-                <text class="card-title">{{ getPointName(item) }}</text>
-                <u-tag v-if="item._feedback_status === 'waiting'" text="未到时间" type="info" mode="light" size="mini" />
-                <u-tag v-else-if="item._feedback_status === 'expired'" text="已逾期" type="error" mode="dark" size="mini" />
-                <u-tag v-else text="未反馈" type="error" mode="light" size="mini" />
+                <view class="title-left">
+                  <view class="blue-block"></view>
+                  <text class="card-title">{{ getPointName(item) }}</text>
+                </view>
+                <view class="right-tags">
+                  <u-tag v-if="item._feedback_status === 'waiting'" text="未到时间" type="info" mode="light" size="mini" />
+                  <u-tag v-else-if="item._feedback_status === 'expired'" text="已逾期" type="error" mode="dark" size="mini" />
+                  <u-tag v-else text="未反馈" type="error" mode="light" size="mini" />
+                </view>
               </view>
               <view class="card-subtitle-row">
-                <text class="material-symbols-outlined icon-domain">domain</text>
+                <u-icon name="home-fill" size="28" color="#64748b"></u-icon>
                 <text class="card-subtitle">{{ getDeptName(item) }} · {{ getAreaName(item) }}</text>
               </view>
             </view>
@@ -57,7 +60,7 @@
           <!-- Roles Row (反馈人员) -->
           <view class="roles-row mb-3">
             <view class="role-executors">
-              <text class="role-label">反馈人员：</text>
+              <text class="role-label">参与反馈人员：</text>
               <text class="role-names">{{ getAssigneeNames(item) }}</text>
             </view>
             <view class="avatar-group" v-if="item.assignee_info && item.assignee_info.length > 0">
@@ -70,14 +73,14 @@
             <view class="time-info-wrap">
               <!-- Time Range -->
               <view class="time-range">
-                <text class="material-symbols-outlined icon-schedule">schedule</text>
-                <text class="time-text">可反馈区间：{{ getTimeRange(item) }}</text>
+                <u-icon name="clock-fill" size="28" color="#475569"></u-icon>
+                <text class="time-text">可反馈区间：{{ getJoinDate(item) }} {{ getTimeRange(item) }}</text>
               </view>
             </view>
             
             <view class="action-btn" :class="{'disabled-btn': item._feedback_status && item._feedback_status !== 'active'}" @click="item._feedback_status && item._feedback_status !== 'active' ? null : goSubmit(item)">
               <text class="action-btn-text">{{ item._feedback_status === 'waiting' ? '未到时间' : (item._feedback_status === 'expired' ? '已逾期' : '开始反馈') }}</text>
-              <text class="material-symbols-outlined icon-arrow">chevron_right</text>
+              <u-icon name="arrow-right" size="32" color="#0050cb"></u-icon>
             </view>
           </view>
         </view>
@@ -86,7 +89,7 @@
       </view>
     </view>
     
-    <my-tab-bar :current="3"></my-tab-bar>
+    
   </view>
 </template>
 
@@ -111,7 +114,16 @@ export default {
       uni.navigateTo({ url });
     },
     goSubmit(item) {
-      // 传递必要信息到提交页
+      // 强化时间窗口校验：非 active 状态严禁进入提交页
+      if (item._feedback_status === 'waiting') {
+        uni.vk.toast("尚未到反馈开始时间", "none");
+        return;
+      }
+      if (item._feedback_status === 'expired') {
+        uni.vk.toast("该任务已逾期，不可反馈", "none");
+        return;
+      }
+      
       uni.navigateTo({
          url: `/pages/feedback/submit/index?id=${item._id}&name=${item.point_info && item.point_info[0] ? item.point_info[0].name : ''}&status=${item._feedback_status || 'active'}`
       });
@@ -159,9 +171,19 @@ export default {
     },
     getAvatar(assignees, index) {
       if (assignees && assignees[index] && assignees[index].avatar) {
-        return assignees[index].avatar;
+        let avatar = assignees[index].avatar;
+        return typeof avatar === 'string' ? avatar : (avatar.url || avatar);
       }
       return "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png";
+    },
+    getJoinDate(item) {
+      if (item._feedback_display_date) {
+        return item._feedback_display_date;
+      }
+      if (item._add_time) {
+        return uni.vk.pubfn.timeFormat(item._add_time, 'yyyy-MM-dd');
+      }
+      return '未知日期';
     },
     getTimeRange(item) {
       if (item._feedback_start && item._feedback_end) {
@@ -176,21 +198,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
 .page-container {
   min-height: 100vh;
   box-sizing: border-box;
@@ -207,73 +214,107 @@ export default {
 .main-content {
   position: relative;
   z-index: 1;
-  padding: 64rpx 32rpx 192rpx 32rpx;
+  padding: 64rpx 32rpx 64rpx 32rpx;
   max-width: 896rpx;
   margin: 0 auto;
 }
 
-.page-title-wrap {
-  margin-bottom: 24rpx;
-}
-.page-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 56rpx;
-  font-weight: 800;
-  color: #191c1e;
-  letter-spacing: -0.025em;
+/* ====== 引入 ColorUI 示例标题3 (sub-title) 精髓样式 ====== */
+.action.sub-title {
+  position: relative;
+  display: inline-block;
+  margin-left: 0;
 }
 
-.summary-header {
-  padding: 16rpx 0 32rpx;
+.action.sub-title .text-lg {
+  position: relative;
+  z-index: 1;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #1a1d20 !important;
+  letter-spacing: -0.5rpx;
+}
+
+.action.sub-title .bg-blue {
+  position: absolute;
+  display: inline-block;
+  bottom: 4rpx;
+  border-radius: 4rpx;
+  width: 100%;
+  height: 14rpx;
+  left: 16rpx;
+  opacity: 0.4;
+  z-index: 0;
+  background-color: #0062ff !important;
+}
+
+.page-title-wrap {
+  margin-bottom: 32rpx;
+}
+
+/* Inline Summary Header */
+.summary-header-inline {
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0 32rpx;
+  border-bottom: 1px dashed rgba(0,0,0,0.05);
+  margin-bottom: 32rpx;
 }
-.status-label {
-  display: block;
-  font-size: 24rpx;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #0050cb;
-  margin-bottom: 8rpx;
-}
-.status-value-wrap {
+
+.summary-info-inline {
   display: flex;
   align-items: baseline;
-}
-.status-count {
-  font-family: 'Manrope', sans-serif;
-  font-size: 60rpx;
-  font-weight: 800;
-  color: #191c1e;
-  margin-right: 12rpx;
-}
-.status-suffix {
-  font-size: 32rpx;
-  font-weight: 500;
-  color: #424656;
+  font-size: 28rpx;
+  color: #475569;
 }
 
-.preview-btn {
-  padding: 16rpx 28rpx;
-  background-color: #ffffff;
-  border-radius: 16rpx;
-  border: 1px solid rgba(0, 80, 203, 0.1);
-  box-shadow: 0 4rpx 12rpx rgba(0, 80, 203, 0.05);
+.status-label-inline {
+  font-weight: 500;
+}
+
+.status-count-inline {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #ea580c;
+  margin: 0 8rpx;
+  font-family: 'Manrope', sans-serif;
+}
+
+.status-suffix-inline {
+  font-size: 24rpx;
+}
+
+.preview-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
+  gap: 4rpx;
+  cursor: pointer;
+  padding: 8rpx 0;
 }
-.preview-btn:active {
-  transform: scale(0.95);
-}
-.preview-btn-text {
+
+.preview-link-text {
   color: #0050cb;
-  font-size: 24rpx;
+  font-size: 26rpx;
   font-weight: 700;
-  text-transform: uppercase;
+}
+
+/* Small Title Style with Blue Block */
+.title-left {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  overflow: hidden;
+}
+
+.blue-block {
+  width: 8rpx;
+  height: 32rpx;
+  background-color: #0050cb;
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+  margin-top: 6rpx;
+  flex-shrink: 0;
 }
 
 .cards-container {
@@ -300,21 +341,6 @@ export default {
   margin-bottom: 24rpx;
 }
 
-.icon-box {
-  width: 96rpx;
-  height: 96rpx;
-  flex-shrink: 0;
-  border-radius: 20rpx;
-  background-color: #eef5fc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.icon-location {
-  color: #0050cb;
-  font-size: 48rpx;
-}
-
 .card-info {
   flex: 1;
   min-width: 0;
@@ -324,6 +350,10 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 8rpx;
+  gap: 16rpx;
+}
+.right-tags {
+  flex-shrink: 0;
 }
 .card-title {
   font-family: 'Manrope', sans-serif;
@@ -333,6 +363,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 1;
 }
 
 .card-subtitle-row {
@@ -353,7 +384,7 @@ export default {
 
 .card-bottom {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   padding-top: 24rpx;
   border-top: 1px dashed #e2e8f0;

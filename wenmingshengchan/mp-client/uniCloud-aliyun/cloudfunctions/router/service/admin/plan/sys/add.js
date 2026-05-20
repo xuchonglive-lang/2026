@@ -6,8 +6,8 @@ module.exports = {
    * @description 该接口接收管理平台录入的参数，通过系统统一的软删除与时间戳校验写入新计划集合中，初始态强制指定为 0 (执行中)
    */
   main: async (event) => {
-    let { data = {}, userInfo, util } = event;
-    let { vk } = util;
+    let { data = {}, userInfo, util, filterResponse, originalParam } = event;
+    let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
     let uid = userInfo ? userInfo._id : null; // 获取当前登录的管理员真实UID
 
     // 组装将要存入数据库的对象
@@ -26,15 +26,35 @@ module.exports = {
       dataJson.deadline_time = new Date(dataJson.deadline_time).getTime();
     }
 
-    // 获取分配人员的信息，继承其部门
+    // 获取分配人员的信息，继承其部门，并采集所有小组ID
     if (dataJson.assignee_ids && dataJson.assignee_ids.length > 0) {
-      let main_assignee_id = Array.isArray(dataJson.assignee_ids) ? dataJson.assignee_ids[0] : dataJson.assignee_ids;
-      let userRes = await vk.baseDao.findById({
+      let ids = Array.isArray(dataJson.assignee_ids) ? dataJson.assignee_ids : [dataJson.assignee_ids];
+      let usersRes = await vk.baseDao.select({
         dbName: "uni-id-users",
-        id: main_assignee_id
+        whereJson: { _id: _.in(ids) },
+        fieldJson: { department_id: 1, group_id: 1 },
+        pageSize: 100
       });
-      if (userRes && userRes.department_id) {
-        dataJson.dept_id = userRes.department_id;
+      // 主执行人的部门作为计划归属部门
+      if (usersRes.rows && usersRes.rows.length > 0) {
+        let firstUser = usersRes.rows[0];
+        if (firstUser.department_id) {
+          // 兼容 uni-id 中部门id可能是数组的情况
+          dataJson.dept_id = Array.isArray(firstUser.department_id) ? firstUser.department_id[0] : firstUser.department_id;
+        }
+        // 采集所有执行人的小组ID（去重，并兼容 group_id 是数组的情况）
+        let groupIds = [];
+        usersRes.rows.forEach(u => {
+          if (u.group_id) {
+            let gids = Array.isArray(u.group_id) ? u.group_id : [u.group_id];
+            gids.forEach(gid => {
+              if (gid && !groupIds.includes(gid)) {
+                groupIds.push(gid);
+              }
+            });
+          }
+        });
+        dataJson.group_ids = groupIds;
       }
     }
 

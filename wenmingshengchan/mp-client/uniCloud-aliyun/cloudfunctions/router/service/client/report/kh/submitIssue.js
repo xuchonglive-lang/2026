@@ -6,16 +6,17 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util, filterResponse, originalParam } = event;
     let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    let { uid } = data;
+    let uid = userInfo._id;
     let res = { code: 0, msg: '' };
 
-    let { title, content, images, urgency, is_anonymous, area_id, point_id } = data;
+    let { title, content, images, urgency, is_anonymous, area_id, point_id, handle_dept_id, handle_dept_name } = data;
 
     // 参数校验
     if (vk.pubfn.isNull(title)) return { code: -1, msg: '标题不能为空' };
     if (vk.pubfn.isNull(content)) return { code: -1, msg: '描述不能为空' };
     if (vk.pubfn.isNull(area_id)) return { code: -1, msg: '请选择作业区域' };
     if (vk.pubfn.isNull(point_id)) return { code: -1, msg: '请选择作业点位' };
+    if (vk.pubfn.isNull(handle_dept_id)) return { code: -1, msg: '请选择责任单位' };
 
     // 从 base-point 获取该点位所属的 manager_dept_id
     let pointInfo = await vk.baseDao.findById({
@@ -36,6 +37,8 @@ module.exports = {
         is_anonymous: is_anonymous === false ? false : true,
         area_id,
         point_id,
+        handle_dept_id,
+        handle_dept_name,
         manager_dept_id: pointInfo.manager_dept_id,
         status: 0,
         create_uid: uid,

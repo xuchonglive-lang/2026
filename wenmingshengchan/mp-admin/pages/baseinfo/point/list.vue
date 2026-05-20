@@ -3,49 +3,26 @@
     <view class="vk-list-view">
       <view class="vk-list-view-box">
         <!-- 搜索域 -->
-        <vk-data-table-query
-          v-model="queryForm1.formData"
-          :columns="queryForm1.columns"
-          @search="search"
-        ></vk-data-table-query>
-        
+        <vk-data-table-query v-model="queryForm1.formData" :columns="queryForm1.columns"
+          @search="search"></vk-data-table-query>
+
         <!-- 核心操作 -->
         <view class="vk-table-button-box">
           <el-button type="success" size="small" icon="el-icon-circle-plus-outline" @click="addBtn">添加作业点</el-button>
         </view>
 
         <!-- 主表展示 -->
-        <vk-data-table
-          ref="table1"
-          :action="table1.action"
-          :columns="table1.columns"
-          :query-form-param="queryForm1"
-          :right-btns="['detail_auto', 'update', 'delete']"
-          :selection="true"
-          :row-no="true"
-          :pagination="true"
-          @update="updateBtn"
-          @delete="deleteBtn"
-        ></vk-data-table>
+        <vk-data-table ref="table1" :action="table1.action" :columns="table1.columns" :query-form-param="queryForm1"
+          :right-btns="['detail_auto', 'update', 'delete']" :selection="true" :row-no="true" :pagination="true"
+          @update="updateBtn" @delete="deleteBtn"></vk-data-table>
       </view>
     </view>
 
     <!-- 增改弹窗 -->
-    <vk-data-dialog
-      v-model="form1.props.show"
-      :title="form1.props.title"
-      width="600px"
-      mode="form"
-    >
-      <vk-data-form
-        v-model="form1.data"
-        :rules="form1.props.rules"
-        :action="form1.props.action"
-        :form-type="form1.props.formType"
-        :columns="form1.props.columns"
-        label-width="120px"
-        @success="onFormSuccess"
-      ></vk-data-form>
+    <vk-data-dialog v-model="form1.props.show" :title="form1.props.title" width="600px" mode="form">
+      <vk-data-form v-model="form1.data" :rules="form1.props.rules" :action="form1.props.action"
+        :form-type="form1.props.formType" :columns="form1.props.columns" label-width="120px"
+        @success="onFormSuccess"></vk-data-form>
     </vk-data-dialog>
 
   </view>
@@ -62,26 +39,28 @@ export default {
       table1: {
         action: "admin/base-point/sys/getList",
         columns: [
-          { key: "_id", title: "识别码", type: "text", width: 220 },
-          { key: "name", title: "点位名称", type: "text", width: 140 },
+
+          { key: "name", title: "点位名称", type: "text", width: 250 },
           { key: "area_info.name", title: "所属区域", type: "text", width: 160, defaultValue: "未选区域" },
-          { key: "dept_info.name", title: "网格责任小队", type: "text", width: 160, defaultValue: "按区域继承" },
-          { 
-            key: "status", 
-            title: "状态", 
-            type: "tag", 
-            width: 80, 
+          { key: "dept_info.name", title: "责任小组", type: "text", width: 200, defaultValue: "未选小组" },
+          {
+            key: "status",
+            title: "状态",
+            type: "tag",
+            width: 80,
             data: [
-              {value:1, label:'正常', tagType: 'success'},
-              {value:0, label:'禁用', tagType: 'danger'}
-            ] 
-          }
+              { value: 1, label: '正常', tagType: 'success' },
+              { value: 0, label: '禁用', tagType: 'danger' }
+            ]
+          },
+          { key: "sort", title: "排序码", type: "number", width: 100, sortable: "custom" },
         ]
       },
       queryForm1: {
         formData: {},
         columns: [
-          { key: "name", title: "搜点位名", type: "text", mode: "%%", width: 180 }
+          { key: "name", title: "点位名称", type: "text", mode: "%%", width: 180 },
+          { key: "area_id", title: "按区域筛选", type: "select", mode: "=", data: [], props: { value: "_id", label: "name" }, width: 180 }
         ]
       },
       form1: {
@@ -92,29 +71,30 @@ export default {
           formType: "",
           show: false,
           columns: [
-            { key: "name", title: "点位名称", type: "text", placeholder: "请填入精准定位物标识" },
-            { 
-              key: "area_id", 
-              title: "业务区域", 
-              type: "select", 
-              data: [], 
+            { key: "name", title: "点位名称", type: "text", placeholder: "请输入点位名称" },
+            { key: "sort", title: "排序码", type: "number", placeholder: "数字越小越靠前", defaultValue: 0 },
+            {
+              key: "area_id",
+              title: "业务区域",
+              type: "select",
+              data: [],
               props: { value: "_id", label: "name" },
-              placeholder: "请选择其所属的物理作业区" 
+              placeholder: "请选择所属的区域"
             },
-            { 
-              key: "manager_dept_id", 
-              title: "网格责任组", 
-              type: "cascader", 
-              action: "admin/base-dept/sys/getTree",
+            {
+              key: "manager_dept_id",
+              title: "责任小组",
+              type: "cascader",
+              data: [],
               props: { value: "_id", label: "name", children: "children", checkStrictly: true, emitPath: false },
-              placeholder: "强制绑定组织内小队"
+              placeholder: "请选择责任小组"
             },
-            { key: "status", title: "活跃状态", type: "radio", data: [{value:1, label:'正常'},{value:0, label:'禁用'}], defaultValue: 1 },
-            { key: "remark", title: "防患提示指令", type: "textarea", placeholder: "安全防患作业提醒标准" }
+            { key: "status", title: "状  态", type: "radio", data: [{ value: 1, label: '正常' }, { value: 0, label: '禁用' }], defaultValue: 1 },
+            { key: "remark", title: "备注信息", type: "textarea", placeholder: "备注信息" }
           ],
           rules: {
-            name: [{ required: true, message: "定位名不可为空", trigger: "blur" }],
-            area_id: [{ required: true, message: "必须绑定到物理区域基地", trigger: "change" }]
+            name: [{ required: true, message: "点位名字不能为空", trigger: "blur" }],
+            area_id: [{ required: true, message: "点位必须绑定到区域", trigger: "change" }]
           }
         }
       }
@@ -128,9 +108,9 @@ export default {
   methods: {
     init() {
       originalForms["form1"] = vk.pubfn.copyObject(that.form1);
-      that.loadAreaDict();
+      that.loadDict();
     },
-    loadAreaDict() {
+    loadDict() {
       // 拉取系统内区域字典并强插至静态数组支撑 select 渲染
       vk.callFunction({
         url: "admin/base-area/sys/getAll",
@@ -138,6 +118,21 @@ export default {
           let areaColIndex = vk.pubfn.getListIndex(that.form1.props.columns, "key", "area_id");
           if (areaColIndex > -1) {
             that.form1.props.columns[areaColIndex].data = data.rows || [];
+          }
+          let queryAreaColIndex = vk.pubfn.getListIndex(that.queryForm1.columns, "key", "area_id");
+          if (queryAreaColIndex > -1) {
+            that.queryForm1.columns[queryAreaColIndex].data = data.rows || [];
+          }
+        }
+      });
+      // 拉取组织架构级联树
+      vk.callFunction({
+        url: "admin/base-dept/sys/getTree",
+        success: (data) => {
+          let treeData = data.rows || [];
+          let deptColIndex = vk.pubfn.getListIndex(that.form1.props.columns, "key", "manager_dept_id");
+          if (deptColIndex > -1) {
+            that.form1.props.columns[deptColIndex].data = treeData;
           }
         }
       });
@@ -176,5 +171,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

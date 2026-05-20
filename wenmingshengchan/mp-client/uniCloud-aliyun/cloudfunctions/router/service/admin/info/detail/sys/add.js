@@ -10,12 +10,12 @@ module.exports = {
     let { data = {}, userInfo, util, filterResponse, originalParam } = event;
     // 分拣 vk.baseDao 这一云引擎核心套件的各种子服务把手
     let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    
+
     // 对前端庞大报文做出精准制导析脱
     // category_id 为该文名义父级；title 为吸睛标头；content 是巨量级 html 富文段；
     // is_top 为提级权限棒；status 关涉到立即公开与否；publish_time 为刻度锚。
     let { category_id, title, cover_img, content, is_top, status, publish_time } = data;
-    
+
     // 发文的铁血校验：无头、无身、无祖宗的畸形数据决不可通行
     if (!title || !content || !category_id) {
       return { code: -1, msg: "由于该信件残缺了必填的关键文章元数据成分，拒绝签收录入" };
@@ -40,17 +40,18 @@ module.exports = {
       is_top: is_top || false,               // 如果没勾置顶，自然就是做普通的流媒体推送
       status: status !== undefined ? status : 1, // 如果不在意掩藏，预设发出去即可见（启用状态）
       publish_time: publish_time || Date.now(), // 默认发布基准刻在此时此刻当前时钟之上
+      publish_uid: userInfo && userInfo._id ? userInfo._id : (data.uid || data._id), // 记录文章的发布人 UID
       is_del: 0                              // 刚诞生的实体生龙活虎，不能带有死亡软删刺青
     };
 
     let res = { code: 0, msg: '伟大的宏愿：一纸公文宣天下！文章已顺滑入库！' };
-    
+
     // 将拼凑并安检后的合规长文交由库管体系执行新增事务
-    res.id = await vk.baseDao.add({ 
+    res.id = await vk.baseDao.add({
       dbName: "info",      // 定位向最大体积的文章巨表
       dataJson: insertData // 输入净空数据源
     });
-    
+
     return res;
   }
 }

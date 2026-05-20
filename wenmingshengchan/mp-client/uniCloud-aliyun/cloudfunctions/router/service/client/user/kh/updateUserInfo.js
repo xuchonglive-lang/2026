@@ -6,8 +6,15 @@ module.exports = {
   main: async (event) => {
     let { data = {}, userInfo, util, originalParam } = event;
     let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    let { uid } = data;
+    let uid = userInfo ? (userInfo._id || userInfo.uid) : null;
     
+    if (!uid) {
+      return {
+        code: -1,
+        msg: '未获取到登录态'
+      };
+    }
+
     let { real_name, mobile, department_id, department_name } = data;
     
     // 解析级联数组 [dept_id, group_id]

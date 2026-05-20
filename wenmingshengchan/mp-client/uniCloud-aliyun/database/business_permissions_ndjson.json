@@ -1,0 +1,17 @@
+{"_id":"wmsc-baseinfo-manage","_add_time":1714578000000,"permission_id":"wmsc-baseinfo-manage","permission_name":"业务基础数据管理","comment":"基础数据大类权限","sort":110,"enable":true}
+{"_id":"wmsc-baseinfo-manage-area","_add_time":1714578000000,"permission_id":"wmsc-baseinfo-manage-area","permission_name":"基础信息 - 业务区域管理","url":["admin/base-area/sys/*"],"sort":1,"enable":true,"match_mode":1,"parent_id":"wmsc-baseinfo-manage"}
+{"_id":"wmsc-baseinfo-manage-dept","_add_time":1714578000000,"permission_id":"wmsc-baseinfo-manage-dept","permission_name":"基础信息 - 部门组别管理","url":["admin/base-dept/sys/*"],"sort":2,"enable":true,"match_mode":1,"parent_id":"wmsc-baseinfo-manage"}
+{"_id":"wmsc-baseinfo-manage-point","_add_time":1714578000000,"permission_id":"wmsc-baseinfo-manage-point","permission_name":"基础信息 - 重点管控点管理","url":["admin/base-point/sys/*"],"sort":3,"enable":true,"match_mode":1,"parent_id":"wmsc-baseinfo-manage"}
+{"_id":"wmsc-baseinfo-manage-user","_add_time":1714578000000,"permission_id":"wmsc-baseinfo-manage-user","permission_name":"基础信息 - 职工管理","url":["admin/user/sys/*"],"sort":4,"enable":true,"match_mode":1,"parent_id":"wmsc-baseinfo-manage"}
+{"_id":"wmsc-feedback-manage","_add_time":1714578000000,"permission_id":"wmsc-feedback-manage","permission_name":"现场巡检反馈管理","sort":120,"enable":true}
+{"_id":"wmsc-feedback-manage-all","_add_time":1714578000000,"permission_id":"wmsc-feedback-manage-all","permission_name":"反馈任务 - 综合管理","url":["admin/feedback/sys/*"],"sort":1,"enable":true,"match_mode":1,"parent_id":"wmsc-feedback-manage"}
+{"_id":"wmsc-info-manage","_add_time":1714578000000,"permission_id":"wmsc-info-manage","permission_name":"信息发布管控","sort":130,"enable":true}
+{"_id":"wmsc-info-manage-detail","_add_time":1714578000000,"permission_id":"wmsc-info-manage-detail","permission_name":"信息发布 - 内容管理","url":["admin/info/detail/sys/*"],"sort":1,"enable":true,"match_mode":1,"parent_id":"wmsc-info-manage"}
+{"_id":"wmsc-info-manage-category","_add_time":1714578000000,"permission_id":"wmsc-info-manage-category","permission_name":"信息发布 - 分类标签管理","url":["admin/info/category/sys/*"],"sort":2,"enable":true,"match_mode":1,"parent_id":"wmsc-info-manage"}
+{"_id":"wmsc-info-manage-log","_add_time":1714578000000,"permission_id":"wmsc-info-manage-log","permission_name":"信息发布 - 阅读日志查阅","url":["admin/info/log/sys/*"],"sort":3,"enable":true,"match_mode":1,"parent_id":"wmsc-info-manage"}
+{"_id":"wmsc-keywork-manage","_add_time":1714578000000,"permission_id":"wmsc-keywork-manage","permission_name":"重点工作调度管理","sort":140,"enable":true}
+{"_id":"wmsc-keywork-manage-all","_add_time":1714578000000,"permission_id":"wmsc-keywork-manage-all","permission_name":"重点工作 - 综合管理","url":["admin/keywork/sys/*"],"sort":1,"enable":true,"match_mode":1,"parent_id":"wmsc-keywork-manage"}
+{"_id":"wmsc-plan-manage","_add_time":1714578000000,"permission_id":"wmsc-plan-manage","permission_name":"生产日计划调度","sort":150,"enable":true}
+{"_id":"wmsc-plan-manage-all","_add_time":1714578000000,"permission_id":"wmsc-plan-manage-all","permission_name":"日计划 - 综合管理","url":["admin/plan/sys/*"],"sort":1,"enable":true,"match_mode":1,"parent_id":"wmsc-plan-manage"}
+{"_id":"wmsc-report-manage","_add_time":1714578000000,"permission_id":"wmsc-report-manage","permission_name":"现场问题报备系统","sort":160,"enable":true}
+{"_id":"wmsc-report-manage-all","_add_time":1714578000000,"permission_id":"wmsc-report-manage-all","permission_name":"现场报备 - 综合管理","url":["admin/report/sys/*"],"sort":1,"enable":true,"match_mode":1,"parent_id":"wmsc-report-manage"}

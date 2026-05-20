@@ -7,7 +7,27 @@ module.exports = {
    */
   main: async (event) => {
     let { data = {}, userInfo, util } = event;
-    let { vk } = util;
+    let { vk, db, _ } = util;
+    let uid = userInfo ? userInfo._id : null;
+    let role = userInfo.role || [];
+    let isSuperAdmin = role.includes('admin') || role.includes('super_admin');
+
+    // ---- 权限校验：查出原记录 ----
+    let existing = await vk.baseDao.findById({
+      dbName: "daily-plan",
+      id: data._id
+    });
+    if (!existing) {
+      return { code: -1, msg: "计划记录不存在" };
+    }
+    // 非超管且非本人不允许修改
+    if (!isSuperAdmin && existing.issuer_uid !== uid) {
+      return { code: -1, msg: "无权修改他人下达的计划" };
+    }
+    // 有反馈记录后仅超管可修改
+    if (!isSuperAdmin && existing.feedbacks && existing.feedbacks.length > 0) {
+      return { code: -1, msg: "计划已有执行反馈，不可修改" };
+    }
 
     // 克隆传递的表单数据源为局部变量
     let dataJson = { ...data };
@@ -16,15 +36,32 @@ module.exports = {
     if (dataJson.deadline_time && typeof dataJson.deadline_time === 'string') {
       dataJson.deadline_time = new Date(dataJson.deadline_time).getTime();
     }
-    // 获取分配人员的信息，继承其部门
+    // 获取分配人员的信息，继承其部门，并采集所有小组ID
     if (dataJson.assignee_ids && dataJson.assignee_ids.length > 0) {
-      let main_assignee_id = Array.isArray(dataJson.assignee_ids) ? dataJson.assignee_ids[0] : dataJson.assignee_ids;
-      let userRes = await vk.baseDao.findById({
+      let ids = Array.isArray(dataJson.assignee_ids) ? dataJson.assignee_ids : [dataJson.assignee_ids];
+      let usersRes = await vk.baseDao.select({
         dbName: "uni-id-users",
-        id: main_assignee_id
+        whereJson: { _id: _.in(ids) },
+        fieldJson: { department_id: 1, group_id: 1 },
+        pageSize: 100
       });
-      if (userRes && userRes.department_id) {
-        dataJson.dept_id = userRes.department_id;
+      if (usersRes.rows && usersRes.rows.length > 0) {
+        let firstUser = usersRes.rows[0];
+        if (firstUser.department_id) {
+          dataJson.dept_id = Array.isArray(firstUser.department_id) ? firstUser.department_id[0] : firstUser.department_id;
+        }
+        let groupIds = [];
+        usersRes.rows.forEach(u => {
+          if (u.group_id) {
+            let gids = Array.isArray(u.group_id) ? u.group_id : [u.group_id];
+            gids.forEach(gid => {
+              if (gid && !groupIds.includes(gid)) {
+                groupIds.push(gid);
+              }
+            });
+          }
+        });
+        dataJson.group_ids = groupIds;
       }
     }
 

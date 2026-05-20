@@ -1,111 +1,72 @@
 <template>
   <view class="page-body">
     <!-- 表格搜索组件开始 -->
-    <vk-data-table-query
-      v-model="queryForm1.formData"
-      :columns="queryForm1.columns"
-      @search="search"
-      size="small"
-    ></vk-data-table-query>
+    <vk-data-table-query v-model="queryForm1.formData" :columns="queryForm1.columns" @search="search"
+      size="small"></vk-data-table-query>
     <!-- 表格搜索组件结束 -->
 
     <!-- 自定义按钮区域开始 -->
     <view>
       <el-row class="vk-table-button-box">
-        <el-button
-          type="success"
-          size="small"
-          icon="el-icon-circle-plus-outline"
-          @click="addBtn"
-        >发布信息</el-button>
+        <el-button type="success" size="small" icon="el-icon-circle-plus-outline" @click="addBtn">发布信息</el-button>
       </el-row>
     </view>
     <!-- 自定义按钮区域结束 -->
 
     <!-- 表格组件开始 -->
-    <vk-data-table
-      ref="table1"
-      size="small"
-      :action="table1.action"
-      :columns="table1.columns"
-      :query-form-param="queryForm1"
-      :right-btns="['update', 'delete', 'more']"
-      :right-btns-more="table1.rightBtnsMore"
-      :selection="true"
-      :row-no="true"
-      :pagination="true"
-      @update="updateBtn"
-      @delete="deleteBtn"
-    ></vk-data-table>
+    <vk-data-table ref="table1" size="small" :action="table1.action" :columns="table1.columns"
+      :query-form-param="queryForm1" :right-btns="['update', 'delete']" :custom-right-btns="table1.customRightBtns"
+      :selection="true" :row-no="true" :pagination="true" @update="updateBtn" @delete="deleteBtn"></vk-data-table>
     <!-- 表格组件结束 -->
 
-    <!-- 添加或编辑的弹窗开始 -->
-    <vk-data-dialog
-      v-model="form1.props.show"
-      :title="form1.props.title"
-      width="900px"
-      mode="form"
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      fullscreen
-    >
-      <vk-data-form
-        v-model="form1.data"
-        :rules="form1.props.rules"
-        :action="form1.props.action"
-        :form-type="form1.props.formType"
-        :columns="form1.props.columns"
-        label-width="100px"
-        @success="form1.props.show = false; refresh();"
-      ></vk-data-form>
-    </vk-data-dialog>
-    <!-- 添加或编辑的弹窗结束 -->
+    <!-- 添加或编辑的抽屉开始 -->
+    <el-drawer :visible.sync="form1.props.show" :title="form1.props.title" size="75%" direction="rtl"
+      :wrapperClosable="false" :destroy-on-close="true" append-to-body>
+      <div style="padding: 20px; height: 100%; overflow-y: auto;">
+        <vk-data-form v-model="form1.data" :rules="form1.props.rules" :action="form1.props.action"
+          :form-type="form1.props.formType" :columns="form1.props.columns" label-width="100px"
+          @success="form1.props.show = false; refresh();" @cancel="form1.props.show = false"></vk-data-form>
+      </div>
+    </el-drawer>
+    <!-- 添加或编辑的抽屉结束 -->
 
-    <!-- [增强功能区] 预览兼足迹监控超级弹窗 -->
-    <el-dialog :visible.sync="showPreviewDialog" width="950px" fullscreen append-to-body>
-      <div slot="title" style="text-align: center; font-size: 22px; font-weight: bold; letter-spacing: 1px; color: #1f2937;">
+    <!-- [增强功能区] 预览兼足迹监控超级抽屉 -->
+    <el-drawer :visible.sync="showPreviewDialog" size="75%" direction="rtl" append-to-body>
+      <div slot="title"
+        style="text-align: center; font-size: 22px; font-weight: bold; letter-spacing: 1px; color: #1f2937;">
         {{ previewTitle }}
       </div>
       <scroll-view scroll-y style="height: 100%;">
         <!-- 正文呈现区 -->
-        <view class="preview-container" v-html="previewContent" style="padding: 24px; line-height: 1.8; font-size: 16px; max-width: 900px; margin: 0 auto;"></view>
-        
+        <view class="preview-container" v-html="previewContent"
+          style="padding: 24px; line-height: 1.8; font-size: 16px; max-width: 900px; margin: 0 auto;"></view>
+
         <!-- 足迹排查区 -->
-        <view style="max-width: 900px; margin: 40px auto 40px; padding: 24px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-          <view style="font-size: 18px; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; color: #0f172a;">
-            <view style="width: 4px; height: 18px; background: #0050cb; margin-right: 10px; border-radius: 2px;"></view>调阅足迹雷达
+        <view
+          style="max-width: 900px; margin: 40px auto 40px; padding: 24px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <view
+            style="font-size: 18px; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; color: #0f172a;">
+            <view style="width: 4px; height: 18px; background: #0050cb; margin-right: 10px; border-radius: 2px;"></view>
+            调阅足迹雷达
           </view>
-          
+
           <view style="margin-bottom: 15px;">
-            <vk-data-table-query
-              v-model="queryFormLog.formData"
-              :columns="queryFormLog.columns"
-              @search="() => { $refs.tableLogInside.search() }"
-              size="small"
-            ></vk-data-table-query>
+            <vk-data-table-query v-model="queryFormLog.formData" :columns="queryFormLog.columns"
+              @search="() => { $refs.tableLogInside.search() }" size="small"></vk-data-table-query>
           </view>
-          <vk-data-table
-            v-if="showPreviewDialog"
-            ref="tableLogInside"
-            size="small"
-            :action="tableLog.action"
-            :columns="tableLog.columns"
-            :query-form-param="queryFormLog"
-            :right-btns="[]"
-            :selection="false"
-            :row-no="true"
-            :pagination="true"
-          ></vk-data-table>
+          <vk-data-table v-if="showPreviewDialog" ref="tableLogInside" size="small" :action="tableLog.action"
+            :columns="tableLog.columns" :query-form-param="queryFormLog" :right-btns="[]" :selection="false"
+            :row-no="true" :pagination="true"></vk-data-table>
         </view>
       </scroll-view>
-    </el-dialog>
+    </el-drawer>
   </view>
 </template>
 
 <script>
-let that; 
-let vk = uni.vk; 
-let originalForms = {}; 
+let that;
+let vk = uni.vk;
+let originalForms = {};
 
 export default {
   data() {
@@ -115,6 +76,7 @@ export default {
         columns: [
           { key: "category_info.name", title: "所属分类", type: "text", width: 120 },
           { key: "title", title: "文章标题", type: "text", width: 250 },
+          { key: "user_info.real_name", title: "发布人", type: "text", width: 100, defaultValue: "系统管理员" },
           { key: "view_count", title: "阅读量", type: "number", width: 100 },
           { key: "is_top", title: "是否置顶", type: "switch", width: 80, onChange: (item) => { that.updateTop(item) } },
           {
@@ -126,15 +88,17 @@ export default {
           },
           { key: "publish_time", title: "发布时间", type: "time", width: 160, valueFormat: "yyyy-MM-dd hh:mm:ss" }
         ],
-        rightBtnsMore: [
+        customRightBtns: [
           {
             title: "浏览文章",
+            type: "info",
             onClick: function (item) {
               that.showPreview(item);
             }
           },
           {
             title: "上架下架",
+            type: "warning",
             onClick: function (item) {
               that.updateStatus(item);
             }
@@ -174,24 +138,30 @@ export default {
             },
             { key: "title", title: "文章标题", type: "text", placeholder: "请输入文章标题" },
             { key: "cover_img", title: "封面图片", type: "image", limit: 1, tips: "如果不传，系统自动抓取正文第一张图片" },
-            { 
-              key: "summary", 
-              title: "内容摘要", 
-              type: "textarea", 
-              maxlength: 200, 
-              showWordLimit: true, 
-              placeholder: "请撰写内容提要（选填。若留空，系统发布时将自动截取正文做摘要）" 
+            {
+              key: "summary",
+              title: "内容摘要",
+              type: "textarea",
+              maxlength: 200,
+              showWordLimit: true,
+              placeholder: "请撰写内容提要（选填。若留空，系统发布时将自动截取正文做摘要）"
             },
-            { 
-              key: "content", 
-              title: "文章正文", 
-              type: "custom", 
+            {
+              key: "content",
+              title: "文章正文",
+              type: "custom",
               component: "custom-editor-tinymce",
               width: "100%",
               height: 500,
               placeholder: "开始输入正文..."
             },
-            { key: "is_top", title: "置顶显示", type: "switch", activeText: "开启", inactiveText: "关闭" },
+            {
+              key: "is_top", title: "置顶显示", type: "radio",
+              data: [
+                { value: true, label: "开启" },
+                { value: false, label: "关闭" }
+              ]
+            },
             {
               key: "status", title: "发文状态", type: "radio",
               data: [
@@ -212,7 +182,7 @@ export default {
       showPreviewDialog: false,
       previewTitle: "",
       previewContent: "",
-      
+
       showLogDialog: false,
       curArticleId: "",
       tableLog: {
@@ -306,7 +276,7 @@ export default {
       that.previewTitle = item.title;
       // 设置日志表格挂载参数
       if (!that.queryFormLog.formData) {
-         that.$set(that.queryFormLog, 'formData', {});
+        that.$set(that.queryFormLog, 'formData', {});
       }
       that.$set(that.queryFormLog.formData, 'info_id', item._id);
 
@@ -314,14 +284,14 @@ export default {
         url: "admin/info/detail/sys/findById",
         data: { _id: item._id },
         success: (data) => {
-           that.previewContent = data.item.content;
-           that.showPreviewDialog = true;
-           // 同时刷新底部的日志追踪台
-           that.$nextTick(() => {
-             if(that.$refs.tableLogInside) {
-                that.$refs.tableLogInside.search();
-             }
-           });
+          that.previewContent = data.item.content;
+          that.showPreviewDialog = true;
+          // 同时刷新底部的日志追踪台
+          that.$nextTick(() => {
+            if (that.$refs.tableLogInside) {
+              that.$refs.tableLogInside.search();
+            }
+          });
         }
       });
     }

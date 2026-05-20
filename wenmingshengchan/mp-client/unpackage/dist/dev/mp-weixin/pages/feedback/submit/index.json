@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
+    "u-icon": "/uni_modules/vk-uview-ui/components/u-icon/u-icon",
     "u-popup": "/uni_modules/vk-uview-ui/components/u-popup/u-popup",
     "u-parse": "/uni_modules/vk-uview-ui/components/u-parse/u-parse"
   }

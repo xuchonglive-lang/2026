@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
+    "u-icon": "/uni_modules/vk-uview-ui/components/u-icon/u-icon",
     "u-form": "/uni_modules/vk-uview-ui/components/u-form/u-form",
     "robin-editor": "/uni_modules/robin-editor/components/robin-editor/robin-editor",
     "u-toast": "/uni_modules/vk-uview-ui/components/u-toast/u-toast"

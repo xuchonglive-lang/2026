@@ -1,0 +1,76 @@
+{
+  "pages": [
+    "pages/user/login/index",
+    "pages/user/register/index",
+    "pages/user/audit-status/index",
+    "pages/user/mine/index",
+    "pages/report/submit-entry/index",
+    "pages/report/public-board/index",
+    "pages/report/my-record/index",
+    "pages/plan/list",
+    "pages/plan/feedback",
+    "pages/plan/history/index",
+    "pages/keywork/project/list/index",
+    "pages/keywork/project/process-feed/index",
+    "pages/keywork/project/apply-finish/index",
+    "pages/keywork/project/result-view/index",
+    "pages/feedback/todo-list/index",
+    "pages/feedback/submit/index",
+    "pages/feedback/history/index",
+    "pages/info/index",
+    "pages/info/detail/index",
+    "pages/index/index",
+    "pages/showpoint/showpoint"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#94a3b8",
+    "selectedColor": "#0050cb",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/info/index",
+        "text": "信息传达"
+      },
+      {
+        "pagePath": "pages/keywork/project/list/index",
+        "text": "重点推进"
+      },
+      {
+        "pagePath": "pages/plan/list",
+        "text": "计划执行"
+      },
+      {
+        "pagePath": "pages/user/mine/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 180000,
+    "connectSocket": 60000,
+    "uploadFile": 6000000,
+    "downloadFile": 6000000
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "方便自动填写地址"
+    }
+  },
+  "__usePrivacyCheck__": false,
+  "usingComponents": {}
+}

@@ -12,14 +12,38 @@ module.exports = {
 
 		// 业务逻辑开始-----------------------------------------------------------
 
+		let whereJson = {
+			assignee_ids: uid,
+			is_del: _.neq(1)
+		};
+
+		if (data.status === 1) {
+			whereJson.status = 1;
+		} else if (data.status === 2) {
+			whereJson.status = 2;
+		} else {
+			whereJson.status = _.neq(0); // 全部就是非0
+		}
+
+		if (data.area_id) {
+			whereJson.area_id = data.area_id;
+		}
+		if (data.point_id) {
+			whereJson.point_id = data.point_id;
+		}
+
+		if (data.startTime && data.endTime) {
+			whereJson._add_time = _.gte(data.startTime).lte(data.endTime);
+		} else if (data.startTime) {
+			whereJson._add_time = _.gte(data.startTime);
+		} else if (data.endTime) {
+			whereJson._add_time = _.lte(data.endTime);
+		}
+
 		let selectRes = await vk.baseDao.getTableData({
 			dbName: "key-point-feedback",
 			data: data,
-			whereJson: {
-				assignee_ids: uid,
-				status: _.neq(0), // 只要不在挂起待办池中（无论是已完成=1 还是逾期=2）都拉进历史列表追溯
-				is_del: _.neq(1)
-			},
+			whereJson: whereJson,
 			foreignDB: [
 				{
 					dbName: "base-point",

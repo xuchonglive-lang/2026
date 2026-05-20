@@ -11,8 +11,12 @@ module.exports = {
     // 获取所有可用部门数据
     let allData = await vk.baseDao.select({
       dbName: "base-dept",
-      whereJson: { is_del: _.neq(1) },
-      pageSize: 500 // 一次性拉取，小表用这个
+      whereJson: { 
+        is_del: _.neq(1),
+        name: _.neq("马城矿业")
+      },
+      pageSize: 500, // 一次性拉取，小表用这个
+      sortArr: [{ name: 'sort', type: 'asc' }]
     });
     
     // 使用 vk.pubfn 把扁平化数据转出多层级树

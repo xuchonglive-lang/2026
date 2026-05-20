@@ -10,6 +10,7 @@ module.exports = {
 		let { vk, _, db } = util;
 
 		let res = { code: 0, msg: '' };
+
 		// 基础过滤网：没有部门的孤立用户数据不获取
 		let whereJson = {
 			department_id: _.and(_.exists(true), _.neq(""))

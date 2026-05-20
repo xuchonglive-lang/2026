@@ -20,7 +20,14 @@
         "memorySize": 512,
         "path": "",
         "timeout": 900,
-        "triggers": [],
+        "triggers": [
+            {
+                "name": "crontab-timing",
+                "type": "timer",
+                "config": "0 */5 * * * * *",
+                "payload": "{\"$url\":\"crontab/pub.timing\"}"
+            }
+        ],
         "runtime": "Nodejs18",
         "keepRunningAfterReturn": false
     },

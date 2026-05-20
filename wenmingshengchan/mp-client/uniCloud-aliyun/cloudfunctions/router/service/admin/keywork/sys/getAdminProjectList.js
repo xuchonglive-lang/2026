@@ -24,8 +24,21 @@ module.exports = {
         let deptUsers = (usersRes.rows || []).map(u => u._id);
         userIds = userIds.concat(deptUsers);
       }
-      // _.in() 接受明确的数组进行全扫描比对
-      whereJson.assignee_uids = _.in(userIds);
+      
+      // 可见性条件：我是项目的创建人（下发人） 或者 项目分发给了我及我部门的人员
+      let visibilityCond = _.or([
+        { create_uid: uid },
+        { assignee_uids: _.in(userIds) }
+      ]);
+
+      if (Object.keys(whereJson).length > 0) {
+        whereJson = _.and([
+          whereJson,
+          visibilityCond
+        ]);
+      } else {
+        whereJson = visibilityCond;
+      }
     }
 
     // 补丁：确保获取下达人的 localKey（create_uid）能被主表查出，防止因前端未配置该列而自动丢弃

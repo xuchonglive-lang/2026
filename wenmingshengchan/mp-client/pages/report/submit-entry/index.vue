@@ -5,51 +5,56 @@
       <block slot="content">报表提交</block>
     </cu-custom>
     
-    
+    <!-- Industrial Grid Background -->
+    <view class="grid-floor"></view>
+
 		<view class="main-content">
 			<!-- Header -->
 			<view class="header-section">
-				<text class="title">现场问题报备</text>
-				<text class="subtitle">现场问题反馈，共创美好环境</text>
+				<view class="header-left">
+					<text class="header-icon">📝</text>
+					<text class="title">现场问题报备</text>
+				</view>
+				<text class="subtitle">发现异常及时反馈，共创文明生产环境</text>
 			</view>
 
 			<view class="form-section">
-				<!-- Title Input -->
+				<!-- Title -->
 				<view class="form-card">
-					<view class="card-title">问题标题</view>
-					<view class="input-box">
-						<u-input 
-							v-model="form.title" 
-							placeholder="简述异常核心点 (如：3号泵压异常)" 
-							:clearable="false" 
-							:custom-style="inputStyle"
-						/>
+					<text class="form-label">ISSUE TITLE</text>
+					<view class="form-row">
+						<text class="form-icon">📌</text>
+						<input class="form-input" placeholder="简述异常核心点 (如：3号泵压异常)" type="text" v-model="form.title" />
 					</view>
 				</view>
 
-				<!-- Location Selection -->
-				<view class="form-card">
-					<view class="card-title">作业区域与点位</view>
-					<view class="input-box">
-						<u-input 
-							v-model="locationName" 
-							type="select" 
-							placeholder="请选择作业区域与点位" 
-							:custom-style="inputStyle" 
-							@click="showLocationSelect = true"
-						/>
+				<!-- Location -->
+				<view class="form-card" @click="showLocationSelect = true">
+					<text class="form-label">LOCATION & POINT</text>
+					<view class="form-row-dept">
+						<view class="dept-left">
+							<text class="form-icon">📍</text>
+							<text class="dept-text" :class="{'placeholder': !locationName}">{{ locationName || '请选择作业区域与点位' }}</text>
+						</view>
+						<text class="dept-arrow">›</text>
 					</view>
-					<u-select 
-						v-model="showLocationSelect" 
-						:list="locationTree" 
-						mode="mutil-column-auto"
-						@confirm="onLocationConfirm"
-					></u-select>
+				</view>
+				
+				<!-- Responsible Dept -->
+				<view class="form-card" @click="handleOpenDept">
+					<text class="form-label">RESPONSIBLE UNIT</text>
+					<view class="form-row-dept">
+						<view class="dept-left">
+							<text class="form-icon">🏭</text>
+							<text class="dept-text" :class="{'placeholder': !form.handle_dept_name}">{{ form.handle_dept_name || '请选择责任单位' }}</text>
+						</view>
+						<text class="dept-arrow">›</text>
+					</view>
 				</view>
 
-				<!-- Detailed Description with robin-editor -->
-				<view class="form-card">
-					<view class="card-title">详细描述</view>
+				<!-- Description -->
+				<view class="form-card editor-card">
+					<text class="form-label">DESCRIPTION</text>
 					<view class="editor-wrap">
 						<robin-editor 
 							ref="editor"
@@ -92,18 +97,33 @@
 						<u-switch v-model="form.anonymous" active-color="#0066ff" size="48"></u-switch>
 					</view>
 				</view>
-
-				<!-- Submit Button -->
-				<view class="btn-wrap">
-					<button class="submit-btn" hover-class="submit-btn-hover" @tap="submit">
-						<text class="material-symbols-outlined">send</text>
-						<text class="btn-text">立即提交报备</text>
-					</button>
-				</view>
+			</view>
+			
+			<view class="hint-box">
+				<text class="hint-text">提交后该报备将同步至公示板，责任单位会及时跟进处理。</text>
 			</view>
 		</view>
 
-		<my-tab-bar :current="1" />
+		<!-- Bottom Action -->
+		<view class="bottom-action">
+			<button class="btn-submit" hover-class="btn-submit-hover" @click="submit">
+				<text class="btn-submit-text">立即提交报备</text>
+				<text class="btn-submit-arrow">→</text>
+			</button>
+		</view>
+
+		<u-select 
+			v-model="showLocationSelect" 
+			:list="locationTree" 
+			mode="mutil-column-auto"
+			@confirm="onLocationConfirm"
+		></u-select>
+		
+		<u-select 
+			v-model="showDeptSelect" 
+			:list="deptList" 
+			@confirm="onDeptConfirm"
+		></u-select>
 	</view>
 </template>
 
@@ -118,39 +138,104 @@ export default {
 				anonymous: true,
 				urgency: false,
 				area_id: '',
-				point_id: ''
+				point_id: '',
+				handle_dept_id: '',
+				handle_dept_name: ''
 			},
 			locationName: '',
 			locationTree: [],
 			showLocationSelect: false,
-			inputStyle: {
-				backgroundColor: '#f2f3f5',
-				borderRadius: '16rpx',
-				padding: '24rpx 32rpx',
-				fontSize: '30rpx',
-				color: '#1a1d2e',
-				height: 'auto',
-				minHeight: '88rpx'
-			}
+			showDeptSelect: false,
+			deptList: [],
+			isEdit: false,
+			recordId: ''
 		}
 	},
-	onLoad() {
+	onLoad(options) {
 		vk = uni.vk;
+		this.isEdit = options.isEdit == '1';
+		this.recordId = options.id || '';
+		
 		this.getLocationTree();
+		this.fetchDeptTree();
+		
+		if (this.isEdit && this.recordId) {
+			this.fetchDetail();
+		}
 	},
 	onReady() {
-		// Set custom image uploader for robin-editor
 		if (this.$refs.editor) {
 			this.$refs.editor.setImageUploader(this.uploadEditorImage);
 		}
 	},
 	methods: {
+		async fetchDetail() {
+			try {
+				let res = await vk.callFunction({
+					url: 'client/report/kh/getIssueDetail',
+					data: { id: this.recordId }
+				});
+				if (res.code === 0 && res.data) {
+					let d = res.data;
+					this.form.title = d.title;
+					this.form.anonymous = d.is_anonymous;
+					this.form.urgency = d.urgency === 1;
+					this.form.area_id = d.area_id;
+					this.form.point_id = d.point_id;
+					this.form.handle_dept_id = d.handle_dept_id;
+					this.form.handle_dept_name = d.handle_dept_name;
+					
+					if (d.area_info && d.area_info[0] && d.point_info && d.point_info[0]) {
+						this.locationName = `${d.area_info[0].name} / ${d.point_info[0].name}`;
+					}
+					
+					// 延迟给编辑器设值，确保就绪
+					setTimeout(() => {
+						if (this.$refs.editor) {
+							this.$refs.editor.editorCtx.setContents({
+								html: d.content
+							});
+						}
+					}, 300);
+				}
+			} catch (e) {}
+		},
 		async getLocationTree() {
 			let res = await vk.callFunction({
 				url: 'client/report/kh/getAreaPointTree'
 			});
 			if (res.tree) {
 				this.locationTree = res.tree;
+			}
+		},
+		async fetchDeptTree() {
+			try {
+				let res = await vk.callFunction({
+					url: 'client/user/kh/getDeptList'
+				});
+				if (res.code === 0 && res.deptList) {
+					// 仅提取一级部门数据，不保留小组（children）
+					this.deptList = res.deptList.map(dept => {
+						return {
+							value: dept.value,
+							label: dept.label
+						};
+					});
+				}
+			} catch (e) {}
+		},
+		handleOpenDept() {
+			if (!this.deptList || this.deptList.length === 0) {
+				return uni.showToast({ title: '机构数据拉取中，请稍后再试', icon: 'none' });
+			}
+			this.showDeptSelect = true;
+		},
+		onDeptConfirm(e) {
+			if (!e || e.length === 0) return;
+			let node = e[0];
+			if (node && node.value) {
+				this.form.handle_dept_id = node.value;
+				this.form.handle_dept_name = node.label;
 			}
 		},
 		onLocationConfirm(arr) {
@@ -167,7 +252,6 @@ export default {
 			this.form.point_id = point.value;
 		},
 		uploadEditorImage(path, callback) {
-			// upload single image
 			uni.compressImage({
 				src: path,
 				quality: 80,
@@ -190,39 +274,65 @@ export default {
 			});
 		},
 		async submit() {
-			let { title, anonymous, urgency, area_id, point_id } = this.form;
+			let { title, anonymous, urgency, area_id, point_id, handle_dept_id, handle_dept_name } = this.form;
 			
 			if (!title) return vk.toast('请输入问题标题');
 			if (!area_id || !point_id) return vk.toast('请选择区域与点位');
+			if (!handle_dept_id) return vk.toast('请选择责任单位');
 			
-			// 手动获取 robin-editor 内置 editorCtx 的内容
 			this.$refs.editor.editorCtx.getContents({
 				success: (res) => {
 					let desc = res.html;
 					
-					// 过滤初始空标签
 					if (!res.text.trim() && !desc.includes('<img')) {
 						desc = '';
 					}
 					
-					if (!desc) return vk.toast('描述不能为空');
+					if (!desc) return vk.toast('详细描述不能为空');
+					
+					let url = this.isEdit ? 'client/user/kh/manageMyRecord' : 'client/report/kh/submitIssue';
+					let reqData = {
+						title,
+						content: desc, 
+						is_anonymous: anonymous,
+						urgency: urgency ? 1 : 0,
+						area_id,
+						point_id,
+						handle_dept_id,
+						handle_dept_name,
+						images: [] 
+					};
+					
+					if (this.isEdit) {
+						reqData = {
+							action: 'update',
+							type: 'issue',
+							id: this.recordId,
+							updateData: {
+								title,
+								content: desc,
+								is_anonymous: anonymous,
+								urgency: urgency ? 1 : 0,
+								area_id,
+								point_id,
+								handle_dept_id,
+								handle_dept_name
+							}
+						};
+					}
 					
 					vk.callFunction({
-						url: 'client/report/kh/submitIssue',
-						title: '提交中...',
-						data: {
-							title,
-							content: desc, 
-							is_anonymous: anonymous,
-							urgency: urgency ? 1 : 0,
-							area_id,
-							point_id,
-							images: [] 
-						},
+						url: url,
+						title: '正在处理...',
+						data: reqData,
 						success: (data) => {
-							vk.toast('报备成功');
+							vk.toast(this.isEdit ? '修改成功' : '报备成功');
 							setTimeout(() => {
-								vk.reLaunch({ url: '/pages/report/public-board/index' });
+								if (this.isEdit) {
+									uni.navigateBack();
+								} else {
+									vk.reLaunch({ url: '/pages/report/public-board/index' });
+								}
 							}, 1500);
 						}
 					});
@@ -234,194 +344,299 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Modern Elegant Aesthetic */
-$bg-color: #f8fafc;
-$card-bg: #ffffff;
-$primary: #0066ff;
-$text-main: #0f172a;
-$text-muted: #64748b;
-$border: #e2e8f0;
-
+/* ====================================================================
+   SUBMIT ENTRY PAGE — Industrial Clarity / Glassmorphism
+   ==================================================================== */
 .page-container {
-	min-height: 100vh;
-	background-color: $bg-color;
-	font-family: 'Inter', -apple-system, sans-serif;
-	padding-bottom: 240rpx;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+  background-image: radial-gradient(rgba(0, 80, 203, 0.05) 1px, transparent 1px), linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
+  background-size: 48rpx 48rpx, 100% 100%;
+  position: relative;
+  color: #191c1e;
+  padding-bottom: 240rpx;
 }
 
+.grid-floor {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Header */
 .main-content {
-	padding: 80rpx 40rpx;
-	max-width: 1200rpx;
-	margin: 0 auto;
+  padding: 48rpx 40rpx 40rpx;
+  max-width: 1200rpx;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .header-section {
-	margin-bottom: 60rpx;
-	padding-left: 10rpx;
-	
-	.title {
-		font-size: 56rpx;
-		font-weight: 800;
-		color: $text-main;
-		letter-spacing: -0.03em;
-		display: block;
-		margin-bottom: 12rpx;
-	}
-	.subtitle {
-		font-size: 28rpx;
-		color: $text-muted;
-		font-weight: 500;
-	}
+  margin-bottom: 48rpx;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.header-icon {
+  font-size: 40rpx;
+  margin-right: 12rpx;
+}
+
+.title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 48rpx;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 28rpx;
+  color: #64748b;
+  font-weight: 500;
+  padding-left: 8rpx;
+}
+
+/* Form Section */
 .form-section {
-	display: flex;
-	flex-direction: column;
-	gap: 40rpx;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-card {
-	background: $card-bg;
-	border-radius: 32rpx;
-	padding: 40rpx;
-	box-shadow: 0 10rpx 40rpx -10rpx rgba(0, 0, 0, 0.04);
-	border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
+  border-radius: 24rpx;
+  padding: 32rpx 40rpx;
+  margin-bottom: 24rpx;
 }
 
-.card-title {
-	font-size: 26rpx;
-	font-weight: 700;
-	color: $text-main;
-	margin-bottom: 24rpx;
-	display: flex;
-	align-items: center;
-	gap: 12rpx;
-	
-	&::before {
-		content: '';
-		width: 6rpx;
-		height: 24rpx;
-		background: $primary;
-		border-radius: 4rpx;
-	}
+.form-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 20rpx;
+  font-weight: 700;
+  color: #0050cb;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12rpx;
 }
 
-/* uView Input Overrides */
-.input-box {
-	::v-deep .u-input__input {
-		font-size: 30rpx;
-		font-weight: 500;
-		color: $text-main;
-	}
-	::v-deep .u-input--border {
-		border: none !important;
-	}
-}
-.mb-3 {
-	margin-bottom: 24rpx;
-}
-.mb-4 {
-	margin-bottom: 32rpx;
+.form-row {
+  display: flex;
+  align-items: center;
 }
 
-/* Editor Styling */
+.form-icon {
+  font-size: 36rpx;
+  color: #424656;
+  margin-right: 20rpx;
+  width: 40rpx;
+  text-align: center;
+}
+
+.form-input {
+  flex: 1;
+  font-family: 'Inter', sans-serif;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #191c1e;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+/* Department / Location Selector */
+.form-row-dept {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dept-left {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex: 1;
+}
+
+.dept-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #191c1e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dept-text.placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.dept-arrow {
+  font-size: 40rpx;
+  color: #94a3b8;
+  margin-left: 16rpx;
+}
+
+/* Editor Style inside Glass Card */
+.editor-card {
+  padding-bottom: 32rpx;
+}
+
 .editor-wrap {
-	background-color: #f2f3f5;
-	border-radius: 16rpx;
-	overflow: hidden;
-	
-	::v-deep .wrapper {
-		padding: 0 !important;
-	}
-	::v-deep .toolbar {
-		background-color: #f8fafc !important;
-		border-top: none !important;
-		border-bottom: 1px solid #e2e8f0 !important;
-		padding: 10rpx 0 !important;
-	}
-	::v-deep .container {
-		background-color: transparent !important;
-		min-height: 300rpx;
-	}
+  margin-top: 16rpx;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 16rpx;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  
+  ::v-deep .wrapper {
+    padding: 0 !important;
+  }
+  ::v-deep .toolbar {
+    background-color: transparent !important;
+    border-top: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.4) !important;
+    padding: 10rpx 0 !important;
+  }
+  ::v-deep .container {
+    background-color: transparent !important;
+    min-height: 240rpx;
+  }
 }
 
 /* Toggles */
 .toggles-card {
-	padding: 40rpx !important;
+  padding: 40rpx !important;
 }
 
 .toggle-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mb-4 {
+  margin-bottom: 32rpx;
 }
 
 .toggle-info {
-	display: flex;
-	align-items: center;
-	gap: 24rpx;
-	
-	.icon-box {
-		width: 80rpx;
-		height: 80rpx;
-		border-radius: 20rpx;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		
-		&.danger-box { background: rgba(239, 68, 68, 0.1); }
-		&.primary-box { background: rgba(0, 102, 255, 0.1); }
-		
-		.danger-icon { color: #ef4444; font-size: 40rpx; }
-		.primary-icon { color: #0066ff; font-size: 40rpx; }
-	}
-	
-	.toggle-text {
-		display: flex;
-		flex-direction: column;
-		
-		.main-text {
-			font-size: 30rpx;
-			font-weight: 700;
-			color: $text-main;
-		}
-		.sub-text {
-			font-size: 22rpx;
-			color: $text-muted;
-			letter-spacing: 0.05em;
-			text-transform: uppercase;
-			margin-top: 4rpx;
-		}
-	}
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  
+  .icon-box {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &.danger-box { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); }
+    &.primary-box { background: rgba(0, 102, 255, 0.1); border: 1px solid rgba(0, 102, 255, 0.2); }
+    
+    .danger-icon { color: #ef4444; font-size: 40rpx; }
+    .primary-icon { color: #0066ff; font-size: 40rpx; }
+  }
+  
+  .toggle-text {
+    display: flex;
+    flex-direction: column;
+    
+    .main-text {
+      font-size: 30rpx;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .sub-text {
+      font-size: 22rpx;
+      color: #64748b;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 4rpx;
+    }
+  }
 }
 
-.btn-wrap {
-	margin-top: 20rpx;
+/* Hint */
+.hint-box {
+  padding: 32rpx 16rpx;
 }
 
-.submit-btn {
-	width: 100%;
-	padding: 36rpx 0;
-	background: linear-gradient(135deg, #0066ff 0%, #0044bb 100%);
-	color: #ffffff;
-	font-family: 'Inter', sans-serif;
-	font-weight: 700;
-	border-radius: 24rpx;
-	box-shadow: 0 20rpx 40rpx -12rpx rgba(0, 102, 255, 0.5);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 16rpx;
-	border: none;
-	line-height: 1;
-	font-size: 32rpx;
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.hint-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 24rpx;
+  color: #424656;
+  line-height: 1.6;
+  text-align: center;
+  opacity: 0.7;
 }
 
-.submit-btn-hover {
-	transform: translateY(4rpx);
-	box-shadow: 0 10rpx 20rpx -10rpx rgba(0, 102, 255, 0.4);
+/* Bottom Action */
+.bottom-action {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 48rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: linear-gradient(to top, #f7f9fb 0%, rgba(247,249,251,0.9) 60%, transparent 100%);
+  z-index: 20;
 }
+
+.btn-submit {
+  width: calc(100% - 64rpx);
+  max-width: 750rpx;
+  margin: 0 auto;
+  margin-bottom: 24rpx;
+  height: 112rpx;
+  background-color: #0066ff;
+  color: #ffffff;
+  border-radius: 24rpx;
+  font-weight: 700;
+  font-size: 32rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16rpx 40rpx -8rpx rgba(0, 102, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-submit-hover {
+  transform: scale(0.98);
+}
+
+.btn-submit-text {
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.btn-submit-arrow {
+  color: #ffffff;
+  font-size: 36rpx;
+  margin-left: 12rpx;
+}
+
+button::after { border: none; }
 
 @font-face {
   font-family: 'Material Symbols Outlined';

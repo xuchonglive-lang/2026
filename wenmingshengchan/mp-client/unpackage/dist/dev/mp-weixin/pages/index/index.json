@@ -4,6 +4,7 @@
     "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
     "u-swiper": "/uni_modules/vk-uview-ui/components/u-swiper/u-swiper",
     "u-icon": "/uni_modules/vk-uview-ui/components/u-icon/u-icon",
+    "u-avatar": "/uni_modules/vk-uview-ui/components/u-avatar/u-avatar",
     "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
   }
 }

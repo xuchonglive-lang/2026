@@ -1,45 +1,35 @@
 'use strict';
 module.exports = {
   /**
-   * 获取区域和点位树状结构
-   * @url client/report/kh/getAreaPointTree 前端调用的url参数地址
-   * @description 获取区域和点位树状结构，用于前端多级联动选择
+   * 获取区域和点位树状结构（鉴权）
+   * @url client/report/kh/getAreaPointTree
    */
   main: async (event) => {
-    let { data = {}, userInfo, util, filterResponse, originalParam } = event;
-    let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
-    let { uid } = data;
-    let res = { code: 0, msg: '' };
+    let { data = {}, util } = event;
+    let { vk } = util;
     
-    // 1. 获取所有作业区域
+    // 1. 获取所有区域
     let areaRes = await vk.baseDao.select({
       dbName: "base-area",
-      pageSize: 500,
-      whereJson: {
-        // status: 1 // 如果需要过滤可用的可以加上
-      }
+      pageSize: 500
     });
     
-    // 2. 获取所有作业点位
+    // 2. 获取所有点位
     let pointRes = await vk.baseDao.select({
       dbName: "base-point",
-      pageSize: 500,
-      whereJson: {
-        // status: 1 
-      }
+      pageSize: 500
     });
     
     let areas = areaRes.rows || [];
     let points = pointRes.rows || [];
     
-    // 3. 在服务端拼接成 uView 级联选择器需要的树状结构
+    // 3. 构建树形结构
     let tree = areas.map(area => {
       let children = points.filter(p => p.area_id === area._id).map(p => {
         return { value: p._id, label: p.name };
       });
-      // 容错处理：如果某个区域没有点位，塞入一个空节点，防止 uView 选择器报错
       if (children.length === 0) {
-        children = [{ value: '', label: '暂无可选点位' }];
+        children = [{ value: '', label: '暂无点位' }];
       }
       return {
         value: area._id,
@@ -48,7 +38,15 @@ module.exports = {
       };
     });
     
-    res.tree = tree;
-    return res;
+    // 如果没有数据，返回默认值
+    if (tree.length === 0) {
+      tree = [{
+        value: '',
+        label: '默认区域',
+        children: [{ value: '', label: '暂无点位' }]
+      }];
+    }
+    
+    return { code: 0, tree };
   }
 }

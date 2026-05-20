@@ -4,29 +4,29 @@
       <block slot="backText"></block>
       <block slot="content">计划反馈</block>
     </cu-custom>
-    
-    
+
+
     <view class="main-content" v-if="planInfo">
-      <!-- 1. 页面标题 -->
-      <view class="header-row" style="align-items: flex-start;">
-        <view class="section-title-wrap" style="margin-left: 12rpx;">
-          <text class="page-title">日计划执行明细</text>
-          <text class="page-subtitle">DAILY PLAN DETAIL</text>
-        </view>
-      </view>
 
       <!-- 2. 日计划内容板块 -->
       <view class="section">
-        <view class="section-header">
-          <text class="section-title font-headline font-extrabold heavy-underline">日计划内容</text>
+        <view class="list-header">
+          <view class="action sub-title">
+            <text class="text-lg text-bold text-black">日计划内容</text>
+            <text class="bg-blue"></text>
+          </view>
         </view>
         <view class="glass-card standard-card">
           <view class="title-wrap-ui4">
-            <view class="project-title-row">
-              <view class="title-slider-bar" style="height: 32rpx; margin-top: 8rpx; flex-shrink: 0;"></view>
-              <text class="project-id font-bold text-industrial-primary">标题：{{ planInfo.title || '加载中...' }}</text>
-              <u-tag :text="getStatusText(planInfo.status)" :type="getStatusTagType(planInfo.status)" mode="light"
-                shape="circle" size="mini" class="status-u-tag" />
+            <view class="title-row">
+              <view class="title-left">
+                <view class="blue-block"></view>
+                <text class="item-title u-line-2">标题：{{ planInfo.title || '加载中...' }}</text>
+              </view>
+              <view class="right-tag-wrap">
+                <u-tag :text="getStatusText(planInfo.status)" :type="getStatusTagType(planInfo.status)" mode="light"
+                  shape="circle" size="mini" class="status-u-tag" />
+              </view>
             </view>
 
             <!-- 3. 执行区域、单位、下达人 -->
@@ -35,20 +35,24 @@
                 <text class="label-grey display-block mb-1">执行区域</text>
                 <view class="flex items-center gap-1">
                   <text class="material-symbols-outlined location-icon" style="font-size: 28rpx;">location_on</text>
-                  <text class="info-text font-bold">{{ (planInfo.area_info && planInfo.area_info.length > 0) ? planInfo.area_info[0].name : '全部区域' }}</text>
+                  <text class="info-text font-bold">{{ (planInfo.area_info && planInfo.area_info.length > 0) ?
+                    planInfo.area_info[0].name : '全部区域' }}</text>
                 </view>
               </view>
               <view class="info-item">
                 <text class="label-grey display-block mb-1">计划下达单位</text>
                 <view class="flex items-center gap-1">
                   <text class="material-symbols-outlined location-icon" style="font-size: 28rpx;">corporate_fare</text>
-                  <text class="info-text font-bold" style="color: #0066ff;">{{ (planInfo.dept_info && planInfo.dept_info.length > 0) ? planInfo.dept_info[0].name : '未设置单位' }}</text>
+                  <text class="info-text font-bold" style="color: #0066ff;">{{ (planInfo.dept_info &&
+                    planInfo.dept_info.length > 0) ? planInfo.dept_info[0].name : '未设置单位' }}</text>
                 </view>
               </view>
               <view class="info-item">
                 <text class="label-grey display-block mb-1">计划下达人</text>
                 <view class="flex items-center gap-1">
-                  <image class="avatar-mini" :src="(planInfo.issuer_info && planInfo.issuer_info[0] && planInfo.issuer_info[0].avatar) ? planInfo.issuer_info[0].avatar : defaultAvatar" mode="aspectFill"></image>
+                  <image class="avatar-mini"
+                    :src="(planInfo.issuer_info && planInfo.issuer_info[0] && planInfo.issuer_info[0].avatar) ? planInfo.issuer_info[0].avatar : defaultAvatar"
+                    mode="aspectFill"></image>
                   <text class="info-text font-bold">{{ getIssuerName(planInfo.issuer_info) }}</text>
                 </view>
               </view>
@@ -85,8 +89,11 @@
 
       <!-- 5. 反馈与批示记录 (时间轴) -->
       <view class="section">
-        <view class="section-header">
-          <text class="section-title font-headline font-extrabold heavy-underline">反馈与批示记录</text>
+        <view class="list-header">
+          <view class="action sub-title">
+            <text class="text-lg text-bold text-black">反馈与批示记录</text>
+            <text class="bg-blue"></text>
+          </view>
         </view>
         <view class="timeline-container" v-if="planInfo.feedbacks && planInfo.feedbacks.length > 0">
           <view class="timeline-track"></view>
@@ -98,9 +105,11 @@
                 <view class="user-info">
                   <image class="avatar-sm" :src="item.avatar || defaultAvatar"></image>
                   <text class="username">{{ item.nickname }}</text>
-                  <text class="type-badge" :class="item.type === 'audit' ? (item.audit_result === 'pass' ? 'primary' : 'tertiary') : 'secondary'">{{ item.type === 'audit' ? (item.audit_result === 'pass' ? '验收通过' : '打回整改') : '进度反馈' }}</text>
+                  <text class="type-badge"
+                    :class="item.type === 'audit' ? (item.audit_result === 'pass' ? 'primary' : 'tertiary') : 'secondary'">{{
+                      item.type === 'audit' ? (item.audit_result === 'pass' ? '验收通过' : '打回整改') : '进度反馈' }}</text>
                 </view>
-                <text class="time-stamp">{{ $fn.timeFormat(item.time, 'MM-dd hh:mm') }}</text>
+                <text class="time-stamp">{{ vk.pubfn.timeFormat(item.time, 'yyyy-MM-dd hh:mm') }}</text>
               </view>
               <view :class="item.type === 'audit' ? 'feedback-content-box' : 'feedback-content-default'">
                 <view class="feedback-text" :class="{ 'rejection-text': item.audit_result === 'reject' }">
@@ -116,13 +125,13 @@
       </view>
 
       <!-- 6. 底部缩小版按钮 -->
-      <view class="fab-bar bg-glass-blur" v-if="planInfo.status === 0 || planInfo.status === 1">
+      <view class="fab-bar bg-glass-blur" v-if="(planInfo.status === 0 && isAssignee) || (planInfo.status === 1 && isIssuer)">
         <view class="fab-container">
-          <view class="fab-btn-sm primary active-press" @click="handleExecute" v-if="planInfo.status === 0">
+          <view class="fab-btn-sm primary active-press" @click="handleExecute" v-if="planInfo.status === 0 && isAssignee">
             <text class="material-symbols-outlined" style="font-size: 32rpx;">task_alt</text>
             <text>添加执行反馈</text>
           </view>
-          <view class="fab-btn-sm warning active-press" @click="handleAudit" v-if="planInfo.status === 1">
+          <view class="fab-btn-sm warning active-press" @click="handleAudit" v-if="planInfo.status === 1 && isIssuer">
             <text class="material-symbols-outlined" style="font-size: 32rpx;">fact_check</text>
             <text>进行主管验收</text>
           </view>
@@ -173,6 +182,8 @@ export default {
     return {
       scrollTop: 0,
       plan_id: '',
+      recordId: '',
+      isEdit: false,
       // 主体响应式数据结构：包含表头内容、执行信息以及混合 feedbacks (执行记录和验收批复)
       planInfo: {
         title: '',
@@ -184,16 +195,34 @@ export default {
         area_info: [],
         dept_info: []
       },
-      defaultAvatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png',
+      defaultAvatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png',
       showFeedbackPopup: false,
       feedbackContent: '',
       showAuditPopup: false,
       auditContent: ''
     };
   },
+  computed: {
+    myUid() {
+      return vk.getVuex('$user.userInfo._id');
+    },
+    // 是否为执行人
+    isAssignee() {
+      if (!this.planInfo.assignee_ids || !this.myUid) return false;
+      return this.planInfo.assignee_ids.indexOf(this.myUid) > -1;
+    },
+    // 是否为验收人（下达人）
+    isIssuer() {
+      if (!this.planInfo.uid || !this.myUid) return false;
+      return this.planInfo.uid === this.myUid;
+    }
+  },
   onLoad(options = {}) {
     vk = uni.vk;
     this.plan_id = options.id || '';
+    this.recordId = options.recordId || '';
+    this.isEdit = options.isEdit == '1';
+    
     if (this.plan_id) this.loadData();
   },
   onPageScroll(e) {
@@ -208,6 +237,23 @@ export default {
       if (res && res.item) {
         // 使用对象扩展，避免后端缺失某些字段覆盖初始数组骨架
         this.planInfo = { ...this.planInfo, ...res.item };
+        
+        // 如果是编辑模式，自动打开并回显
+        if (this.isEdit && this.recordId) {
+          let target = (this.planInfo.feedbacks || []).find(f => f.time == this.recordId);
+          if (target) {
+            this.feedbackContent = target.content;
+            this.handleExecute();
+            // 延迟给编辑器设值
+            setTimeout(() => {
+              if (this.$refs.feedbackEditorRef) {
+                this.$refs.feedbackEditorRef.editorCtx.setContents({
+                  html: target.content
+                });
+              }
+            }, 300);
+          }
+        }
       }
     },
     getAssigneeNames(list) {
@@ -276,15 +322,35 @@ export default {
         return uni.showToast({ title: '请输入反馈内容', icon: 'none' });
       }
       uni.showLoading({ title: '提交中', mask: true });
+      
+      let url = this.isEdit ? 'client/user/kh/manageMyRecord' : 'client/plan/kh/submitFeedback';
+      let reqData = { plan_id: this.plan_id, content: html };
+      
+      if (this.isEdit) {
+        reqData = {
+          action: 'update',
+          type: 'plan',
+          id: this.plan_id,
+          timeKey: Number(this.recordId),
+          updateData: {
+            content: html,
+            images: []
+          }
+        };
+      }
+      
       let res = await vk.callFunction({
-        url: 'client/plan/kh/submitFeedback',
-        data: { plan_id: this.plan_id, content: html }
+        url: url,
+        data: reqData
       });
       uni.hideLoading();
       if (res.code === 0) {
-        uni.showToast({ title: '反馈成功' });
+        uni.showToast({ title: this.isEdit ? '修改成功' : '反馈成功' });
         this.showFeedbackPopup = false;
+        this.isEdit = false; // 重置
         this.loadData();
+      } else {
+        vk.toast(res.msg || '操作失败');
       }
     },
     async submitAudit(auditResult) {
@@ -524,7 +590,9 @@ $outline: #727687;
   margin-left: -16rpx;
 }
 
-.stack-avatar:first-child { margin-left: 0; }
+.stack-avatar:first-child {
+  margin-left: 0;
+}
 
 .stack-more {
   background: rgba(0, 80, 203, 0.1);
@@ -558,7 +626,9 @@ $outline: #727687;
   background: rgba(194, 198, 216, 0.3);
 }
 
-.timeline-item { position: relative; }
+.timeline-item {
+  position: relative;
+}
 
 .timeline-dot {
   position: absolute;
@@ -572,8 +642,13 @@ $outline: #727687;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
 }
 
-.timeline-dot.active { background: $primary; }
-.timeline-dot.inactive { background: #cbd5e1; }
+.timeline-dot.active {
+  background: $primary;
+}
+
+.timeline-dot.inactive {
+  background: #cbd5e1;
+}
 
 .feedback-card {
   padding: 32rpx;
@@ -620,11 +695,25 @@ $outline: #727687;
   font-weight: 800;
 }
 
-.type-badge.primary { background: rgba(0, 80, 203, 0.1); color: $primary; }
-.type-badge.secondary { background: rgba(66, 92, 160, 0.1); color: $secondary; }
-.type-badge.tertiary { background: #fee2e2; color: #b91c1c; }
+.type-badge.primary {
+  background: rgba(0, 80, 203, 0.1);
+  color: $primary;
+}
 
-.time-stamp { font-size: 20rpx; color: $outline; }
+.type-badge.secondary {
+  background: rgba(66, 92, 160, 0.1);
+  color: $secondary;
+}
+
+.type-badge.tertiary {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.time-stamp {
+  font-size: 20rpx;
+  color: $outline;
+}
 
 .feedback-content-box {
   background: rgba(255, 255, 255, 0.4);
@@ -632,12 +721,59 @@ $outline: #727687;
   padding: 24rpx;
 }
 
-.rejection-text { color: #991b1b; }
+.rejection-text {
+  color: #991b1b;
+}
 
 .feedback-text {
   font-size: 28rpx;
   color: $on-surface-variant;
   line-height: 1.6;
+}
+
+/* 统一大标题样式 (参照 index.vue) */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+/* 统一小标题样式 (参照 info/index.vue) */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+  gap: 16rpx;
+}
+.title-left {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  overflow: hidden;
+}
+.title-left .blue-block {
+  width: 8rpx;
+  height: 28rpx;
+  background-color: #0050cb;
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+  margin-top: 6rpx;
+  flex-shrink: 0;
+}
+.item-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #191c1e;
+  line-height: 1.4;
+  flex: 1;
+}
+.right-tag-wrap {
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
 /* 6. 缩小版操作按钮 */
@@ -676,8 +812,13 @@ $outline: #727687;
   box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
 }
 
-.fab-btn-sm.primary { background: $primary; }
-.fab-btn-sm.warning { background: #f59e0b; }
+.fab-btn-sm.primary {
+  background: $primary;
+}
+
+.fab-btn-sm.warning {
+  background: #f59e0b;
+}
 
 .editor-container {
   min-height: 400rpx;
@@ -694,15 +835,50 @@ $outline: #727687;
   font-weight: 700;
 }
 
-.label-grey { color: #94a3b8; font-size: 22rpx; }
-.text-xl { font-size: 36rpx; }
-.mb-1 { margin-bottom: 8rpx; }
-.mb-2 { margin-bottom: 16rpx; }
-.mb-4 { margin-bottom: 32rpx; }
-.p-5 { padding: 40rpx; }
-.flex { display: flex; }
-.center { align-items: center; justify-content: center; }
-.w-full { width: 100%; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
-.gap-4 { gap: 32rpx; }
+.label-grey {
+  color: #94a3b8;
+  font-size: 22rpx;
+}
+
+.text-xl {
+  font-size: 36rpx;
+}
+
+.mb-1 {
+  margin-bottom: 8rpx;
+}
+
+.mb-2 {
+  margin-bottom: 16rpx;
+}
+
+.mb-4 {
+  margin-bottom: 32rpx;
+}
+
+.p-5 {
+  padding: 40rpx;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gap-4 {
+  gap: 32rpx;
+}
 </style>

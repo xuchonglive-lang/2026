@@ -24,23 +24,6 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.material-symbols-outlined.data-v-34b5553c {
-  font-family: "Material Symbols Outlined";
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
-.label-fill-icon.data-v-34b5553c {
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
-}
 .feedback-submit-page.data-v-34b5553c {
   font-family: "Inter", sans-serif;
   background: linear-gradient(135deg, #f7f9fb 0%, #dae1ff 100%);
@@ -67,20 +50,36 @@
   margin: 0 auto;
 }
 .header-wrap.data-v-34b5553c {
-  margin-bottom: 48rpx;
+  margin-bottom: 32rpx;
 }
-.page-title.data-v-34b5553c {
-  font-family: "Manrope", sans-serif;
-  font-size: 48rpx;
-  font-weight: 700;
+/* ====== 引入首页同款大标题样式 ====== */
+.action.sub-title.data-v-34b5553c {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12rpx;
+}
+.action.sub-title .text-lg.data-v-34b5553c {
+  position: relative;
+  z-index: 1;
+  font-size: 44rpx;
+  font-weight: 800;
   color: #191c1e;
-  letter-spacing: -0.025em;
-  display: block;
-  margin-bottom: 8rpx;
+}
+.action.sub-title .bg-blue.data-v-34b5553c {
+  position: absolute;
+  bottom: 4rpx;
+  left: 12rpx;
+  width: 100%;
+  height: 12rpx;
+  background-color: #0066ff;
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: 4rpx;
 }
 .page-subtitle.data-v-34b5553c {
-  font-size: 28rpx;
-  color: #424656;
+  font-size: 26rpx;
+  color: #64748b;
+  display: block;
 }
 .glass-card.data-v-34b5553c {
   background: rgba(255, 255, 255, 0.25);
@@ -88,15 +87,14 @@
   -webkit-backdrop-filter: blur(40rpx);
   border: 2rpx solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 16rpx 64rpx 0 rgba(0, 80, 203, 0.08);
-  /* 0 8px 32px 0 */
   border-radius: 24rpx;
   padding: 32rpx;
 }
 .mb-24.data-v-34b5553c {
-  margin-bottom: 48rpx;
+  margin-bottom: 24rpx;
 }
 .mb-40.data-v-34b5553c {
-  margin-bottom: 80rpx;
+  margin-bottom: 32rpx;
 }
 .location-header.data-v-34b5553c {
   display: flex;
@@ -117,11 +115,11 @@
   display: inline-block;
 }
 .target-location.data-v-34b5553c {
-  font-family: "Manrope", sans-serif;
-  font-size: 36rpx;
-  font-weight: 600;
+  font-size: 34rpx;
+  font-weight: 800;
   color: #191c1e;
   display: block;
+  line-height: 1.4;
 }
 .text-primary.data-v-34b5553c {
   color: #0050cb;
@@ -151,7 +149,6 @@
 }
 .standard-btn.data-v-34b5553c {
   background-color: #b91c1c;
-  /* Danger Red */
   color: #ffffff;
   border-radius: 12rpx;
   padding: 16rpx 0;
@@ -165,10 +162,6 @@
 }
 .standard-btn.data-v-34b5553c::after {
   border: none;
-}
-.icon-info.data-v-34b5553c {
-  font-size: 32rpx;
-  margin-right: 8rpx;
 }
 .popup-container.data-v-34b5553c {
   display: flex;
@@ -210,9 +203,6 @@
 .section-title.data-v-34b5553c {
   font-size: 28rpx;
   font-weight: 700;
-}
-.section-title-wrap .material-symbols-outlined.data-v-34b5553c {
-  font-size: 36rpx;
 }
 .section-hint.data-v-34b5553c {
   font-size: 20rpx;
@@ -259,10 +249,6 @@
   justify-content: center;
   z-index: 10;
 }
-.delete-btn .material-symbols-outlined.data-v-34b5553c {
-  color: #fff;
-  font-size: 32rpx;
-}
 .upload-add-btn.data-v-34b5553c {
   width: 200rpx;
   height: 200rpx;
@@ -272,10 +258,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.upload-add-btn .material-symbols-outlined.data-v-34b5553c {
-  font-size: 64rpx;
-  color: #94a3b8;
 }
 .editor-wrap.data-v-34b5553c {
   background: rgba(255, 255, 255, 0.25);

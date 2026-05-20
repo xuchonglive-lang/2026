@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": ".agent"
+		},
+		{
+			"path": ".specify"
+		},
+		{
+			"path": "111"
+		},
+		{
+			"path": "doc"
+		},
+		{
+			"path": "docs"
+		},
+		{
+			"path": "specs"
+		},
+		{
+			"path": "xc"
+		},
+		{
+			"path": "xc-admin"
+		}
+	]
+}

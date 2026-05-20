@@ -2,20 +2,18 @@ module.exports = {
   /**
    * 获取指派给我的重点项目列表
    * @url client/keywork/kh/getProjectList
-   * @description 依据 assignee_uids 筛选指派给我的项目，并通过 foreignDB 关联区域与点位信息
    */
   main: async (event) => {
     let { data = {}, userInfo, util } = event;
     let { vk, db, _ } = util;
     let uid = userInfo ? userInfo._id : null;
 
-    // 分页参数
     let pageIndex = data.pageIndex || 1;
     let pageSize = data.pageSize || 10;
 
     let whereJson = {};
     if (data.needMyFeedback) {
-      whereJson.assignee_uids = uid; // 仅查询我是执行人的项目
+      whereJson.assignee_uids = uid;
     }
     if (vk.pubfn.isNotNull(data.status)) {
       if (Array.isArray(data.status)) {
@@ -38,29 +36,15 @@ module.exports = {
       whereJson._add_time = _.lte(data.endTime);
     }
 
-    // 查询列表
     let res = await vk.baseDao.selects({
       dbName: "key-project",
       pageIndex: pageIndex,
       pageSize: pageSize,
       whereJson: whereJson,
       sortArr: [{ name: "_add_time", type: "desc" }],
-      // foreignDB: 关联区域与点位名称，以及执行人信息
       foreignDB: [
-        {
-          dbName: "base-area",
-          localKey: "area_id",
-          foreignKey: "_id",
-          as: "area_info",
-          limit: 1
-        },
-        {
-          dbName: "base-point",
-          localKey: "point_id",
-          foreignKey: "_id",
-          as: "point_info",
-          limit: 1
-        },
+        { dbName: "base-area", localKey: "area_id", foreignKey: "_id", as: "area_info", limit: 1 },
+        { dbName: "base-point", localKey: "point_id", foreignKey: "_id", as: "point_info", limit: 1 },
         {
           dbName: "uni-id-users",
           localKey: "create_uid",
@@ -71,43 +55,48 @@ module.exports = {
         }
       ]
     });
-    
-    // 手动填充 assignee_info (解决外键映射不支持纯字符串数组的痛点)
+    // 批量填充 assignee_info (支持多执行人)
+    let allUids = [];
     if (res.rows && res.rows.length > 0) {
-      let userIds = [];
-      res.rows.forEach(row => {
-        if (row.assignee_uids && Array.isArray(row.assignee_uids)) {
-          userIds = userIds.concat(row.assignee_uids);
+      res.rows.forEach(item => {
+        if (item.assignee_uids && Array.isArray(item.assignee_uids)) {
+          allUids.push(...item.assignee_uids);
         }
       });
-      if (userIds.length > 0) {
-        userIds = Array.from(new Set(userIds));
-        let usersRes = await vk.baseDao.selects({
-          dbName: "uni-id-users",
-          whereJson: { _id: _.in(userIds) },
-          fieldJson: { _id: 1, nickname: 1, avatar: 1, real_name: 1 },
-          pageSize: 1000
-        });
-        let userMap = {};
-        if (usersRes.rows) {
-          usersRes.rows.forEach(u => {
-            userMap[u._id] = u;
-          });
-        }
-        res.rows.forEach(row => {
-          row.assignee_info = [];
-          if (row.assignee_uids && Array.isArray(row.assignee_uids)) {
-            row.assignee_uids.forEach(assignee_uid => {
-              if (userMap[assignee_uid]) {
-                row.assignee_info.push(userMap[assignee_uid]);
-              }
-            });
-          }
+    }
+    
+    // 去重
+    allUids = [...new Set(allUids)];
+    
+    let usersMap = {};
+    if (allUids.length > 0) {
+      let usersRes = await vk.baseDao.selects({
+        dbName: "uni-id-users",
+        whereJson: { _id: _.in(allUids) },
+        fieldJson: { _id: 1, nickname: 1, avatar: 1, real_name: 1, username: 1 },
+        pageSize: 1000
+      });
+      if (usersRes.rows) {
+        usersRes.rows.forEach(user => {
+          usersMap[user._id] = user;
         });
       }
     }
     
-    // selects 直接返回 { rows, total, pagination }
+    if (res.rows && res.rows.length > 0) {
+      res.rows.forEach(item => {
+        let assigneeInfo = [];
+        if (item.assignee_uids && Array.isArray(item.assignee_uids)) {
+          item.assignee_uids.forEach(uid => {
+            if (usersMap[uid]) {
+              assigneeInfo.push(usersMap[uid]);
+            }
+          });
+        }
+        item.assignee_info = assigneeInfo;
+      });
+    }
+
     return res;
   }
 };

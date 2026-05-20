@@ -4,45 +4,37 @@
 
     <!-- 表格搜索组件开始 -->
     <!-- 独立封装的搜索区域，与 table1.query-form-param 进行数据的双向绑定 -->
-    <vk-data-table-query
-      v-model="queryForm1.formData"
-      :columns="queryForm1.columns"
-      @search="search"
-      size="small"
-    ></vk-data-table-query>
+    <vk-data-table-query v-model="queryForm1.formData" :columns="queryForm1.columns" @search="search"
+      size="small"></vk-data-table-query>
     <!-- 表格搜索组件结束 -->
 
     <!-- 自定义按钮区域开始 -->
     <view>
       <el-row class="vk-table-button-box">
-        <el-button
-          type="success"
-          size="small"
-          icon="el-icon-circle-plus-outline"
-          @click="addBtn"
-        >新增日计划下达</el-button>
+        <el-button type="success" size="small" icon="el-icon-circle-plus-outline" @click="addBtn">新增日计划</el-button>
       </el-row>
     </view>
     <!-- 自定义按钮区域结束 -->
 
     <!-- 万能表格组件开始 -->
-    <vk-data-table
-      ref="table1"
-      size="small"
-      :action="table1.action"
-      :columns="table1.columns"
-      :query-form-param="queryForm1"
-      :right-btns="['detail', 'update', 'delete']"
-      :selection="true"
-      :row-no="true"
-      :pagination="true"
-      @detail="onDetail"
-      @update="updateBtn"
-      @delete="deleteBtn"
-      @current-change="currentChange"
-      @selection-change="selectionChange"
-    ></vk-data-table>
+    <vk-data-table ref="table1" size="small" :action="table1.action" :columns="table1.columns"
+      :query-form-param="queryForm1" :right-btns="['detail', 'update', 'delete']" :selection="true" :row-no="true"
+      :pagination="true" @detail="onDetail" @update="updateBtn" @delete="deleteBtn" @current-change="currentChange"
+      @selection-change="selectionChange">
+      <template v-slot:right-btns="{ row }">
+        <el-button v-if="row.status === 1" type="warning" size="mini" plain icon="el-icon-s-check"
+          @click="onAudit(row)">验收审核</el-button>
+      </template>
+    </vk-data-table>
     <!-- 万能表格组件结束 -->
+
+    <!-- 验收审核的高级表单弹窗 -->
+    <vk-data-dialog v-model="form2.props.show" :title="form2.props.title" width="800px" mode="form"
+      :close-on-click-modal="false" :destroy-on-close="true">
+      <vk-data-form v-model="form2.data" :rules="form2.props.rules" :action="form2.props.action"
+        :form-type="form2.props.formType" :columns="form2.props.columns" label-width="120px"
+        @success="form2.props.show = false; detailDialog.show = false; refresh();"></vk-data-form>
+    </vk-data-dialog>
 
     <!-- 自定义计划执行详情弹窗开始 -->
     <el-dialog title="日计划执行详情与过程跟踪" :visible.sync="detailDialog.show" width="1200px" top="5vh" append-to-body>
@@ -54,7 +46,8 @@
           style="margin-bottom: 25px; padding: 25px 20px; background: #fff; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
           <el-steps
             :active="detailDialog.data.status === 0 ? 1 : (detailDialog.data.status === 1 ? 2 : (detailDialog.data.status === 2 ? 4 : 2))"
-            align-center :process-status="(detailDialog.data.status === 3 || detailDialog.data.status === 4 || detailDialog.data.status === 5) ? 'error' : 'process'">
+            align-center
+            :process-status="(detailDialog.data.status === 3 || detailDialog.data.status === 4 || detailDialog.data.status === 5) ? 'error' : 'process'">
             <el-step title="计划下达" description="创建并指派执行人"></el-step>
             <el-step title="执行提交" description="执行人提交作业佐证"></el-step>
             <el-step title="主管验收" :description="detailDialog.data.status === 3 ? '验收被驳回' : '审核提交材料'"></el-step>
@@ -86,7 +79,8 @@
             </el-col>
             <el-col :span="12" style="margin-bottom: 10px;">
               <span style="color: #6b7280; margin-right: 8px;">下达时间:</span>
-              <span style="color: #111827;">{{ detailDialog.data._add_time ? vk.pubfn.timeFormat(detailDialog.data._add_time, 'yyyy-MM-dd hh:mm:ss') : '' }}</span>
+              <span style="color: #111827;">{{ detailDialog.data._add_time ?
+                vk.pubfn.timeFormat(detailDialog.data._add_time, 'yyyy-MM-dd hh:mm:ss') : '' }}</span>
             </el-col>
             <el-col :span="12" style="margin-bottom: 10px;">
               <span style="color: #6b7280; margin-right: 8px;">完成时限:</span>
@@ -96,11 +90,13 @@
             </el-col>
             <el-col :span="12" style="margin-bottom: 10px;">
               <span style="color: #6b7280; margin-right: 8px;">归属区域:</span>
-              <span style="color: #111827;">{{ (detailDialog.data.area_info && detailDialog.data.area_info[0]) ? detailDialog.data.area_info[0].name : '全部区域' }}</span>
+              <span style="color: #111827;">{{ (detailDialog.data.area_info && detailDialog.data.area_info[0]) ?
+                detailDialog.data.area_info[0].name : '全部区域' }}</span>
             </el-col>
             <el-col :span="12" style="margin-bottom: 10px;">
               <span style="color: #6b7280; margin-right: 8px;">执行部门:</span>
-              <span style="color: #111827;">{{ (detailDialog.data.dept_info && detailDialog.data.dept_info[0]) ? detailDialog.data.dept_info[0].name : '未设置' }}</span>
+              <span style="color: #111827;">{{ (detailDialog.data.dept_info && detailDialog.data.dept_info[0]) ?
+                detailDialog.data.dept_info[0].name : '未设置' }}</span>
             </el-col>
           </el-row>
         </div>
@@ -119,8 +115,8 @@
           <!-- 兼容历史数据兜底首条 -->
           <el-timeline-item
             v-if="!detailDialog.feedbacks.some(fb => fb.type === 'create' || (fb.content && fb.content.includes('计划已下达')))"
-            :timestamp="detailDialog.data._add_time ? vk.pubfn.timeFormat(detailDialog.data._add_time, 'yyyy-MM-dd hh:mm:ss') : ''" placement="top"
-            type="primary">
+            :timestamp="detailDialog.data._add_time ? vk.pubfn.timeFormat(detailDialog.data._add_time, 'yyyy-MM-dd hh:mm:ss') : ''"
+            placement="top" type="primary">
             <div style="display: flex; align-items: flex-start; gap: 10px;">
               <el-avatar :size="32"
                 :src="(detailDialog.data.issuer_info && detailDialog.data.issuer_info[0]) ? detailDialog.data.issuer_info[0].avatar : ''"
@@ -128,7 +124,7 @@
               <div style="flex: 1;">
                 <p style="margin: 0;"><strong>{{ (detailDialog.data.issuer_info && detailDialog.data.issuer_info[0]) ?
                   (detailDialog.data.issuer_info[0].real_name || detailDialog.data.issuer_info[0].nickname ||
-                  detailDialog.data.issuer_info[0].username) : '管理员' }}:</strong></p>
+                    detailDialog.data.issuer_info[0].username) : '管理员' }}:</strong></p>
                 <div style="margin-top: 8px; padding: 12px; background: #f3f4f6; border-radius: 6px; color: #374151;">
                   日计划已下达，状态变为：执行中
                 </div>
@@ -144,23 +140,20 @@
               <div style="flex: 1;">
                 <p style="margin: 0; display: flex; align-items: center; justify-content: space-between;">
                   <strong>{{ fb.nickname || '执行人员' }}</strong>
-                  <el-tag size="mini" :type="fb.type === 'audit' && fb.audit_result === 'reject' ? 'danger' : (fb.type === 'audit' ? 'success' : 'info')">
+                  <el-tag size="mini"
+                    :type="fb.type === 'audit' && fb.audit_result === 'reject' ? 'danger' : (fb.type === 'audit' ? 'success' : 'info')">
                     {{ fb.type === 'audit' ? (fb.audit_result === 'pass' ? '主管审核通过' : '主管打回整改') : '执行人员提交' }}
                   </el-tag>
                 </p>
-                <div
-                  class="rich-text-content"
+                <div class="rich-text-content"
                   style="margin-top: 8px; padding: 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #f1f5f9; color: #334155;">
                   <div v-html="fb.content || '（无附加文字说明）'" style="line-height: 1.6; font-size: 14px;"></div>
-                  
-                  <div v-if="fb.images && fb.images.length > 0" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
-                    <el-image 
-                      v-for="(img, i) in fb.images" 
-                      :key="i"
-                      style="width: 80px; height: 80px; border-radius: 4px; border: 1px solid #e2e8f0;"
-                      :src="img" 
-                      :preview-src-list="fb.images"
-                      fit="cover">
+
+                  <div v-if="fb.images && fb.images.length > 0"
+                    style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+                    <el-image v-for="(img, i) in fb.images" :key="i"
+                      style="width: 80px; height: 80px; border-radius: 4px; border: 1px solid #e2e8f0;" :src="img"
+                      :preview-src-list="fb.images" fit="cover">
                     </el-image>
                   </div>
                 </div>
@@ -168,34 +161,28 @@
             </div>
           </el-timeline-item>
         </el-timeline>
-
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button v-if="detailDialog.data && detailDialog.data.status === 1" type="warning"
+          @click="onAudit(detailDialog.data)" icon="el-icon-s-check">进入验收审批</el-button>
+        <el-button type="primary" @click="detailDialog.show = false">关 闭</el-button>
       </div>
     </el-dialog>
     <!-- 自定义计划执行详情弹窗结束 -->
 
-    <!-- 添加或编辑的弹窗开始 -->
-    <!-- 使用弹窗包裹万能表单，提升后台操作体验 -->
-    <vk-data-dialog
-      v-model="form1.props.show"
-      :title="form1.props.title"
-      width="600px"
-      mode="form"
-      :close-on-click-modal="false"
-    >
-      <vk-data-form
-        v-model="form1.data"
-        :rules="form1.props.rules"
-        :action="form1.props.action"
-        :form-type="form1.props.formType"
-        :columns="form1.props.columns"
-        label-width="120px"
-        @success="
-          form1.props.show = false;
+    <!-- 添加或编辑的抽屉开始 -->
+    <!-- 使用抽屉包裹万能表单，提升后台操作体验 -->
+    <el-drawer :visible.sync="form1.props.show" :title="form1.props.title" size="70%" direction="rtl"
+      :wrapperClosable="false" :destroy-on-close="true" append-to-body>
+      <div style="padding: 20px; height: 100%; overflow-y: auto;">
+        <vk-data-form v-model="form1.data" :rules="form1.props.rules" :action="form1.props.action"
+          :form-type="form1.props.formType" :columns="form1.props.columns" label-width="120px" @success="
+            form1.props.show = false;
           refresh();
-        "
-      ></vk-data-form>
-    </vk-data-dialog>
-    <!-- 添加或编辑的弹窗结束 -->
+          " @cancel="form1.props.show = false"></vk-data-form>
+      </div>
+    </el-drawer>
+    <!-- 添加或编辑的抽屉结束 -->
 
     <!-- 页面内容结束 -->
   </view>
@@ -211,7 +198,7 @@ export default {
     return {
       // 页面是否请求中或加载中
       loading: false,
-      
+
       // 自定义详情和过程弹窗参数
       detailDialog: {
         show: false,
@@ -219,51 +206,104 @@ export default {
         data: {},
         feedbacks: []
       },
-      
+
+      // 验收弹窗参数
+      form2: {
+        data: {},
+        props: {
+          action: "admin/plan/sys/auditPlan",
+          title: "日计划验收审核与评价",
+          formType: "update",
+          show: false,
+          rules: {
+            audit_result: [{ required: true, message: "请选择验收结论", trigger: "change" }],
+            content: [{ required: true, message: "审核意见不能为空", trigger: "blur" }]
+          },
+          columns: [
+            { key: "plan_id", title: "计划ID", type: "text", show: false },
+            {
+              key: "audit_result", title: "验收结论", type: "radio",
+              data: [
+                { value: 'pass', label: "✅ 验收通过 (计划结案)" },
+                { value: 'reject', label: "❌ 不合格 (驳回重做)" }
+              ]
+            },
+            { key: "content", title: "审核意见描述", type: "editor", placeholder: "在此输入验收批语、指导意见，或驳回需要整改的具体原因" }
+          ]
+        }
+      },
+
       // 表格相关开始 -----------------------------------------------------------
       table1: {
         // 请求后台云函数的路由地址（支持函数重写完成复合条件查询）
         action: (obj = {}) => {
-            // 合并外部传递的查询条件
-            obj.whereJson = obj.whereJson || {};
-            // 如果查询条件包含标题
-            if (this.queryForm1.formData.title) {
-                obj.whereJson.title = new RegExp(this.queryForm1.formData.title);
-            }
-            // 如果查询条件包含状态
-            if (typeof this.queryForm1.formData.status === 'number') {
-                obj.whereJson.status = this.queryForm1.formData.status;
-            }
-            // 调用服务端接口获取列表
-            vk.callFunction({
-              url: 'admin/plan/sys/getList',
-              data: obj,
-              success: (res) => { if (typeof obj.success === 'function') obj.success({ rows: res.rows || [], total: res.total || 0}); },
-              fail: (err) => { if (typeof obj.fail === 'function') obj.fail(err); },
-              complete: () => { if (typeof obj.complete === 'function') obj.complete(); }
-            });
+          // 合并外部传递的查询条件
+          obj.whereJson = obj.whereJson || {};
+          // 如果查询条件包含标题
+          if (this.queryForm1.formData.title) {
+            obj.whereJson.title = new RegExp(this.queryForm1.formData.title);
+          }
+          // 如果查询条件包含状态
+          if (typeof this.queryForm1.formData.status === 'number') {
+            obj.whereJson.status = this.queryForm1.formData.status;
+          }
+          // 调用服务端接口获取列表
+          vk.callFunction({
+            url: 'admin/plan/sys/getList',
+            data: obj,
+            success: (res) => { if (typeof obj.success === 'function') obj.success({ rows: res.rows || [], total: res.total || 0 }); },
+            fail: (err) => { if (typeof obj.fail === 'function') obj.fail(err); },
+            complete: () => { if (typeof obj.complete === 'function') obj.complete(); }
+          });
         },
         // 表格展示数据列规则定义
         columns: [
-          { key: "_id", title: "计划系统ID", type: "text", width: 220 },
-          { key: "title", title: "日计划标题", type: "text", width: 140 },
-          { key: "dept_info.name", title: "分配执行部室", type: "text", width: 140 },
-          { key: "deadline_time", title: "要求完成时限", type: "time", width: 140 },
+          { key: "title", title: "日计划标题", type: "text", width: 160 },
           { 
-            key: "status", 
-            title: "流转状态", 
-            type: "tag", 
-            width: 100, 
+            key: "issuer_info", title: "计划下达人", type: "text", width: 100,
+            formatter: (val, row) => {
+              let info = (val && Array.isArray(val)) ? val[0] : val;
+              if (info) {
+                return info.real_name || info.nickname || info.username || '管理员';
+              }
+              return '管理员';
+            }
+          },
+          { key: "dept_info.name", title: "执行部门", type: "text", width: 100 },
+          {
+            key: "group_info_names", title: "执行小组", type: "text", width: 140,
+            formatter: (val, row) => {
+              if (val && Array.isArray(val) && val.length > 0) {
+                return val.join('、');
+              }
+              return '—';
+            }
+          },
+          {
+            key: "assignee_names", title: "执行人", type: "text", width: 120,
+            formatter: (val, row) => {
+              if (val && Array.isArray(val) && val.length > 0) {
+                return val.join('、');
+              }
+              return '—';
+            }
+          },
+          { key: "deadline_time", title: "完成时限", type: "time", width: 140 },
+          {
+            key: "status",
+            title: "执行状态",
+            type: "tag",
+            width: 100,
             data: [
               { label: "执行中", value: 0, tagType: "info" },
-              { label: "已提交", value: 1, tagType: "primary" },
+              { label: "验收中", value: 1, tagType: "primary" },
               { label: "已完成", value: 2, tagType: "success" },
               { label: "未达标", value: 3, tagType: "danger" },
               { label: "已逾期", value: 4, tagType: "info" },
               { label: "超时未验收", value: 5, tagType: "warning" }
             ]
           },
-          { key: "create_time", title: "任务下达时间", type: "time", width: 160 }
+          { key: "create_time", title: "计划下达时间", type: "time", width: 160 }
         ],
         multipleSelection: [], // 多选框选中的记录
         selectItem: "", // 当前高亮的行
@@ -286,13 +326,13 @@ export default {
           },
           {
             key: "status",
-            title: "当前状态",
+            title: "计划状态",
             type: "select",
             width: 160,
             placeholder: "请选择",
             data: [
               { label: "执行中", value: 0 },
-              { label: "已提交", value: 1 },
+              { label: "验收中", value: 1 },
               { label: "已完成", value: 2 },
               { label: "未达标", value: 3 },
               { label: "已逾期", value: 4 },
@@ -314,47 +354,48 @@ export default {
           // 提交数据前的硬性规则校验，防止脏数据注入数据库
           rules: {
             title: [{ required: true, message: "标题必填", trigger: "blur" }],
-            assignee_ids: [{ required: true, message: "执行工人必选", trigger: "change" }],
-            deadline_time: [{ required: true, message: "截止时限必选", trigger: "change" }]
+            assignee_ids: [{ required: true, message: "执行人必选", trigger: "change" }],
+            deadline_time: [{ required: true, message: "完成时限必选", trigger: "change" }]
           },
           // 规定表单每一项的显示组件类型、属性及远程获取联调结构
           columns: [
             {
-                key: "title", title: "日计划标题", type: "text", placeholder: "例如: 厂区巡检规划"
+              key: "title", title: "日计划标题", type: "text", placeholder: "例如: 清理斜坡道"
             },
             {
-                key: "content", title: "执行标准说明", type: "editor",
-                placeholder: "请输入此计划的详尽执行要求..."
+              key: "content", title: "计划内容及标准", type: "editor",
+              placeholder: "请输入此计划的详尽执行内容及标准要求..."
             },
             {
-                key: "assignee_ids", title: "实际执行人", type: "table-select",
-                placeholder: "展开面板搜索系统职工",
-                multiple: true, // 支持指派多人
-                action: "admin/plan/sys/getAssigneeList", // 调用同组筛选专属云函数
-                queryColumns: [
-                     { key: "tree_node_id", title: "选择部门/小组", type: "cascader", action: "admin/base-dept/sys/getTree", props: { value: "_id", label: "name", children: "children", checkStrictly: true, emitPath: false } },
-                     { key: "real_name", title: "姓名", type: "text", mode: "%%" }
-                ],
-                columns: [
-                    { key: "_id", title: "用户全局ID", type: "text", width: 220, idKey: true },
-                    { key: "real_name", title: "员工姓名", type: "text", width: 120, nameKey: true },
-                    { key: "mobile", title: "预留手机号", type: "text", width: 120 }
-                ],
-                props: {
-                    value: "_id",
-                    label: "real_name" // 使用真实姓名渲染入输入栏
-                }
+              key: "assignee_ids", title: "计划执行人", type: "table-select",
+              placeholder: "请选择计划执行人",
+              multiple: true, // 支持指派多人
+              action: "admin/plan/sys/getAssigneeList", // 调用同组筛选专属云函数
+              queryColumns: [
+                { key: "tree_node_id", title: "选择部门/小组", type: "cascader", action: "admin/plan/sys/getMyDeptTree", props: { value: "_id", label: "name", children: "children", checkStrictly: true, emitPath: false } },
+                { key: "real_name", title: "姓名", type: "text", mode: "%%" }
+              ],
+              columns: [
+                { key: "_id", title: "用户ID", type: "text", width: 120, idKey: true, show: false },
+                { key: "real_name", title: "员工姓名", type: "text", width: 100, nameKey: true },
+                { key: "group_info.name", title: "所属小组", type: "text", width: 120 },
+                { key: "mobile", title: "手机号", type: "text", width: 120 }
+              ],
+              props: {
+                value: "_id",
+                label: "real_name" // 使用真实姓名渲染入输入栏
+              }
             },
             {
-                key: "deadline_time", title: "强制完成时限", type: "date", dateType: "datetime",
-                valueFormat: "timestamp"
+              key: "deadline_time", title: "完成时限", type: "date", dateType: "datetime",
+              valueFormat: "timestamp"
             },
             {
-                key: "area_id", title: "相关作业区域", type: "remote-select",
-                placeholder: "可选则为空",
-                action: "admin/base-area/sys/getList",
-                props: { list: "rows", value: "_id", label: "name" },
-                showAll: true
+              key: "area_id", title: "计划执行区域", type: "remote-select",
+              placeholder: "可选则为空",
+              action: "admin/base-area/sys/getList",
+              props: { list: "rows", value: "_id", label: "name" },
+              showAll: true
             }
           ]
         }
@@ -370,15 +411,15 @@ export default {
     that.options = options;
     that.init(options);
   },
-  
+
   // 页面首次渲染完成时执行
-  onReady() {},
-  
+  onReady() { },
+
   // 每次页面获得焦点或显示时执行
-  onShow() {},
-  
+  onShow() { },
+
   // 页面在后台挂起或被隐藏时执行
-  onHide() {},
+  onHide() { },
 
   methods: {
     /**
@@ -387,6 +428,7 @@ export default {
     init(options) {
       // 深度拷贝表单默认结构信息，便于清空和重置
       originalForms["form1"] = vk.pubfn.copyObject(that.form1);
+      originalForms["form2"] = vk.pubfn.copyObject(that.form2);
     },
 
     /**
@@ -444,7 +486,7 @@ export default {
     onDetail({ item }) {
       that.detailDialog.show = true;
       that.detailDialog.loading = true;
-      
+
       // 调用专属 Admin 端的 getDetail 接口获取详情
       vk.callFunction({
         url: "admin/plan/sys/getDetail",
@@ -467,36 +509,62 @@ export default {
       that.resetForm();
       that.form1.props.action = "admin/plan/sys/add";
       that.form1.props.formType = "add";
-      that.form1.props.title = "新增日计划下达";
-      
+      that.form1.props.title = "新增日计划";
+
+      // 默认完成时限为次日 23:30
+      let tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(23, 30, 0, 0);
+
       // 手动附带初始值，避免覆盖或取不到状态
       that.form1.data = {
-          status: 0
+        status: 0,
+        deadline_time: tomorrow.getTime()
       };
-      
+
       that.form1.props.show = true; // 唤起弹窗
     },
 
     /**
+     * 点击表格行级操作：呼出验收弹窗
+     */
+    onAudit(item) {
+      that.form2.data = {
+        plan_id: item._id,
+        audit_result: 'pass',
+        content: ""
+      };
+      that.form2.props.show = true;
+    },
+
+    /**
      * 点击表格行级操作：呼出编辑日计划弹窗，并携带回显数据
+     * 有反馈记录后前端拦截提示（后端同步校验兜底）
      */
     updateBtn({ item }) {
+      if (item.feedbacks && item.feedbacks.length > 0) {
+        return vk.toast('该计划已有执行反馈，不可修改', 'error');
+      }
       that.form1.props.action = "admin/plan/sys/update";
       that.form1.props.formType = "update";
-      that.form1.props.title = "重新指配修整：日计划";
+      that.form1.props.title = "日计划修改";
       that.form1.data = item;
       that.form1.props.show = true; // 唤起弹窗
     },
 
     /**
      * 表格安全删除方法调用软删除云函数
+     * 有反馈记录后前端拦截提示（后端同步校验兜底）
      */
     deleteBtn({ item }) {
+      if (item.feedbacks && item.feedbacks.length > 0) {
+        return vk.toast('该计划已有执行反馈，不可删除', 'error');
+      }
       vk.callFunction({
         url: "admin/plan/sys/delete",
         data: { _id: item._id },
         success: (res) => {
-           that.refresh(); // 删除成功后自动调用刷新函数
+          that.refresh(); // 删除成功后自动调用刷新函数
         }
       });
     }

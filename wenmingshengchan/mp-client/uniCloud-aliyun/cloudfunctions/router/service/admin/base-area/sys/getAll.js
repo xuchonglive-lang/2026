@@ -12,7 +12,8 @@ module.exports = {
     let allData = await vk.baseDao.select({
       dbName: "base-area",
       whereJson: {},
-      pageSize: 500
+      pageSize: 500,
+      sortArr: [{ name: 'sort', type: 'asc' }]
     });
 
     res.rows = allData.rows;

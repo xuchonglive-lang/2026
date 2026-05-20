@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
+    "u-empty": "/uni_modules/vk-uview-ui/components/u-empty/u-empty",
+    "u-loadmore": "/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore",
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar",
+    "u-calendar": "/uni_modules/vk-uview-ui/components/u-calendar/u-calendar",
+    "u-select": "/uni_modules/vk-uview-ui/components/u-select/u-select"
+  }
+}

@@ -13,14 +13,34 @@ module.exports = {
     // 获取主记录
     let projectInfo = await vk.baseDao.findById({
       dbName: "key-project",
-      id: project_id,
-      foreignDB: [
-        { dbName: "base-area", localKey: "area_id", foreignKey: "_id", as: "area_info", limit: 1 },
-        { dbName: "base-point", localKey: "point_id", foreignKey: "_id", as: "point_info", limit: 1 }
-      ]
+      id: project_id
     });
 
     if (!projectInfo) return { code: -1, msg: "项目不存在" };
+
+    // 手动关联区域 (取代不可靠的 findById + foreignDB)
+    if (projectInfo.area_id) {
+      let areaRes = await vk.baseDao.findById({
+        dbName: "base-area",
+        id: projectInfo.area_id,
+        fieldJson: { name: 1 }
+      });
+      projectInfo.area_info = areaRes ? [areaRes] : [];
+    } else {
+      projectInfo.area_info = [];
+    }
+
+    // 手动关联点位 (取代不可靠的 findById + foreignDB)
+    if (projectInfo.point_id) {
+      let pointRes = await vk.baseDao.findById({
+        dbName: "base-point",
+        id: projectInfo.point_id,
+        fieldJson: { name: 1 }
+      });
+      projectInfo.point_info = pointRes ? [pointRes] : [];
+    } else {
+      projectInfo.point_info = [];
+    }
 
     // 手动填充 create_user_info
     if (projectInfo.create_uid) {

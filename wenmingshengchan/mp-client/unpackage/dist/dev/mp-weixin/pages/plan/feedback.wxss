@@ -319,6 +319,49 @@
   color: #424656;
   line-height: 1.6;
 }
+/* 统一大标题样式 (参照 index.vue) */
+.list-header.data-v-4da7e2fc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+}
+/* 统一小标题样式 (参照 info/index.vue) */
+.title-row.data-v-4da7e2fc {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+  gap: 16rpx;
+}
+.title-left.data-v-4da7e2fc {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  overflow: hidden;
+}
+.title-left .blue-block.data-v-4da7e2fc {
+  width: 8rpx;
+  height: 28rpx;
+  background-color: #0050cb;
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+  margin-top: 6rpx;
+  flex-shrink: 0;
+}
+.item-title.data-v-4da7e2fc {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #191c1e;
+  line-height: 1.4;
+  flex: 1;
+}
+.right-tag-wrap.data-v-4da7e2fc {
+  flex-shrink: 0;
+  margin-top: 0;
+}
 /* 6. 缩小版操作按钮 */
 .fab-bar.data-v-4da7e2fc {
   position: fixed;

@@ -13,7 +13,7 @@ module.exports = {
 
     // 起步构建护城河限制搜索：一切查询前必须保证绝对只探秘存世（未删除，is_del为0）的文本数据包。
     let whereJson = { is_del: 0 };
-    
+
     // 灵活切块搜索逻辑网兜组合
     // 1: 若检索框输入了标题残片，我们采用强悍的正字表达扫描实现动态寻觅
     if (data.title) whereJson.title = new RegExp(data.title);
@@ -27,20 +27,29 @@ module.exports = {
       dbName: "info",        // 主战线深入 info 集合
       data: data,            // 流水式带过传参给到底层进行 page 游标翻页核算
       whereJson: whereJson,  // 下挂各种检索及防删围栏条件的拼凑字典集
-      
+
       // 两级重配权重倒排序！不仅要按照时间新鲜程度递减分发展现（新在先，旧在后），
       // 而且要在此之前，霸道强制将 is_top 布尔标识启动项给揪出横架在所有队伍前端傲视群雄
       sortArr: [{ name: "is_top", type: "desc" }, { name: "publish_time", type: "desc" }],
-      
+
       // 高阶技巧：运用 Constitution 宪章提及的极品 foreignDB 解开外键孤岛迷雾。
       // 这个连表动作能顺着在 `info` 中的那个 `category_id`，沿着外表去找寻其实时映射出的类名并融合绑定进结果发还外围
-      foreignDB: [{
-        dbName: "info-category",      // 我要去这表探听虚实
-        localKey: "category_id",      // 咱们这边的路标挂签
-        foreignKey: "_id",            // 它家那边的门牌号底盘
-        as: "category_info",          // 抓捕带回信息合并成一个富足的新对象放在这容器返回
-        limit: 1                      // 只要准确击中那个户主便立撤，不在那边浪费盘桓过多运算
-      }]
+      foreignDB: [
+        {
+          dbName: "info-category",      // 我要去这表探听虚实
+          localKey: "category_id",      // 咱们这边的路标挂签
+          foreignKey: "_id",            // 它家那边的门牌号底盘
+          as: "category_info",          // 抓捕带回信息合并成一个富足的新对象放在这容器返回
+          limit: 1                      // 只要准确击中那个户主便立撤，不在那边浪费盘桓过多运算
+        },
+        {
+          dbName: "uni-id-users",
+          localKey: "publish_uid",
+          foreignKey: "_id",
+          as: "user_info",
+          limit: 1
+        }
+      ]
     });
 
     return res;

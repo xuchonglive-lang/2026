@@ -17,19 +17,25 @@ module.exports = {
     // -------------------------------------------------------------
     const now = Date.now();
     try {
+      // 1. 处理执行中（status: 0）超时变为已逾期（status: 4）
       await db.collection("daily-plan").where({
-        status: _.in([0, 1]), // 当前还未封库了结的行项
-        deadline_time: _.lt(now), // 最后界限被现行时间超越
+        status: 0,
+        deadline_time: _.lt(now),
         is_del: _.neq(1)
       }).update({
-        // 使用聚合动作依据上一手停摆状态决定死亡形态
-        status: _.cond([
-          [_.eq('status', 0), 4], // 无进展直接封为“已逾期”
-          [_.eq('status', 1), 5], // 在待验区卡死化为“超时未验收”
-          [true, 0]
-        ])
+        status: 4
       });
-    } catch (err) {}
+      // 2. 处理待验收（status: 1）超时变为超时未验收（status: 5）
+      await db.collection("daily-plan").where({
+        status: 1,
+        deadline_time: _.lt(now),
+        is_del: _.neq(1)
+      }).update({
+        status: 5
+      });
+    } catch (err) {
+      console.error('Lazy update failed:', err);
+    }
 
     let whereJson = data.whereJson || {};
     // 防御系统层直接剥夺假死被软删掉的计划
@@ -69,6 +75,14 @@ module.exports = {
           localKey: "dept_id",
           foreignKey: "_id",
           as: "dept_info",
+          limit: 1,
+          fieldJson: { name: true }
+        },
+        {
+          dbName: "base-area",
+          localKey: "area_id",
+          foreignKey: "_id",
+          as: "area_info",
           limit: 1,
           fieldJson: { name: true }
         }

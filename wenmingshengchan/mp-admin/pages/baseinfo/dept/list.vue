@@ -15,9 +15,14 @@
             node-key="_id"
             :expand-on-click-node="false"
             :highlight-current="true"
-            default-expand-all
+            :default-expanded-keys="['']"
             @current-change="handleNodeClick"
-          ></el-tree>
+          >
+            <span slot-scope="{ node, data }">
+              <i :class="getIcon(data)" :style="{ color: getIconColor(data) }"></i>
+              <span style="margin-left: 8px;">{{ node.label }}</span>
+            </span>
+          </el-tree>
         </el-card>
       </el-col>
 
@@ -196,6 +201,24 @@ export default {
     init() {
       originalForms["form1"] = vk.pubfn.copyObject(that.form1);
       that.loadDeptTree();
+    },
+    getIcon(data) {
+      if (data._id === "") {
+        return "el-icon-office-building"; // 根节点
+      } else if (!data.parent_id) {
+        return "el-icon-school"; // 部门
+      } else {
+        return "vk-icon-friendfill"; // 小组：使用多人图标
+      }
+    },
+    getIconColor(data) {
+      if (data._id === "") {
+        return "#409EFF"; // 根节点蓝色
+      } else if (!data.parent_id) {
+        return "#67C23A"; // 部门绿色
+      } else {
+        return "#9C27B0"; // 小组：紫色
+      }
     },
     loadDeptTree() {
       vk.callFunction({

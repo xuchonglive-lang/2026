@@ -4,35 +4,36 @@
       <block slot="backText"></block>
       <block slot="content">进度反馈</block>
     </cu-custom>
-    
-    
-    <view class="main-content" v-if="projectInfo">
-      <!-- Page Title Header -->
-      <view class="header-row" style="align-items: flex-start;">
 
-        <view class="section-title-wrap" style="margin-left: 12rpx;">
-          <text class="page-title">重点项目推进详情</text>
-          <text class="page-subtitle">KEY PROJECT DETAIL</text>
-        </view>
-      </view>
+
+    <view class="main-content" v-if="projectInfo">
 
       <!-- Section 1: 项目推进标准 -->
       <view class="section">
-        <view class="section-header">
-          <text class="section-title font-headline font-extrabold heavy-underline">项目推进标准</text>
+        <view class="list-header">
+          <view class="action sub-title">
+            <text class="text-lg text-bold text-black">项目推进标准</text>
+            <text class="bg-blue"></text>
+          </view>
         </view>
         <view class="glass-card standard-card">
           <view class="title-wrap-ui4">
-            <view class="project-title-row">
-              <view class="title-slider-bar" style="height: 32rpx; margin-top: 8rpx; flex-shrink: 0;"></view>
-              <text class="project-id font-bold text-industrial-primary">标题：{{ projectInfo.title }}</text>
-              <u-tag :text="projectInfo._statusName" :type="projectInfo._tagType" mode="light" shape="circle"
-                size="mini" class="status-u-tag" />
+            <view class="title-row">
+              <view class="title-left">
+                <view class="blue-block"></view>
+                <text class="item-title u-line-2">标题：{{ projectInfo.title }}</text>
+              </view>
+              <view class="right-tag-wrap">
+                <u-tag :text="projectInfo._statusName" :type="projectInfo._tagType" mode="light" shape="circle"
+                  size="mini" class="status-u-tag" />
+              </view>
             </view>
-            <view class="location-group" v-if="projectInfo.point_info && projectInfo.point_info[0]"
-              style="margin-top: 16rpx;">
-              <text class="material-symbols-outlined location-icon">location_on</text>
-              <text class="location-text">{{ projectInfo.point_info[0].name }}</text>
+            <view class="location-group" style="margin-top: 20rpx; display: flex; align-items: center; gap: 8rpx;">
+              <u-icon name="map-fill" color="#0050cb" size="32"></u-icon>
+              <text style="font-size: 24rpx; font-weight: 800; color: #4b5563;">涉及区域：</text>
+              <text style="font-size: 24rpx; font-weight: 700; color: #1f2937;">
+                {{ (projectInfo.area_info && projectInfo.area_info[0] && projectInfo.area_info[0].name) ? projectInfo.area_info[0].name : '全部区域' }} - {{ (projectInfo.point_info && projectInfo.point_info[0] && projectInfo.point_info[0].name) ? projectInfo.point_info[0].name : '全部点位' }}
+              </text>
             </view>
           </view>
 
@@ -48,8 +49,8 @@
               <view class="role-value-row-ui4">
                 <view class="avatar-stack" v-if="projectInfo.assignee_info && projectInfo.assignee_info.length > 0">
                   <image class="stack-avatar" v-for="(user, idx) in projectInfo.assignee_info.slice(0, 3)" :key="idx"
-                    :src="user.avatar || 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png'"
-                    mode="aspectFill"></image>
+                    :src="user.avatar || 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png'"
+                    mode="aspectFill" @error="onAssigneeAvatarError(idx)"></image>
                   <view class="stack-more" v-if="projectInfo.assignee_info.length > 3">
                     +{{ projectInfo.assignee_info.length - 3 }}
                   </view>
@@ -67,7 +68,8 @@
               <view class="role-value-row-ui4">
                 <image
                   v-if="projectInfo.create_user_info && (Array.isArray(projectInfo.create_user_info) ? projectInfo.create_user_info[0] : projectInfo.create_user_info).avatar"
-                  class="single-avatar-ui4" :src="getVerifierAvatar(projectInfo.create_user_info)" mode="aspectFill">
+                  class="single-avatar-ui4" :src="getVerifierAvatar(projectInfo.create_user_info)" mode="aspectFill"
+                  @error="onVerifierAvatarError">
                 </image>
                 <view v-else class="default-avatar-ui4"></view>
                 <text class="role-text-ui4" style="font-weight: 700; color: #111;">{{
@@ -92,8 +94,11 @@
 
       <!-- Section 2: 项目推进过程反馈 -->
       <view class="section">
-        <view class="section-header">
-          <text class="section-title font-headline font-extrabold heavy-underline">项目推进过程反馈</text>
+        <view class="list-header">
+          <view class="action sub-title">
+            <text class="text-lg text-bold text-black">项目推进过程反馈</text>
+            <text class="bg-blue"></text>
+          </view>
         </view>
         <view class="timeline-container">
           <view class="timeline-track"></view>
@@ -108,7 +113,7 @@
             <view class="glass-card feedback-card">
               <view class="feedback-header">
                 <view class="user-info">
-                  <image class="avatar-sm" :src="item._avatar"></image>
+                  <image class="avatar-sm" :src="item._avatar" @error="onProcessAvatarError(index)"></image>
                   <text class="username">{{ item._username }}</text>
                   <text class="type-badge" :class="item._badgeClass">{{ item._processTypeName }}</text>
                 </view>
@@ -120,7 +125,8 @@
                 </view>
                 <view class="feedback-images" v-if="item.attachment_imgs && item.attachment_imgs.length > 0">
                   <image v-for="(img, i) in item.attachment_imgs" :key="i" class="feedback-img" :src="img"
-                    mode="aspectFill" @click="vk.pubfn.previewImage({ current: i, urls: item.attachment_imgs })">
+                    mode="aspectFill" @click="vk.pubfn.previewImage({ current: i, urls: item.attachment_imgs })"
+                    @error="onAttachmentError(index, i)">
                   </image>
                 </view>
               </view>
@@ -137,7 +143,8 @@
                   <view class="reply-content" :class="{ 'rejection-reply': reply.type === 3 }">
                     <view class="feedback-header reply-header">
                       <view class="user-info">
-                        <image class="avatar-sm reply-avatar" :src="reply._avatar"></image>
+                        <image class="avatar-sm reply-avatar" :src="reply._avatar"
+                          @error="onReplyAvatarError(index, reply._id)"></image>
                         <text class="username reply-username">{{ reply._username }}</text>
                         <text class="type-badge reply-badge" :class="reply._badgeClass">{{ reply._processTypeName
                         }}</text>
@@ -150,7 +157,8 @@
                     <view class="feedback-images" v-if="reply.attachment_imgs && reply.attachment_imgs.length > 0">
                       <image v-for="(img, i) in reply.attachment_imgs" :key="i" class="feedback-img reply-img"
                         :src="img" mode="aspectFill"
-                        @click="vk.pubfn.previewImage({ current: i, urls: reply.attachment_imgs })"></image>
+                        @click="vk.pubfn.previewImage({ current: i, urls: reply.attachment_imgs })"
+                        @error="onReplyAttachmentError(index, reply._id, i)"></image>
                     </view>
                   </view>
                 </view>
@@ -163,14 +171,17 @@
 
       <!-- Section 3: 项目推进验收结论 -->
       <view class="section" v-if="projectInfo.status === 2">
-        <view class="section-header">
-          <text class="section-title font-headline font-extrabold heavy-underline">项目推进验收意见</text>
+        <view class="list-header">
+          <view class="action sub-title">
+            <text class="text-lg text-bold text-black">项目推进验收意见</text>
+            <text class="bg-blue"></text>
+          </view>
         </view>
         <view class="conclusion-gradient-border">
           <view class="conclusion-inner bg-glass">
             <view class="acceptor-header">
-              <image class="acceptor-avatar-lg" :src="getVerifierAvatar(projectInfo.create_user_info)"
-                mode="aspectFill"></image>
+              <image class="acceptor-avatar-lg" :src="getVerifierAvatar(projectInfo.create_user_info)" mode="aspectFill"
+                @error="onVerifierAvatarError"></image>
               <view class="acceptor-info">
                 <text class="conclusion-title font-headline font-bold">最终验收结论·{{
                   getVerifierName(projectInfo.create_user_info) }}</text>
@@ -193,11 +204,11 @@
       <view class="fab-bar bg-glass-blur" v-if="(projectInfo.status === 0 || projectInfo.status === 3) && isAssignee">
         <view class="fab-container">
           <view class="fab-btn primary active-press" @click="goToFeedback">
-            <text class="fab-icon">📋</text>
+            <u-icon name="edit-pen" color="#fff" size="32"></u-icon>
             <text>过程反馈</text>
           </view>
           <view class="fab-btn error active-press" @click="goToApplyClose">
-            <text class="fab-icon">📄</text>
+            <u-icon name="file-text" color="#fff" size="32"></u-icon>
             <text>验收申请反馈</text>
           </view>
         </view>
@@ -250,7 +261,7 @@ export default {
                 item._badgeClass = this.getBadgeClass(item.type);
                 item._processTypeName = this.getProcessTypeName(item.type);
                 let u = Array.isArray(item.user_info) ? item.user_info[0] : item.user_info;
-                item._avatar = (u && u.avatar) ? u.avatar : 'https://mp-f5dec8e2-6434-4681-934d-fc46f8267fea.cdn.bspapp.com/cloudstorage/6f028833-cc50-48e0-a7d1-ba91dc20165c.jpg';
+                item._avatar = (u && u.avatar) ? u.avatar : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png';
                 item._username = (u && (u.nickname || u.real_name || u.username)) ? (u.nickname || u.real_name || u.username) : '系统';
                 return item;
               });
@@ -277,7 +288,7 @@ export default {
       });
     },
     getStatusName(status) {
-      const map = { 0: '执行中', 1: '待验收', 2: '已归档', 3: '被驳回退修' };
+      const map = { 0: '执行中', 1: '待验收', 2: '已归档', 3: '被驳回修改' };
       return map[status] || '未知';
     },
     getTagType(status) {
@@ -325,7 +336,7 @@ export default {
     },
     getVerifierAvatar(creatorInfo) {
       let u = Array.isArray(creatorInfo) ? creatorInfo[0] : creatorInfo;
-      return (u && u.avatar) ? u.avatar : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png';
+      return (u && u.avatar) ? u.avatar : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png';
     },
     getProgressText() {
       if (!this.projectInfo) return '0%';
@@ -346,6 +357,45 @@ export default {
       if (this.projectInfo.status === 1) return '90%';
       if (count === 0) return '5%';
       return Math.min(Math.round(count * 20), 85) + '%';
+    },
+    onAssigneeAvatarError(idx) {
+      if (this.projectInfo && this.projectInfo.assignee_info[idx]) {
+        this.$set(this.projectInfo.assignee_info[idx], 'avatar', 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+      }
+    },
+    onVerifierAvatarError() {
+      let u = Array.isArray(this.projectInfo.create_user_info) ? this.projectInfo.create_user_info[0] : this.projectInfo.create_user_info;
+      if (u) {
+        this.$set(u, 'avatar', 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+      }
+    },
+    onProcessAvatarError(idx) {
+      if (this.projectInfo.process_list[idx]) {
+        this.$set(this.projectInfo.process_list[idx], '_avatar', 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+      }
+    },
+    onAttachmentError(pIdx, iIdx) {
+      if (this.projectInfo.process_list[pIdx] && this.projectInfo.process_list[pIdx].attachment_imgs) {
+        this.$set(this.projectInfo.process_list[pIdx].attachment_imgs, iIdx, 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+      }
+    },
+    onReplyAvatarError(pIdx, replyId) {
+      let process = this.projectInfo.process_list[pIdx];
+      if (process && process._replies) {
+        let reply = process._replies.find(r => r._id === replyId);
+        if (reply) {
+          this.$set(reply, '_avatar', 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+        }
+      }
+    },
+    onReplyAttachmentError(pIdx, replyId, iIdx) {
+      let process = this.projectInfo.process_list[pIdx];
+      if (process && process._replies) {
+        let reply = process._replies.find(r => r._id === replyId);
+        if (reply && reply.attachment_imgs) {
+          this.$set(reply.attachment_imgs, iIdx, 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+        }
+      }
     }
   }
 };
@@ -377,38 +427,14 @@ $outline: #727687;
   box-sizing: border-box;
 }
 
-// Header
-.header-row {
+// 统一大标题样式
+.list-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 24rpx;
-  margin-bottom: 40rpx;
-}
-
-.back-btn {
-  color: $primary;
-
-  .material-symbols-outlined {
-    font-size: 48rpx;
-  }
-}
-
-.page-title {
-  display: block;
-  font-size: 40rpx;
-  font-weight: 800;
-  color: $on-surface;
-  margin-bottom: 4rpx;
-  letter-spacing: -1rpx;
-}
-
-.page-subtitle {
-  display: block;
-  font-size: 20rpx;
-  color: $on-surface-variant;
-  font-weight: 500;
-  letter-spacing: 4rpx;
-  text-transform: uppercase;
+  padding: 0 8rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
 }
 
 // Sections
@@ -419,38 +445,14 @@ $outline: #727687;
   margin-bottom: 48rpx;
 }
 
-.section-header {
-  margin-bottom: 0rpx;
-}
-
-.section-title {
-  font-size: 32rpx;
-  color: $on-surface;
-}
-
-.section-header-slider {
-  display: flex;
-  align-items: center;
-  gap: 16rpx;
-  margin-bottom: 8rpx;
-}
-
-.title-slider-bar {
-  width: 8rpx;
-  height: 36rpx;
-  background: $primary;
-  border-radius: 4rpx;
-}
-
-.section-title-slider {
-  font-size: 38rpx;
-  font-weight: 900;
-  color: $on-surface;
-  font-family: Manrope, sans-serif;
-  letter-spacing: -1rpx;
-}
-
 // Card Style
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16rpx 48rpx rgba(0, 32, 90, 0.12), inset 0 2rpx 0 rgba(255, 255, 255, 0.9);
+}
+
 .standard-card {
   padding: 40rpx;
   display: flex;
@@ -463,20 +465,43 @@ $outline: #727687;
   margin-bottom: 24rpx;
 }
 
-.project-title-row {
+// 统一小标题样式
+.title-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 24rpx;
+  margin-bottom: 16rpx;
+  gap: 16rpx;
 }
 
-.project-id {
-  font-size: 32rpx;
-  font-weight: 900;
-  line-height: 1.5;
-  color: #1a1a1a;
-  word-break: break-word;
+.title-left {
+  display: flex;
+  align-items: flex-start;
   flex: 1;
+  overflow: hidden;
+
+  .blue-block {
+    width: 8rpx;
+    height: 28rpx;
+    background-color: #0050cb;
+    border-radius: 4rpx;
+    margin-right: 16rpx;
+    margin-top: 6rpx;
+    flex-shrink: 0;
+  }
+}
+
+.item-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #191c1e;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.right-tag-wrap {
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
 .status-u-tag {

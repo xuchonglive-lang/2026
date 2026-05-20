@@ -14,7 +14,7 @@
 			</view>
 
 			<!-- Tab 1: 全局总览 -->
-			<view v-if="currentTab === 0">
+			<view v-show="currentTab === 0">
 				<!-- Controls Area (Glassmorphism Card) -->
 				<view class="glass-panel controls-card">
 				<!-- Row 1: Date -->
@@ -22,10 +22,10 @@
 					<text class="label">日期：</text>
 					<view class="control-box flex-1">
 						<view class="flex items-center flex-1" @click="showGlobalDate = true">
-							<text class="material-symbols-outlined icon-primary">calendar_today</text>
+							<u-icon name="calendar-fill" color="#0050cb" size="32" style="margin-right: 12rpx;"></u-icon>
 							<text class="value-text font-headline">{{ globalDate }}</text>
 						</view>
-						<text class="material-symbols-outlined icon-secondary">arrow_drop_down</text>
+						<u-icon name="arrow-down" color="#424656" size="32"></u-icon>
 					</view>
 				</view>
 				
@@ -43,21 +43,17 @@
 					<text class="label">视图模式：</text>
 					<view class="view-mode-toggle flex-1">
 						<view class="mode-btn" :class="viewMode === 'grid' ? 'active' : 'inactive'" @click="viewMode = 'grid'">
-							<text class="material-symbols-outlined icon-fill">grid_view</text>
+							<u-icon name="grid-fill" :color="viewMode === 'grid' ? '#0050cb' : '#424656'" size="32" style="margin-right: 12rpx;"></u-icon>
 							<text>网格视图</text>
 						</view>
 						<view class="mode-btn" :class="viewMode === 'carousel' ? 'active' : 'inactive'" @click="viewMode = 'carousel'">
-							<text class="material-symbols-outlined">view_carousel</text>
+							<u-icon name="photo-fill" :color="viewMode === 'carousel' ? '#0050cb' : '#424656'" size="32" style="margin-right: 12rpx;"></u-icon>
 							<text>轮播图</text>
 						</view>
 					</view>
 				</view>
 				
-				<!-- Action Row -->
-				<view class="action-row">
-					<button class="action-btn btn-clear" @click="handleClear(0)">清空</button>
-					<button class="action-btn btn-query" @click="handleQuery(0)">查询</button>
-				</view>
+
 			</view>
 
 			<!-- Photo Display Area -->
@@ -66,24 +62,37 @@
 				<view v-if="viewMode === 'grid'">
 					<!-- Area Item -->
 					<view class="area-group" v-for="(area, aIdx) in globalData" :key="aIdx">
-					<text class="area-title">{{ area.area_name }}</text>
+					<view class="action sub-title area-title">
+						<text class="text-lg">{{ area.area_name }}</text>
+						<text class="bg-blue"></text>
+					</view>
 					
 					<!-- Point Card -->
 					<view class="point-card" :class="{'mt-4': pIdx > 0}" v-for="(point, pIdx) in area.points" :key="pIdx">
 						<view class="point-header">
-							<text class="material-symbols-outlined icon-fill">location_on</text>
+							<u-icon name="map-fill" color="#0050cb" size="36" style="margin-right: 12rpx;"></u-icon>
 							<text class="point-name">{{ point.point_name }}</text>
 						</view>
 						<view class="photo-grid-3">
 							<view class="photo-item" v-for="(photo, p2Idx) in point.photos" :key="p2Idx">
 								<view class="photo-wrapper">
-									<image :src="photo.url" mode="aspectFill" @click="vk.pubfn.previewImage(point.photos.map(p=>p.url), p2Idx)"></image>
+									<image 
+										:src="photo.url" 
+										mode="aspectFill" 
+										@click="handlePreview(point.photos, p2Idx)"
+										style="background-color: #f0f2f5;"
+									></image>
 								</view>
 								<view class="photo-meta">
 									<text class="meta-title">{{ photo.title || point.point_name }}</text>
-									<text class="meta-time">{{ photo.time }}</text>
 								</view>
 							</view>
+						</view>
+						
+						<view class="feedback-info">
+							<text :class="point.has_feedback ? 'feedback-text-normal' : 'feedback-text-overdue'">
+								{{ point.footer_text }}
+							</text>
 						</view>
 					</view>
 				</view>
@@ -98,57 +107,64 @@
 			</view> <!-- End of Tab 1 -->
 
 			<!-- Tab 2: 单点位分析 -->
-			<view v-if="currentTab === 1">
-				<view class="glass-panel controls-card">
-					<!-- 选择点位 -->
-					<view class="control-row" @click="showPointSelect = true">
-						<text class="label">选择点位：</text>
-						<view class="control-box flex-1">
-							<view class="flex items-center flex-1">
-								<text class="material-symbols-outlined icon-primary">location_on</text>
-								<text class="value-text font-headline">{{ selectedPointName || '请选择区域和点位' }}</text>
-							</view>
-							<text class="material-symbols-outlined icon-secondary">arrow_drop_down</text>
-						</view>
-					</view>
-					
-					<!-- 日期范围 -->
-					<view class="control-row" @click="showDateRange = true">
-						<text class="label">日期范围：</text>
-						<view class="control-box flex-1">
-							<view class="flex items-center flex-1">
-								<text class="material-symbols-outlined icon-primary">calendar_month</text>
-								<text class="value-text font-headline">{{ dateRangeText || '请选择日期范围' }}</text>
-							</view>
-							<text class="material-symbols-outlined icon-secondary">arrow_drop_down</text>
-						</view>
-					</view>
-					
-					<!-- Action Row -->
-					<view class="action-row">
-						<button class="action-btn btn-clear" @click="handleClear(1)">清空</button>
-						<button class="action-btn btn-query" @click="handleQuery(1)">查询</button>
-					</view>
-				</view>
-
+			<view v-show="currentTab === 1">
 				<!-- 按日期倒序排列的选定点位的照片 -->
-				<view class="photo-section">
-					<view class="point-card" v-for="(day, index) in pointPhotosList" :key="index">
-						<view class="point-header">
-							<text class="material-symbols-outlined icon-fill">calendar_today</text>
-							<text class="point-name">{{ day.date }}</text>
-						</view>
-						<view class="photo-grid-3">
-							<view class="photo-item" v-for="(photo, pIndex) in day.photos" :key="pIndex">
-								<view class="photo-wrapper">
-									<image :src="photo.url" mode="aspectFill" @click="vk.pubfn.previewImage(day.photos.map(p=>p.url), pIndex)"></image>
+				<view class="photo-section" style="height: calc(100vh - 220rpx); display: flex; flex-direction: column;">
+					<z-paging ref="paging" v-model="pointPhotosList" @query="getSingleData" :auto="false" :fixed="false" style="flex: 1; height: 100%;">
+						<!-- 将检索区域移入 z-paging 内部，使其可随列表滚动 -->
+						<view class="glass-panel controls-card" style="margin-bottom: 30rpx;">
+							<!-- 选择点位 -->
+							<view class="control-row">
+								<text class="label">选择点位：</text>
+								<view class="control-box flex-1" style="z-index: 100; position: relative;" @click.stop="openPointSelect">
+									<view class="flex items-center flex-1">
+										<u-icon name="map-fill" color="#0062ff" size="36" style="margin-right: 12rpx;"></u-icon>
+										<text class="value-text font-headline">{{ selectedPointName || '请选择区域和点位' }}</text>
+									</view>
+									<u-icon name="arrow-down" color="#94a3b8" size="32"></u-icon>
 								</view>
-								<view class="photo-meta">
-									<text class="meta-time">{{ photo.time }}</text>
+							</view>
+							
+							<!-- 日期范围 -->
+							<view class="control-row">
+								<text class="label">日期范围：</text>
+								<view class="control-box flex-1" style="z-index: 100; position: relative;" @click.stop="openDateRange">
+									<view class="flex items-center flex-1">
+										<u-icon name="calendar" color="#0062ff" size="36" style="margin-right: 12rpx;"></u-icon>
+										<text class="value-text font-headline">{{ dateRangeText || '请选择日期范围' }}</text>
+									</view>
+									<u-icon name="arrow-down" color="#94a3b8" size="32"></u-icon>
 								</view>
 							</view>
 						</view>
-					</view>
+
+						<!-- 列表内容 -->
+						<view class="point-card" v-for="(item, index) in pointPhotosList" :key="index" style="margin-bottom: 30rpx;">
+							<view class="point-header">
+								<u-icon name="calendar-fill" color="#0062ff" size="32" style="margin-right: 12rpx;"></u-icon>
+								<text class="point-name">{{ item.date_title }}</text>
+							</view>
+							<view class="photo-grid-3">
+								<view class="photo-item" v-for="(photo, pIndex) in item.point_card.photos" :key="pIndex">
+									<view class="photo-wrapper">
+										<image 
+											:src="photo.url" 
+											mode="aspectFill" 
+											@click="handlePreview(item.point_card.photos, pIndex)"
+											style="background-color: #f0f2f5;"
+										></image>
+									</view>
+									<view class="photo-meta">
+										<text class="meta-title">{{ photo.title }}</text>
+									</view>
+								</view>
+							</view>
+							
+							<view class="feedback-info">
+								<text class="feedback-text-normal">{{ item.point_card.footer_text }}</text>
+							</view>
+						</view>
+					</z-paging>
 				</view>
 			</view> <!-- End of Tab 2 -->
 
@@ -157,8 +173,8 @@
 		
 		<!-- 弹出层组件 -->
 		<u-select v-model="showPointSelect" mode="mutil-column-auto" :list="pointOptions" @confirm="confirmPointSelect" confirm-color="#0050cb"></u-select>
-		<u-calendar v-model="showDateRange" mode="range" @change="confirmDateRange" @confirm="confirmDateRange" active-bg-color="#0050cb" range-bg-color="rgba(0, 80, 203, 0.1)" range-color="#0050cb"></u-calendar>
-		<u-calendar v-model="showGlobalDate" mode="date" @change="confirmGlobalDate" @confirm="confirmGlobalDate" active-bg-color="#0050cb"></u-calendar>
+		<u-calendar v-model="showDateRange" mode="range" @change="confirmDateRange" active-bg-color="#0050cb" range-bg-color="rgba(0, 80, 203, 0.1)" range-color="#0050cb"></u-calendar>
+		<u-calendar v-model="showGlobalDate" mode="date" @change="confirmGlobalDate" active-bg-color="#0050cb"></u-calendar>
 	</view>
 </template>
 
@@ -184,20 +200,25 @@
 				globalShiftType: 'day', // day 或 night
 				showGlobalDate: false,
 				globalData: [],
+				carouselPhotos: [], // 修改为直接从后端获取
 				
 				// 单点位分析相关状态
-				showPointSelect: false,
-				showDateRange: false,
+				pointOptions: [],
+				pointPhotosList: [],
+				
+				viewMode: 'grid', // grid 或 carousel
+				
+				// 单点位分析状态
 				selectedPointId: '',
 				selectedPointName: '',
 				startDate: '',
 				endDate: '',
 				dateRangeText: '',
-				
-				pointOptions: [],
-				pointPhotosList: [],
-				
-				viewMode: 'grid', // grid 或 carousel
+
+				// 强制变量观察
+				showPointSelect: false,
+				showDateRange: false,
+				showGlobalDate: false
 			};
 		},
 		onPageScroll(e) {
@@ -224,6 +245,14 @@
 				this.getRegionAndPositionList();
 				this.getGlobalData();
 			},
+			tabChange(index) {
+				this.currentTab = index;
+				if (index === 1 && this.selectedPointId) {
+					this.$nextTick(() => {
+						this.$refs.paging && this.$refs.paging.reload();
+					});
+				}
+			},
 			async getRegionAndPositionList() {
 				let res = await vk.callFunction({
 					url: 'client/report/kh/getAreaPointTree',
@@ -245,34 +274,52 @@
 				});
 				if(res.code === 0) {
 					this.globalData = res.data || [];
+					this.carouselPhotos = res.carouselList || [];
+					if (res.queryParam) {
+						this.globalDate = res.queryParam.date;
+						this.globalShiftType = res.queryParam.shiftType;
+					}
 				}
 				uni.hideLoading();
 			},
-			async getSingleData() {
+			async getSingleData(pageIndex, pageSize) {
+				console.log('Querying single data...', pageIndex, pageSize);
 				if (!this.selectedPointId) {
-					uni.showToast({ title: '请至少选择一个点位', icon: 'none' });
+					console.log('No point selected, skipping query');
+					this.$refs.paging && this.$refs.paging.complete([]);
 					return;
 				}
-				uni.showLoading({ title: '加载中' });
 				let res = await vk.callFunction({
 					url: 'client/feedback/kh/getLiveStatus',
 					data: {
 						mode: 'single',
 						pointId: this.selectedPointId,
 						startDate: this.startDate,
-						endDate: this.endDate
+						endDate: this.endDate,
+						pageIndex,
+						pageSize
 					}
 				});
-				if(res.code === 0) {
-					this.pointPhotosList = res.data || [];
+				if (res.code === 0) {
+					this.$refs.paging && this.$refs.paging.complete(res.list);
+				} else {
+					this.$refs.paging && this.$refs.paging.complete(false);
 				}
-				uni.hideLoading();
 			},
-			tabChange(index) {
-				this.currentTab = index;
+			openPointSelect() {
+				console.log('Attempting to open Point Select');
+				if (this.pointOptions.length === 0) {
+					uni.showToast({ title: '点位列表加载中...', icon: 'none' });
+					this.getRegionAndPositionList();
+				}
+				this.showPointSelect = true;
+			},
+			openDateRange() {
+				console.log('Attempting to open Date Range');
+				this.showDateRange = true;
 			},
 			confirmPointSelect(e) {
-				// u-select 返回的 e 是一个数组，如：[{value: 'q1', label: '选矿主厂房'}, {value: 'p1', label: '破碎机进料口'}]
+				console.log('Point selection confirmed:', e);
 				if (e && e.length >= 2) {
 					let region = e[0].label;
 					let point = e[1].label;
@@ -282,19 +329,28 @@
 					this.selectedPointId = e[0].value;
 					this.selectedPointName = e[0].label;
 				}
+				if (this.selectedPointId) {
+					this.$nextTick(() => {
+						this.$refs.paging && this.$refs.paging.reload();
+					});
+				}
 			},
 			confirmDateRange(e) {
-				// u-calendar mode="range" 返回 { startDate, endDate } 等信息
-				if (e.startDate && e.endDate) {
-					this.startDate = e.startDate;
-					this.endDate = e.endDate;
-					this.dateRangeText = `${e.startDate} 至 ${e.endDate}`;
-					// 选择后自动查询
-					this.getSingleData();
+				// vk-uview-ui @change 返回 { startDate, endDate } 直接属性
+				this.startDate = e.startDate || '';
+				this.endDate = e.endDate || '';
+				if (this.startDate && this.endDate) {
+					this.dateRangeText = `${this.startDate} 至 ${this.endDate}`;
+					if (this.selectedPointId) {
+						this.$nextTick(() => {
+							this.$refs.paging && this.$refs.paging.reload();
+						});
+					}
 				}
 			},
 			confirmGlobalDate(e) {
-				this.globalDate = e.result;
+				// 日期单选 @change 返回 { result } 字符串
+				this.globalDate = e.result || e.startDate || e;
 				this.getGlobalData();
 			},
 			handleClear(tabIndex) {
@@ -309,7 +365,7 @@
 					this.startDate = '';
 					this.endDate = '';
 					this.dateRangeText = '';
-					this.pointPhotosList = [];
+					this.$refs.paging && this.$refs.paging.reload();
 					uni.showToast({ title: '条件已清空', icon: 'none' });
 				}
 			},
@@ -317,8 +373,15 @@
 				if (tabIndex === 0) {
 					this.getGlobalData();
 				} else {
-					this.getSingleData();
+					this.$refs.paging && this.$refs.paging.reload();
 				}
+			},
+			handlePreview(photos, index) {
+				if (!photos || !photos[index]) return;
+				uni.previewImage({
+					current: photos[index].url,
+					urls: photos.map(p => p.url)
+				});
 			}
 		},
 		watch: {
@@ -335,23 +398,6 @@
 			}
 		},
 		computed: {
-			carouselPhotos() {
-				let list = [];
-				this.globalData.forEach(area => {
-					area.points.forEach(point => {
-						point.photos.forEach(photo => {
-							list.push({
-								underImg: photo.url,
-								area_name: area.area_name,
-								point_name: point.point_name,
-								date: this.globalDate,
-								shift: this.globalShiftType
-							});
-						});
-					});
-				});
-				return list;
-			}
 		},
 	};
 </script>
@@ -427,6 +473,11 @@
 	padding: 12rpx 24rpx;
 	border-radius: 8rpx;
 	border: 1px solid rgba(194, 198, 216, 0.3);
+	cursor: pointer;
+	pointer-events: auto;
+	&:active {
+		opacity: 0.7;
+	}
 	
 	.flex {
 		display: flex;
@@ -527,47 +578,7 @@
 	}
 }
 
-/* Action Row */
-.action-row {
-	display: flex;
-	justify-content: flex-end;
-	gap: 24rpx;
-	margin-top: 16rpx;
-	padding-top: 24rpx;
-	border-top: 1px dashed rgba(194, 198, 216, 0.4);
-}
 
-.action-btn {
-	margin: 0;
-	padding: 0 48rpx;
-	height: 64rpx;
-	line-height: 64rpx;
-	font-size: 26rpx;
-	border-radius: 32rpx;
-	font-weight: 600;
-	transition: all 0.3s ease;
-	
-	&::after {
-		border: none;
-	}
-	
-	&.btn-clear {
-		background-color: rgba(255, 255, 255, 0.5);
-		color: #424656;
-		border: 1px solid rgba(194, 198, 216, 0.6);
-	}
-	
-	&.btn-query {
-		background-color: #0050cb;
-		color: #ffffff;
-		box-shadow: 0 4rpx 12rpx rgba(0, 80, 203, 0.3);
-	}
-	
-	&:active {
-		transform: scale(0.96);
-		opacity: 0.8;
-	}
-}
 
 /* Photo Section */
 .photo-section {
@@ -583,14 +594,57 @@
 }
 
 .area-title {
-	font-family: 'Manrope', sans-serif;
-	font-size: 36rpx;
-	font-weight: 800;
-	color: #191c1e;
-	border-bottom: 4rpx solid rgba(0, 80, 203, 0.3);
-	padding-bottom: 16rpx;
-	display: inline-block;
-	align-self: flex-start;
+	margin-bottom: 16rpx;
+}
+
+.action.sub-title {
+  position: relative;
+  display: inline-block;
+  margin-left: 0;
+  align-self: flex-start;
+}
+
+.action.sub-title .text-lg {
+  position: relative;
+  z-index: 1;
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #1a1d20 !important;
+  letter-spacing: -0.5rpx;
+  font-family: 'Manrope', sans-serif;
+}
+
+.action.sub-title .bg-blue {
+  position: absolute;
+  display: inline-block;
+  bottom: 0rpx;
+  border-radius: 4rpx;
+  width: 100%;
+  height: 14rpx;
+  left: 0;
+  opacity: 0.4;
+  z-index: 0;
+  background-color: #0062ff !important;
+}
+
+.feedback-info {
+	margin-top: 8rpx;
+	padding-top: 24rpx;
+	border-top: 1px dashed rgba(194, 198, 216, 0.6);
+	font-size: 24rpx;
+	color: #e53e3e;
+	font-weight: 600;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.feedback-text-normal {
+	color: #e53e3e;
+}
+
+.feedback-text-overdue {
+	color: #999999;
+	font-weight: 400;
 }
 
 .point-card {
@@ -637,16 +691,22 @@
 	gap: 8rpx;
 	
 	.photo-wrapper {
-		aspect-ratio: 1 / 1;
+		width: 100%;
+		height: 190rpx; // 针对 3 列布局的显式高度，兼容性更好
 		border-radius: 24rpx;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		background-color: #f0f2f5;
+		border: 1px solid rgba(0, 80, 203, 0.1);
 		box-shadow: 0 8rpx 24rpx rgba(0, 80, 203, 0.05);
 		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		
 		image {
 			width: 100%;
 			height: 100%;
+			display: block;
 		}
 	}
 	

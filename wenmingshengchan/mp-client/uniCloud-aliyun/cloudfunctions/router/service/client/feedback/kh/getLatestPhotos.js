@@ -9,7 +9,7 @@ module.exports = {
 		let { vk, _ } = util;
 		let res = { code: 0, msg: "" };
 
-		// 查询最新 5 条已完满反馈 (status = 1) 的记录
+		// 查询最新 20 条已完满反馈 (status = 1) 的记录，以确保能取到包含图片的记录
 		let result = await vk.baseDao.selects({
 			dbName: "key-point-feedback",
 			whereJson: {
@@ -18,13 +18,14 @@ module.exports = {
 			},
 			sortArr: [{ "name": "submit_time", "type": "desc" }],
 			pageIndex: 1,
-			pageSize: 5
+			pageSize: 20
 		});
 
 		let rows = result.rows || [];
 		let swiperList = [];
 
-		rows.forEach(item => {
+		for (let i = 0; i < rows.length; i++) {
+			let item = rows[i];
 			if (item.images && item.images.length > 0) {
 				// 每条记录可能有多张图，我们取第一张作为展示
 				let img = item.images[0];
@@ -35,8 +36,12 @@ module.exports = {
 					image: url,
 					title: `${item.area_name || ''} · ${item.point_name || ''} · ${item.shift_date || ''} · ${shiftText}`
 				});
+				
+				if (swiperList.length >= 5) {
+					break;
+				}
 			}
-		});
+		}
 
 		res.rows = swiperList;
 		return res;

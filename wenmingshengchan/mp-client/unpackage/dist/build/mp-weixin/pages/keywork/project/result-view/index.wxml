@@ -1,0 +1,1 @@
+<view class="page-container data-v-9dac8bc4"><cu-custom vue-id="2601cf2c-1" bgColor="bg-gradual-blue" isCustom="{{true}}" class="data-v-9dac8bc4" bind:__l="__l" vue-slots="{{['backText','content']}}"><view slot="backText" class="data-v-9dac8bc4"></view><view slot="content" class="data-v-9dac8bc4">成果查看</view></cu-custom></view>

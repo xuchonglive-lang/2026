@@ -1,0 +1,14 @@
+{
+  "componentGenerics": {
+    "scoped-slots-refresher": true,
+    "scoped-slots-cell": true,
+    "scoped-slots-chatLoading": true,
+    "scoped-slots-empty": true
+  },
+  "component": true,
+  "usingComponents": {
+    "z-paging-refresh": "/node-modules/z-paging/components/z-paging/components/z-paging-refresh",
+    "z-paging-load-more": "/node-modules/z-paging/components/z-paging/components/z-paging-load-more",
+    "z-paging-empty-view": "/node-modules/z-paging/components/z-paging-empty-view/z-paging-empty-view"
+  }
+}

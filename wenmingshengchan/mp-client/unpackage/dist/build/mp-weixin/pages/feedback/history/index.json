@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cu-custom": "/uni_modules/cu-custom/components/cu-custom/cu-custom",
+    "my-tab-bar": "/components/my-tab-bar/my-tab-bar"
+  }
+}

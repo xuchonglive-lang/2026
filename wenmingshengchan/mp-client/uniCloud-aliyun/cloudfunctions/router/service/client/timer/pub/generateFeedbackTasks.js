@@ -107,17 +107,43 @@ module.exports = {
       }
     }
 
-    // --- 附带功能：将历史遗留未提交的改为逾期 (兜底清算) ---
-    await vk.baseDao.update({
+    // --- 附带功能：将历史遗留未提交的改为逾期 (全量物理清算) ---
+    // 为保证精准，这里先查询出所有待反馈且可能逾期的记录
+    let pendingTasks = await vk.baseDao.selects({
       dbName: "key-point-feedback",
-      whereJson: {
-        status: 0,
-        shift_date: _.lt(currentDateStr) // 昨天的或更早的
-      },
-      dataJson: {
-        status: 2
-      }
+      whereJson: { status: 0 }
     });
+
+    if (pendingTasks.rows && pendingTasks.rows.length > 0) {
+      let finalOverdueIds = [];
+      pendingTasks.rows.forEach(item => {
+        let conf = cronConfigs.find(c => c.shift_type === item.shift_type);
+        if (conf && conf.feedback_end) {
+          let dateStr = item.shift_date || vk.pubfn.timeFormat(item._add_time, "yyyy-MM-dd");
+          let baseDateStr = dateStr.replace(/-/g, '/');
+          let endTimeObj = new Date(baseDateStr);
+          let endParts = conf.feedback_end.split(':');
+          endTimeObj.setHours(parseInt(endParts[0]), parseInt(endParts[1]), 0, 0);
+
+          // 20:00 阈值逻辑
+          if (conf.feedback_end >= "20:00") {
+            endTimeObj.setTime(endTimeObj.getTime() - 24 * 60 * 60 * 1000);
+          }
+
+          if (Date.now() > endTimeObj.getTime()) {
+            finalOverdueIds.push(item._id);
+          }
+        }
+      });
+
+      if (finalOverdueIds.length > 0) {
+        await vk.baseDao.update({
+          dbName: "key-point-feedback",
+          whereJson: { _id: _.in(finalOverdueIds), status: 0 },
+          dataJson: { status: 2 }
+        });
+      }
+    }
 
     return res;
   }

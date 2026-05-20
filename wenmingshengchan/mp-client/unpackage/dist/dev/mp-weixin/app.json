@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/user/login/index",
+    "pages/index/visitor",
     "pages/user/register/index",
     "pages/user/audit-status/index",
     "pages/user/mine/index",
@@ -19,37 +21,9 @@
     "pages/feedback/history/index",
     "pages/info/index",
     "pages/info/detail/index",
-    "pages/index/index",
     "pages/showpoint/showpoint"
   ],
-  "subPackages": [
-    {
-      "root": "pages_template",
-      "pages": [
-        "db/db",
-        "db/list/list",
-        "uni-id/index/index",
-        "uni-id/password/password",
-        "uni-id/mobile/mobile",
-        "uni-id/univerify/univerify",
-        "uni-id/weixin/weixin",
-        "uni-id/weixin/h5-weixin",
-        "uni-id/weixin/set-user-info",
-        "uni-id/alipay/alipay",
-        "uni-id/qq/qq",
-        "uni-id/util/util",
-        "uni-id/email/email",
-        "uni-id/login/index/index",
-        "uni-id/login/register/register",
-        "uni-id/login/forget/forget",
-        "uni-id/closeAccount/closeAccount",
-        "vk-vuex/vk-vuex",
-        "openapi/baidu/baidu",
-        "uni-id/test/test",
-        "plugs/lucky-draw/lucky-draw"
-      ]
-    }
-  ],
+  "subPackages": [],
   "window": {
     "navigationStyle": "custom",
     "navigationBarTextStyle": "black",
@@ -98,6 +72,6 @@
       "desc": "方便自动填写地址"
     }
   },
-  "__usePrivacyCheck__": false,
+  "__usePrivacyCheck__": true,
   "usingComponents": {}
 }

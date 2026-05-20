@@ -7,7 +7,7 @@ export default {
   functionName: 'router',
   // 登录页面路径
   login: {
-    url: '/pages/login/index',
+    url: '/pages/user/login/index',
   },
   // 首页页面路径
   index: {
@@ -49,7 +49,7 @@ export default {
      * 在无需登录的页面上执行kh或sys函数，也会自动判断是否登录，未登录会自动跳登录页面，登录成功后会自动返回本来要跳转的页面。
      */
     mode: 2,
-    list: ['/pages_template/*', '/pages/login/*', '/pages/index/*', '/pages/error/*'],
+    list: ['/pages_template/*', '/pages/user/login/*', '/pages/index/*', '/pages/error/*', '/pages/index/visitor'],
   },
   // 需要检查是否可以分享的页面列表(仅小程序有效)
   checkSharePages: {

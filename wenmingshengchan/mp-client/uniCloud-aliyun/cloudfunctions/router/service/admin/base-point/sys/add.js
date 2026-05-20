@@ -13,19 +13,19 @@ module.exports = {
     let { customUtil, uniID, config, pubFun, vk, db, _ } = util;
     // 包装好初始状态视为已过检无阻的安全信封待送出
     let res = { code: 0, msg: '' };
-    
+
     // -----------------------------------------------------------
     // 业务逻辑防死锁开启
     // -----------------------------------------------------------
-    
+
     // 提取使用者尝试新登入到库的名字值键
     let name = data.name;
     // 若系统捕获其意欲跳过必填名即刻拒绝返回
-    if (!name) return { code: -1, msg: "作业点位名字不能为空" };
+    if (!name) return { code: -1, msg: "点位名字不能为空" };
 
     // 接下来检查业务网必须绑定的网格归属及物理隶属区域
-    if (!data.area_id) return { code: -1, msg: "点位必须明确被挂靠的业务基础区域 ID" };
-    if (!data.manager_dept_id) return { code: -1, msg: "必须指定接手管控负责该点位的行政团队/网格组 ID" };
+    if (!data.area_id) return { code: -1, msg: "必须选择所属区域" };
+    if (!data.manager_dept_id) return { code: -1, msg: "必须选择责任小组" };
 
     // 防线悉数确认无误之后放行底层数据库进行新增数据存盘
     res.id = await vk.baseDao.add({
@@ -34,7 +34,7 @@ module.exports = {
       // 将整一份来自于网页传包而来的填写字典悉数注入新表单列内
       dataJson: data
     });
-    
+
     // 交出获得生成的那一串 uuid 序列成功记录反馈给界面
     return res;
   }

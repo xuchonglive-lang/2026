@@ -17,7 +17,7 @@
               <text class="page-subtitle">KEY PROJECTS</text>
             </view>
             <view class="notif-btn bg-glass">
-              <text class="material-symbols-outlined text-on-surface-variant">notifications</text>
+              <u-icon name="bell-fill" color="#424656" size="36"></u-icon>
             </view>
           </view>
 
@@ -37,7 +37,7 @@
               <view class="form-group-1">
                 <view class="select-wrapper" @click="showLocationSelect = true">
                   <text class="select-text">{{ locationName }}</text>
-                  <text class="material-symbols-outlined icon">expand_more</text>
+                  <u-icon name="arrow-down" color="#0050cb" size="28"></u-icon>
                 </view>
                 <view class="date-pickers" @click="showCalendar = true">
                   <view class="date-wrapper">
@@ -52,33 +52,33 @@
               <view class="btn-group">
                 <view class="btn-feedback active-press" :class="{ 'active-filter': needMyFeedback }"
                   @click="toggleMyFeedback">
-                  <text class="material-symbols-outlined icon">{{ needMyFeedback ? 'check_box' :
-                    'check_box_outline_blank' }}</text>
+                  <u-icon :name="needMyFeedback ? 'checkbox-mark' : 'checkbox-blank'" color="#0050cb" size="32"></u-icon>
                   <text>需要我反馈</text>
                 </view>
                 <view class="btn-primary active-press" @click="doSearch">
-                  <text class="material-symbols-outlined icon">search</text>
+                  <u-icon name="search" color="#ffffff" size="32" style="margin-right: 8rpx;"></u-icon>
                   <text>点击查询</text>
                 </view>
               </view>
             </view>
           </view>
 
-          <!-- Area Tabs -->
-          <view class="area-options">
-            <scroll-view scroll-x class="area-scroll" :show-scrollbar="false">
-              <view class="area-row">
-                <view class="area-tab" :class="{ active: currentAreaId === '' }" @click="changeArea('', '全部区域')">
-                  <text>全部区域</text>
-                  <view class="active-indicator" v-if="currentAreaId === ''"></view>
-                </view>
-                <view class="area-tab" v-for="area in locationTree" :key="area.value"
-                  :class="{ active: currentAreaId === area.value }" @click="changeArea(area.value, area.label)">
-                  <text>{{ area.label }}</text>
-                  <view class="active-indicator" v-if="currentAreaId === area.value"></view>
-                </view>
-              </view>
-            </scroll-view>
+          <!-- Area Tabs (u-tabs, 与 info 页展示一致) -->
+          <view style="padding: 0 8rpx; margin-bottom: 16rpx;">
+            <u-tabs
+              :key="uAreaList.map(a => a.value).join(',')"
+              :list="uAreaList"
+              :current="currentAreaIndex"
+              @change="onAreaChange"
+              active-color="#0050cb"
+              inactive-color="#64748b"
+              font-size="28"
+              :bold="true"
+              bar-width="60"
+              bar-height="8"
+              height="70"
+              bg-color="transparent"
+            ></u-tabs>
           </view>
         </view>
       </template>
@@ -89,8 +89,13 @@
           <!-- List loop -->
           <view v-for="(item, index) in dataList" :key="item._id" class="glass-card project-card">
             <view class="card-header">
-              <text class="card-title">{{ item.title }}</text>
-              <u-tag :text="item._statusName" :type="item._tagType" mode="light" shape="circle" size="mini" />
+              <view class="title-row">
+                <view class="title-left">
+                  <view class="blue-block"></view>
+                  <text class="card-title u-line-2">{{ item.title }}</text>
+                </view>
+                <u-tag :text="item._statusName" :type="item._tagType" mode="light" shape="circle" size="mini" />
+              </view>
             </view>
             <view class="roles-row">
               <!-- 执行人区域 -->
@@ -99,8 +104,8 @@
                 <text class="role-names">{{ getAssigneeNames(item.assignee_info) }}</text>
                 <view class="avatar-stack" v-if="item.assignee_info && item.assignee_info.length > 0">
                   <image class="stack-avatar" v-for="(user, idx) in item.assignee_info.slice(0, 2)" :key="idx"
-                    :src="user.avatar || 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png'"
-                    mode="aspectFill"></image>
+                    :src="user.avatar || 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png'"
+                    mode="aspectFill" @error="onAssigneeAvatarError(index, idx)"></image>
                   <view class="stack-more" v-if="item.assignee_info.length > 2">
                     +{{ item.assignee_info.length - 2 }}
                   </view>
@@ -111,25 +116,25 @@
               <view class="role-verifier">
                 <text class="role-label">验收人：</text>
                 <text class="role-names">{{ getVerifierName(item.create_user_info) }}</text>
-                <image class="verifier-avatar" :src="getVerifierAvatar(item.create_user_info)" mode="aspectFill">
+                <image class="verifier-avatar" :src="getVerifierAvatar(item.create_user_info)" mode="aspectFill" @error="onVerifierAvatarError(index)">
                 </image>
               </view>
             </view>
             <view class="card-footer border-t">
               <view class="footer-info">
                 <view class="deadline">
-                  <text class="material-symbols-outlined text-sm">calendar_today</text>
+                  <u-icon name="calendar" color="#727687" size="24"></u-icon>
                   <text>时限: {{ item.deadline ? vk.pubfn.timeFormat(item.deadline, 'yyyy.MM.dd') : '无限制' }}</text>
                 </view>
                 <view class="progress-chip" :class="item._delayClass">
                   <view class="pulse-dot" v-if="!item._isDelay"></view>
-                  <text class="material-symbols-outlined" v-else>warning</text>
+                  <u-icon name="warning-fill" color="#ba1a1a" size="24" v-else></u-icon>
                   <text>{{ item._delayText }}</text>
                 </view>
               </view>
               <view class="view-detail" @click="goToDetail(item._id)">
                 <text>查看详情</text>
-                <text class="material-symbols-outlined text-sm">chevron_right</text>
+                <u-icon name="arrow-right" color="#0050cb" size="22"></u-icon>
               </view>
             </view>
           </view>
@@ -144,7 +149,7 @@
       </template>
     </z-paging>
 
-    <u-select v-model="showLocationSelect" :list="locationTree" mode="mutil-column-auto"
+    <u-select :key="selectKey" v-model="showLocationSelect" :list="locationTree" mode="mutil-column-auto"
       @confirm="onLocationConfirm"></u-select>
 
     <u-calendar v-model="showCalendar" mode="range" @change="onDateChange" active-bg-color="#0050cb"></u-calendar>
@@ -160,7 +165,10 @@ export default {
       currentStatus: 0,
       currentAreaId: '',
       currentPointId: '',
-      locationTree: [],
+      locationTree: [
+        { value: '', label: '全部区域', children: [{ value: '', label: '全部点位' }] }
+      ],
+      selectKey: Date.now(),
       showLocationSelect: false,
       locationName: '全部区域',
       showCalendar: false,
@@ -180,6 +188,15 @@ export default {
       if (this.$refs.paging) {
         this.doSearch();
       }
+    }
+  },
+  computed: {
+    uAreaList() {
+      return this.locationTree.map(a => ({ name: a.label, value: a.value }));
+    },
+    currentAreaIndex() {
+      let idx = this.uAreaList.findIndex(a => a.value === this.currentAreaId);
+      return idx >= 0 ? idx : 0;
     }
   },
   methods: {
@@ -247,16 +264,54 @@ export default {
       this.locationName = areaName || '全部区域';
       this.doSearch();
     },
+    onAreaChange(index) {
+      let item = this.uAreaList[index];
+      this.changeArea(item.value, item.name);
+    },
     onDateChange(e) {
       this.startDate = e.startDate;
       this.endDate = e.endDate;
       this.doSearch();
     },
     async getLocationTree() {
-      let res = await this.vk.callFunction({ url: 'client/report/kh/getAreaPointTree' });
-      if (res.tree) {
-        this.locationTree = res.tree;
-      }
+      console.log('开始请求区域树数据...');
+      this.vk.callFunction({
+        url: 'client/report/kh/getAreaPointTree',
+        success: (res) => {
+          console.log('获取区域树成功:', res);
+          if (res.tree && res.tree.length > 0) {
+            // 在前端对树形结构进行加工，完美适配 u-select 和 u-tabs
+            let formattedTree = res.tree.map(area => {
+              let children = area.children || [];
+              let newChildren = [...children];
+              
+              // 检查是否有真实的子节点，如果有，在最前面塞入一个“全部点位”
+              let hasRealPoints = children.length > 0 && children[0].value !== '';
+              if (hasRealPoints) {
+                newChildren.unshift({ value: '', label: '全部点位' });
+              }
+              
+              return {
+                ...area,
+                children: newChildren
+              };
+            });
+
+            // 在最外层最前面强制插入“全部区域 / 全部点位”
+            this.locationTree = [
+              { value: '', label: '全部区域', children: [{ value: '', label: '全部点位' }] },
+              ...formattedTree
+            ];
+            
+            this.selectKey = Date.now(); // 强制刷新组件
+          } else {
+            console.warn('区域树为空，使用默认占位');
+          }
+        },
+        fail: (err) => {
+          console.error('获取区域树失败:', err);
+        }
+      });
     },
     onLocationConfirm(arr) {
       let area = arr[0];
@@ -312,11 +367,23 @@ export default {
       return user.real_name || user.nickname || '管理员';
     },
     getVerifierAvatar(info) {
-      const defaultAvatar = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e65bd20-00f7-41a4-969c-2f223f04473b/38890db3-1dce-4467-bc22-b2f56b50937c.png';
+      const defaultAvatar = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png';
       if (!info) return defaultAvatar;
       let user = Array.isArray(info) ? info[0] : info;
       if (!user) return defaultAvatar;
       return user.avatar || defaultAvatar;
+    },
+    onAssigneeAvatarError(pIdx, uIdx) {
+      if (this.dataList[pIdx] && this.dataList[pIdx].assignee_info[uIdx]) {
+        this.$set(this.dataList[pIdx].assignee_info[uIdx], 'avatar', 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+      }
+    },
+    onVerifierAvatarError(pIdx) {
+      let info = this.dataList[pIdx].create_user_info;
+      let user = Array.isArray(info) ? info[0] : info;
+      if (user) {
+        this.$set(user, 'avatar', 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b05423f7-920b-4aa1-8ca6-cdeac4c000bd/41235688-6615-4672-88f5-46f041ff3dbb.png');
+      }
     }
   }
 };
@@ -561,42 +628,9 @@ $text-delay: #ba1a1a;
   box-shadow: 0 8rpx 16rpx rgba(0, 80, 203, 0.2);
 }
 
-// Area Tabs
+// Area Tabs - now handled by u-tabs component
 .area-options {
-  margin-bottom: 32rpx;
-}
-
-.area-scroll {
-  white-space: nowrap;
-}
-
-.area-row {
-  display: flex;
-  gap: 48rpx;
-  padding: 0 8rpx 8rpx;
-}
-
-.area-tab {
-  position: relative;
-  font-size: 28rpx;
-  font-weight: 500;
-  color: $outline;
-  padding: 8rpx 0;
-}
-
-.area-tab.active {
-  color: $primary;
-  font-weight: 700;
-}
-
-.active-indicator {
-  position: absolute;
-  bottom: -8rpx;
-  left: 0;
-  right: 0;
-  height: 4rpx;
-  background: $primary;
-  border-radius: 4rpx;
+  margin-bottom: 0;
 }
 
 // Project List Cards
@@ -611,24 +645,50 @@ $text-delay: #ba1a1a;
   display: flex;
   flex-direction: column;
   gap: 32rpx;
-  box-shadow: 0 8rpx 32rpx 0 rgba(0, 80, 203, 0.04);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 4rpx 16rpx -4rpx rgba(0, 80, 203, 0.08),
+    0 16rpx 48rpx -8rpx rgba(0, 80, 203, 0.15),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.9);
 }
 
 .card-header {
   display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.title-row {
+  display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 16rpx;
+}
+
+.title-left {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  overflow: hidden;
+
+  .blue-block {
+    width: 8rpx;
+    height: 28rpx;
+    background-color: #0050cb;
+    border-radius: 4rpx;
+    margin-right: 16rpx;
+    margin-top: 6rpx;
+    flex-shrink: 0;
+  }
 }
 
 .card-title {
   font-weight: 700;
-  font-size: 32rpx;
+  font-size: 30rpx;
   line-height: 1.4;
   flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #191c1e;
 }
 
 .roles-row {
