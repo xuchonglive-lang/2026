@@ -1,8 +1,8 @@
 <template>
   <view class="page-login">
 
-    
-    
+
+
     <!-- Level 0: Industrial Grid Floor -->
     <view class="grid-floor"></view>
 
@@ -50,20 +50,26 @@ export default {
         const [loginErr, loginRes] = await uni.login({ provider: 'weixin' });
         if (loginErr || !loginRes.code) throw new Error('微信通信链路异常');
 
-        // 仅登录，若用户不存在则直接报错，不自动建档
-        // needAlert: false 禁止 vk 框架自动弹出错误弹窗，由我们自己处理
-        let res = await uni.vk.callFunction({
-          url: 'client/user/pub/loginByWeixin',
-          needAlert: false,
-          data: {
-            code: loginRes.code,
-            type: 'login'
-          }
-        });
+        let res;
+        try {
+          // 仅登录，若用户不存在则直接报错，不自动建档
+          // needAlert: false 禁止 vk 框架自动弹出错误弹窗，由我们自己处理
+          res = await uni.vk.callFunction({
+            url: 'client/user/pub/loginByWeixin',
+            needAlert: false,
+            data: {
+              code: loginRes.code,
+              type: 'login'
+            }
+          });
+        } catch (errRes) {
+          // 当 code !== 0 时，vk.callFunction 会执行 reject，在此捕获并将响应赋给 res
+          res = errRes;
+        }
 
         uni.hideLoading();
 
-        if (res.code === 0) {
+        if (res && res.code === 0) {
           if (res.userInfo) {
             this.vk.setVuex('$user.userInfo', res.userInfo);
           }
@@ -79,9 +85,9 @@ export default {
 
           // 信息完整，直接路由分发
           this.routeUser(res.userInfo);
-        } else {
-          // 判断是否为新用户未注册错误
-          const unregisteredCodes = [10001, 90001, 30201, 30202, 30203, 30204];
+        } else if (res && typeof res.code !== 'undefined') {
+          // 判断是否为新用户未注册错误 (包含业务错误 -1: 账号未注册)
+          const unregisteredCodes = [10001, -1, 90001, 30201, 30202, 30203, 30204];
           const isUnregistered = unregisteredCodes.indexOf(res.code) > -1 ||
             (res.msg && (res.msg.indexOf('未注册') > -1 || res.msg.indexOf('不存在') > -1 || res.msg.indexOf('未绑定') > -1));
 
@@ -91,6 +97,8 @@ export default {
           } else {
             uni.showToast({ title: res.msg || '鉴权被系统拒绝', icon: 'none' });
           }
+        } else {
+          throw new Error((res && res.msg) || '请求发生未知异常');
         }
       } catch (e) {
         uni.hideLoading();
@@ -122,13 +130,27 @@ export default {
 
         // 如果头像是本地沙盒图片，抢先转存上云兑换公网永久 URL
         if (finalAvatar && (finalAvatar.startsWith('http://tmp') || finalAvatar.startsWith('wxfile://') || finalAvatar.startsWith('file://'))) {
-          let uploadRes = await uni.vk.callFunctionUtil.uploadFile({
-            filePath: finalAvatar,
-            fileType: "image",
-            needSave: false
-          });
-          if (uploadRes && uploadRes.url) {
-            finalAvatar = uploadRes.url;
+          try {
+            let uploadRes = await uni.vk.callFunctionUtil.uploadFile({
+              filePath: finalAvatar,
+              fileType: "image",
+              needSave: false
+            });
+            if (uploadRes && uploadRes.url) {
+              finalAvatar = uploadRes.url;
+            }
+          } catch (uploadErr) {
+            console.error("头像上云失败，已采用默认头像兜底:", uploadErr);
+            // 采用项目内建的 premium 灰度剪影 base64 占位图
+            finalAvatar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj4KICA8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2YxZjVmOSIvPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNDgiIHI9IjI0IiBmaWxsPSIjY2JkNWUxIi8+CiAgPHBhdGggZD0iTTYwIDgwYy0yNSAwLTQwIDE1LTQwIDI0aDgwYzAtOS0xNS0yNC00MC0yNHoiIGZpbGw9IiNjYmQ1ZTEiLz4KPC9zdmc+';
+            
+            uni.showToast({
+              title: '头像服务受限，已使用系统默认头像',
+              icon: 'none',
+              duration: 2000
+            });
+            // 延迟以确保用户看到提示
+            await new Promise(resolve => setTimeout(resolve, 800));
           }
         }
 
@@ -136,22 +158,26 @@ export default {
         const [loginErr, loginRes] = await uni.login({ provider: 'weixin' });
         if (loginErr || !loginRes.code) throw new Error('通信链路异常');
 
-        // 第二阶段：确认授权后才正式建档，传入 type: 'register'
-        let res = await uni.vk.callFunction({
-          url: 'client/user/pub/loginByWeixin',
-          data: {
-            code: loginRes.code,
-            type: 'register',
-            userInfo: {
+        let res;
+        try {
+          // 第二阶段：确认授权后才正式建档，传入 type: 'register'
+          res = await uni.vk.callFunction({
+            url: 'client/user/pub/loginByWeixin',
+            needAlert: false,
+            data: {
+              code: loginRes.code,
+              type: 'register',
               avatar: finalAvatar,
               nickname: finalNickname
             }
-          }
-        });
+          });
+        } catch (errRes) {
+          res = errRes;
+        }
 
         uni.hideLoading();
 
-        if (res.code === 0) {
+        if (res && res.code === 0) {
           if (res.userInfo) {
             this.vk.setVuex('$user.userInfo', res.userInfo);
           }
@@ -162,7 +188,7 @@ export default {
             this.routeUser(res.userInfo);
           }, 1000);
         } else {
-          uni.showToast({ title: res.msg || '入库发生阻断', icon: 'none' });
+          uni.showToast({ title: (res && res.msg) || '入库发生阻断', icon: 'none' });
         }
       } catch (e) {
         uni.hideLoading();
@@ -192,7 +218,10 @@ export default {
 /* Level 0: Grid */
 .grid-floor {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
   background-image:
     linear-gradient(to right, rgba(0, 80, 203, 0.03) 1px, transparent 1px),
@@ -228,8 +257,9 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.5);
   overflow: hidden;
   margin-bottom: 48rpx;
-  box-shadow: inset 0 2rpx 8rpx rgba(0,0,0,0.06);
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
 }
+
 .logo-img {
   width: 100%;
   height: 100%;
@@ -263,14 +293,17 @@ export default {
   box-shadow: inset 0 4rpx 8rpx rgba(255, 255, 255, 0.2), 0 8rpx 20rpx rgba(0, 102, 255, 0.2);
   transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
 .btn-wechat:active {
   transform: scale(0.98);
   box-shadow: 0 4rpx 12rpx rgba(0, 102, 255, 0.2);
 }
+
 .btn-icon {
   font-size: 40rpx;
   margin-right: 16rpx;
 }
+
 .btn-text {
   font-family: 'Inter', sans-serif;
   font-size: 32rpx;
@@ -293,5 +326,7 @@ export default {
 }
 
 /* uniapp button reset */
-button::after { border: none; }
+button::after {
+  border: none;
+}
 </style>

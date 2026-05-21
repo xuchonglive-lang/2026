@@ -17,8 +17,8 @@
 		"tokenExpiresThreshold": 259200,
 		"oauth": {
 			"weixin": {
-				"appid": "wx3c4d301b77323248",
-				"appsecret": "7dea5c3c5ddaa6c79a91cca898e9186a"
+				"appid": "wxf16a1c7b5cfa4412",
+				"appsecret": "ae8254bd572b9b6362d673d7482bc335"
 			},
 			"huawei": {
 				"clientId": "",
@@ -32,8 +32,8 @@
 	"mp-weixin": {
 		"oauth": {
 			"weixin": {
-				"appid": "wx3c4d301b77323248",
-				"appsecret": "7dea5c3c5ddaa6c79a91cca898e9186a"
+				"appid": "wxf16a1c7b5cfa4412",
+				"appsecret": "ae8254bd572b9b6362d673d7482bc335"
 			}
 		}
 	},

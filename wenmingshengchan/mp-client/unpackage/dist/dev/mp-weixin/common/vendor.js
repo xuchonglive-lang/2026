@@ -12330,7 +12330,7 @@ var S = "development" === "development",
   k = "true" === undefined || !0 === undefined,
   A = I([]),
   T = "h5" === b ? "web" : "app-plus" === b || "app-harmony" === b ? "app" : b,
-  C = I({"address":["127.0.0.1","192.168.100.100"],"servePort":7000,"debugPort":9000,"initialLaunchType":"remote","skipFiles":["<node_internals>/**","D:/APP/Hbuilderx/HBuilderX/plugins/unicloud/**/*.js"]}),
+  C = I({"address":["127.0.0.1","192.168.100.100"],"servePort":7001,"debugPort":9001,"initialLaunchType":"remote","skipFiles":["<node_internals>/**","D:/APP/Hbuilderx/HBuilderX/plugins/unicloud/**/*.js"]}),
   P = I([{"provider":"aliyun","spaceName":"wenmingshengchan","spaceId":"mp-f5dec8e2-6434-4681-934d-fc46f8267fea","clientSecret":"bj1QzvYuni9rWUEMHQYIwg==","endpoint":"https://api.next.bspapp.com","failoverEndpoint":""}]) || [],
   O = true;
 var E = "";
@@ -21326,6 +21326,23 @@ var _default = {
     // 	return false; // 返回false则取消跳转，返回true则继续跳转
     // 	// 上方代码可自己修改，写成你自己的逻辑处理。
     // },
+  },
+  // 服务空间多环境配置
+  uniCloud: {
+    envs: {
+      // 默认空间：对应空间 A（微信审核空间），打包时默认请求此空间。请根据需要替换为实际的审核空间参数。
+      "default": {
+        "provider": "aliyun",
+        "spaceId": "mp-8bd3c72d-e08f-4a30-a186-d3152101fa67",
+        "clientSecret": "KqXrZKwSHTItwoCjhShw3A=="
+      },
+      // 正式空间：对应空间 B（正式生产空间），审核通过后动态切换至此。
+      "prod": {
+        "provider": "aliyun",
+        "spaceId": "mp-f5dec8e2-6434-4681-934d-fc46f8267fea",
+        "clientSecret": "bj1QzvYuni9rWUEMHQYIwg=="
+      }
+    }
   }
 };
 exports.default = _default;

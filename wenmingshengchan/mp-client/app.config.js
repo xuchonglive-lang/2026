@@ -176,8 +176,8 @@ export default {
       // 默认空间：对应空间 A（微信审核空间），打包时默认请求此空间。请根据需要替换为实际的审核空间参数。
       "default": {
         "provider": "aliyun",
-        "spaceId": "audit-space-id-xxxxxx",
-        "clientSecret": "audit-client-secret-yyyyyy"
+        "spaceId": "mp-8bd3c72d-e08f-4a30-a186-d3152101fa67",
+        "clientSecret": "KqXrZKwSHTItwoCjhShw3A=="
       },
       // 正式空间：对应空间 B（正式生产空间），审核通过后动态切换至此。
       "prod": {

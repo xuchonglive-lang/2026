@@ -185,12 +185,12 @@ var _default = {
     handleWechatAuth: function handleWechatAuth() {
       var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var _yield$uni$login, _yield$uni$login2, loginErr, loginRes, res, hasAvatarAndNickname;
+        var _yield$uni$login, _yield$uni$login2, loginErr, loginRes, res, hasAvatarAndNickname, unregisteredCodes, isUnregistered;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // 第一阶段：先行发起不带用户资料的纯代码静默通讯
+                // 第一阶段：发起 type: 'login' 的纯静默通讯，不自动注册
                 uni.showLoading({
                   title: '安全信道建立中...'
                 });
@@ -210,61 +210,87 @@ var _default = {
                 }
                 throw new Error('微信通信链路异常');
               case 10:
-                _context.next = 12;
+                _context.prev = 10;
+                _context.next = 13;
                 return uni.vk.callFunction({
                   url: 'client/user/pub/loginByWeixin',
+                  needAlert: false,
                   data: {
-                    code: loginRes.code
-                    // 此时不传 userInfo，仅仅摸底
+                    code: loginRes.code,
+                    type: 'login'
                   }
                 });
-              case 12:
+              case 13:
                 res = _context.sent;
+                _context.next = 19;
+                break;
+              case 16:
+                _context.prev = 16;
+                _context.t0 = _context["catch"](10);
+                // 当 code !== 0 时，vk.callFunction 会执行 reject，在此捕获并将响应赋给 res
+                res = _context.t0;
+              case 19:
                 uni.hideLoading();
-                if (!(res.code === 0)) {
-                  _context.next = 23;
+                if (!(res && res.code === 0)) {
+                  _context.next = 29;
                   break;
                 }
                 if (res.userInfo) {
                   _this.vk.setVuex('$user.userInfo', res.userInfo);
                 }
 
-                // 核心拦截判断：这名用户的核心资料库里，是否有过我们为其填充的微信昵称与头像？
+                // 核心拦截：已存在用户是否有头像和昵称？
                 hasAvatarAndNickname = res.userInfo && res.userInfo.nickname && res.userInfo.avatar;
                 if (hasAvatarAndNickname) {
-                  _context.next = 20;
+                  _context.next = 26;
                   break;
                 }
-                // 是新用户，或者以前直接强退了没有走完资料，唤醒头像昵称授权组件！
+                // 已建档但信息缺失，唤醒授权组件补充信息
                 _this.$refs.authDialog.show();
                 return _context.abrupt("return");
-              case 20:
-                // 不管是不是今天注册的，只要他拥有头像和昵称，第二次以后点进来一律走全自动路由跳转分发
-                _this.routeUser(res.userInfo);
-                _context.next = 24;
-                break;
-              case 23:
-                uni.showToast({
-                  title: res.msg || '鉴权被系统拒绝',
-                  icon: 'none'
-                });
-              case 24:
-                _context.next = 30;
-                break;
               case 26:
-                _context.prev = 26;
-                _context.t0 = _context["catch"](1);
+                // 信息完整，直接路由分发
+                _this.routeUser(res.userInfo);
+                _context.next = 36;
+                break;
+              case 29:
+                if (!(res && typeof res.code !== 'undefined')) {
+                  _context.next = 35;
+                  break;
+                }
+                // 判断是否为新用户未注册错误 (包含业务错误 -1: 账号未注册)
+                unregisteredCodes = [10001, -1, 90001, 30201, 30202, 30203, 30204];
+                isUnregistered = unregisteredCodes.indexOf(res.code) > -1 || res.msg && (res.msg.indexOf('未注册') > -1 || res.msg.indexOf('不存在') > -1 || res.msg.indexOf('未绑定') > -1);
+                if (isUnregistered) {
+                  // 新用户：数据库无任何记录，直接拉起头像昵称授权框
+                  _this.$refs.authDialog.show();
+                } else {
+                  uni.showToast({
+                    title: res.msg || '鉴权被系统拒绝',
+                    icon: 'none'
+                  });
+                }
+                _context.next = 36;
+                break;
+              case 35:
+                throw new Error(res && res.msg || '请求发生未知异常');
+              case 36:
+                _context.next = 42;
+                break;
+              case 38:
+                _context.prev = 38;
+                _context.t1 = _context["catch"](1);
                 uni.hideLoading();
                 uni.showToast({
-                  title: _context.t0.message || '网络断开无响应',
+                  title: _context.t1.message || '网络断开无响应',
                   icon: 'none'
                 });
-              case 30:
+              case 42:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 26]]);
+        }, _callee, null, [[1, 38], [10, 16]]);
       }))();
     },
     // 路由自动分发中心，根据审查进度跃迁不同页面
@@ -302,51 +328,78 @@ var _default = {
                 finalAvatar = userInfoForm.avatar;
                 finalNickname = userInfoForm.nickname; // 如果头像是本地沙盒图片，抢先转存上云兑换公网永久 URL
                 if (!(finalAvatar && (finalAvatar.startsWith('http://tmp') || finalAvatar.startsWith('wxfile://') || finalAvatar.startsWith('file://')))) {
-                  _context2.next = 9;
+                  _context2.next = 19;
                   break;
                 }
-                _context2.next = 7;
+                _context2.prev = 5;
+                _context2.next = 8;
                 return uni.vk.callFunctionUtil.uploadFile({
                   filePath: finalAvatar,
                   fileType: "image",
                   needSave: false
                 });
-              case 7:
+              case 8:
                 uploadRes = _context2.sent;
                 if (uploadRes && uploadRes.url) {
                   finalAvatar = uploadRes.url;
                 }
-              case 9:
-                _context2.next = 11;
+                _context2.next = 19;
+                break;
+              case 12:
+                _context2.prev = 12;
+                _context2.t0 = _context2["catch"](5);
+                console.error("头像上云失败，已采用默认头像兜底:", _context2.t0);
+                // 采用项目内建的 premium 灰度剪影 base64 占位图
+                finalAvatar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj4KICA8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2YxZjVmOSIvPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNDgiIHI9IjI0IiBmaWxsPSIjY2JkNWUxIi8+CiAgPHBhdGggZD0iTTYwIDgwYy0yNSAwLTQwIDE1LTQwIDI0aDgwYzAtOS0xNS0yNC00MC0yNHoiIGZpbGw9IiNjYmQ1ZTEiLz4KPC9zdmc+';
+                uni.showToast({
+                  title: '头像服务受限，已使用系统默认头像',
+                  icon: 'none',
+                  duration: 2000
+                });
+                // 延迟以确保用户看到提示
+                _context2.next = 19;
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, 800);
+                });
+              case 19:
+                _context2.next = 21;
                 return uni.login({
                   provider: 'weixin'
                 });
-              case 11:
+              case 21:
                 _yield$uni$login3 = _context2.sent;
                 _yield$uni$login4 = (0, _slicedToArray2.default)(_yield$uni$login3, 2);
                 loginErr = _yield$uni$login4[0];
                 loginRes = _yield$uni$login4[1];
                 if (!(loginErr || !loginRes.code)) {
-                  _context2.next = 17;
+                  _context2.next = 27;
                   break;
                 }
                 throw new Error('通信链路异常');
-              case 17:
-                _context2.next = 19;
+              case 27:
+                _context2.prev = 27;
+                _context2.next = 30;
                 return uni.vk.callFunction({
                   url: 'client/user/pub/loginByWeixin',
+                  needAlert: false,
                   data: {
                     code: loginRes.code,
-                    userInfo: {
-                      avatar: finalAvatar,
-                      nickname: finalNickname
-                    }
+                    type: 'register',
+                    avatar: finalAvatar,
+                    nickname: finalNickname
                   }
                 });
-              case 19:
+              case 30:
                 res = _context2.sent;
+                _context2.next = 36;
+                break;
+              case 33:
+                _context2.prev = 33;
+                _context2.t1 = _context2["catch"](27);
+                res = _context2.t1;
+              case 36:
                 uni.hideLoading();
-                if (res.code === 0) {
+                if (res && res.code === 0) {
                   if (res.userInfo) {
                     _this2.vk.setVuex('$user.userInfo', res.userInfo);
                   }
@@ -361,26 +414,26 @@ var _default = {
                   }, 1000);
                 } else {
                   uni.showToast({
-                    title: res.msg || '入库发生阻断',
+                    title: res && res.msg || '入库发生阻断',
                     icon: 'none'
                   });
                 }
-                _context2.next = 28;
+                _context2.next = 44;
                 break;
-              case 24:
-                _context2.prev = 24;
-                _context2.t0 = _context2["catch"](1);
+              case 40:
+                _context2.prev = 40;
+                _context2.t2 = _context2["catch"](1);
                 uni.hideLoading();
                 uni.showToast({
-                  title: _context2.t0.message || '网络断开无响应',
+                  title: _context2.t2.message || '网络断开无响应',
                   icon: 'none'
                 });
-              case 28:
+              case 44:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[1, 24]]);
+        }, _callee2, null, [[1, 40], [5, 12], [27, 33]]);
       }))();
     }
   }

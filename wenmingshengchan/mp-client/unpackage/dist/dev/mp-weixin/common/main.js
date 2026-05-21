@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(wx, createApp) {
+/* WEBPACK VAR INJECTION */(function(wx, uni, createApp) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
@@ -24,18 +24,132 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 // @ts-ignore
 wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
+// 环境路由器初始化函数（支持 AOP 劫持与挂起）
+var initEnvRouter = function initEnvRouter() {
+  var isConfigLoaded = false;
+  var requestQueue = [];
+  uni.$app = uni.$app || {};
+
+  // 1. 获取小程序版本信息
+  var accountInfo = uni.getAccountInfoSync ? uni.getAccountInfoSync() : null;
+  var currentVersion = accountInfo && accountInfo.miniProgram && accountInfo.miniProgram.version || 'develop';
+  var cachedPassedVersion = uni.getStorageSync('app_env_passed_version');
+
+  // 2. 本地缓存优先判定，过审版本实现零延迟启动
+  if (cachedPassedVersion === currentVersion) {
+    uni.$app.currentEnv = 'prod';
+    isConfigLoaded = true;
+  } else {
+    uni.$app.currentEnv = 'default';
+    isConfigLoaded = false;
+  }
+
+  // 3. 异步拉取最新审核状态
+  _vkUnicloud.default.callFunction({
+    url: 'client/pub/checkAuditStatus',
+    data: {
+      version: currentVersion
+    },
+    success: function success(res) {
+      if (res.code === 0 && res.isPassed) {
+        uni.$app.currentEnv = 'prod';
+        uni.setStorageSync('app_env_passed_version', currentVersion);
+      } else {
+        uni.$app.currentEnv = 'default';
+        uni.removeStorageSync('app_env_passed_version');
+      }
+      releaseQueue();
+    },
+    fail: function fail() {
+      uni.$app.currentEnv = 'default'; // 异常安全兜底，默认保留在审核态
+      releaseQueue();
+    }
+  });
+
+  // 4. AOP 劫持 vk.callFunction
+  var originalCallFunction = _vkUnicloud.default.callFunction;
+  _vkUnicloud.default.callFunction = function (options) {
+    var _this = this;
+    if (options.url === 'client/pub/checkAuditStatus' || options.env) {
+      return originalCallFunction.call(this, options);
+    }
+    if (isConfigLoaded) {
+      options.env = uni.$app.currentEnv;
+      return originalCallFunction.call(this, options);
+    }
+    return new Promise(function (resolve, reject) {
+      requestQueue.push({
+        options: options,
+        resolve: resolve,
+        reject: reject,
+        context: _this
+      });
+    });
+  };
+
+  // 5. 释放队列
+  function releaseQueue() {
+    isConfigLoaded = true;
+    while (requestQueue.length > 0) {
+      var _requestQueue$shift = requestQueue.shift(),
+        options = _requestQueue$shift.options,
+        resolve = _requestQueue$shift.resolve,
+        reject = _requestQueue$shift.reject,
+        context = _requestQueue$shift.context;
+      options.env = uni.$app.currentEnv;
+      originalCallFunction.call(context || _vkUnicloud.default, options).then(resolve).catch(reject);
+    }
+  }
+};
 // 引入 uView UI
 _vue.default.use(_vkUviewUi.default);
 
 // 引入 vk框架前端
 _vue.default.use(_vkUnicloud.default, _appConfig.default);
+
+// 执行环境路由劫持
+initEnvRouter();
+
+// 全局计算属性与 onShow 路由守卫注入 Vue2
+_vue.default.mixin({
+  computed: {
+    currentEnv: function currentEnv() {
+      return uni.$app.currentEnv || 'default';
+    }
+  },
+  onShow: function onShow() {
+    var pages = getCurrentPages();
+    if (pages.length === 0) return;
+    var currentPage = pages[pages.length - 1];
+    var route = currentPage.route;
+    // 白名单页面直接放行
+    var whitelist = ['pages/user/login/index', 'pages/user/register/index', 'pages/user/audit-status/index', 'pages/user/mine/index', 'pages/index/visitor'];
+    if (whitelist.indexOf(route) > -1) return;
+    // 拦截非通过状态的已登录用户
+    var userInfo = uni.vk && uni.vk.getVuex && uni.vk.getVuex('$user.userInfo') || {};
+    if (userInfo && userInfo._id) {
+      var status = userInfo.audit_status;
+      if (status !== 3) {
+        if (status === 0 || status === undefined) {
+          uni.reLaunch({
+            url: '/pages/user/register/index'
+          });
+        } else if (status === 1 || status === 2) {
+          uni.reLaunch({
+            url: '/pages/user/audit-status/index'
+          });
+        }
+      }
+    }
+  }
+});
 _vue.default.config.productionTip = false;
 _App.default.mpType = 'app';
 var app = new _vue.default(_objectSpread({
   store: _store.default
 }, _App.default));
 createApp(app).$mount();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createApp"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createApp"]))
 
 /***/ }),
 
